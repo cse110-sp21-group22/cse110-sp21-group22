@@ -20,6 +20,11 @@
 - Github: https://github.com/anishatwal
 
 ### Arnav Taneja
+- Developer
+- Statistics and Computer Science - 2nd Year
+- Fremont, CA
+- Surfing, Golf, Chess, Hiking
+- Github: https://github.com/arnavtaneja
 
 ### Jacky Li
 - Developer
