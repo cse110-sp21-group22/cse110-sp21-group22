@@ -1,3 +1,3 @@
 # cse110-sp21-group22
-![Alt text](./admin/cse110logo.svg)
-<img src="./admin/cse110logo.svg">
+![Alt text](./admin/misc/cse110logo.svg)
+<img src="./admin/misc/cse110logo.svg">
