@@ -8,9 +8,9 @@
 6. Reach out whenever you need **help**.
 7. **Prioritize** communicating your work/problems in the group channel.
 8. If somebody is not following the rules:
-    Contact them privately
-    Contact team leaders
-    Contact Deepak
+    1. Contact them privately
+    2. Contact team leaders
+    3. Contact Deepak
 
 
 Team Member signature
