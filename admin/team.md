@@ -1,6 +1,6 @@
 # Catch 22
 
-![](admin/../branding/logo_cropped.png)
+<img src="branding/cse110logo.svg" width="1500" height="300">
 
 
 ## Team Members
