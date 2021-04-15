@@ -7,6 +7,10 @@
 5. Respond to notice within **24h** (leave a reaction, comment, anything that suggest you've read the notice).
 6. Reach out whenever you need **help**.
 7. **Prioritize** communicating your work/problems in the group channel.
+8. If somebody is not following the rules:
+    Contact them privately
+    Contact team leaders
+    Contact Deepak
 
 
 Team Member signature
