@@ -1,6 +1,7 @@
 
 # Meeting Minute
 Date: Wed, April 14, 2021
+
 Time: 10PM
 
 Team Member: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Nguyen Luong, Robert Wakefield-Carl, Shanqing Wang
