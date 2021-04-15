@@ -1,0 +1,14 @@
+TEAM #22 CONTRACT
+
+1. Be respectful to everyone in the group.
+2. Adhere to set deadlines
+3. Check Slack, Git repo, email regularly.
+4. Attend weekly meeting.
+5. Respond to notice within 24h (leave a reaction, comment, anything that suggest you've read the notice).
+6. Reach out whenever you need help.
+7. Prioritize communicating your work/problems in the group channel.
+
+
+Team Member signature
+Name: 
+Date: 
