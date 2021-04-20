@@ -1,2 +1,2 @@
 
-Please post your research for the Brainstorming session here!
+Please post the notes of your research here!
