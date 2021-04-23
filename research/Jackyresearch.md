@@ -41,7 +41,14 @@
   - Use it to schedule Events and Tasks, record evnets *after* they happen.
 - **The Task page**
   - Designed to help take a monthly mental inventory
+## Weekly Log:
+- Todo list on this week
 ## Daily Log:
 - Designed for day-to-day use
 - At the top of the page, record the date as your topic.
+## Personal Mini Map:
+- Mind map to connect thoughts
+## Goal Plans:
+- A page that will have title what goal you want to achieve 
+- List all the requirment to achieve the Goal
   
