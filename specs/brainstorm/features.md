@@ -28,3 +28,4 @@
 - Link to other places/Navigation
 - Light/Dark Mode
 - Syncing to external database
+- Flexibility of pages (delete/move pages)
