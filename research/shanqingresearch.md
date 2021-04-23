@@ -1,0 +1,58 @@
+- Bullet Journal Elements - [https://www.youtube.com/watch?v=fm15cmYU0IM](https://www.youtube.com/watch?v=fm15cmYU0IM), [https://bulletjournal.com/pages/learn](https://bulletjournal.com/pages/learn), [https://en.wikipedia.org/wiki/Bullet\_journal](https://en.wikipedia.org/wiki/Bullet_journal)
+  - Index
+    - Table of contents
+  - Future planner
+    - Monthly overview of next 6 months
+  - Monthly log
+    - Calendar with dates, day of the week
+    - &quot;Bird&#39;s-eye view of month&quot;
+  - Daily log
+    - Daily date
+    - Enable Rapid Logging
+    - Bullets
+      - Bullet - task
+      - Circle - event
+      - Dash - notes
+    - Signifiers
+      - Enhance meaning with signifiers, \*, !, #, etc.
+  - Migration
+    - Update status of tasks
+    - Change bullets
+      - Done - X
+      - Not important anymore - strikethrough
+      - Worth time in short term - right arrow \&gt;
+        - Task goes to next monthly log, collections
+      - Worth time, but in long term - left arrow \&lt;
+        - Task goes to future planner
+  - Collections
+    - Give page a title
+    - Migrate notes pertaining to the topic
+    - Use cases
+      - Shopping list
+      - Ongoing projects
+      - Classes
+    - Custom Collections encouraged
+      - Drawing?
+- Central Ideas
+  - Dot journals
+    - Dots instead of lines
+  - Take control of your life
+    - &quot;go from passenger to pilot of your life through intentional living.&quot; - website
+  - Designing your own approach to BuJo
+- Digital BuJo - [https://www.paperlessmovement.com/blog/why-digital-bullet-journals-are-better-than-using-a-pen-and-paper/](https://www.paperlessmovement.com/blog/why-digital-bullet-journals-are-better-than-using-a-pen-and-paper/)
+  - Customization
+  - Audio Recording
+  - Searching
+  - Keyboard, Apple pencils
+    - Flexibility in input
+  - Organization
+  - Backup and Sync
+  - Passwords
+  - Cites [Noteshelf](https://apps.apple.com/app/apple-store/id1271086060?mt=8)
+- Competitors
+  - Noteshelf
+  - Trello
+  - NotePlan
+  - Taskade
+  - The Bullet Journal Companion
+  - Dynalist
