@@ -32,6 +32,9 @@ Similarly, we use Miro to draw up the board for the mock-up
 (bonding through looking at green alien holding a purple baloon?)
 ![bonding?](bonding.png)
 
+## Link to Features file
+[Features.md](../../specs/brainstorm/features.md)
+
 ## To-do List
 Look into next week tasks and come up with questions for next week meeting w/ Deepak on Monday.
 
