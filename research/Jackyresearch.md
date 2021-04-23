@@ -50,5 +50,5 @@
 - Mind map to connect thoughts
 ## Goal Plans:
 - A page that will have title what goal you want to achieve 
-- List all the requirment to achieve the Goal
+- List all the requirment and plan to achieve the Goal
   
