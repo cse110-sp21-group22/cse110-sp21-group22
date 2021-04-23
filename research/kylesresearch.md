@@ -11,16 +11,21 @@ with an index
 # How is a Bullet Journal Organized?
 The foundation of a bullet journal can be divided into 5 main concepts:
 - Index
+  
   Book index, table of contents, organizes contents
 - Rapid Logging
+  
   System of abbreviations and symbols to quickly write down information.
   System is usually defined in a key in front of the journal
 - Logs
+  
   To-do lists, daily/monthly/weekly/future etc. logs, also called spreads
 - Collections
+  
   Make up a majority of the journal, organize information you want to track
   Books to read, recipes, projects, goals etc.
 - Migration
+  
   The practice of periodically updating lists to new lists, carrying over
   unfinished tasks to the next log
 
