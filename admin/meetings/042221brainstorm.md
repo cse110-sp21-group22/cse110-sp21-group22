@@ -28,6 +28,7 @@ Everyone create a Miro board for all the features. Include link to Miro in #link
 
 ## Low-fidelity Mock-up
 Similarly, we use Miro to draw up the board for the mock-up
+[miro link](https://miro.com/welcomeonboard/kttvzXVvHIK4gYYQyBdX4lim8Z2BpwV5kiIAvQ5UOG2TN4mTxzOn3UhPlyrvcOOR)
 
 (bonding through looking at green alien holding a purple baloon?)
 ![bonding?](bonding.png)
