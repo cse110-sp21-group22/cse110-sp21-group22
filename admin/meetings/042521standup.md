@@ -3,6 +3,7 @@
 Meeting at 11:00 pm pst on zoom
 
 **present:**
+
 Menghe(jacky) Li
 
 Arnav Taneja
