@@ -26,5 +26,6 @@ Robert Wakefield-Carl
 - Think about the Prototype
 
 Meeting end at 11:18pm
+
 Total time: 18min
 
