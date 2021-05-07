@@ -44,6 +44,9 @@ jspm_packages/
 # DS_Store
 .DS_Store
 
+# Firebase
+firebase/
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
