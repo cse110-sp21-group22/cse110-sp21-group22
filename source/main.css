@@ -1,0 +1,17 @@
+/* Customizations for top navigational bar*/
+.topnav{
+    background-color:lightblue;
+}
+
+.topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+.topnav li {
+    display: inline;
+    color: gold;
+    text-decoration: none;
+}
+
