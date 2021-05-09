@@ -3,7 +3,7 @@ Date: Sat, May 8th, 2021
 
 Time: 7:30PM/9PM
 
-Team Members: Ajay Booter, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Nguyen Luong
+Team Members: Ajay Booter, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Nguyen Luong, Robert Wakefield-Carl, Shanqing Wang
 
 # Nav bar
 
@@ -57,4 +57,28 @@ Settings Page:
 Mood Tracker Page:
 - Make as pretty as we can/reinforce reflection idea
 
+## Tasks
+Ajay Booter
+- Quote Generator
+
+Anisha Atwal
+- Display the Mood Tracker Chart
+
+Jenny Nguyen
+- Daily Log
+
+Kyle Batalla
+- Sticky Note/Rose and Thorn
+
+Menghe (Jacky) Li
+- Progress Bar
+
+Robert Wakefield-Carl
+- Database, start looking into firebase/ Login
+
+Shanqing Wang
+- Calendar Page
+
+Nguyen Luong
+- Overall layout of page(s)
 
