@@ -30,8 +30,8 @@ Style editing
 - Front-end: font & style, place at bottom of front page
 
 # Calendar
-1. Do we need the left side calendar? Solution: actual calendar
-2. Do we need the "Academic term"?
+1. Do we need the left side calendar? ~~Solution: actual calendar
+~~2. Do we need the "Academic term"?~~
 ## Progress bar
 - Back-end: Countdown Calendar: What week you're on based on Term Start and Term End and update progress bar based on week number
 - Front-end: Create a progress bar, match the running man icon with the progress bar
