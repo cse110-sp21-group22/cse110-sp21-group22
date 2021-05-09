@@ -3,7 +3,7 @@ Date: Sat, May 8th, 2021
 
 Time: 7:30PM/9PM
 
-Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Robert Wakefield-Carl, Shanqing Wang, Nguyen Luong
+Team Members: Ajay Booter, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Nguyen Luong
 
 # Nav bar
 
@@ -37,8 +37,8 @@ Style editing
 - Front-end: Create a progress bar, match the running man icon with the progress bar
 
 # Settings
-## Do we need to turn off daily quote and rose&thorn?
-## Should we add light/dark mode? Might not need because theme/background color change
+~~## Do we need to turn off daily quote and rose&thorn?~~
+~~## Should we add light/dark mode? Might not need because theme/background color change~~  
 Front-end:
 - Font: only for object that user can edit: daily log
 - Background & theme: how to make them work on all pages.
@@ -47,4 +47,14 @@ Front-end:
 # Mood Tracker
 Look into more API that apply the mood tracker & CodePen might have good visual examples.   
 How to make it look pretty! => The main selling point of Mood Tracker.
+
+
+## Decisions
+Settings Page:
+- Get rid of options for rose & thorn and daily quote
+- Background color/theme => preset colors (test with couple colors first)
+
+Mood Tracker Page:
+- Make as pretty as we can/reinforce reflection idea
+
 
