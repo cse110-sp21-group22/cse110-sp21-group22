@@ -19,3 +19,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATCH_22_E0C66 }}'
           channelId: live
           projectId: catch-22-e0c66
+        env:
+          PROJECT_PATH: "./source"
