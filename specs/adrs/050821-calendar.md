@@ -21,10 +21,10 @@ We didn't like the way that we originally set up this page, so we want to make c
 
 ## Decision Outcome
 
-We choose options 1, 2. The progress bar is one of the features to help our target users (students) keep track of their academic term that we see non other team has. The left side bar is a basic feature of bullet journal that we can utilize to show a bird eye view of the future plan. We haven't figured out what specific kind of information should be displayed in this right panel (task? nested task? if so, what's the difference between this and the daily log?).
+We choose options 1, 2. The progress bar is one of the features to help our target users (students) keep track of their academic term that we see non other team has. The left side bar is a basic feature of bullet journal that we can utilize to show a bird eye view of the future plan.
+We haven't figured out what specific kind of information should be displayed in this right panel (task? nested task? if so, what's the difference between this and the daily log?).
 
-
-### Positive Consequences 
+### Positive Consequences
 
 * Allows the user to view their current progress in their acedemic year.
 * Allows us to add more features in the future

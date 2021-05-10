@@ -9,7 +9,7 @@ Technical Story: Introduction of a Settings Page
 
 We want the website to focus on our audience of high-school and university students. As such, we want to add a couple customizable features in order to allow the user to express their school spirit.
 
-## Decision Drivers 
+## Decision Drivers
 
 * Customizability
 
@@ -25,7 +25,7 @@ We want the website to focus on our audience of high-school and university stude
 We chose option 2 and 4 because we allow our users to customize their font and color theme. We chose option 3 because we want to keep the settings organize and not clutter up our home page.  
 
 
-### Positive Consequences 
+### Positive Consequences
 
 * Lots of extra space with a new page, allows for newer settings to easily be implemented in the future.
 * Less features to consider
