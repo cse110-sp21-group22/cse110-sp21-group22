@@ -24,3 +24,7 @@ Homepage:
 body {
   padding-top: 4.5rem;
 }
+
+.navbar{
+  background-color: rgb(109, 1, 1);
+}
