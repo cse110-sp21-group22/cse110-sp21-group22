@@ -20,3 +20,7 @@ Homepage:
   color: gold;
   text-decoration: none;
 }
+
+body {
+  padding-top: 4.5rem;
+}
