@@ -25,12 +25,10 @@ body {
   padding-top: 4.5rem;
   width: 100%;
   height: 100%;
-  margin: 0px;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Open Sans', serif;
 }
-
 
 .navbar {
   background-color: rgb(109, 1, 1);
