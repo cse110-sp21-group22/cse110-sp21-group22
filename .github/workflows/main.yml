@@ -68,6 +68,7 @@ jobs:
         auditOn: push
         publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
         publishDeployment: 1076
+        
   ###################
   # Firebase deploy #
   ###################
@@ -81,6 +82,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATCH_22_E0C66 }}'
           channelId: live
           projectId: catch-22-e0c66
+          
   #####################
   # JSDocs generation #
   #####################

@@ -54,6 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.yml
           VALIDATE_JAVASCRIPT_STANDARD: false
+
   ################
   # Semgrep Scan #
   ################
@@ -67,6 +68,7 @@ jobs:
         auditOn: push
         publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
         publishDeployment: 1076
+        
   ###################
   # Firebase deploy #
   ###################
