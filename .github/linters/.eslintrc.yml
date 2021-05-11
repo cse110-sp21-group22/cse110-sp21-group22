@@ -72,7 +72,8 @@ rules:
   # Strict Mode
 
   # Variables
-  no-undef: 2              # disallow use of undeclared variables unless mentioned in a /*global */ block
+  no-undef: 1              # disallow use of undeclared variables unless mentioned in a /*global */ block
+  no-unused-vars: 1
 
   # Node.js
 

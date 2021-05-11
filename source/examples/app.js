@@ -5,7 +5,7 @@ auth.onAuthStateChanged(user => {
   if (!user) {
     location = 'login.html';
   }
-})
+});
 
 // retriving tasks
 function renderData(individualDoc) {
@@ -39,8 +39,8 @@ function renderData(individualDoc) {
       if (user) {
         fs.collection(user.uid).doc(id).delete();
       }
-    })
-  })
+    });
+  });
 }
 
 // retriving username
@@ -49,9 +49,9 @@ auth.onAuthStateChanged(user => {
   if (user) {
     fs.collection('users').doc(user.uid).get().then((snapshot) => {
       username.innerText = snapshot.data().name;
-    })
+    });
   }
-})
+});
 
 // adding tasks to firestore database
 const form = document.getElementById('form');
@@ -72,10 +72,10 @@ form.addEventListener('submit', e => {
         console.log('todo added');
       }).catch(err => {
         console.log(err.message);
-      })
+      });
     }
-  })
-})
+  });
+});
 
 // logout
 function logout() {
@@ -94,7 +94,7 @@ auth.onAuthStateChanged(user => {
           let li = todoContainer.querySelector('[data-id=' + change.doc.id + ']');
           todoContainer.removeChild(li);
         }
-      })
-    })
+      });
+    });
   }
-})
+});

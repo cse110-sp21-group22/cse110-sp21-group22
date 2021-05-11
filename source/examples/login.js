@@ -9,5 +9,5 @@ loginForm.addEventListener('submit', e => {
   }).catch(err => {
     const loginError = document.getElementById('login-error');
     loginError.innerText = err.message;
-  })
-})
+  });
+});

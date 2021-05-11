@@ -17,9 +17,9 @@ signupForm.addEventListener('submit', e => {
     }).catch(err => {
       const signupError = document.getElementById('signup-error');
       signupError.innerText = err.message;
-    })
+    });
   }).catch(err => {
     const signupError2 = document.getElementById('signup-error');
     signupError2.innerText = err.message;
-  })
-})
+  });
+});
