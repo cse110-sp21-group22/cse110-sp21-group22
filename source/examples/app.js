@@ -3,26 +3,26 @@ const todoContainer = document.getElementById('todo-container');
 // checking if user is signed in or not
 auth.onAuthStateChanged(user => {
   if (!user) {
-    window.location.href = "login.html";
+    window.location.href = 'login.html';
   }
 })
 
 // retriving tasks
 function renderData(individualDoc) {
   // parent div
-  let parentDiv = document.createElement("div");
-  parentDiv.className = "container todo-box";
+  let parentDiv = document.createElement('div');
+  parentDiv.className = 'container todo-box';
   parentDiv.setAttribute('data-id', individualDoc.id);
 
   // task div
-  let taskDiv = document.createElement("div");
+  let taskDiv = document.createElement('div');
   taskDiv.textContent = individualDoc.data().todos;
 
   // button
-  let trash = document.createElement("button");
+  let trash = document.createElement('button');
 
-  let i = document.createElement("i");
-  i.className = "fas fa-trash";
+  let i = document.createElement('i');
+  i.className = 'fas fa-trash';
 
   // appending
   trash.appendChild(i);
@@ -88,10 +88,9 @@ auth.onAuthStateChanged(user => {
     fs.collection(user.uid).onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
       changes.forEach(change => {
-        if (change.type == "added") {
+        if (change.type == 'added') {
           renderData(change.doc);
-        }
-        else if (change.type == 'removed') {
+        } else if (change.type == 'removed') {
           let li = todoContainer.querySelector('[data-id=' + change.doc.id + ']');
           todoContainer.removeChild(li);
         }

@@ -1,4 +1,4 @@
-const signupForm = document.getElementById("signup-form");
+const signupForm = document.getElementById('signup-form');
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
   const email = signupForm['email'].value;
@@ -13,7 +13,7 @@ signupForm.addEventListener('submit', e => {
       uid: cred.user.uid
     };
     return db.collection('users').doc(cred.user.uid).set(userCredentials).then(() => {
-      location = "login.html";
+      location = 'login.html';
     }).catch(err => {
       const signupError = document.getElementById('signup-error');
       signupError.innerText = err.message;

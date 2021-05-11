@@ -5,9 +5,9 @@ loginForm.addEventListener('submit', e => {
   const loginPassword = loginForm['password'].value;
   console.log(loginEmail, loginPassword);
   auth.signInWithEmailAndPassword(loginEmail, loginPassword).then(() => {
-    location = "index.html";
+    location = 'index.html';
   }).catch(err => {
-    const loginError = document.getElementById("login-error");
+    const loginError = document.getElementById('login-error');
     loginError.innerText = err.message;
   })
 })
