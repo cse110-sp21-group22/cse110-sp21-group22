@@ -1,3 +1,10 @@
+// checking if user is signed in or not
+auth.onAuthStateChanged(user => {
+  if (user) {
+    location = 'index.html'
+  }
+});
+
 const signupForm = document.getElementById('signup-form');
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
