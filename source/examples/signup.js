@@ -4,10 +4,8 @@ signupForm.addEventListener('submit', e => {
   const email = signupForm['email'].value;
   const password = signupForm['password'].value;
   const name = signupForm['name'].value;
-  // console.log(email, password);
   signupForm.reset();
   auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-    // console.log(cred);
     const userCredentials = {
       name: name,
       email: email,
@@ -15,15 +13,12 @@ signupForm.addEventListener('submit', e => {
       uid: cred.user.uid
     };
     return db.collection('users').doc(cred.user.uid).set(userCredentials).then(() => {
-      // console.log('success');
       location = "login.html";
     }).catch(err => {
-      // console.log(err.message);
       const signupError = document.getElementById('signup-error');
       signupError.innerText = err.message;
     })
   }).catch(err => {
-    // console.log(err.message);
     const signupError2 = document.getElementById('signup-error');
     signupError2.innerText = err.message;
   })
