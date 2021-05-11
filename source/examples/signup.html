@@ -46,6 +46,10 @@
         <h1 class="h3 mb-3 fw-normal">Sign up</h1>
 
         <div class="form-floating">
+          <input type="name" class="form-control" id="name" placeholder="Alice Black">
+          <label for="name">Name</label>
+        </div>
+        <div class="form-floating">
           <input type="email" class="form-control" id="email" placeholder="name@example.com">
           <label for="email">Email address</label>
         </div>
@@ -58,6 +62,7 @@
 
         <!-- Register buttons -->
         <div class="text-center">
+          <p>Already a member? <a href="login.html">Login</a></p>
           <p>or sign up with:</p>
           <button type="button" class="btn btn-primary btn-floating mx-1">
             <i class="fab fa-facebook-f"></i>
@@ -75,6 +80,8 @@
             <i class="fab fa-github"></i>
           </button>
         </div>
+        <br>
+        <div class="container error" id="signupError"></div>
 
       </form>
     </main>

@@ -37,3 +37,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.error {
+    color: rgb(255, 0, 0);
+    font-size: 14px;
+    font-weight: 600;
+}
