@@ -1,4 +1,4 @@
 # cse110-sp21-group22
-<img src="./admin/branding/cse110logo.svg">
+<img src="https://raw.githubusercontent.com/cse110-sp21-group22/cse110-sp21-group22/main/admin/branding/cse110logo.svg">
 
-[Team Page](./admin/team.md)
+[Team Page](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/admin/team.md)
