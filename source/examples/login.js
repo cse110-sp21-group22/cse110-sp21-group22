@@ -1,7 +1,7 @@
 // checking if user is signed in or not
 auth.onAuthStateChanged(user => {
   if (user) {
-    location = 'index.html'
+    location = 'index.html';
   }
 });
 
