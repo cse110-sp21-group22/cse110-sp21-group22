@@ -12,7 +12,7 @@
 env:
   browser: true
   jest: true
-  node: false           # Node.js global variables and Node.js-specific rules.
+  node: false        # Node.js global variables and Node.js-specific rules.
   worker: false      # web workers global variables.
   amd: false         # defines require() and define() as global variables as per the amd spec.
   mocha: false       # adds all of the Mocha testing global variables.
@@ -72,20 +72,20 @@ rules:
   # Strict Mode
 
   # Variables
-  no-undef: 2                   # disallow use of undeclared variables unless mentioned in a /*global */ block
+  no-undef: 2              # disallow use of undeclared variables unless mentioned in a /*global */ block
 
   # Node.js
 
   # Stylistic Issues
-  array-bracket-spacing: [2 never] # enforce spacing inside array brackets (off by default)
-  indent: [2 2]                      # this option sets a specific tab width for your code (off by default)
-  no-array-constructor: 2             # disallow use of the Array constructor
-  no-mixed-spaces-and-tabs: 2         # disallow mixed spaces and tabs for indentation
-  no-new-object: 2                    # disallow use of the Object constructor
-  object-curly-spacing: [2 never]  # require or disallow padding inside curly braces (off by default)
-  semi: 2                             # require or disallow use of semicolons instead of ASI
+  array-bracket-spacing: ["error", "never"]     # enforce spacing inside array brackets (off by default)
+  indent: ["error", 2]                          # this option sets a specific tab width for your code (off by default)
+  no-array-constructor: 2                       # disallow use of the Array constructor
+  no-mixed-spaces-and-tabs: 2                   # disallow mixed spaces and tabs for indentation
+  no-new-object: 2                              # disallow use of the Object constructor
+  object-curly-spacing: ["error", "never"]      # require or disallow padding inside curly braces (off by default)
+  semi: 2                                       # require or disallow use of semicolons instead of ASI
 
   # ECMAScript 6
 
   # Legacy
-  max-len: [1 80 2] # specify the maximum length of a line in your program (off by default)
+  max-len: ["warn", {"code": 80, "tabWidth": 4}]  # specify the maximum length of a line in your program (off by default)
