@@ -3,7 +3,7 @@ const todoContainer = document.getElementById('todo-container');
 // checking if user is signed in or not
 auth.onAuthStateChanged(user => {
   if (!user) {
-    window.location.href = 'login.html';
+    location = 'login.html';
   }
 })
 
