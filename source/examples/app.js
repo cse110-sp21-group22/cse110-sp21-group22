@@ -7,6 +7,30 @@ auth.onAuthStateChanged(user => {
   }
 });
 
+class Todo {
+  constructor (id, text) {
+      this.id = id;
+      this.text = text;
+  }
+  toString() {
+      return this.text;
+  }
+}
+
+// Firestore data converter
+var todoConverter = {
+  toFirestore: function(todo) {
+      return {
+          id: todo.id,
+          text: todo.text,
+          };
+  },
+  fromFirestore: function(snapshot, options){
+      const data = snapshot.data(options);
+      return new Todo(data.id, data.text);
+  }
+};
+
 // retriving tasks
 function renderData(individualDoc) {
   // parent div
@@ -16,7 +40,7 @@ function renderData(individualDoc) {
 
   // task div
   let taskDiv = document.createElement('div');
-  taskDiv.textContent = individualDoc.data().todos;
+  taskDiv.textContent = individualDoc.data().text;
 
   // button
   let trash = document.createElement('button');
@@ -65,10 +89,7 @@ form.addEventListener('submit', e => {
   form.reset();
   auth.onAuthStateChanged(user => {
     if (user) {
-      fs.collection(user.uid).doc('_' + id).set({
-        id: '_' + id,
-        todos
-      }).then(() => {
+      fs.collection(user.uid).doc('_' + id).withConverter(todoConverter).set(new Todo(id, todos)).then(() => {
         console.log('todo added');
       }).catch(err => {
         console.log(err.message);
