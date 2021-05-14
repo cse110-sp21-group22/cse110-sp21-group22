@@ -3,11 +3,9 @@
  * @author Test
  * @example Test
  */
-ColorPicker(
-  document.getElementById('color-picker'),
-  function(hex, hsv, rgb) {
-    document.getElementById('navbar').style.backgroundColor = hex;
-  });
+ColorPicker(document.getElementById('color-picker'), function(hex, hsv, rgb) {
+  document.getElementById('navbar').style.backgroundColor = hex;
+});
 
 /**
  * Represents a book.
@@ -27,13 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let result;
 
   // Fetches information from quote generator website
-  fetch(url)
-    .then((response) => response.json())
-    .then((result) => {
-      // Updates html objects with content from the website
-      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-      document.querySelector("#authors").innerHTML = "-" + result.author;
-    });
+  fetch(url).then((response) => response.json()).then((result) => {
+    // Updates html objects with content from the website
+    document.querySelector("#quote").innerHTML = '"' + result.content + '"';
+    document.querySelector("#authors").innerHTML = "-" + result.author;
+  });
 
   /*Quote Generator */
 }); /* document.addEventListener()*/
