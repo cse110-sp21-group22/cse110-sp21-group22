@@ -73,7 +73,7 @@ jobs:
   # Firebase deploy #
   ###################
   preview:
-    needs: linter
+    needs: [linter, semgrep]
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
