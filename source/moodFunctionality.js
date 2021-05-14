@@ -20,13 +20,13 @@ const monthName = [
 ];
 const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var currDate;
-const veryHappy = document.getElementsByClassName("very-happy")[0];
-const happy = document.getElementsByClassName("happy")[0];
-const neutral = document.getElementsByClassName("neutral")[0];
-const sad = document.getElementsByClassName("sad")[0];
-const verySad = document.getElementsByClassName("very-sad")[0];
+const veryHappy = document.getElementById("very-happy");
+const happy = document.getElementById("happy");
+const neutral = document.getElementById("neutral");
+const sad = document.getElementById("sad");
+const verySad = document.getElementById("very-sad");
 const selectedIconName = localStorage.getItem("selected-icon");
-const selectedIcon = document.getElementsByClassName(selectedIconName)[0];
+const selectedIcon = document.getElementById(selectedIconName)[0];
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
@@ -104,9 +104,6 @@ function setCurrDate() {
     var e = dates[i];
     if (e.classList.contains(month + "-" + day)) {
       e.classList.add("curr-day");
-      if ("selected-icon" in localStorage) {
-        selectedIcon.classList.toggle(selectedIconName + "-click", true);
-      }
       currDate = e;
     }
   }
