@@ -7,7 +7,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jac
 
 ## Progress
 - Skeleton of Pages
-  - Creation of all pages 
+  - Creation of all pages
   - Functional navigation bar across all pages
   - Page layout: responsive
 - Progress Bar

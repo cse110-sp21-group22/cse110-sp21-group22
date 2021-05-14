@@ -36,7 +36,7 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
     - motivational quotes of the day (disable feature)
     - confetti and sound when complete a task
 5. Pitch
-    - https://docs.google.com/document/d/1maUTyyJFWfBlHZAarD3bWLvQv2s89g7-TedP5TpKbsg/edit
+    - [link](https://docs.google.com/document/d/1maUTyyJFWfBlHZAarD3bWLvQv2s89g7-TedP5TpKbsg/edit)
 6. User Personas
     - two high school students
     - two college students
