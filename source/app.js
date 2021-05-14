@@ -16,10 +16,16 @@ let semester_end;
  */
 function Book(title, author) {}
 
+/*
+ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+  document.getElementById("navbar").style.backgroundColor = hex;
+});
+*/
+
 /**
  * function for progress bar
  */
-function progress() {
+function progress_func() {
   semester_start = new Date($("#datepicker1").val());
   semester_end = new Date($("#datepicker2").val());
   if (semester_end != undefined && semester_start != undefined) {
@@ -48,10 +54,10 @@ $("#datepicker2").datepicker();
 $("#datepicker1")
   .datepicker()
   .on("changeDate", function (ev) {
-    progress();
+    progress_func();
   });
 $("#datepicker2")
   .datepicker()
   .on("changeDate", function (ev) {
-    progress();
+    progress_func();
   });
