@@ -10,6 +10,10 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
 
+    <link rel="stylesheet" href="moodStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
@@ -29,11 +33,11 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
   </head>
-  <body>    
+  <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">BuJo</a>
@@ -60,8 +64,22 @@
       <div class="bg-light p-5 rounded">
         <h1>Mood Tracker</h1>
       </div>
+
+      <section id="year-grid">
+         <!-- fills with mood tracker grid in js -->
+      </section>
+
+      <!-- mood facial expression to click on -->
+      <section id="mood-selector">
+         <em class="material-icons md-48 very-happy">sentiment_very_satisfied</em>
+         <em class="material-icons-outlined md-48 happy">sentiment_satisfied</em>
+         <em class="material-icons md-48 neutral">sentiment_neutral</em>
+         <em class="material-icons md-48 sad">sentiment_very_dissatisfied</em>
+         <em class="material-icons md-48 very-sad">mood_bad</em>
+       </section>
     </main>
 
+    <script src="./moodFunctionality.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="./app.js"></script>
   </body>
