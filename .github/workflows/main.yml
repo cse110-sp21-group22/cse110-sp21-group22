@@ -73,6 +73,7 @@ jobs:
   # Firebase deploy #
   ###################
   deploy:
+    needs: [linter, semgrep]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -87,6 +88,7 @@ jobs:
   # JSDocs generation #
   #####################
   docs:
+    needs: [linter, semgrep]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
