@@ -1,7 +1,7 @@
 /**
  * Tasks that occur whenever the webpage is loaded
  */
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   /* Quote Generator */
 
   let url = "https://api.quotable.io/random";

@@ -61,7 +61,11 @@ function renderData(individualDoc) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     auth.onAuthStateChanged((user) => {
       if (user) {
-        fs.collection("users").doc(user.uid).collection("tasks").doc(id).delete();
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("tasks")
+          .doc(id)
+          .delete();
       }
     });
   });
@@ -116,18 +120,21 @@ function logout() {
 // realtime listners
 auth.onAuthStateChanged((user) => {
   if (user) {
-    fs.collection("users").doc(user.uid).collection("tasks").onSnapshot((snapshot) => {
-      let changes = snapshot.docChanges();
-      changes.forEach((change) => {
-        if (change.type == "added") {
-          renderData(change.doc);
-        } else if (change.type == "removed") {
-          let li = todoContainer.querySelector(
-            "[data-id=" + change.doc.id + "]"
-          );
-          todoContainer.removeChild(li);
-        }
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("tasks")
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        changes.forEach((change) => {
+          if (change.type == "added") {
+            renderData(change.doc);
+          } else if (change.type == "removed") {
+            let li = todoContainer.querySelector(
+              "[data-id=" + change.doc.id + "]"
+            );
+            todoContainer.removeChild(li);
+          }
+        });
       });
-    });
   }
 });
