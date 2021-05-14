@@ -61,7 +61,7 @@ function renderData(individualDoc) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     auth.onAuthStateChanged((user) => {
       if (user) {
-        fs.collection(user.uid).doc(id).delete();
+        fs.collection("users").doc(user.uid).collection("tasks").doc(id).delete();
       }
     });
   });
@@ -92,7 +92,9 @@ form.addEventListener("submit", (e) => {
   form.reset();
   auth.onAuthStateChanged((user) => {
     if (user) {
-      fs.collection(user.uid)
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("tasks")
         .doc("_" + id)
         .withConverter(todoConverter)
         .set(new Todo(id, todos))
@@ -114,7 +116,7 @@ function logout() {
 // realtime listners
 auth.onAuthStateChanged((user) => {
   if (user) {
-    fs.collection(user.uid).onSnapshot((snapshot) => {
+    fs.collection("users").doc(user.uid).collection("tasks").onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
       changes.forEach((change) => {
         if (change.type == "added") {

@@ -26,7 +26,7 @@ signupForm.addEventListener("submit", (e) => {
         .doc(cred.user.uid)
         .set(userCredentials)
         .then(() => {
-          location = "login.html";
+          location = "index.html";
         })
         .catch((err) => {
           const signupError = document.getElementById("signup-error");

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <title>Signin Template · Bootstrap v5.0</title>
+    <title>Signup</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -41,10 +41,14 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form id="login-form">
+      <form id="signup-form">
         <img class="mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">Sign up</h1>
 
+        <div class="form-floating">
+          <input type="name" class="form-control" id="name" placeholder="Alice Black">
+          <label for="name">Name</label>
+        </div>
         <div class="form-floating">
           <input type="email" class="form-control" id="email" placeholder="name@example.com">
           <label for="email">Email address</label>
@@ -54,33 +58,11 @@
           <label for="password">Password</label>
         </div>
 
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="form2-example3"
-                checked
-              />
-              <label class="form-check-label" for="form2-example3"> Remember me </label>
-            </div>
-          </div>
-
-          <div class="col">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Sign in</button>
-        <br>
-        <div class="container error" id="login-error"></div>
+        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Sign up</button>
 
         <!-- Register buttons -->
         <div class="text-center">
-          <p>Not a member? <a href="signup.html">Register</a></p>
+          <p>Already a member? <a href="login.html">Login</a></p>
           <p>or sign up with:</p>
           <button type="button" class="btn btn-primary btn-floating mx-1">
             <em class="fab fa-facebook-f"></em>
@@ -98,6 +80,8 @@
             <em class="fab fa-github"></em>
           </button>
         </div>
+        <br>
+        <div class="container error" id="signup-error"></div>
 
       </form>
     </main>
@@ -131,7 +115,7 @@
       const db = firebase.firestore();
     </script>
 
-    <script src="login.js"></script>
+    <script src="./signup.js"></script>
 
   </body>
 </html>
