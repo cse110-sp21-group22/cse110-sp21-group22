@@ -4,10 +4,21 @@ const year = date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate();
 const monthName = [
-  "", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-  "Nov", "Dec"
+  "",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
-const daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var currDate;
 const veryHappy = document.getElementsByClassName("very-happy")[0];
 const happy = document.getElementsByClassName("happy")[0];
@@ -102,7 +113,7 @@ function setCurrDate() {
 }
 
 /* very happy mood selected */
-veryHappy.addEventListener("click", function() {
+veryHappy.addEventListener("click", function () {
   veryHappy.classList.toggle("very-happy-click", true);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -114,7 +125,7 @@ veryHappy.addEventListener("click", function() {
 });
 
 /* happy mood selected */
-happy.addEventListener("click", function() {
+happy.addEventListener("click", function () {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", true);
   neutral.classList.toggle("neutral-click", false);
@@ -126,7 +137,7 @@ happy.addEventListener("click", function() {
 });
 
 /* neutral mood selected */
-neutral.addEventListener("click", function() {
+neutral.addEventListener("click", function () {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", true);
@@ -138,7 +149,7 @@ neutral.addEventListener("click", function() {
 });
 
 /* sad mood selected */
-sad.addEventListener("click", function() {
+sad.addEventListener("click", function () {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -150,7 +161,7 @@ sad.addEventListener("click", function() {
 });
 
 /* very sad mood selected */
-verySad.addEventListener("click", function() {
+verySad.addEventListener("click", function () {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
