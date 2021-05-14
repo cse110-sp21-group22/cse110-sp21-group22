@@ -3,11 +3,9 @@
  * @author Test
  * @example Test
  */
-ColorPicker(
-  document.getElementById('color-picker'),
-  function(hex, hsv, rgb) {
-    document.getElementById('navbar').style.backgroundColor = hex;
-  });
+ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+  document.getElementById("navbar").style.backgroundColor = hex;
+});
 
 /**
  * Represents a book.
