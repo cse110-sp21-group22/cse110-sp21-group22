@@ -88,7 +88,7 @@ jobs:
   # JSDocs generation #
   #####################
   docs:
-    needs: linter
+    needs: [linter, semgrep]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
