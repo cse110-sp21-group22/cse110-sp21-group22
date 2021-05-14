@@ -23,7 +23,7 @@ Shanqing: thinks of BuJo as a bird-eye view of tasks. Focus on the 'Migration' f
 
 Nguyen: focuses on the daily function of BuJo: reminders
 
-## Miro 
+## Miro
 Everyone create a Miro board for all the features. Include link to Miro in #links in Stack
 
 ## Low-fidelity Mock-up

@@ -11,16 +11,12 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
    1. Group Contract
    2. Group Page
    3. Group Video
-   
 2. Schedule Weekly Meetings for upcoming meetings.
-   
 
 ## Decisions
 Task:
 1. Finished Group Contract Assignment. Submitted Screenshot to Canvas.
 2. Finished Group Page and Group Introduction Video. Updated Github Repo.
 3. When2Meet sent out to check for availability.
- 
 
 ## Others
-

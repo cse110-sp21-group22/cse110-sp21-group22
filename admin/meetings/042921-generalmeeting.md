@@ -13,7 +13,7 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
 3. User flow
 4. Wireframe
 5. High fidelity
-6. Pitch 
+6. Pitch
 
 ## Decisions
 1. Target audience: students
@@ -29,14 +29,14 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
     - gpa calculator (input weights and curve)
     - how long school year goes for (calendar)
     - finance tracker
-    - 4 year plan 
+    - 4 year plan
 4. How to make unique: mental health
     - gratitude and affirmations / rose and thorn
     - built into daily log
     - motivational quotes of the day (disable feature)
     - confetti and sound when complete a task
-5. Pitch 
-    - https://docs.google.com/document/d/1maUTyyJFWfBlHZAarD3bWLvQv2s89g7-TedP5TpKbsg/edit 
+5. Pitch
+    - [link](https://docs.google.com/document/d/1maUTyyJFWfBlHZAarD3bWLvQv2s89g7-TedP5TpKbsg/edit)
 6. User Personas
     - two high school students
     - two college students
@@ -53,7 +53,7 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
     - incorporate bullet journal with daily log
 8. If user wants to go in-depth (further than home page)
     - then go to index and do more
-9.  Buttons in heading 
+9. Buttons in heading
     - legend: small pop up
       - hover?
     - settings: new page
@@ -66,7 +66,7 @@ Team Members: Ajay Booter, Anisha Atwal, Arnav Taneja, Jenny Nguyen, Kyle Batall
     - difficult
     - don't need in BuJo
     - doesn't promote being mindful
- 
+
 ## To-do
 1. Journal name
 2. Finish pitch
