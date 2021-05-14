@@ -25,7 +25,8 @@ function progress_func() {
     var date_diff = (semester_end - semester_start) / one_day_per_second;
     let weeks = (today - semester_start) / one_week_per_second;
     weeks = Math.round(weeks);
-    var text = "Welcome to Week " + weeks + "!" + "😊";
+    var text = "Welcome to Week " + weeks + "!" +
+               "😊";
     let progress = (today - semester_start) / one_day_per_second / date_diff;
     progress = Math.round(progress * 100);
     if (progress > 100) {
@@ -50,12 +51,8 @@ function progress_func() {
 $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
 $("#datepicker1")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
 $("#datepicker2")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
