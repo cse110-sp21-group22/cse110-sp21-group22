@@ -26,7 +26,7 @@ const neutral = document.getElementById("neutral");
 const sad = document.getElementById("sad");
 const verySad = document.getElementById("very-sad");
 const selectedIconName = localStorage.getItem("selected-icon");
-const selectedIcon = document.getElementById(selectedIconName)[0];
+const selectedIcon = document.getElementById(selectedIconName);
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
