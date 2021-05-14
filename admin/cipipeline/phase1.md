@@ -7,6 +7,5 @@
 
 - Once the code has passed the style checking and scanning, we plan to add a unit test phase that checks the commit against tests to make sure that the new commit will not damage our updated build. But for now, we have just moved on to the deployment stage, where we generate a jsdoc and deploy to firebase.
 
-![Workflow Diagram](phase1.png)
+![Workflow Diagram](./phase1.png?raw=true)
 
-<img src="phase1.png">
