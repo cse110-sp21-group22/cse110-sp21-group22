@@ -9,7 +9,9 @@
     <title>BuJo</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
@@ -61,6 +63,20 @@
         <h1>Calendar</h1>
       </div>
     </main>
+
+    <section id="week-tracker">
+      <h2 id = "weeks">😊</h2>
+      <img src="./images/running.jpg" id="running_man" width="50px" height="50px">
+      <div id="progress">
+          <div data-size="0" id="progress-bar"></div>
+      </div>
+      <p>Start :
+          <input type="text" id="datepicker1" required>
+      </p>
+      <p>End :
+          <input type="text" id="datepicker2" required>
+      </p>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <script src="./app.js"></script>
