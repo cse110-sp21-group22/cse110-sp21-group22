@@ -43,11 +43,15 @@ function progress() {
   }
 }
 
-$('#datepicker1').datepicker();
-$('#datepicker2').datepicker();
-$('#datepicker1').datepicker().on('changeDate', function (ev) {
-  progress();
-});
-$('#datepicker2').datepicker().on('changeDate', function (ev) {
-  progress();
-});
+$("#datepicker1").datepicker();
+$("#datepicker2").datepicker();
+$("#datepicker1")
+  .datepicker()
+  .on("changeDate", function (ev) {
+    progress();
+  });
+$("#datepicker2")
+  .datepicker()
+  .on("changeDate", function (ev) {
+    progress();
+  });
