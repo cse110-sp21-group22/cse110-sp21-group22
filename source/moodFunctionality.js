@@ -75,10 +75,10 @@ function fillMonths() {
     }
     /* leap year adds day to feb */
     if (i == 2 && year % 4 == 0) {
-      var emptyDay = document.createElement("P");
-      emptyDay.classList.add("empty-mood");
-      emptyDay.classList.add(i + "-" + j);
-      yearGrid.append(emptyDay);
+      var emptyDay2 = document.createElement("P");
+      emptyDay2.classList.add("empty-mood");
+      emptyDay2.classList.add(i + "-" + j);
+      yearGrid.append(emptyDay2);
       j++;
     }
     /* blank spaces in grid if month less than 31 days */
@@ -101,7 +101,7 @@ function setCurrDate() {
   var dates = document.getElementsByClassName("empty-mood");
   var i;
   for (i = 0; i < dates.length; i++) {
-    e = dates[i];
+    var e = dates[i];
     if (e.classList.contains(month + "-" + day)) {
       e.classList.add("curr-day");
       if ("selected-icon" in localStorage) {
