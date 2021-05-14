@@ -30,3 +30,8 @@ function lightOrDark(color) {
     return "dark";
   }
 }
+
+// logout
+function logout() {
+  auth.signOut();
+}
