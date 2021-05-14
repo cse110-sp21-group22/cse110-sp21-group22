@@ -56,35 +56,36 @@ h1 {
 
 .happy-click {
   color: white;
-  background-color:lightgreen;
+  background-color: lightgreen;
   border-radius: 50%;
 }
 
 .neutral-click {
   color: white;
-  background-color:yellow;
+  background-color: yellow;
   border-radius: 50%;
 }
 
 .sad-click {
   color: white;
-  background-color:orange;
+  background-color: orange;
   border-radius: 50%;
 }
 
 .very-sad-click {
   color: white;
-  background-color:red;
+  background-color: red;
   border-radius: 50%;
 }
 
 /* display year's boxes as grid */
 #year-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
-                          1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
-                          1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
-                          1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /* center first row of days in grid */
