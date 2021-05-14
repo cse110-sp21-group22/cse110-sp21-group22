@@ -73,7 +73,7 @@ jobs:
   # Firebase deploy #
   ###################
   deploy:
-    needs: linter
+    needs: [linter, semgrep]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
