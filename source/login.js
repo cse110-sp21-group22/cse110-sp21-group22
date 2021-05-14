@@ -11,13 +11,10 @@ loginForm.addEventListener("submit", (e) => {
   const loginEmail = loginForm["email"].value;
   const loginPassword = loginForm["password"].value;
   console.log(loginEmail, loginPassword);
-  auth
-    .signInWithEmailAndPassword(loginEmail, loginPassword)
-    .then(() => {
-      location = "index.html";
-    })
-    .catch((err) => {
-      const loginError = document.getElementById("login-error");
-      loginError.innerText = err.message;
-    });
+  auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+      .then(() => { location = "index.html"; })
+      .catch((err) => {
+        const loginError = document.getElementById("login-error");
+        loginError.innerText = err.message;
+      });
 });

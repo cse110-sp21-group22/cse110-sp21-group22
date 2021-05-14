@@ -12,20 +12,18 @@ class Todo {
     this.id = id;
     this.text = text;
   }
-  toString() {
-    return this.text;
-  }
+  toString() { return this.text; }
 }
 
 // Firestore data converter
 var todoConverter = {
-  toFirestore: function (todo) {
+  toFirestore : function(todo) {
     return {
-      id: todo.id,
-      text: todo.text,
+      id : todo.id,
+      text : todo.text,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
     return new Todo(data.id, data.text);
   },
@@ -61,7 +59,11 @@ function renderData(individualDoc) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     auth.onAuthStateChanged((user) => {
       if (user) {
-        fs.collection("users").doc(user.uid).collection("tasks").doc(id).delete();
+        fs.collection("users")
+            .doc(user.uid)
+            .collection("tasks")
+            .doc(id)
+            .delete();
       }
     });
   });
@@ -71,12 +73,8 @@ function renderData(individualDoc) {
 auth.onAuthStateChanged((user) => {
   const username = document.getElementById("username");
   if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .get()
-      .then((snapshot) => {
-        username.innerText = snapshot.data().name;
-      });
+    fs.collection("users").doc(user.uid).get().then(
+        (snapshot) => { username.innerText = snapshot.data().name; });
   }
 });
 
@@ -93,41 +91,35 @@ form.addEventListener("submit", (e) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
-        .doc(user.uid)
-        .collection("tasks")
-        .doc("_" + id)
-        .withConverter(todoConverter)
-        .set(new Todo(id, todos))
-        .then(() => {
-          console.log("todo added");
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+          .doc(user.uid)
+          .collection("tasks")
+          .doc("_" + id)
+          .withConverter(todoConverter)
+          .set(new Todo(id, todos))
+          .then(() => { console.log("todo added"); })
+          .catch((err) => { console.log(err.message); });
     }
   });
 });
 
 // logout
-function logout() {
-  auth.signOut();
-}
+function logout() { auth.signOut(); }
 
 // realtime listners
 auth.onAuthStateChanged((user) => {
   if (user) {
-    fs.collection("users").doc(user.uid).collection("tasks").onSnapshot((snapshot) => {
-      let changes = snapshot.docChanges();
-      changes.forEach((change) => {
-        if (change.type == "added") {
-          renderData(change.doc);
-        } else if (change.type == "removed") {
-          let li = todoContainer.querySelector(
-            "[data-id=" + change.doc.id + "]"
-          );
-          todoContainer.removeChild(li);
-        }
-      });
-    });
+    fs.collection("users").doc(user.uid).collection("tasks").onSnapshot(
+        (snapshot) => {
+          let changes = snapshot.docChanges();
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              renderData(change.doc);
+            } else if (change.type == "removed") {
+              let li = todoContainer.querySelector("[data-id=" + change.doc.id +
+                                                   "]");
+              todoContainer.removeChild(li);
+            }
+          });
+        });
   }
 });
