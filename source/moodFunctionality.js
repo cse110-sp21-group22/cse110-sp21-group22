@@ -18,7 +18,7 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-const daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var currDate;
 const veryHappy = document.getElementById("very-happy");
 const happy = document.getElementById("happy");
@@ -30,10 +30,10 @@ const verySad = document.getElementById("very-sad");
 if (month == 1 && day == 1) {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .delete();
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .delete();
   });
 }
 
@@ -68,38 +68,38 @@ function fillDays() {
 function fillMonths() {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .get()
-        .then((doc) => {
-          var i;
-          for (i = 1; i < 13; i++) {
-            /* month label */
-            var monthLabel = document.createElement("P");
-            monthLabel.innerText = monthName[i];
-            yearGrid.append(monthLabel);
-            /* days for month */
-            var j = 1;
-            while (j <= daysInMonth[i]) {
-              var emptyDay = document.createElement("P");
-              try {
-                var color_string = "color-" + i + "-" + j;
-                var color = doc.data()[color_string];
-              } catch {
-                color = null;
-              }
-              emptyDay.classList.add("empty-mood");
-              emptyDay.classList.add(i + "-" + j);
-              emptyDay.setAttribute("style", "background-color:" + color);
-              yearGrid.append(emptyDay);
-              j++;
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        var i;
+        for (i = 1; i < 13; i++) {
+          /* month label */
+          var monthLabel = document.createElement("P");
+          monthLabel.innerText = monthName[i];
+          yearGrid.append(monthLabel);
+          /* days for month */
+          var j = 1;
+          while (j <= daysInMonth[i]) {
+            var emptyDay = document.createElement("P");
+            try {
+              var color_string = "color-" + i + "-" + j;
+              var color = doc.data()[color_string];
+            } catch {
+              color = null;
             }
-            fillMonthsHelper(i, j);
+            emptyDay.classList.add("empty-mood");
+            emptyDay.classList.add(i + "-" + j);
+            emptyDay.setAttribute("style", "background-color:" + color);
+            yearGrid.append(emptyDay);
+            j++;
           }
-          setCurrDate();
-          PageLoaded();
-        });
+          fillMonthsHelper(i, j);
+        }
+        setCurrDate();
+        PageLoaded();
+      });
   });
 }
 
@@ -110,7 +110,7 @@ function fillMonths() {
  */
 function fillMonthsHelper(i, j) {
   /* leap year adds day to feb */
-  if ((i == 2) && (year % 4 == 0)) {
+  if (i == 2 && year % 4 == 0) {
     var emptyDay2 = document.createElement("P");
     emptyDay2.classList.add("empty-mood");
     emptyDay2.classList.add(i + "-" + j);
@@ -149,24 +149,29 @@ function setCurrDate() {
 }
 
 /* very happy mood selected */
-veryHappy.addEventListener(
-    "click", function() { colorChange("very-happy", veryHappy, "green"); });
+veryHappy.addEventListener("click", function () {
+  colorChange("very-happy", veryHappy, "green");
+});
 
 /* happy mood selected */
-happy.addEventListener(
-    "click", function() { colorChange("happy", happy, "lightgreen"); });
+happy.addEventListener("click", function () {
+  colorChange("happy", happy, "lightgreen");
+});
 
 /* neutral mood selected */
-neutral.addEventListener(
-    "click", function() { colorChange("neutral", neutral, "yellow"); });
+neutral.addEventListener("click", function () {
+  colorChange("neutral", neutral, "yellow");
+});
 
 /* sad mood selected */
-sad.addEventListener("click",
-                     function() { colorChange("sad", sad, "orange"); });
+sad.addEventListener("click", function () {
+  colorChange("sad", sad, "orange");
+});
 
 /* very sad mood selected */
-verySad.addEventListener(
-    "click", function() { colorChange("very-sad", verySad, "red"); });
+verySad.addEventListener("click", function () {
+  colorChange("very-sad", verySad, "red");
+});
 
 /**
  *
@@ -188,14 +193,17 @@ function colorChange(mood, moodClass, color) {
     try {
       var color_string = "color-" + month + "-" + day;
       fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .update({[color_string] : [ red ], "selectedIcon" : [ mood ]});
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({ [color_string]: [red], selectedIcon: [mood] });
     } catch {
       color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
-          {[color_string] : [ color ], "selectedIcon" : [ mood ]});
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .set({ [color_string]: [color], selectedIcon: [mood] });
     }
   });
 }
