@@ -22,8 +22,8 @@ auth.onAuthStateChanged((user) => {
         $("#datepicker2").datepicker("update", semester_end);
         progress_func();
       } catch (err) {
-        var semester_start = null;
-        var semester_end = null;
+        semester_start = null;
+        semester_end = null;
       }
     });
 });
@@ -40,14 +40,14 @@ function Book(title, author) {}
  * function for progress bar
  */
 function progress_func() {
-  semester_start = $("#datepicker1").datepicker("getDate");
-  semester_end = $("#datepicker2").datepicker("getDate");
+  var semester_start = $("#datepicker1").datepicker("getDate");
+  var semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
       .doc(user.uid)
       .collection("settings")
       .doc("calendar")
-      .set({ semester_start: semester_start, semester_end: semester_end });
+      .set({semester_start: semester_start, semester_end: semester_end});
   });
   if (semester_end != undefined && semester_start != undefined) {
     var date_diff = (semester_end - semester_start) / one_day_per_second;
