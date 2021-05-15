@@ -95,7 +95,7 @@ function fillMonths() {
             yearGrid.append(emptyDay);
             j++;
           }
-          fillMonthsHelper(i,j);
+          fillMonthsHelper(i, j);
         }
         setCurrDate();
         PageLoaded();
@@ -108,9 +108,9 @@ function fillMonths() {
  * @param {int} i - counter for months
  * @param {int} j - counter for days
  */
-function fillMonthsHelper(i,j) {
+function fillMonthsHelper(i, j) {
   /* leap year adds day to feb */
-  if ((i == 2) && (year % 4 == 0)) {
+  if (i == 2 && year % 4 == 0) {
     var emptyDay2 = document.createElement("P");
     emptyDay2.classList.add("empty-mood");
     emptyDay2.classList.add(i + "-" + j);
@@ -134,7 +134,7 @@ function createBlank() {
 }
 
 /**
- * sets up box that belongs to the current date 
+ * sets up box that belongs to the current date
  */
 function setCurrDate() {
   var dates = document.getElementsByClassName("empty-mood");
@@ -174,7 +174,7 @@ verySad.addEventListener("click", function () {
 });
 
 /**
- * 
+ *
  * @param {string} mood - mood string
  * @param {HTMLElement} moodClass - mood class
  * @param {string} color - mood color
@@ -196,14 +196,14 @@ function colorChange(mood, moodClass, color) {
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .update({[color_string]: [red], "selectedIcon": [mood]});
+        .update({ [color_string]: [red], selectedIcon: [mood] });
     } catch {
       color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .set({[color_string]: [color], "selectedIcon": [mood]});
+        .set({[color_string]: [color], selectedIcon: [mood]});
     }
   });
 }
