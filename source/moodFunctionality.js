@@ -203,7 +203,7 @@ function colorChange(mood, moodClass, color) {
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .set({ [color_string]: [color], selectedIcon: [mood] });
+        .set({[color_string]: [color], selectedIcon: [mood]});
     }
   });
 }
