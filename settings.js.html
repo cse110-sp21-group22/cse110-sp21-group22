@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>settings.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,33 +29,63 @@
 
 <div id="main">
     
+    <h1 class="page-title">settings.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+  if (lightOrDark(hex) == "light") {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-light fixed-top";
+  } else {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-dark fixed-top";
+  }
+  document.getElementById("navbar").style.backgroundColor = hex;
+});
 
+/**
+ * Function to determine if a color is light or dark
+ * @param {string} color - color in hex
+ * @returns - "light" for light color or "dark" for dark color
+ */
+function lightOrDark(color) {
+  // Variables for red, green, blue values
+  var r, g, b, hsp;
 
+  // Convert hex to RGB: http://gist.github.com/983661
+  color = +("0x" + color.slice(1).replace(color.length &lt; 5 &amp;&amp; /./g, "$&amp;$&amp;"));
 
+  r = color >> 16;
+  g = (color >> 8) &amp; 255;
+  b = color &amp; 255;
 
+  // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
 
+  // Using the HSP value, determine whether the color is light or dark
+  if (hsp > 127.5) {
+    return "light";
+  } else {
+    return "dark";
+  }
+}
 
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>cse110-sp21-group22</h1>
-<img src="https://raw.githubusercontent.com/cse110-sp21-group22/cse110-sp21-group22/main/admin/branding/cse110logo.svg">
-<p><a href="https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/admin/team.md">Team Page</a></p>
-<p><a href="https://catch-22-e0c66.web.app/">App</a></p>
-<p><a href="https://cse110-sp21-group22.github.io/cse110-sp21-group22/">Docs</a></p></article>
+/**
+ * Function to log out user
+ */
+function logout() {
+  auth.signOut();
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
