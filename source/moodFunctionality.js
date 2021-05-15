@@ -25,26 +25,15 @@ const happy = document.getElementById("happy");
 const neutral = document.getElementById("neutral");
 const sad = document.getElementById("sad");
 const verySad = document.getElementById("very-sad");
-auth.onAuthStateChanged((user) => {
-  try {
-    fs.collection("users").doc(user.uid).collection("data").doc("mood")
-        .selected - icon;
-  } catch {
-  }
-});
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
   auth.onAuthStateChanged((user) => {
-    try {
-      fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .delete();
-    } catch {
-      // console.log()
-    }
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .delete();
   });
 }
 
@@ -182,14 +171,14 @@ function colorChange(mood, moodClass, color) {
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .update({[color_string]: [red], "selected-icon": [mood]});
+        .update({[color_string]: [red], "selectedIcon": [mood]});
     } catch {
       color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .set({[color_string]: [color], "selected-icon": [mood]});
+        .set({[color_string]: [color], "selectedIcon": [mood]});
     }
   });
 }
