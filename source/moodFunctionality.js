@@ -196,7 +196,7 @@ function colorChange(mood, moodClass, color) {
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .update({ [color_string]: [red], selectedIcon: [mood] });
+        .update({[color_string]: [red], selectedIcon: [mood]});
     } catch {
       color_string = "color-" + month + "-" + day;
       fs.collection("users")
