@@ -6,13 +6,8 @@ auth.onAuthStateChanged((user) => {
 });
 
 /**
- * Represents a book.
- * @constructor
- * @param {string} title - The title of the book.
- * @param {string} author - The author of the book.
+ * Function to hide spinner and show page on load
  */
-function Book(title, author) {}
-
 function PageLoaded() {
   document.getElementById("spinner").classList.add("d-none");
   document.getElementById("main").classList.remove("d-none");

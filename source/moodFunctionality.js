@@ -40,14 +40,18 @@ if (month == 1 && day == 1) {
 /* populate yearGrid calendar */
 populateCalendar();
 
-/* creates yearGrid for the current year */
+/**
+ *  Creates yearGrid for the current year
+ */
 function populateCalendar() {
   createBlank();
   fillDays();
   fillMonths();
 }
 
-/* first row of yearGrid (day labels) */
+/**
+ * Creates first row of yearGrid (day labels)
+ */
 function fillDays() {
   var i;
   for (i = 1; i < 32; i++) {
@@ -58,7 +62,9 @@ function fillDays() {
   }
 }
 
-/* all rows of yearGrid (each month) */
+/**
+ * Creates all rows of yearGrid (each month)
+ */
 function fillMonths() {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
@@ -89,7 +95,7 @@ function fillMonths() {
             yearGrid.append(emptyDay);
             j++;
           }
-          fillMonthsHelper();
+          fillMonthsHelper(i,j);
         }
         setCurrDate();
         PageLoaded();
@@ -97,7 +103,12 @@ function fillMonths() {
   });
 }
 
-function fillMonthsHelper() {
+/**
+ * Helper method for fillMonths
+ * @param {int} i - counter for months
+ * @param {int} j - counter for days
+ */
+function fillMonthsHelper(i,j) {
   /* leap year adds day to feb */
   if ((i == 2) && (year % 4 == 0)) {
     var emptyDay2 = document.createElement("P");
@@ -113,14 +124,18 @@ function fillMonthsHelper() {
   }
 }
 
-/* creates blank box element */
+/**
+ * Creates blank box element
+ */
 function createBlank() {
   var blank = document.createElement("P");
   blank.classList.add("blank");
   yearGrid.append(blank);
 }
 
-/* sets up box that belongs to the current date */
+/**
+ * sets up box that belongs to the current date 
+ */
 function setCurrDate() {
   var dates = document.getElementsByClassName("empty-mood");
   var i;
@@ -158,6 +173,12 @@ verySad.addEventListener("click", function () {
   colorChange("very-sad", verySad, "red");
 });
 
+/**
+ * 
+ * @param {string} mood - mood string
+ * @param {HTMLElement} moodClass - mood class
+ * @param {string} color - mood color
+ */
 function colorChange(mood, moodClass, color) {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);

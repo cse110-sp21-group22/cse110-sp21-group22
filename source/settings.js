@@ -9,6 +9,11 @@ ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
   document.getElementById("navbar").style.backgroundColor = hex;
 });
 
+/**
+ * Function to determine if a color is light or dark
+ * @param {string} color - color in hex
+ * @returns - "light" for light color or "dark" for dark color
+ */
 function lightOrDark(color) {
   // Variables for red, green, blue values
   var r, g, b, hsp;
@@ -31,7 +36,9 @@ function lightOrDark(color) {
   }
 }
 
-// logout
+/**
+ * Function to log out user
+ */
 function logout() {
   auth.signOut();
 }
