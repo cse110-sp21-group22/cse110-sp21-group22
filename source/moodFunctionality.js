@@ -18,7 +18,7 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 var currDate;
 const veryHappy = document.getElementById("very-happy");
 const happy = document.getElementById("happy");
@@ -27,7 +27,12 @@ const sad = document.getElementById("sad");
 const verySad = document.getElementById("very-sad");
 auth.onAuthStateChanged((user) => {
   try {
-    var selectedIconName = fs.collection("users").doc(user.uid).collection("data").doc("mood").selected-icon;
+    var selectedIconName = fs.collection("users")
+                               .doc(user.uid)
+                               .collection("data")
+                               .doc("mood")
+                               .selected -
+                           icon;
   } catch {
     var selectedIconName = null;
   }
@@ -38,7 +43,11 @@ auth.onAuthStateChanged((user) => {
 if (month == 1 && day == 1) {
   auth.onAuthStateChanged((user) => {
     try {
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").delete();
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .delete();
     } catch {
     }
   });
@@ -68,46 +77,51 @@ function fillDays() {
 /* all rows of yearGrid (each month) */
 function fillMonths() {
   auth.onAuthStateChanged((user) => {
-    fs.collection("users").doc(user.uid).collection("data").doc("mood").get().then((doc) => {
-      var i;
-      for (i = 1; i < 13; i++) {
-        /* month label */
-        var monthLabel = document.createElement("P");
-        monthLabel.innerText = monthName[i];
-        yearGrid.append(monthLabel);
-        /* days for month */
-        var j = 1;
-        while (j <= daysInMonth[i]) {
-          var emptyDay = document.createElement("P");
-          try {
-            var color_string = "color-" + i + "-" + j;
-            var color = doc.data()[color_string];
-          } catch {
-            var color = null;
+    fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .get()
+        .then((doc) => {
+          var i;
+          for (i = 1; i < 13; i++) {
+            /* month label */
+            var monthLabel = document.createElement("P");
+            monthLabel.innerText = monthName[i];
+            yearGrid.append(monthLabel);
+            /* days for month */
+            var j = 1;
+            while (j <= daysInMonth[i]) {
+              var emptyDay = document.createElement("P");
+              try {
+                var color_string = "color-" + i + "-" + j;
+                var color = doc.data()[color_string];
+              } catch {
+                var color = null;
+              }
+              emptyDay.classList.add("empty-mood");
+              emptyDay.classList.add(i + "-" + j);
+              emptyDay.setAttribute("style", "background-color:" + color);
+              yearGrid.append(emptyDay);
+              j++;
+            }
+            /* leap year adds day to feb */
+            if (i == 2 && year % 4 == 0) {
+              var emptyDay2 = document.createElement("P");
+              emptyDay2.classList.add("empty-mood");
+              emptyDay2.classList.add(i + "-" + j);
+              yearGrid.append(emptyDay2);
+              j++;
+            }
+            /* blank spaces in grid if month less than 31 days */
+            while (j < 32) {
+              createBlank();
+              j++;
+            }
           }
-          emptyDay.classList.add("empty-mood");
-          emptyDay.classList.add(i + "-" + j);
-          emptyDay.setAttribute("style", "background-color:" + color);
-          yearGrid.append(emptyDay);
-          j++;
-        }
-        /* leap year adds day to feb */
-        if (i == 2 && year % 4 == 0) {
-          var emptyDay2 = document.createElement("P");
-          emptyDay2.classList.add("empty-mood");
-          emptyDay2.classList.add(i + "-" + j);
-          yearGrid.append(emptyDay2);
-          j++;
-        }
-        /* blank spaces in grid if month less than 31 days */
-        while (j < 32) {
-          createBlank();
-          j++;
-        }
-      }
-      setCurrDate();
-      PageLoaded();
-    });
+          setCurrDate();
+          PageLoaded();
+        });
   });
 }
 
@@ -132,7 +146,7 @@ function setCurrDate() {
 }
 
 /* very happy mood selected */
-veryHappy.addEventListener("click", function () {
+veryHappy.addEventListener("click", function() {
   veryHappy.classList.toggle("very-happy-click", true);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -142,22 +156,21 @@ veryHappy.addEventListener("click", function () {
   auth.onAuthStateChanged((user) => {
     try {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
-        [color_string]: "green",
-        "selected-icon": "very-happy"
-      });
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : "green", "selected-icon" : "very-happy"});
     } catch {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
-        [color_string]: "green",
-        "selected-icon": "very-happy"
-      });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : "green", "selected-icon" : "very-happy"});
     }
   });
 });
 
 /* happy mood selected */
-happy.addEventListener("click", function () {
+happy.addEventListener("click", function() {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", true);
   neutral.classList.toggle("neutral-click", false);
@@ -167,22 +180,21 @@ happy.addEventListener("click", function () {
   auth.onAuthStateChanged((user) => {
     try {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
-        [color_string]: "lightgreen",
-        "selected-icon": "happy"
-      });
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : "lightgreen", "selected-icon" : "happy"});
     } catch {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
-        [color_string]: "lightgreen",
-        "selected-icon": "happy"
-      });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : "lightgreen", "selected-icon" : "happy"});
     }
   });
 });
 
 /* neutral mood selected */
-neutral.addEventListener("click", function () {
+neutral.addEventListener("click", function() {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", true);
@@ -192,22 +204,21 @@ neutral.addEventListener("click", function () {
   auth.onAuthStateChanged((user) => {
     try {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
-        [color_string]: "yellow",
-        "selected-icon": "neutral"
-      });
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : "yellow", "selected-icon" : "neutral"});
     } catch {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
-        [color_string]: "yellow",
-        "selected-icon": "neutral"
-      });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : "yellow", "selected-icon" : "neutral"});
     }
   });
 });
 
 /* sad mood selected */
-sad.addEventListener("click", function () {
+sad.addEventListener("click", function() {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -217,22 +228,21 @@ sad.addEventListener("click", function () {
   auth.onAuthStateChanged((user) => {
     try {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
-        [color_string]: "orange",
-        "selected-icon": "sad"
-      });
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : "orange", "selected-icon" : "sad"});
     } catch {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
-        [color_string]: "orange",
-        "selected-icon": "sad"
-      });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : "orange", "selected-icon" : "sad"});
     }
   });
 });
 
 /* very sad mood selected */
-verySad.addEventListener("click", function () {
+verySad.addEventListener("click", function() {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -242,16 +252,15 @@ verySad.addEventListener("click", function () {
   auth.onAuthStateChanged((user) => {
     try {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
-        [color_string]: "red",
-        "selected-icon": "very-sad"
-      });
+      fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : "red", "selected-icon" : "very-sad"});
     } catch {
       var color_string = "color-" + month + "-" + day;
-      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
-        [color_string]: "red",
-        "selected-icon": "very-sad"
-      });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : "red", "selected-icon" : "very-sad"});
     }
   });
 });

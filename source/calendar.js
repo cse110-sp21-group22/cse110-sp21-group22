@@ -10,18 +10,22 @@ $("#datepicker2").datepicker();
 
 auth.onAuthStateChanged((user) => {
   PageLoaded();
-  fs.collection("users").doc(user.uid).collection("settings").doc("calendar").onSnapshot((doc) => {
-    try {
-      let semester_start = doc.data().semester_start.toDate();
-      let semester_end = doc.data().semester_end.toDate();
-      $("#datepicker1").datepicker("update", semester_start);
-      $("#datepicker2").datepicker("update", semester_end);
-      progress_func();
-    } catch(err) {
-      let semester_start;
-      let semester_end;
-    }
-  });
+  fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("calendar")
+      .onSnapshot((doc) => {
+        try {
+          let semester_start = doc.data().semester_start.toDate();
+          let semester_end = doc.data().semester_end.toDate();
+          $("#datepicker1").datepicker("update", semester_start);
+          $("#datepicker2").datepicker("update", semester_end);
+          progress_func();
+        } catch (err) {
+          let semester_start;
+          let semester_end;
+        }
+      });
 });
 
 /**
@@ -39,16 +43,18 @@ function progress_func() {
   semester_start = $("#datepicker1").datepicker("getDate");
   semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
-    fs.collection("users").doc(user.uid).collection("settings").doc("calendar").set({
-      semester_start: semester_start,
-      semester_end: semester_end
-    });
+    fs.collection("users")
+        .doc(user.uid)
+        .collection("settings")
+        .doc("calendar")
+        .set({semester_start : semester_start, semester_end : semester_end});
   });
   if (semester_end != undefined && semester_start != undefined) {
     var date_diff = (semester_end - semester_start) / one_day_per_second;
     let weeks = (today - semester_start) / one_week_per_second;
     weeks = Math.round(weeks);
-    var text = "Welcome to Week " + weeks + "!" + "😊";
+    var text = "Welcome to Week " + weeks + "!" +
+               "😊";
     let progress = (today - semester_start) / one_day_per_second / date_diff;
     progress = Math.round(progress * 100);
     if (progress > 100) {
@@ -71,12 +77,8 @@ function progress_func() {
 }
 
 $("#datepicker1")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
 $("#datepicker2")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
