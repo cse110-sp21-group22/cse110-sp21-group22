@@ -16,14 +16,14 @@ auth.onAuthStateChanged((user) => {
     .doc("calendar")
     .onSnapshot((doc) => {
       try {
-        let semester_start = doc.data().semester_start.toDate();
-        let semester_end = doc.data().semester_end.toDate();
+        var semester_start = doc.data().semester_start.toDate();
+        var semester_end = doc.data().semester_end.toDate();
         $("#datepicker1").datepicker("update", semester_start);
         $("#datepicker2").datepicker("update", semester_end);
         progress_func();
       } catch (err) {
-        let semester_start;
-        let semester_end;
+        var semester_start = null;
+        var semester_end = null;
       }
     });
 });

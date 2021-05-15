@@ -31,9 +31,8 @@ auth.onAuthStateChanged((user) => {
       fs.collection("users").doc(user.uid).collection("data").doc("mood")
         .selected - icon;
   } catch {
-    var selectedIconName = null;
+    selectedIconName = null;
   }
-  const selectedIcon = document.getElementById(selectedIconName);
 });
 
 /* clear grid when new year */
@@ -93,7 +92,7 @@ function fillMonths() {
               var color_string = "color-" + i + "-" + j;
               var color = doc.data()[color_string];
             } catch {
-              var color = null;
+              color = null;
             }
             emptyDay.classList.add("empty-mood");
             emptyDay.classList.add(i + "-" + j);
@@ -158,7 +157,7 @@ veryHappy.addEventListener("click", function () {
         .doc("mood")
         .update({ [color_string]: "green", "selected-icon": "very-happy" });
     } catch {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
@@ -178,14 +177,14 @@ happy.addEventListener("click", function () {
   currDate.setAttribute("style", "background-color: lightgreen");
   auth.onAuthStateChanged((user) => {
     try {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
         .update({ [color_string]: "lightgreen", "selected-icon": "happy" });
     } catch {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
@@ -205,14 +204,14 @@ neutral.addEventListener("click", function () {
   currDate.setAttribute("style", "background-color: yellow");
   auth.onAuthStateChanged((user) => {
     try {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
         .update({ [color_string]: "yellow", "selected-icon": "neutral" });
     } catch {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
@@ -232,14 +231,14 @@ sad.addEventListener("click", function () {
   currDate.setAttribute("style", "background-color: orange");
   auth.onAuthStateChanged((user) => {
     try {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
         .update({ [color_string]: "orange", "selected-icon": "sad" });
     } catch {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
@@ -259,14 +258,14 @@ verySad.addEventListener("click", function () {
   currDate.setAttribute("style", "background-color: red");
   auth.onAuthStateChanged((user) => {
     try {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
         .update({ [color_string]: "red", "selected-icon": "very-sad" });
     } catch {
-      var color_string = "color-" + month + "-" + day;
+      color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
