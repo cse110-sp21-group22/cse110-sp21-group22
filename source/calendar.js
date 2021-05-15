@@ -32,11 +32,6 @@ auth.onAuthStateChanged((user) => {
  */
 function Book(title, author) {}
 
-function PageLoaded() {
-  document.getElementById("spinner").classList.add("d-none");
-  document.getElementById("main").classList.remove("d-none");
-}
-
 /**
  * function for progress bar
  */

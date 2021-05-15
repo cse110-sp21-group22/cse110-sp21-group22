@@ -25,13 +25,25 @@ const happy = document.getElementById("happy");
 const neutral = document.getElementById("neutral");
 const sad = document.getElementById("sad");
 const verySad = document.getElementById("very-sad");
-const selectedIconName = localStorage.getItem("selected-icon");
-const selectedIcon = document.getElementById(selectedIconName);
+auth.onAuthStateChanged((user) => {
+  try {
+    var selectedIconName = fs.collection("users").doc(user.uid).collection("data").doc("mood").selected-icon;
+  } catch {
+    var selectedIconName = null;
+  }
+  const selectedIcon = document.getElementById(selectedIconName);
+});
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
-  localStorage.clear();
+  auth.onAuthStateChanged((user) => {
+    try {
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").delete();
+    } catch {
+    }
+  });
 }
+
 /* populate yearGrid calendar */
 populateCalendar();
 
@@ -40,7 +52,6 @@ function populateCalendar() {
   createBlank();
   fillDays();
   fillMonths();
-  setCurrDate();
 }
 
 /* first row of yearGrid (day labels) */
@@ -56,37 +67,48 @@ function fillDays() {
 
 /* all rows of yearGrid (each month) */
 function fillMonths() {
-  var i;
-  for (i = 1; i < 13; i++) {
-    /* month label */
-    var monthLabel = document.createElement("P");
-    monthLabel.innerText = monthName[i];
-    yearGrid.append(monthLabel);
-    /* days for month */
-    var j = 1;
-    while (j <= daysInMonth[i]) {
-      var emptyDay = document.createElement("P");
-      var color = localStorage.getItem("color-" + i + "-" + j);
-      emptyDay.classList.add("empty-mood");
-      emptyDay.classList.add(i + "-" + j);
-      emptyDay.setAttribute("style", "background-color:" + color);
-      yearGrid.append(emptyDay);
-      j++;
-    }
-    /* leap year adds day to feb */
-    if (i == 2 && year % 4 == 0) {
-      var emptyDay2 = document.createElement("P");
-      emptyDay2.classList.add("empty-mood");
-      emptyDay2.classList.add(i + "-" + j);
-      yearGrid.append(emptyDay2);
-      j++;
-    }
-    /* blank spaces in grid if month less than 31 days */
-    while (j < 32) {
-      createBlank();
-      j++;
-    }
-  }
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users").doc(user.uid).collection("data").doc("mood").get().then((doc) => {
+      var i;
+      for (i = 1; i < 13; i++) {
+        /* month label */
+        var monthLabel = document.createElement("P");
+        monthLabel.innerText = monthName[i];
+        yearGrid.append(monthLabel);
+        /* days for month */
+        var j = 1;
+        while (j <= daysInMonth[i]) {
+          var emptyDay = document.createElement("P");
+          try {
+            var color_string = "color-" + i + "-" + j;
+            var color = doc.data()[color_string];
+          } catch {
+            var color = null;
+          }
+          emptyDay.classList.add("empty-mood");
+          emptyDay.classList.add(i + "-" + j);
+          emptyDay.setAttribute("style", "background-color:" + color);
+          yearGrid.append(emptyDay);
+          j++;
+        }
+        /* leap year adds day to feb */
+        if (i == 2 && year % 4 == 0) {
+          var emptyDay2 = document.createElement("P");
+          emptyDay2.classList.add("empty-mood");
+          emptyDay2.classList.add(i + "-" + j);
+          yearGrid.append(emptyDay2);
+          j++;
+        }
+        /* blank spaces in grid if month less than 31 days */
+        while (j < 32) {
+          createBlank();
+          j++;
+        }
+      }
+      setCurrDate();
+      PageLoaded();
+    });
+  });
 }
 
 /* creates blank box element */
@@ -117,8 +139,21 @@ veryHappy.addEventListener("click", function () {
   sad.classList.toggle("sad-click", false);
   verySad.classList.toggle("very-sad-click", false);
   currDate.setAttribute("style", "background-color: green");
-  localStorage.setItem("color-" + month + "-" + day, "green");
-  localStorage.setItem("selected-icon", "very-happy");
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
+        [color_string]: "green",
+        "selected-icon": "very-happy"
+      });
+    } catch {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
+        [color_string]: "green",
+        "selected-icon": "very-happy"
+      });
+    }
+  });
 });
 
 /* happy mood selected */
@@ -129,8 +164,21 @@ happy.addEventListener("click", function () {
   sad.classList.toggle("sad-click", false);
   verySad.classList.toggle("very-sad-click", false);
   currDate.setAttribute("style", "background-color: lightgreen");
-  localStorage.setItem("color-" + month + "-" + day, "lightgreen");
-  localStorage.setItem("selected-icon", "happy");
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
+        [color_string]: "lightgreen",
+        "selected-icon": "happy"
+      });
+    } catch {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
+        [color_string]: "lightgreen",
+        "selected-icon": "happy"
+      });
+    }
+  });
 });
 
 /* neutral mood selected */
@@ -141,8 +189,21 @@ neutral.addEventListener("click", function () {
   sad.classList.toggle("sad-click", false);
   verySad.classList.toggle("very-sad-click", false);
   currDate.setAttribute("style", "background-color: yellow");
-  localStorage.setItem("color-" + month + "-" + day, "yellow");
-  localStorage.setItem("selected-icon", "neutral");
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
+        [color_string]: "yellow",
+        "selected-icon": "neutral"
+      });
+    } catch {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
+        [color_string]: "yellow",
+        "selected-icon": "neutral"
+      });
+    }
+  });
 });
 
 /* sad mood selected */
@@ -153,8 +214,21 @@ sad.addEventListener("click", function () {
   sad.classList.toggle("sad-click", true);
   verySad.classList.toggle("very-sad-click", false);
   currDate.setAttribute("style", "background-color: orange");
-  localStorage.setItem("color-" + month + "-" + day, "orange");
-  localStorage.setItem("selected-icon", "sad");
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
+        [color_string]: "orange",
+        "selected-icon": "sad"
+      });
+    } catch {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
+        [color_string]: "orange",
+        "selected-icon": "sad"
+      });
+    }
+  });
 });
 
 /* very sad mood selected */
@@ -165,6 +239,19 @@ verySad.addEventListener("click", function () {
   sad.classList.toggle("sad-click", false);
   verySad.classList.toggle("very-sad-click", true);
   currDate.setAttribute("style", "background-color: red");
-  localStorage.setItem("color-" + month + "-" + day, "red");
-  localStorage.setItem("selected-icon", "very-sad");
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").update({
+        [color_string]: "red",
+        "selected-icon": "very-sad"
+      });
+    } catch {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set({
+        [color_string]: "red",
+        "selected-icon": "very-sad"
+      });
+    }
+  });
 });
