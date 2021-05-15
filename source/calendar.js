@@ -10,18 +10,22 @@ $("#datepicker2").datepicker();
 
 auth.onAuthStateChanged((user) => {
   PageLoaded();
-  fs.collection("users").doc(user.uid).collection("settings").doc("calendar").onSnapshot((doc) => {
-    try {
-      let semester_start = doc.data().semester_start.toDate();
-      let semester_end = doc.data().semester_end.toDate();
-      $("#datepicker1").datepicker("update", semester_start);
-      $("#datepicker2").datepicker("update", semester_end);
-      progress_func();
-    } catch(err) {
-      let semester_start;
-      let semester_end;
-    }
-  });
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("settings")
+    .doc("calendar")
+    .onSnapshot((doc) => {
+      try {
+        let semester_start = doc.data().semester_start.toDate();
+        let semester_end = doc.data().semester_end.toDate();
+        $("#datepicker1").datepicker("update", semester_start);
+        $("#datepicker2").datepicker("update", semester_end);
+        progress_func();
+      } catch (err) {
+        let semester_start;
+        let semester_end;
+      }
+    });
 });
 
 /**
@@ -39,10 +43,11 @@ function progress_func() {
   semester_start = $("#datepicker1").datepicker("getDate");
   semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
-    fs.collection("users").doc(user.uid).collection("settings").doc("calendar").set({
-      semester_start: semester_start,
-      semester_end: semester_end
-    });
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("calendar")
+      .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
     var date_diff = (semester_end - semester_start) / one_day_per_second;
