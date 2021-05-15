@@ -89,24 +89,28 @@ function fillMonths() {
             yearGrid.append(emptyDay);
             j++;
           }
-          /* leap year adds day to feb */
-          if (i == 2 && year % 4 == 0) {
-            var emptyDay2 = document.createElement("P");
-            emptyDay2.classList.add("empty-mood");
-            emptyDay2.classList.add(i + "-" + j);
-            yearGrid.append(emptyDay2);
-            j++;
-          }
-          /* blank spaces in grid if month less than 31 days */
-          while (j < 32) {
-            createBlank();
-            j++;
-          }
+          fillMonthsHelper();
         }
         setCurrDate();
         PageLoaded();
       });
   });
+}
+
+function fillMonthsHelper() {
+  /* leap year adds day to feb */
+  if ((i == 2) && (year % 4 == 0)) {
+    var emptyDay2 = document.createElement("P");
+    emptyDay2.classList.add("empty-mood");
+    emptyDay2.classList.add(i + "-" + j);
+    yearGrid.append(emptyDay2);
+    j++;
+  }
+  /* blank spaces in grid if month less than 31 days */
+  while (j < 32) {
+    createBlank();
+    j++;
+  }
 }
 
 /* creates blank box element */
@@ -166,7 +170,7 @@ function colorChange(mood, moodClass, color) {
   currDate.setAttribute("style", styleString);
   auth.onAuthStateChanged((user) => {
     try {
-      color_string = "color-" + month + "-" + day;
+      var color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
