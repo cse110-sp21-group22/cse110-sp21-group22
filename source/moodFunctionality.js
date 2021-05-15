@@ -25,25 +25,33 @@ const happy = document.getElementById("happy");
 const neutral = document.getElementById("neutral");
 const sad = document.getElementById("sad");
 const verySad = document.getElementById("very-sad");
-const selectedIconName = localStorage.getItem("selected-icon");
-const selectedIcon = document.getElementById(selectedIconName);
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
-  localStorage.clear();
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .delete();
+  });
 }
+
 /* populate yearGrid calendar */
 populateCalendar();
 
-/* creates yearGrid for the current year */
+/**
+ *  Creates yearGrid for the current year
+ */
 function populateCalendar() {
   createBlank();
   fillDays();
   fillMonths();
-  setCurrDate();
 }
 
-/* first row of yearGrid (day labels) */
+/**
+ * Creates first row of yearGrid (day labels)
+ */
 function fillDays() {
   var i;
   for (i = 1; i < 32; i++) {
@@ -54,49 +62,80 @@ function fillDays() {
   }
 }
 
-/* all rows of yearGrid (each month) */
+/**
+ * Creates all rows of yearGrid (each month)
+ */
 function fillMonths() {
-  var i;
-  for (i = 1; i < 13; i++) {
-    /* month label */
-    var monthLabel = document.createElement("P");
-    monthLabel.innerText = monthName[i];
-    yearGrid.append(monthLabel);
-    /* days for month */
-    var j = 1;
-    while (j <= daysInMonth[i]) {
-      var emptyDay = document.createElement("P");
-      var color = localStorage.getItem("color-" + i + "-" + j);
-      emptyDay.classList.add("empty-mood");
-      emptyDay.classList.add(i + "-" + j);
-      emptyDay.setAttribute("style", "background-color:" + color);
-      yearGrid.append(emptyDay);
-      j++;
-    }
-    /* leap year adds day to feb */
-    if (i == 2 && year % 4 == 0) {
-      var emptyDay2 = document.createElement("P");
-      emptyDay2.classList.add("empty-mood");
-      emptyDay2.classList.add(i + "-" + j);
-      yearGrid.append(emptyDay2);
-      j++;
-    }
-    /* blank spaces in grid if month less than 31 days */
-    while (j < 32) {
-      createBlank();
-      j++;
-    }
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        var i;
+        for (i = 1; i < 13; i++) {
+          /* month label */
+          var monthLabel = document.createElement("P");
+          monthLabel.innerText = monthName[i];
+          yearGrid.append(monthLabel);
+          /* days for month */
+          var j = 1;
+          while (j <= daysInMonth[i]) {
+            var emptyDay = document.createElement("P");
+            try {
+              var color_string = "color-" + i + "-" + j;
+              var color = doc.data()[color_string];
+            } catch {
+              color = null;
+            }
+            emptyDay.classList.add("empty-mood");
+            emptyDay.classList.add(i + "-" + j);
+            emptyDay.setAttribute("style", "background-color:" + color);
+            yearGrid.append(emptyDay);
+            j++;
+          }
+          fillMonthsHelper(i, j);
+        }
+        setCurrDate();
+        PageLoaded();
+      });
+  });
+}
+
+/**
+ * Helper method for fillMonths
+ * @param {int} i - counter for months
+ * @param {int} j - counter for days
+ */
+function fillMonthsHelper(i, j) {
+  /* leap year adds day to feb */
+  if (i == 2 && year % 4 == 0) {
+    var emptyDay2 = document.createElement("P");
+    emptyDay2.classList.add("empty-mood");
+    emptyDay2.classList.add(i + "-" + j);
+    yearGrid.append(emptyDay2);
+    j++;
+  }
+  /* blank spaces in grid if month less than 31 days */
+  while (j < 32) {
+    createBlank();
+    j++;
   }
 }
 
-/* creates blank box element */
+/**
+ * Creates blank box element
+ */
 function createBlank() {
   var blank = document.createElement("P");
   blank.classList.add("blank");
   yearGrid.append(blank);
 }
 
-/* sets up box that belongs to the current date */
+/**
+ * sets up box that belongs to the current date
+ */
 function setCurrDate() {
   var dates = document.getElementsByClassName("empty-mood");
   var i;
@@ -111,60 +150,60 @@ function setCurrDate() {
 
 /* very happy mood selected */
 veryHappy.addEventListener("click", function () {
-  veryHappy.classList.toggle("very-happy-click", true);
-  happy.classList.toggle("happy-click", false);
-  neutral.classList.toggle("neutral-click", false);
-  sad.classList.toggle("sad-click", false);
-  verySad.classList.toggle("very-sad-click", false);
-  currDate.setAttribute("style", "background-color: green");
-  localStorage.setItem("color-" + month + "-" + day, "green");
-  localStorage.setItem("selected-icon", "very-happy");
+  colorChange("very-happy", veryHappy, "green");
 });
 
 /* happy mood selected */
 happy.addEventListener("click", function () {
-  veryHappy.classList.toggle("very-happy-click", false);
-  happy.classList.toggle("happy-click", true);
-  neutral.classList.toggle("neutral-click", false);
-  sad.classList.toggle("sad-click", false);
-  verySad.classList.toggle("very-sad-click", false);
-  currDate.setAttribute("style", "background-color: lightgreen");
-  localStorage.setItem("color-" + month + "-" + day, "lightgreen");
-  localStorage.setItem("selected-icon", "happy");
+  colorChange("happy", happy, "lightgreen");
 });
 
 /* neutral mood selected */
 neutral.addEventListener("click", function () {
-  veryHappy.classList.toggle("very-happy-click", false);
-  happy.classList.toggle("happy-click", false);
-  neutral.classList.toggle("neutral-click", true);
-  sad.classList.toggle("sad-click", false);
-  verySad.classList.toggle("very-sad-click", false);
-  currDate.setAttribute("style", "background-color: yellow");
-  localStorage.setItem("color-" + month + "-" + day, "yellow");
-  localStorage.setItem("selected-icon", "neutral");
+  colorChange("neutral", neutral, "yellow");
 });
 
 /* sad mood selected */
 sad.addEventListener("click", function () {
-  veryHappy.classList.toggle("very-happy-click", false);
-  happy.classList.toggle("happy-click", false);
-  neutral.classList.toggle("neutral-click", false);
-  sad.classList.toggle("sad-click", true);
-  verySad.classList.toggle("very-sad-click", false);
-  currDate.setAttribute("style", "background-color: orange");
-  localStorage.setItem("color-" + month + "-" + day, "orange");
-  localStorage.setItem("selected-icon", "sad");
+  colorChange("sad", sad, "orange");
 });
 
 /* very sad mood selected */
 verySad.addEventListener("click", function () {
+  colorChange("very-sad", verySad, "red");
+});
+
+/**
+ *
+ * @param {string} mood - mood string
+ * @param {HTMLElement} moodClass - mood class
+ * @param {string} color - mood color
+ */
+function colorChange(mood, moodClass, color) {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
   sad.classList.toggle("sad-click", false);
-  verySad.classList.toggle("very-sad-click", true);
-  currDate.setAttribute("style", "background-color: red");
-  localStorage.setItem("color-" + month + "-" + day, "red");
-  localStorage.setItem("selected-icon", "very-sad");
-});
+  verySad.classList.toggle("very-sad-click", false);
+  var toggleString = mood + "-click";
+  moodClass.classList.toggle(toggleString, true);
+  var styleString = "background-color: " + color;
+  currDate.setAttribute("style", styleString);
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({[color_string]: [red], selectedIcon: [mood]});
+    } catch {
+      color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .set({[color_string]: [color], selectedIcon: [mood]});
+    }
+  });
+}

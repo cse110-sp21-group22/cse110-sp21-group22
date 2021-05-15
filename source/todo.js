@@ -7,6 +7,10 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+/**
+ * Todo example class
+ * @constructor
+ */
 class Todo {
   constructor(id, text) {
     this.id = id;
@@ -31,7 +35,10 @@ var todoConverter = {
   },
 };
 
-// retriving tasks
+/**
+ * Function to render data from a doc
+ * @param {FirestoreDoc} individualDoc - Individual firestore doc
+ */
 function renderData(individualDoc) {
   // parent div
   let parentDiv = document.createElement("div");
@@ -112,7 +119,9 @@ form.addEventListener("submit", (e) => {
   });
 });
 
-// logout
+/**
+ * Function to log out user
+ */
 function logout() {
   auth.signOut();
 }
