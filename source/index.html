@@ -116,10 +116,22 @@
       firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
       const fs = firebase.firestore();
+      firebase.firestore().enablePersistence()
+        .catch((err) => {
+            if (err.code == 'failed-precondition') {
+                // Multiple tabs open, persistence can only be enabled
+                // in one tab at a a time.
+                // ...
+            } else if (err.code == 'unimplemented') {
+                // The current browser does not support all of the
+                // features required to enable persistence
+                // ...
+            }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-    <script src="./index.js"></script>
     <script src="./app.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
