@@ -174,7 +174,7 @@ verySad.addEventListener("click", function () {
 });
 
 /**
- *
+ * Function to update color based on mood
  * @param {string} mood - mood string
  * @param {HTMLElement} moodClass - mood class
  * @param {string} color - mood color
