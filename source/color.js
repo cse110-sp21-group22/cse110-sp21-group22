@@ -14,7 +14,7 @@ const day = date.getDate();
  * @param {HTMLElement} moodClass - mood class
  * @param {string} color - mood color
  */
- function colorChange(mood, moodClass, color) {
+function colorChange(mood, moodClass, color) {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
@@ -26,17 +26,14 @@ const day = date.getDate();
     try {
       var color_string = "color-" + month + "-" + day;
       fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .update({[color_string]: [red], selectedIcon: [mood]});
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : [ red ], selectedIcon : [ mood ]});
     } catch {
       color_string = "color-" + month + "-" + day;
-      fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .set({[color_string]: [color], selectedIcon: [mood]});
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : [ color ], selectedIcon : [ mood ]});
     }
   });
 }
