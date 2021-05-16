@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>color.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,33 +29,61 @@
 
 <div id="main">
     
+    <h1 class="page-title">color.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const veryHappy = document.getElementById("very-happy");
+const happy = document.getElementById("happy");
+const neutral = document.getElementById("neutral");
+const sad = document.getElementById("sad");
+const verySad = document.getElementById("very-sad");
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
 
-
-
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>cse110-sp21-group22</h1>
-<img src="https://raw.githubusercontent.com/cse110-sp21-group22/cse110-sp21-group22/main/admin/branding/cse110logo.svg">
-<p><a href="https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/admin/team.md">Team Page</a></p>
-<p><a href="https://catch-22-e0c66.web.app/">App</a></p>
-<p><a href="https://cse110-sp21-group22.github.io/cse110-sp21-group22/">Docs</a></p></article>
+/**
+ * Function to update color based on mood
+ * @param {string} mood - mood string
+ * @param {HTMLElement} moodClass - mood class
+ * @param {string} color - mood color
+ */
+function colorChange(mood, moodClass, color) {
+  veryHappy.classList.toggle("very-happy-click", false);
+  happy.classList.toggle("happy-click", false);
+  neutral.classList.toggle("neutral-click", false);
+  sad.classList.toggle("sad-click", false);
+  verySad.classList.toggle("very-sad-click", false);
+  var toggleString = mood + "-click";
+  moodClass.classList.toggle(toggleString, true);
+  auth.onAuthStateChanged((user) => {
+    try {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({[color_string]: [red], selectedIcon: [mood]});
+    } catch {
+      color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .set({[color_string]: [color], selectedIcon: [mood]});
+    }
+  });
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
