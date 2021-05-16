@@ -18,3 +18,29 @@ document.addEventListener("DOMContentLoaded", () => {
   /*Quote Generator */
 });
 
+/* very happy mood selected */
+veryHappy.addEventListener("click", function () {
+  colorChange("very-happy", veryHappy, "green");
+});
+
+/* happy mood selected */
+happy.addEventListener("click", function () {
+  colorChange("happy", happy, "lightgreen");
+});
+
+/* neutral mood selected */
+neutral.addEventListener("click", function () {
+  colorChange("neutral", neutral, "yellow");
+});
+
+/* sad mood selected */
+sad.addEventListener("click", function () {
+  colorChange("sad", sad, "orange");
+});
+
+/* very sad mood selected */
+verySad.addEventListener("click", function () {
+  colorChange("very-sad", verySad, "red");
+});
+
+PageLoaded();
