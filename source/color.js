@@ -14,7 +14,7 @@ const day = date.getDate();
  * @param {HTMLElement} moodClass - mood class
  * @param {string} color - mood color
  */
- function colorChange(mood, moodClass, color) {
+function colorChange(mood, moodClass, color) {
   veryHappy.classList.toggle("very-happy-click", false);
   happy.classList.toggle("happy-click", false);
   neutral.classList.toggle("neutral-click", false);
