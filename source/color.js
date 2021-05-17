@@ -26,17 +26,14 @@ function colorChange(mood, moodClass, color) {
     try {
       var color_string = "color-" + month + "-" + day;
       fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .update({[color_string]: [color], selectedIcon: [mood]});
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({[color_string] : [ color ], selectedIcon : [ mood ]});
     } catch {
       color_string = "color-" + month + "-" + day;
-      fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .set({ [color_string]: [color], selectedIcon: [mood] });
+      fs.collection("users").doc(user.uid).collection("data").doc("mood").set(
+          {[color_string] : [ color ], selectedIcon : [ mood ]});
     }
   });
 }
