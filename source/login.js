@@ -7,7 +7,7 @@ auth.onAuthStateChanged((user) => {
 
 var provider = new firebase.auth.GoogleAuthProvider();
 const googleButton = document.getElementById("gbutton");
-googleButton.addEventListener("click", function() {
+googleButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider)
     .then(() => {
@@ -19,9 +19,9 @@ googleButton.addEventListener("click", function() {
     });
 });
 
-var provider2 = new firebase.auth.OAuthProvider('microsoft.com');
+var provider2 = new firebase.auth.OAuthProvider("microsoft.com");
 const microsoftButton = document.getElementById("mbutton");
-microsoftButton.addEventListener("click", function() {
+microsoftButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider2)
     .then(() => {
