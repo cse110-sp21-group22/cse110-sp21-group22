@@ -83,7 +83,6 @@ rules:
   no-array-constructor: 2                       # disallow use of the Array constructor
   no-mixed-spaces-and-tabs: 2                   # disallow mixed spaces and tabs for indentation
   no-new-object: 2                              # disallow use of the Object constructor
-  object-curly-spacing: ["error", "never"]      # require or disallow padding inside curly braces (off by default)
   semi: 2                                       # require or disallow use of semicolons instead of ASI
 
   # ECMAScript 6
