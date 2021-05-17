@@ -18,16 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
   /*Quote Generator */
 });
 
-window.addEventListener("resize", function(){
-  // fire when less than 768px
-  if (document.documentElement.clientWidth < 768) {
-    document.getElementById("mood-selector").style = "flex-direction: row";
-  }
-  // fire when geq 768
-  else {
-    document.getElementById("mood-selector").style = "flex-direction: column";
-  }
-}, true);
+window.addEventListener(
+  "resize",
+  function () {
+    // fire when less than 768px
+    if (document.documentElement.clientWidth < 768) {
+      document.getElementById("mood-selector").style = "flex-direction: row";
+    }
+    // fire when geq 768
+    else {
+      document.getElementById("mood-selector").style = "flex-direction: column";
+    }
+  },
+  true
+);
 
 /* very happy mood selected */
 veryHappy.addEventListener("click", function () {

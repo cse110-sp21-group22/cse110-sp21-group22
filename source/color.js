@@ -31,10 +31,10 @@ function colorChange(mood, moodClass, color) {
       .update({ [color_string]: [color], selectedIcon: [mood] })
       .catch((err) => {
         fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .set({ [color_string]: [color], selectedIcon: [mood] });
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .set({ [color_string]: [color], selectedIcon: [mood] });
       });
   });
 }
