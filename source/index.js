@@ -58,4 +58,11 @@ verySad.addEventListener("click", function () {
   colorChange("very-sad", verySad, "red");
 });
 
+// Change mood buttons based on window size
+if (document.documentElement.clientWidth < 768) {
+  document.getElementById("mood-selector").style = "flex-direction: row";
+} else {
+  document.getElementById("mood-selector").style = "flex-direction: column";
+}
+
 PageLoaded();
