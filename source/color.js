@@ -29,14 +29,14 @@ function colorChange(mood, moodClass, color) {
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .update({ [color_string]: [color], selectedIcon: [mood] });
+        .update({[color_string]: [color], selectedIcon: [mood]});
     } catch {
       color_string = "color-" + month + "-" + day;
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("mood")
-        .set({ [color_string]: [color], selectedIcon: [mood] });
+        .set({[color_string]: [color], selectedIcon: [mood]});
     }
   });
 }
