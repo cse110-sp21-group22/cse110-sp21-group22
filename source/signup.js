@@ -6,25 +6,25 @@ auth.onAuthStateChanged((user) => {
 });
 
 var provider = new firebase.auth.GoogleAuthProvider();
-const googleButton = document.getElementById("gButton");
+const googleButton = document.getElementById("gbutton");
 googleButton.addEventListener("click", function() {
   auth
     .signInWithPopup(provider)
     .catch((error) => {
       const signupError2 = document.getElementById("signup-error");
       signupError2.innerText = error.message;
-  });
+    });
 });
 
 var provider2 = new firebase.auth.OAuthProvider('microsoft.com');
-const microsoftButton = document.getElementById("mButton");
+const microsoftButton = document.getElementById("mbutton");
 microsoftButton.addEventListener("click", function() {
   auth
     .signInWithPopup(provider2)
     .catch((error) => {
       const signupError2 = document.getElementById("signup-error");
       signupError2.innerText = error.message;
-  });
+    });
 });
 
 const signupForm = document.getElementById("signup-form");
