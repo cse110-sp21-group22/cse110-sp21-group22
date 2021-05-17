@@ -59,7 +59,7 @@ jobs:
   # Semgrep Scan #
   ################
   semgrep:
-    name: Scan
+    name: Semgrep scan
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
