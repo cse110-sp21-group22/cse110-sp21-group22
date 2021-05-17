@@ -84,6 +84,9 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       with:
         projectBaseDir: ./source
+        args: >
+          -Dsonar.organization=cse110-sp21-group22
+          -Dsonar.projectKey=cse110-sp21-group22_cse110-sp21-group22
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
