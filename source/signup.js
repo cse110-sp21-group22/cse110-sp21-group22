@@ -7,16 +7,16 @@ auth.onAuthStateChanged((user) => {
 
 var provider = new firebase.auth.GoogleAuthProvider();
 const googleButton = document.getElementById("gbutton");
-googleButton.addEventListener("click", function() {
+googleButton.addEventListener("click", function () {
   auth.signInWithPopup(provider).catch((error) => {
     const signupError2 = document.getElementById("signup-error");
     signupError2.innerText = error.message;
   });
 });
 
-var provider2 = new firebase.auth.OAuthProvider('microsoft.com');
+var provider2 = new firebase.auth.OAuthProvider("microsoft.com");
 const microsoftButton = document.getElementById("mbutton");
-microsoftButton.addEventListener("click", function() {
+microsoftButton.addEventListener("click", function () {
   auth.signInWithPopup(provider2).catch((error) => {
     const signupError2 = document.getElementById("signup-error");
     signupError2.innerText = error.message;
