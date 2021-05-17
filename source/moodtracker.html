@@ -7,10 +7,6 @@
     <meta name="author" content="Catch-22">
     <title>BuJo</title>
 
-    <link rel="stylesheet" href="moodStyle.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
@@ -33,6 +29,8 @@
 
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" href="moodStyle.css">
+
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
@@ -64,9 +62,11 @@
     <main class="container d-none" id="main">
       <div class="bg-light p-5 rounded">
         <h1>Mood Tracker</h1>
-        <section id="year-grid">
-          <!-- fills with mood tracker grid in js -->
-        </section>
+        <div class="overflow-auto">
+          <section class="mood-tracker" id="year-grid">
+            <!-- fills with mood tracker grid in js -->
+          </section>
+        </div>
 
         <!-- mood facial expression to click on -->
         <section id="mood-selector">

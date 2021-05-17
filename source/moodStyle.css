@@ -102,3 +102,9 @@ h1 {
 .curr-day {
   border: 3px solid rgba(0, 0, 0, 0.8);
 }
+
+.mood-tracker {
+  width: 1200px;
+  max-width: 1200px;
+  display: inline-block;
+}
