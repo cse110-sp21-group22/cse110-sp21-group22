@@ -70,10 +70,29 @@ jobs:
         publishDeployment: 1076
         
   ###################
+  # Sonarcloud Scan #
+  ###################
+  sonarcloud:
+    name: Sonarcloud scan
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      with:
+        projectBaseDir: ./source
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+  ###################
   # Firebase deploy #
   ###################
   preview:
-    needs: [linter, semgrep]
+    needs: [linter, semgrep, sonarcloud]
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
