@@ -5,6 +5,28 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+var provider = new firebase.auth.GoogleAuthProvider();
+const googleButton = document.getElementById("gButton");
+googleButton.addEventListener("click", function() {
+  auth
+    .signInWithPopup(provider)
+    .catch((error) => {
+      const signupError2 = document.getElementById("signup-error");
+      signupError2.innerText = error.message;
+  });
+});
+
+var provider2 = new firebase.auth.OAuthProvider('microsoft.com');
+const microsoftButton = document.getElementById("mButton");
+microsoftButton.addEventListener("click", function() {
+  auth
+    .signInWithPopup(provider2)
+    .catch((error) => {
+      const signupError2 = document.getElementById("signup-error");
+      signupError2.innerText = error.message;
+  });
+});
+
 const signupForm = document.getElementById("signup-form");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -14,25 +36,6 @@ signupForm.addEventListener("submit", (e) => {
   signupForm.reset();
   auth
     .createUserWithEmailAndPassword(email, password)
-    .then((cred) => {
-      const userCredentials = {
-        name: name,
-        email: email,
-        createdAt: new Date().toISOString(),
-        uid: cred.user.uid,
-      };
-      return db
-        .collection("users")
-        .doc(cred.user.uid)
-        .set(userCredentials)
-        .then(() => {
-          location = "index.html";
-        })
-        .catch((err) => {
-          const signupError = document.getElementById("signup-error");
-          signupError.innerText = err.message;
-        });
-    })
     .catch((err) => {
       const signupError2 = document.getElementById("signup-error");
       signupError2.innerText = err.message;

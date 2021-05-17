@@ -5,6 +5,34 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+var provider = new firebase.auth.GoogleAuthProvider();
+const googleButton = document.getElementById("gButton");
+googleButton.addEventListener("click", function() {
+  auth
+    .signInWithPopup(provider)
+    .then(() => {
+      location = "index.html";
+    })
+    .catch((err) => {
+      const loginError = document.getElementById("login-error");
+      loginError.innerText = err.message;
+    });
+});
+
+var provider2 = new firebase.auth.OAuthProvider('microsoft.com');
+const microsoftButton = document.getElementById("mButton");
+microsoftButton.addEventListener("click", function() {
+  auth
+    .signInWithPopup(provider2)
+    .then(() => {
+      location = "index.html";
+    })
+    .catch((err) => {
+      const loginError = document.getElementById("login-error");
+      loginError.innerText = err.message;
+    });
+});
+
 const loginForm = document.getElementById("login-form");
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
