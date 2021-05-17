@@ -6,7 +6,7 @@ Time: 10:30PM
 
 Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jacky) Li, Nguyen Luong, Robert Wakefield-Carl, Shanqing Wang
 
-# Sprint Task Assignment
+## Sprint Task Assignment
 
 Tasks:
 - Daily log button
