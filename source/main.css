@@ -175,7 +175,7 @@ body {
 }
 
 .rosethorn li {
-  cursor:pointer; 
+  cursor:pointer;
 }
 
 .rosethorn:before {
@@ -199,14 +199,14 @@ body {
  display:block;
  position:absolute;
  width:75%;
- height:20px; 
+ height:20px;
  border-radius: 50% ;
  bottom:0px;
  left:10%;
 }
 
 h1 {
-  font-size:25px; 
+  font-size:25px;
  position:relative;
 }
 
