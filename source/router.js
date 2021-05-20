@@ -35,7 +35,7 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-const daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
 let WEEK = "";
@@ -78,7 +78,9 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = home;
     dynamicallyLoadScript(
-        "index.js", dynamicallyLoadScript("color.js", updateNavbar("home")));
+      "index.js",
+      dynamicallyLoadScript("color.js", updateNavbar("home"))
+    );
   });
   router.on("/calendar", () => {
     PageUnloaded();
@@ -91,8 +93,9 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-        "moodFunctionality.js",
-        dynamicallyLoadScript("color.js", updateNavbar("nav-mood")));
+      "moodFunctionality.js",
+      dynamicallyLoadScript("color.js", updateNavbar("nav-mood"))
+    );
   });
   router.on("/settings", () => {
     PageUnloaded();
@@ -141,27 +144,30 @@ function resize() {
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("navbar")
-      .onSnapshot((doc) => {
-        try {
-          var hColor = doc.data().hColor;
-          var hStyle = doc.data().hStyle;
-          document.getElementById("navbar").className = hStyle;
-          document.getElementById("navbar").style.backgroundColor = hColor;
-        } catch (err) {
-        }
-      });
+    .doc(user.uid)
+    .collection("settings")
+    .doc("navbar")
+    .onSnapshot((doc) => {
+      try {
+        var hColor = doc.data().hColor;
+        var hStyle = doc.data().hStyle;
+        document.getElementById("navbar").className = hStyle;
+        document.getElementById("navbar").style.backgroundColor = hColor;
+      } catch (err) {}
+    });
 });
 
 /**
  * The Function is invoked when the window.history's state changes
  */
-window.onpopstate = () => { router.resolve(); };
+window.onpopstate = () => {
+  router.resolve();
+};
 
 main().then(() => {
   rootDiv.innerHTML = home;
   dynamicallyLoadScript(
-      "index.js", dynamicallyLoadScript("color.js", updateNavbar("home")));
+    "index.js",
+    dynamicallyLoadScript("color.js", updateNavbar("home"))
+  );
 });
