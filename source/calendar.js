@@ -1,9 +1,6 @@
-const PROGRESS_BAR = document.querySelector("#progressbar");
-const WEEK = document.getElementById("weeks");
+PROGRESS_BAR = document.querySelector("#progressbar");
+WEEK = document.getElementById("weeks");
 PROGRESS_BAR.style.width = `${0}%`;
-const today = new Date();
-const one_day_per_second = 1000 * 60 * 60 * 24;
-const one_week_per_second = one_day_per_second * 7;
 
 $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();

@@ -1,21 +1,4 @@
-const yearGrid = document.getElementById("year-grid");
-const monthName = [
-  "",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var currDate;
+yearGrid = document.getElementById("year-grid");
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {

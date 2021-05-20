@@ -1,14 +1,3 @@
-ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
-  if (lightOrDark(hex) == "light") {
-    document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-light fixed-top";
-  } else {
-    document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-dark fixed-top";
-  }
-  document.getElementById("navbar").style.backgroundColor = hex;
-});
-
 /**
  * Function to determine if a color is light or dark
  * @param {string} color - color in hex
@@ -42,3 +31,16 @@ function lightOrDark(color) {
 function logout() {
   auth.signOut();
 }
+
+ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+  if (lightOrDark(hex) == "light") {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-light fixed-top";
+  } else {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-dark fixed-top";
+  }
+  document.getElementById("navbar").style.backgroundColor = hex;
+});
+
+PageLoaded();

@@ -1,12 +1,8 @@
-const veryHappy = document.getElementById("very-happy");
-const happy = document.getElementById("happy");
-const neutral = document.getElementById("neutral");
-const sad = document.getElementById("sad");
-const verySad = document.getElementById("very-sad");
-const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth() + 1;
-const day = date.getDate();
+veryHappy = document.getElementById("very-happy");
+happy = document.getElementById("happy");
+neutral = document.getElementById("neutral");
+sad = document.getElementById("sad");
+verySad = document.getElementById("very-sad");
 
 /**
  * Function to update color based on mood
