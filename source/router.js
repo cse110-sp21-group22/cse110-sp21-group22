@@ -111,10 +111,9 @@ function dynamicallyLoadScript(location, callback) {
   var script = document.createElement("script");
   script.src = location;
   script.className = "dynamic-script";
+  document.body.appendChild(script);
   script.onreadystatechange = callback;
   script.onload = callback;
-
-  document.body.appendChild(script);
 }
 
 function unloadScripts() {
