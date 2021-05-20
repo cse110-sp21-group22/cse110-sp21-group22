@@ -28,17 +28,15 @@ function lightOrDark(color) {
 /**
  * Function to log out user
  */
-function logout() {
-  auth.signOut();
-}
+function logout() { auth.signOut(); }
 
-ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
   if (lightOrDark(hex) == "light") {
     document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-light fixed-top";
+        "navbar navbar-expand-md navbar-light fixed-top";
   } else {
     document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-dark fixed-top";
+        "navbar navbar-expand-md navbar-dark fixed-top";
   }
   document.getElementById("navbar").style.backgroundColor = hex;
 });
