@@ -1,5 +1,5 @@
 // Change default path if testing locally (/source)
-const router = new Navigo("/source");
+const router = new Navigo("/");
 let home = "";
 let calendar = "";
 let moodtracker = "";
