@@ -1,21 +1,4 @@
-const yearGrid = document.getElementById("year-grid");
-const monthName = [
-  "",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var currDate;
+yearGrid = document.getElementById("year-grid");
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {
@@ -82,6 +65,7 @@ function fillMonths() {
             }
             emptyDay.classList.add("empty-mood");
             emptyDay.classList.add(i + "-" + j);
+            emptyDay.id = "color-" + i + "-" + j;
             emptyDay.setAttribute("style", "background-color:" + color);
             yearGrid.append(emptyDay);
             j++;
@@ -93,6 +77,25 @@ function fillMonths() {
       });
   });
 }
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("data")
+    .doc("mood")
+    .onSnapshot((doc) => {
+      for (var key of Object.keys(doc.data())) {
+        if (key != "selectedIcon") {
+          let day = document.getElementById(key);
+          try {
+            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    });
+});
 
 /**
  * Helper method for fillMonths
@@ -171,7 +174,7 @@ verySad.addEventListener("click", function () {
 
 /**
  * Function to change day's color
- * @param {string} color 
+ * @param {string} color
  */
 function dayColorChange(color) {
   var styleString = "background-color: " + color;

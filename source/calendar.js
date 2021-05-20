@@ -1,9 +1,6 @@
-const PROGRESS_BAR = document.querySelector("#progressbar");
-const WEEK = document.getElementById("weeks");
+PROGRESS_BAR = document.querySelector("#progressbar");
+WEEK = document.getElementById("weeks");
 PROGRESS_BAR.style.width = `${0}%`;
-const today = new Date();
-const one_day_per_second = 1000 * 60 * 60 * 24;
-const one_week_per_second = one_day_per_second * 7;
 
 $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
@@ -38,7 +35,7 @@ function progress_func() {
       .doc(user.uid)
       .collection("settings")
       .doc("calendar")
-      .set({semester_start: semester_start, semester_end: semester_end});
+      .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
     var date_diff = (semester_end - semester_start) / one_day_per_second;

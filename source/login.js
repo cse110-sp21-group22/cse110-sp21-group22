@@ -25,7 +25,7 @@ microsoftButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider2)
     .then(() => {
-      location = "index.html";
+      location = "/";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
@@ -41,7 +41,7 @@ loginForm.addEventListener("submit", (e) => {
   auth
     .signInWithEmailAndPassword(loginEmail, loginPassword)
     .then(() => {
-      location = "index.html";
+      location = "/";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
