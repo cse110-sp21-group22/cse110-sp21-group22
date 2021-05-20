@@ -1,7 +1,7 @@
 // checking if user is signed in or not
 auth.onAuthStateChanged((user) => {
   if (user) {
-    location = "index.html";
+    location = "/";
   }
 });
 
@@ -11,7 +11,7 @@ googleButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider)
     .then(() => {
-      location = "index.html";
+      location = "/";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
