@@ -51,7 +51,7 @@ function save() {
       .doc(user.uid)
       .collection("settings")
       .doc("navbar")
-      .set({ "hStyle": hStyle, "hColor": hColor });
+      .set({ hStyle: hStyle, hColor: hColor });
   });
 }
 
