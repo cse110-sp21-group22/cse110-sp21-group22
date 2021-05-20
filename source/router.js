@@ -1,5 +1,5 @@
 // Change default path if testing locally (/source)
-const router = new Navigo("/");
+const router = new Navigo("/source");
 let home = "";
 let calendar = "";
 let moodtracker = "";
@@ -51,17 +51,17 @@ const one_week_per_second = one_day_per_second * 7;
 
 const loadPage = async (page) => {
   const response = await fetch(page);
-  return await response.text();
+  return response.text();
 };
 
 /**
  * The Async function loads all HTML to the variables
  */
 const loadAllPages = async () => {
-  home = loadPage("main.html");
-  calendar = loadPage("calendar.html");
-  moodtracker = loadPage("moodtracker.html");
-  settings = loadPage("settings.html");
+  home = await loadPage("main.html");
+  calendar = await loadPage("calendar.html");
+  moodtracker = await loadPage("moodtracker.html");
+  settings = await loadPage("settings.html");
 };
 
 /**
