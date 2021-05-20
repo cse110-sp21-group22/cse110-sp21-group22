@@ -74,6 +74,7 @@ const main = async () => {
   rootDiv.innerHTML = home;
   dynamicallyLoadScript("color.js");
   dynamicallyLoadScript("index.js");
+  PageLoaded();
   router.on("/", () => {
     PageUnloaded();
     unloadScripts();
