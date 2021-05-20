@@ -49,12 +49,12 @@ url = "https://api.quotable.io/random";
 
 // Fetches information from quote generator website
 fetch(url)
-.then((response) => response.json())
-.then((result) => {
-  // Updates html objects with content from the website
-  document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-  document.querySelector("#authors").innerHTML = "-" + result.author;
-})
-.then(() => {
-  PageLoaded();
-});
+  .then((response) => response.json())
+  .then((result) => {
+    // Updates html objects with content from the website
+    document.querySelector("#quote").innerHTML = '"' + result.content + '"';
+    document.querySelector("#authors").innerHTML = "-" + result.author;
+  })
+  .then(() => {
+    PageLoaded();
+  });

@@ -16,7 +16,7 @@ function PageLoaded() {
 /**
  * Function to show spinner and hide page
  */
- function PageUnloaded() {
+function PageUnloaded() {
   document.getElementById("spinner").classList.remove("d-none");
   document.getElementById("main").classList.add("d-none");
 }

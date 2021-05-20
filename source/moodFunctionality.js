@@ -154,7 +154,7 @@ verySad.addEventListener("click", function () {
 
 /**
  * Function to change day's color
- * @param {string} color 
+ * @param {string} color
  */
 function dayColorChange(color) {
   var styleString = "background-color: " + color;

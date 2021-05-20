@@ -35,7 +35,7 @@ function progress_func() {
       .doc(user.uid)
       .collection("settings")
       .doc("calendar")
-      .set({semester_start: semester_start, semester_end: semester_end});
+      .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
     var date_diff = (semester_end - semester_start) / one_day_per_second;
