@@ -78,25 +78,6 @@ function fillMonths() {
   });
 }
 
-auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("mood")
-    .onSnapshot((doc) => {
-      for (var key of Object.keys(doc.data())) {
-        if (key != "selectedIcon") {
-          let day = document.getElementById(key);
-          try {
-            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      }
-    });
-});
-
 /**
  * Helper method for fillMonths
  * @param {int} i - counter for months
@@ -180,3 +161,22 @@ function dayColorChange(color) {
   var styleString = "background-color: " + color;
   currDate.setAttribute("style", styleString);
 }
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("data")
+    .doc("mood")
+    .onSnapshot((doc) => {
+      for (var key of Object.keys(doc.data())) {
+        if (key != "selectedIcon") {
+          let day = document.getElementById(key);
+          try {
+            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
+          } catch {
+            console.log('not loaded');
+          }
+        }
+      }
+    });
+});
