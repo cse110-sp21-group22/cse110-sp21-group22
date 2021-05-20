@@ -89,7 +89,9 @@ auth.onAuthStateChanged((user) => {
           let day = document.getElementById(key);
           try {
             day.setAttribute("style", "background-color:" + doc.data()[key][0]);
-          } catch {}
+          } catch (err) {
+            console.log(err);
+          }
         }
       }
     });

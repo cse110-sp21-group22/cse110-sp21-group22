@@ -149,11 +149,13 @@ auth.onAuthStateChanged((user) => {
     .doc("navbar")
     .onSnapshot((doc) => {
       try {
-        var hColor = doc.data().hColor;
-        var hStyle = doc.data().hStyle;
+        hColor = doc.data().hColor;
+        hStyle = doc.data().hStyle;
         document.getElementById("navbar").className = hStyle;
         document.getElementById("navbar").style.backgroundColor = hColor;
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     });
 });
 
