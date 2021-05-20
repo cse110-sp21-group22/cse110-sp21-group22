@@ -65,6 +65,7 @@ function fillMonths() {
             }
             emptyDay.classList.add("empty-mood");
             emptyDay.classList.add(i + "-" + j);
+            emptyDay.id = "color-" + i + "-" + j;
             emptyDay.setAttribute("style", "background-color:" + color);
             yearGrid.append(emptyDay);
             j++;
@@ -76,6 +77,25 @@ function fillMonths() {
       });
   });
 }
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("data")
+    .doc("mood")
+    .onSnapshot((doc) => {
+      for (var key of Object.keys(doc.data())) {
+        if (key != "selectedIcon") {
+          let day = document.getElementById(key);
+          try {
+            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
+          } catch {
+
+          }
+        }
+    }
+    });
+});
 
 /**
  * Helper method for fillMonths

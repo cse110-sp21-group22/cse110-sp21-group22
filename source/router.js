@@ -1,5 +1,5 @@
 // Change default path if testing locally (/source)
-const router = new Navigo("/");
+const router = new Navigo("/source");
 let home = "";
 let calendar = "";
 let moodtracker = "";
@@ -12,6 +12,8 @@ let happy = "";
 let neutral = "";
 let sad = "";
 let verySad = "";
+let hColor = "";
+let hStyle = "";
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
@@ -71,17 +73,13 @@ const loadAllPages = async () => {
  */
 const main = async () => {
   await loadAllPages();
-  rootDiv.innerHTML = home;
-  dynamicallyLoadScript("color.js");
-  dynamicallyLoadScript("index.js");
-  PageLoaded();
   router.on("/", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = home;
     dynamicallyLoadScript(
-      "color.js",
-      dynamicallyLoadScript("index.js", updateNavbar("home"))
+      "index.js",
+      dynamicallyLoadScript("color.js", updateNavbar("home"))
     );
   });
   router.on("/calendar", () => {
@@ -95,8 +93,8 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-      "color.js",
-      dynamicallyLoadScript("moodFunctionality.js", updateNavbar("nav-mood"))
+      "moodFunctionality.js",
+      dynamicallyLoadScript("color.js", updateNavbar("nav-mood"))
     );
   });
   router.on("/settings", () => {
@@ -117,6 +115,7 @@ function dynamicallyLoadScript(location, callback) {
 }
 
 function unloadScripts() {
+  window.removeEventListener("resize", resize, true);
   var scripts = document.getElementsByClassName("dynamic-script");
   while (scripts[0]) {
     scripts[0].parentNode.removeChild(scripts[0]);
@@ -132,6 +131,32 @@ function updateNavbar(page) {
   }
 }
 
+function resize() {
+  // fire when less than 768px
+  if (document.documentElement.clientWidth < 768) {
+    document.getElementById("mood-selector").style = "flex-direction: row";
+  }
+  // fire when geq 768
+  else {
+    document.getElementById("mood-selector").style = "flex-direction: column";
+  }
+}
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("settings")
+    .doc("navbar")
+    .onSnapshot((doc) => {
+      try {
+        var hColor = doc.data().hColor;
+        var hStyle = doc.data().hStyle;
+        document.getElementById("navbar").className = hStyle;
+        document.getElementById("navbar").style.backgroundColor = hColor;
+      } catch (err) {}
+    });
+});
+
 /**
  * The Function is invoked when the window.history's state changes
  */
@@ -139,4 +164,10 @@ window.onpopstate = () => {
   router.resolve();
 };
 
-main();
+main().then(() => {
+  rootDiv.innerHTML = home;
+  dynamicallyLoadScript(
+    "index.js",
+    dynamicallyLoadScript("color.js", updateNavbar("home"))
+  );
+});

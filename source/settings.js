@@ -1,3 +1,14 @@
+ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+  if (lightOrDark(hex) == "light") {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-light fixed-top";
+  } else {
+    document.getElementById("navbar").className =
+      "navbar navbar-expand-md navbar-dark fixed-top";
+  }
+  document.getElementById("navbar").style.backgroundColor = hex;
+});
+
 /**
  * Function to determine if a color is light or dark
  * @param {string} color - color in hex
@@ -32,15 +43,16 @@ function logout() {
   auth.signOut();
 }
 
-ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
-  if (lightOrDark(hex) == "light") {
-    document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-light fixed-top";
-  } else {
-    document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-dark fixed-top";
-  }
-  document.getElementById("navbar").style.backgroundColor = hex;
-});
+function save() {
+  auth.onAuthStateChanged((user) => {
+    hStyle = document.getElementById("navbar").className;
+    hColor = document.getElementById("navbar").style.backgroundColor;
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .set({ "hStyle": hStyle, "hColor": hColor });
+  });
+}
 
 PageLoaded();
