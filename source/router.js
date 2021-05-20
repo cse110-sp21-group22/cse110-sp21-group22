@@ -1,8 +1,9 @@
 // Change default path if testing locally (/source)
 const router = new Navigo("/");
 let home = "";
-let about = "";
-let contact = "";
+let calendar = "";
+let moodtracker = "";
+let settings = "";
 const rootDiv = document.getElementById("main");
 
 // Initialize all needed variables
@@ -50,18 +51,17 @@ const one_week_per_second = one_day_per_second * 7;
 
 const loadPage = async (page) => {
   const response = await fetch(page);
-  const resHtml = await response.text();
-  return resHtml;
+  return await response.text();
 };
 
 /**
  * The Async function loads all HTML to the variables
  */
 const loadAllPages = async () => {
-  home = await loadPage("main.html");
-  calendar = await loadPage("calendar.html");
-  moodtracker = await loadPage("moodtracker.html");
-  settings = await loadPage("settings.html");
+  home = loadPage("main.html");
+  calendar = loadPage("calendar.html");
+  moodtracker = loadPage("moodtracker.html");
+  settings = loadPage("settings.html");
 };
 
 /**
@@ -106,9 +106,9 @@ const main = async () => {
   });
 };
 
-function dynamicallyLoadScript(url, callback) {
+function dynamicallyLoadScript(location, callback) {
   var script = document.createElement("script");
-  script.src = url;
+  script.src = location;
   script.className = "dynamic-script";
   script.onreadystatechange = callback;
   script.onload = callback;
@@ -118,7 +118,9 @@ function dynamicallyLoadScript(url, callback) {
 
 function unloadScripts() {
   var scripts = document.getElementsByClassName("dynamic-script");
-  while (scripts[0]) scripts[0].parentNode.removeChild(scripts[0]);
+  while (scripts[0]) {
+    scripts[0].parentNode.removeChild(scripts[0]);
+  }
 }
 
 function updateNavbar(page) {
