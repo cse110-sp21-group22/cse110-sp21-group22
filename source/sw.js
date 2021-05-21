@@ -28,6 +28,7 @@ var urlsToPrefetch = [
   "https://cdn.jsdelivr.net/gh/DavidDurman/FlexiColorPicker@master/colorpicker.min.js",
 ];
 
+// Cache elements
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
@@ -36,6 +37,7 @@ self.addEventListener("install", function (event) {
   );
 });
 
+// fallback to cache on fetch
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {

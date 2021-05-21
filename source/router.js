@@ -43,20 +43,17 @@ const one_day_per_second = 1000 * 60 * 60 * 24;
 const one_week_per_second = one_day_per_second * 7;
 
 /**
- *
- * @param {String} page - Represents the page information that needs to be
- *     retrieved
- * @returns {String} resHtml - The Page's HTML is returned from the async
- *     invocation
+ * Function to load subpages
+ * @param {string} page page to load
+ * @returns html of page
  */
-
 const loadPage = async (page) => {
   const response = await fetch(page);
   return response.text();
 };
 
 /**
- * The Async function loads all HTML to the variables
+ * Load all pages and save them in variables
  */
 const loadAllPages = async () => {
   home = await loadPage("main.html");
@@ -66,9 +63,9 @@ const loadAllPages = async () => {
 };
 
 /**
- * The Main Function is an async function that first loads All Page HTML to the
- * variables Once the variables are loaded with the contents, then they are
- * assigned to the 'routes' variable
+ * The main function is an async function that first loads all Page HTML to the
+ * variables. Once the variables are loaded with the contents, then the routes
+ * are established.
  */
 const main = async () => {
   await loadAllPages();
@@ -104,6 +101,11 @@ const main = async () => {
   });
 };
 
+/**
+ * Dynamically load scripts based on page
+ * @param {string} location location of script
+ * @param {function} callback function to execute
+ */
 function dynamicallyLoadScript(location, callback) {
   var script = document.createElement("script");
   script.src = location;
@@ -113,6 +115,9 @@ function dynamicallyLoadScript(location, callback) {
   script.onload = callback;
 }
 
+/**
+ * Function to unload all page scripts
+ */
 function unloadScripts() {
   window.removeEventListener("resize", resize, true);
   var scripts = document.getElementsByClassName("dynamic-script");
@@ -121,6 +126,10 @@ function unloadScripts() {
   }
 }
 
+/**
+ * Function to update the navbar based on the page
+ * @param {string} page page to set navbar to
+ */
 function updateNavbar(page) {
   document.getElementById("nav-settings").className = "nav-link";
   document.getElementById("nav-calendar").className = "nav-link";
@@ -130,6 +139,9 @@ function updateNavbar(page) {
   }
 }
 
+/**
+ * Function to make mood tracker horizontal on small screens
+ */
 function resize() {
   // fire when less than 768px
   if (document.documentElement.clientWidth < 768) {
@@ -141,6 +153,7 @@ function resize() {
   }
 }
 
+// Update navbar color from firebase
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
     .doc(user.uid)
@@ -158,6 +171,7 @@ auth.onAuthStateChanged((user) => {
     });
 });
 
+// register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker.register("./sw.js");
