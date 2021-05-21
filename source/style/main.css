@@ -329,7 +329,8 @@ h1 {
 
 .blackboard {
   position: relative;
-  width: 350px; /* width of blackboard */
+  width: 100% 350px; /* width of blackboard */
+  max-width: 350px;
   margin: 3% auto;
   border: tan solid 12px;
   border-top: #bda27e solid 12px;
