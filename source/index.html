@@ -34,20 +34,20 @@
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/" data-navigo>BuJo</a>
+        <a class="navbar-brand" href="/" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" data-navigo>BuJo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="calendar"  id="nav-calendar" data-navigo>Calendar</a>
+              <a class="nav-link" href="calendar" id="nav-calendar" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" data-navigo>Calendar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mood"  id="nav-mood" data-navigo>Mood Tracker</a>
+              <a class="nav-link" href="mood" id="nav-mood" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" data-navigo>Mood Tracker</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="settings" id="nav-settings" data-navigo>Settings</a>
+              <a class="nav-link" href="settings" id="nav-settings" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" data-navigo>Settings</a>
             </li>
           </ul>
         </div>
@@ -59,6 +59,9 @@
     </div>
 
     <main class="container d-none" id="main" ></main>
+
+    <!-- Service worker -->
+    <script src="./sw.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>

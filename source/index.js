@@ -35,13 +35,19 @@ if (document.documentElement.clientWidth < 768) {
 url = "https://api.quotable.io/random";
 
 // Fetches information from quote generator website
-fetch(url)
-  .then((response) => response.json())
-  .then((result) => {
-    // Updates html objects with content from the website
-    document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-    document.querySelector("#authors").innerHTML = "-" + result.author;
-  })
-  .then(() => {
-    PageLoaded();
-  });
+if (navigator.onLine) {
+  fetch(url)
+    .then((response) => response.json())
+    .then((result) => {
+      // Updates html objects with content from the website
+      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
+      document.querySelector("#authors").innerHTML = "-" + result.author;
+    })
+    .then(() => {
+      PageLoaded();
+    });
+} else {
+  document.querySelector("#quote").innerHTML = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+  document.querySelector("#authors").innerHTML = '-Marilyn vos Savant';
+  PageLoaded();
+}

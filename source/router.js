@@ -1,4 +1,3 @@
-// Change default path if testing locally (/source)
 const router = new Navigo("/", { hash: true });
 let home = "";
 let calendar = "";
@@ -158,6 +157,12 @@ auth.onAuthStateChanged((user) => {
       }
     });
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
 
 /**
  * The Function is invoked when the window.history's state changes
