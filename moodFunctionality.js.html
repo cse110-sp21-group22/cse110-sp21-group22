@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>moodFunctionality.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Todo.html">Todo</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#colorChange">colorChange</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#createBlank">createBlank</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#dayColorChange">dayColorChange</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#dynamicallyLoadScript">dynamicallyLoadScript</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fillDays">fillDays</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fillMonths">fillMonths</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fillMonthsHelper">fillMonthsHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#lightOrDark">lightOrDark</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#loadAllPages">loadAllPages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#loadPage">loadPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#logout">logout</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#main">main</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PageLoaded">PageLoaded</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#PageUnloaded">PageUnloaded</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCalendar">populateCalendar</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#progress_func">progress_func</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#renderData">renderData</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#resize">resize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setCurrDate">setCurrDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#unloadScripts">unloadScripts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#updateNavbar">updateNavbar</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">moodFunctionality.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>yearGrid = document.getElementById("year-grid");
+
+/* clear grid when new year */
+if (month == 1 &amp;&amp; day == 1) {
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .delete();
+  });
+}
+
+/* populate yearGrid calendar */
+populateCalendar();
+
+/**
+ *  Creates yearGrid for the current year
+ */
+function populateCalendar() {
+  createBlank();
+  fillDays();
+  fillMonths();
+}
+
+/**
+ * Creates first row of yearGrid (day labels)
+ */
+function fillDays() {
+  var i;
+  for (i = 1; i &lt; 32; i++) {
+    var dayLabel = document.createElement("P");
+    dayLabel.innerText = i;
+    dayLabel.classList.add("day-label");
+    yearGrid.append(dayLabel);
+  }
+}
+
+/**
+ * Creates all rows of yearGrid (each month)
+ */
+function fillMonths() {
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        var i;
+        for (i = 1; i &lt; 13; i++) {
+          /* month label */
+          var monthLabel = document.createElement("P");
+          monthLabel.innerText = monthName[i];
+          yearGrid.append(monthLabel);
+          /* days for month */
+          var j = 1;
+          while (j &lt;= daysInMonth[i]) {
+            var emptyDay = document.createElement("P");
+            try {
+              var color_string = "color-" + i + "-" + j;
+              var color = doc.data()[color_string];
+            } catch {
+              color = null;
+            }
+            emptyDay.classList.add("empty-mood");
+            emptyDay.classList.add(i + "-" + j);
+            emptyDay.id = "color-" + i + "-" + j;
+            emptyDay.setAttribute("style", "background-color:" + color);
+            yearGrid.append(emptyDay);
+            j++;
+          }
+          fillMonthsHelper(i, j);
+        }
+        setCurrDate();
+        PageLoaded();
+      });
+  });
+}
+
+/**
+ * Helper method for fillMonths
+ * @param {int} i - counter for months
+ * @param {int} j - counter for days
+ */
+function fillMonthsHelper(i, j) {
+  /* leap year adds day to feb */
+  if (i == 2 &amp;&amp; year % 4 == 0) {
+    var emptyDay2 = document.createElement("P");
+    emptyDay2.classList.add("empty-mood");
+    emptyDay2.classList.add(i + "-" + j);
+    yearGrid.append(emptyDay2);
+    j++;
+  }
+  /* blank spaces in grid if month less than 31 days */
+  while (j &lt; 32) {
+    createBlank();
+    j++;
+  }
+}
+
+/**
+ * Creates blank box element
+ */
+function createBlank() {
+  var blank = document.createElement("P");
+  blank.classList.add("blank");
+  yearGrid.append(blank);
+}
+
+/**
+ * sets up box that belongs to the current date
+ */
+function setCurrDate() {
+  var dates = document.getElementsByClassName("empty-mood");
+  var i;
+  for (i = 0; i &lt; dates.length; i++) {
+    var e = dates[i];
+    if (e.classList.contains(month + "-" + day)) {
+      e.classList.add("curr-day");
+      currDate = e;
+    }
+  }
+}
+
+/* very happy mood selected */
+veryHappy.addEventListener("click", function () {
+  colorChange("very-happy", veryHappy, "green");
+  dayColorChange("green");
+});
+
+/* happy mood selected */
+happy.addEventListener("click", function () {
+  colorChange("happy", happy, "lightgreen");
+  dayColorChange("lightgreen");
+});
+
+/* neutral mood selected */
+neutral.addEventListener("click", function () {
+  colorChange("neutral", neutral, "yellow");
+  dayColorChange("yellow");
+});
+
+/* sad mood selected */
+sad.addEventListener("click", function () {
+  colorChange("sad", sad, "orange");
+  dayColorChange("orange");
+});
+
+/* very sad mood selected */
+verySad.addEventListener("click", function () {
+  colorChange("very-sad", verySad, "red");
+  dayColorChange("red");
+});
+
+/**
+ * Function to change day's color
+ * @param {string} color
+ */
+function dayColorChange(color) {
+  var styleString = "background-color: " + color;
+  currDate.setAttribute("style", styleString);
+}
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("data")
+    .doc("mood")
+    .onSnapshot((doc) => {
+      for (var key of Object.keys(doc.data())) {
+        if (key != "selectedIcon") {
+          let day = document.getElementById(key);
+          try {
+            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
+          } catch {
+            console.log("not loaded");
+          }
+        }
+      }
+    });
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Fri May 21 2021 07:05:00 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
