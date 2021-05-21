@@ -120,7 +120,7 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./source
+          source_dir: ./source/scripts
           output_dir: ./docs
           template: minami
           front_page: README.md
