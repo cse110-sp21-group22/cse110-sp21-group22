@@ -47,7 +47,8 @@ if (navigator.onLine) {
       PageLoaded();
     });
 } else {
-  document.querySelector("#quote").innerHTML = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
-  document.querySelector("#authors").innerHTML = '-Marilyn vos Savant';
+  document.querySelector("#quote").innerHTML =
+    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+  document.querySelector("#authors").innerHTML = "-Marilyn vos Savant";
   PageLoaded();
 }
