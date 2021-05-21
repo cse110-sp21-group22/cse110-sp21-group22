@@ -82,7 +82,10 @@ const main = async () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = calendar;
-    dynamicallyLoadScript("./scripts/calendar.js", updateNavbar("nav-calendar"));
+    dynamicallyLoadScript(
+      "./scripts/calendar.js",
+      updateNavbar("nav-calendar")
+    );
   });
   router.on("/mood", () => {
     PageUnloaded();
@@ -97,7 +100,10 @@ const main = async () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = settings;
-    dynamicallyLoadScript("./scripts/settings.js", updateNavbar("nav-settings"));
+    dynamicallyLoadScript(
+      "./scripts/settings.js",
+      updateNavbar("nav-settings")
+    );
   });
 };
 
