@@ -18,7 +18,7 @@ We need to reach a decision on how the calendar will work in tandem with the dai
 1. No calendar, replace it with:
    1. Using the input from countdown to create a list of tasks.
    2. Let the user create a countdown for some specific task
-   
+
 2. Keep the calendar
    1. Read-only or editable
    2. Information that it will hold?

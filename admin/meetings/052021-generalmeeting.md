@@ -13,7 +13,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luon
 - CI/CD Pipeline checkpoint 2: add testing
 - ADR for the calendar
 
-## Update for #2nd Sprint 
+## Update for #2nd Sprint
 - Moodtracker: responsiveness
   - Switch letter of months to number instead
   - Difficult to tell that you should click on the icons => adding guiding lines above the icons
