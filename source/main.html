@@ -1,14 +1,14 @@
 <!doctype html>
-<div class="row d-flex justify-content-evenly align-items-md-stretch">
+<div class="row d-flex justify-content-around align-items-md-stretch">
   <div class="col-md-1">
     <div class="row d-flex h-100 rounded-3 align-items-md-center">
       <section id="mood-selector" class="d-flex align-items-md-center mb-5 overflow-auto" style="flex-direction: column">
-        <h6 style="text-align: center">Choose your mood</h6>
-        <img src="./assets/happy.svg" id="very-happy" width="50px" height="50px" alt="very-happy">
-        <img src="./assets/green.svg" id="happy" width="50px" height="50px" alt="happy">
-        <img src="./assets/yellow.svg" id="neutral" width="50px" height="50px" alt="neutral">
-        <img src="./assets/orange.svg" id="sad" width="50px" height="50px" alt="sad">
-        <img src="./assets/sad.svg" id="very-sad" width="50px" height="50px" alt="very-sad">
+        <h6 style="text-align: center">How are you feeling?</h6>
+        <img src="./assets/happy.svg" id="very-happy" width="60px" height="60px" alt="very-happy">
+        <img src="./assets/green.svg" id="happy" width="60px" height="60px" alt="happy">
+        <img src="./assets/yellow.svg" id="neutral" width="60px" height="60px" alt="neutral">
+        <img src="./assets/orange.svg" id="sad" width="60px" height="60px" alt="sad">
+        <img src="./assets/sad.svg" id="very-sad" width="60px" height="60px" alt="very-sad">
       </section>
       <div class="row d-flex rounded-3 align-items-md-center"></div>
     </div>
@@ -49,7 +49,7 @@
   </div>
   <div class="col-md-3">
     <div class="row h-100">
-      <div class="col-md-12 p-4 upcoming rounded-3 mb-4">
+      <div class="col-md-12 rounded-3 mb-4">
         <div class="blackboard">
           <div class="content">
               <section>
@@ -64,12 +64,14 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 p-4 rosethorn rounded-3" contenteditable>
-        <h5>Rose and Thorn</h5>
-        <ul>
-          <li>Rose:</li>
-          <li>Thorn:</li>
-        </ul>
+      <div class="col-md-12 rounded-3 mb-4 d-flex justify-content-center">
+        <div class="rosethorn" contenteditable>
+          <h5>Rose and Thorn</h5>
+          <ul>
+            <li>Rose:</li>
+            <li>Thorn:</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -155,18 +155,14 @@ body {
 .rosethorn {
   justify-self: center;
   grid-area: rosethorn;
-  width: 250px;
-  height: 240px;
+  width: 300px;
+  height: 250px;
   position: relative;
   background: #ffa;
   overflow: auto;
-  margin: 30px auto;
   padding: 20px;
   border-radius: 0 0 0 30px/45px;
-  box-shadow:
-    inset 0 -40px 40px rgba(0, 0, 0, 0.2),
-    inset 0 25px 10px rgba(0, 0, 0, 0.2),
-    0 5px 6px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Permanent Marker', cursive;
   line-height: 1.7em;
   font-size: 19px;
@@ -230,8 +226,9 @@ h1 {
 
 .notebook {
   background: #fff;
-  max-width: 800px;
-  height: 350px;
+  max-width: 100% 800px;
+  height: 90%;
+  max-height: 450px;
   padding: 20px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   background-image: -webkit-linear-gradient(270deg, #d98b8b, 2px, transparent, 2px, transparent), -webkit-linear-gradient(0deg, #d9eaf3, 1px, transparent, 2px, transparent);
@@ -326,32 +323,30 @@ h1 {
   border-radius: 50%;
 }
 
-
-
 /***** start: black board background *****/
 
 /* CodePen: https://codepen.io/nglu/pen/vYxGxGv */
 
 .blackboard {
   position: relative;
-  width: 350px; /*width of blackboard*/
+  width: 350px; /* width of blackboard */
   margin: 3% auto;
   border: tan solid 12px;
   border-top: #bda27e solid 12px;
   border-left: #b19876 solid 12px;
   border-bottom: #c9ad86 solid 12px;
-  box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782, 0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
-  background-image: radial-gradient( circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient( 215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient( circle at right, #111, rgba(51, 51, 51, 1));
+  box-shadow: 0 0 6px 5px rgba(58, 18, 13, 0), 0 0 0 2px #c2a782, 0 0 0 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+  background-image: radial-gradient(circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient(215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
   background-color: #333;
 }
 
-.blackboard:before {
+.blackboard::before {
   box-sizing: border-box;
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient( 175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient( 200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient( ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
+  background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
   border: #2c2c2c solid 2px;
   content: "Upcoming";
   font-family: 'Permanent Marker', cursive;
