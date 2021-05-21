@@ -56,10 +56,10 @@ const loadPage = async (page) => {
  * Load all pages and save them in variables
  */
 const loadAllPages = async () => {
-  home = await loadPage("main.html");
-  calendar = await loadPage("calendar.html");
-  moodtracker = await loadPage("moodtracker.html");
-  settings = await loadPage("settings.html");
+  home = await loadPage("./pages/main.html");
+  calendar = await loadPage("./pages/calendar.html");
+  moodtracker = await loadPage("./pages/moodtracker.html");
+  settings = await loadPage("./pages/settings.html");
 };
 
 /**
@@ -74,30 +74,36 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = home;
     dynamicallyLoadScript(
-      "index.js",
-      dynamicallyLoadScript("color.js", updateNavbar("home"))
+      "./scripts/index.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
     );
   });
   router.on("/calendar", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = calendar;
-    dynamicallyLoadScript("calendar.js", updateNavbar("nav-calendar"));
+    dynamicallyLoadScript(
+      "./scripts/calendar.js",
+      updateNavbar("nav-calendar")
+    );
   });
   router.on("/mood", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-      "moodFunctionality.js",
-      dynamicallyLoadScript("color.js", updateNavbar("nav-mood"))
+      "./scripts/moodFunctionality.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("nav-mood"))
     );
   });
   router.on("/settings", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = settings;
-    dynamicallyLoadScript("settings.js", updateNavbar("nav-settings"));
+    dynamicallyLoadScript(
+      "./scripts/settings.js",
+      updateNavbar("nav-settings")
+    );
   });
 };
 
@@ -174,7 +180,7 @@ auth.onAuthStateChanged((user) => {
 // register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./sw.js");
+    navigator.serviceWorker.register("./scripts/sw.js");
   });
 }
 
@@ -188,7 +194,7 @@ window.onpopstate = () => {
 main().then(() => {
   rootDiv.innerHTML = home;
   dynamicallyLoadScript(
-    "index.js",
-    dynamicallyLoadScript("color.js", updateNavbar("home"))
+    "./scripts/index.js",
+    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
   );
 });

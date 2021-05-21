@@ -174,7 +174,7 @@ auth.onAuthStateChanged((user) => {
           try {
             day.setAttribute("style", "background-color:" + doc.data()[key][0]);
           } catch {
-            console.log('not loaded');
+            console.log("not loaded");
           }
         }
       }
