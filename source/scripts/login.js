@@ -7,30 +7,24 @@ auth.onAuthStateChanged((user) => {
 
 var provider = new firebase.auth.GoogleAuthProvider();
 const googleButton = document.getElementById("gbutton");
-googleButton.addEventListener("click", function () {
-  auth
-    .signInWithPopup(provider)
-    .then(() => {
-      location = "/";
-    })
-    .catch((err) => {
-      const loginError = document.getElementById("login-error");
-      loginError.innerText = err.message;
-    });
+googleButton.addEventListener("click", function() {
+  auth.signInWithPopup(provider)
+      .then(() => { location = "/"; })
+      .catch((err) => {
+        const loginError = document.getElementById("login-error");
+        loginError.innerText = err.message;
+      });
 });
 
 var provider2 = new firebase.auth.OAuthProvider("microsoft.com");
 const microsoftButton = document.getElementById("mbutton");
-microsoftButton.addEventListener("click", function () {
-  auth
-    .signInWithPopup(provider2)
-    .then(() => {
-      location = "/";
-    })
-    .catch((err) => {
-      const loginError = document.getElementById("login-error");
-      loginError.innerText = err.message;
-    });
+microsoftButton.addEventListener("click", function() {
+  auth.signInWithPopup(provider2)
+      .then(() => { location = "/"; })
+      .catch((err) => {
+        const loginError = document.getElementById("login-error");
+        loginError.innerText = err.message;
+      });
 });
 
 const loginForm = document.getElementById("login-form");
@@ -38,13 +32,10 @@ loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const loginEmail = loginForm["email"].value;
   const loginPassword = loginForm["password"].value;
-  auth
-    .signInWithEmailAndPassword(loginEmail, loginPassword)
-    .then(() => {
-      location = "/";
-    })
-    .catch((err) => {
-      const loginError = document.getElementById("login-error");
-      loginError.innerText = err.message;
-    });
+  auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+      .then(() => { location = "/"; })
+      .catch((err) => {
+        const loginError = document.getElementById("login-error");
+        loginError.innerText = err.message;
+      });
 });
