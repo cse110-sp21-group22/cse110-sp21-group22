@@ -7,16 +7,9 @@
     <meta name="author" content="Catch-22">
     <title>Bujo</title>
 
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <!-- fontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- googleFonts -->
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Tangerine|Lato|Gamja+Flower|Open+Sans|Roboto+Slab|Indie+Flower|Lobster|Open+Sans|Kosugi+Maru">
-
+  
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -39,55 +32,18 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form id="login-form">
+      <form id="reset-form">
         <img class="mb-4" src="./assets/brand/catch22.svg" alt="" width="150">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">Reset password</h1>
 
         <div class="form-floating">
           <input type="email" class="form-control" id="email" placeholder="name@example.com">
           <label for="email">Email address</label>
+        </div><br>
         </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="password" placeholder="Password">
-          <label for="password">Password</label>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="form2-example3"
-                checked
-              />
-              <label class="form-check-label" for="form2-example3"> Remember me </label>
-            </div>
-          </div>
-
-          <div class="col">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Sign in</button>
-        <br>
-        <div class="container error" id="login-error"></div>
-
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>Not a member? <a href="signup.html">Register</a></p>
-          <p>or sign up with:</p>
-          <button type="button" class="btn btn-primary btn-floating mx-1" id="gbutton">
-            <em class="fab fa-google"></em>
-          </button>
-
-          <button type="button" class="btn btn-primary btn-floating mx-1" id="mbutton">
-            <em class="fab fa-microsoft"></em>
-          </button>
-        </div>
+          <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Reset password</button>
+          <br>
+        <div class="container error" id="reset-error"></div>
 
       </form>
     </main>
@@ -121,7 +77,7 @@
       const db = firebase.firestore();
     </script>
 
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/reset.js"></script>
 
   </body>
 </html>
