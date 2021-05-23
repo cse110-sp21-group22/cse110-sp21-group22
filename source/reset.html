@@ -9,12 +9,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <!-- fontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- googleFonts -->
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Tangerine|Lato|Gamja+Flower|Open+Sans|Roboto+Slab|Indie+Flower|Lobster|Open+Sans|Kosugi+Maru">
 
     <style>
       .bd-placeholder-img {
@@ -38,39 +32,17 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form id="signup-form">
+      <form id="reset-form">
         <img class="mb-4" src="./assets/brand/catch22.svg" alt="" width="150">
-        <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+        <h1 class="h3 mb-3 fw-normal">Reset password</h1>
 
-        <div class="form-floating">
-          <input type="name" class="form-control" id="name" placeholder="Alice Black">
-          <label for="name">Name</label>
-        </div>
         <div class="form-floating">
           <input type="email" class="form-control" id="email" placeholder="name@example.com">
           <label for="email">Email address</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="password" placeholder="Password">
-          <label for="password">Password</label>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Sign up</button>
-
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>Already a member? <a href="login.html">Login</a></p>
-          <p>or sign up with:</p>
-          <button type="button" class="btn btn-primary btn-floating mx-1" id="gbutton">
-            <em class="fab fa-google"></em>
-          </button>
-
-          <button type="button" class="btn btn-primary btn-floating mx-1" id="mbutton">
-            <em class="fab fa-microsoft"></em>
-          </button>
-        </div>
+        </div><br>
+        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Reset password</button>
         <br>
-        <div class="container error" id="signup-error"></div>
+        <div class="container error" id="reset-error"></div>
 
       </form>
     </main>
@@ -104,7 +76,7 @@
       const db = firebase.firestore();
     </script>
 
-    <script src="./scripts/signup.js"></script>
+    <script src="./scripts/reset.js"></script>
 
   </body>
 </html>
