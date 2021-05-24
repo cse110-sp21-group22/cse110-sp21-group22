@@ -25,6 +25,64 @@ verySad.addEventListener("click", function () {
   colorChange("very-sad", verySad, "red");
 });
 
+var rosethorn = document.getElementById('rosethorn');
+var rose = document.getElementById('rose');
+var thorn = document.getElementById('thorn');
+var date_string = month + "-" + day;
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("data")
+    .doc("rosethorn")
+    .onSnapshot((doc) => {
+      try {
+        rose.innerHTML = doc.data().rose;
+        thorn.innerHTML = doc.data().thorn;
+      } catch (err) {
+        console.log(err);
+      }
+    });
+});
+
+rosethorn.addEventListener('focusout', (event) => {
+  auth.onAuthStateChanged((user) => {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("rosethorn")
+        .update({ "date": [date_string], "rose": [rose.innerHTML], "thorn": [thorn.innerHTML] })
+        .catch((err) => {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("rosethorn")
+            .set({ "date": [date_string], "rose": [rose.innerHTML], "thorn": [thorn.innerHTML] });
+        });
+  });
+});
+
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .get()
+      .then((doc) => {
+        try {
+          if (doc.data().date != date_string) {
+            fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("rosethorn")
+            .set({ "date": [date_string], "rose": "Rose: ", "thorn": "Thorn: " });
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+});
+
 // Change mood buttons based on window size
 if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: row";

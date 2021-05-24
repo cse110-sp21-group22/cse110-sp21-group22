@@ -174,6 +174,7 @@ auth.onAuthStateChanged((user) => {
       } catch (err) {
         console.log(err);
       }
+      NavbarLoaded();
     });
 });
 
