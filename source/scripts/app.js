@@ -20,3 +20,10 @@ function PageUnloaded() {
   document.getElementById("spinner").classList.remove("d-none");
   document.getElementById("main").classList.add("d-none");
 }
+
+/**
+ * Function to show navbar when loaded
+ */
+function NavbarLoaded() {
+  document.getElementById("navbar").classList.remove("d-none");
+}

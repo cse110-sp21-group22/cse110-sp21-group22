@@ -167,6 +167,7 @@ body {
   line-height: 1.7em;
   font-size: 19px;
   color: #130d6b;
+  outline: none;
 }
 
 .rosethorn li {
