@@ -1,7 +1,7 @@
 // checking if user is signed in or not
 auth.onAuthStateChanged((user) => {
   if (user) {
-    location = "/";
+    location = "./";
   }
 });
 
@@ -11,7 +11,7 @@ googleButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider)
     .then(() => {
-      location = "/";
+      location = "./";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
@@ -25,7 +25,7 @@ microsoftButton.addEventListener("click", function () {
   auth
     .signInWithPopup(provider2)
     .then(() => {
-      location = "/";
+      location = "./";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
@@ -41,7 +41,7 @@ loginForm.addEventListener("submit", (e) => {
   auth
     .signInWithEmailAndPassword(loginEmail, loginPassword)
     .then(() => {
-      location = "/";
+      location = "./";
     })
     .catch((err) => {
       const loginError = document.getElementById("login-error");
