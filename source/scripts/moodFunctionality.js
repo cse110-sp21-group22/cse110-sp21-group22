@@ -28,7 +28,7 @@ function populateCalendar() {
  */
 function fillDays() {
   var i;
-  for (i = 1; i < 32; i++) {
+  for (i = 1; i < 32; ++i) {
     var dayLabel = document.createElement("P");
     dayLabel.innerText = i;
     dayLabel.classList.add("day-label");
@@ -48,7 +48,7 @@ function fillMonths() {
       .get()
       .then((doc) => {
         var i;
-        for (i = 1; i < 13; i++) {
+        for (i = 1; i < 13; ++i) {
           /* month label */
           var monthLabel = document.createElement("P");
           monthLabel.innerText = monthName[i];
@@ -62,6 +62,9 @@ function fillMonths() {
               var color = doc.data()[color_string];
             } catch {
               color = null;
+            }
+            if (i == month && j == day) {
+              emptyDay.setAttribute("data-cy", "current-date");
             }
             emptyDay.classList.add("empty-mood");
             emptyDay.classList.add(i + "-" + j);
