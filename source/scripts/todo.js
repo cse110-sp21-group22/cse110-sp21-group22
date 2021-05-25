@@ -1,4 +1,8 @@
 const todoContainer = document.getElementById("todo-container");
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
 
 // checking if user is signed in or not
 auth.onAuthStateChanged((user) => {
@@ -40,14 +44,16 @@ var todoConverter = {
  * @param {FirestoreDoc} individualDoc - Individual firestore doc
  */
 function renderData(individualDoc) {
+  let bujo = bujoConverter.fromFirestore(individualDoc);
+
   // parent div
   let parentDiv = document.createElement("div");
   parentDiv.className = "container todo-box";
-  parentDiv.setAttribute("data-id", individualDoc.id);
+  parentDiv.setAttribute("data-id", bujo.id);
 
   // task div
   let taskDiv = document.createElement("div");
-  taskDiv.textContent = individualDoc.data().text;
+  taskDiv.textContent = bujo.text;
 
   // button
   let trash = document.createElement("button");
@@ -70,45 +76,34 @@ function renderData(individualDoc) {
       if (user) {
         fs.collection("users")
           .doc(user.uid)
-          .collection("tasks")
-          .doc(id)
+          .collection("data")
+          .doc("tasks")
+          .collection(month + "-" + day)
+          .doc("" + id)
           .delete();
       }
     });
   });
 }
 
-// retriving username
-auth.onAuthStateChanged((user) => {
-  const username = document.getElementById("username");
-  if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .get()
-      .then((snapshot) => {
-        username.innerText = snapshot.data().name;
-      });
-  }
-});
-
 // adding tasks to firestore database
 const form = document.getElementById("form");
-let date = new Date();
-let time = date.getTime();
-let counter = time;
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const todos = form["todos"].value;
-  let id = (counter += 1);
+  const text = form["todos"].value;
+  let id = new Date().getTime();
+  let bujo = new BujoElement(id, text, 0, "test");
   form.reset();
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
         .doc(user.uid)
-        .collection("tasks")
-        .doc("_" + id)
-        .withConverter(todoConverter)
-        .set(new Todo(id, todos))
+        .collection("data")
+        .doc("tasks")
+        .collection(month + "-" + day)
+        .doc("" + id)
+        .withConverter(bujoConverter)
+        .set(bujo)
         .then(() => {
           console.log("todo added");
         })
@@ -131,7 +126,9 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
       .doc(user.uid)
-      .collection("tasks")
+      .collection("data")
+      .doc("tasks")
+      .collection(month + "-" + day)
       .onSnapshot((snapshot) => {
         let changes = snapshot.docChanges();
         changes.forEach((change) => {
