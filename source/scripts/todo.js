@@ -136,7 +136,7 @@ auth.onAuthStateChanged((user) => {
             renderData(change.doc);
           } else if (change.type == "removed") {
             let li = todoContainer.querySelector(
-              "[data-id=" + change.doc.id + "]"
+              '[data-id="' + change.doc.id + '"]'
             );
             todoContainer.removeChild(li);
           }

@@ -375,3 +375,107 @@ h1 {
 }
 
 /***** end: black board background *****/
+
+/***** Start daily log style *****/
+.item{
+  height: 30px;
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+.indent {
+  padding-left: 68px;
+}
+
+.hide {
+  display: none;
+}
+
+.item .bullet {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 100%;
+  margin: 0;
+}
+
+.item .bullet-main {
+  font-size: 20px;
+}
+
+.item .bullet-main:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .bullet i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .bullet-sub:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .text {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 80%;
+}
+
+.item .text p:hover {
+  background-color: #ddd;
+}
+
+.item .text p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .expandable {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  background-color: white;
+}
+
+.item .expandable:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .expandable i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  margin: 0;
+}
+
+.item .options i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+/***** End daily log style *****/

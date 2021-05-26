@@ -95,6 +95,31 @@ auth.onAuthStateChanged((user) => {
     });
 });
 
+// Demonstration of functionality of checking tasks/events
+$('.fa-square').click(function(){
+  $(this).toggleClass('fa-square');
+  $(this).toggleClass('fa-check-square');
+});
+$('.fa-check-square').click(function(){
+  $(this).toggleClass('fa-square');
+  $(this).toggleClass('fa-check-square');
+});
+$('.fa-circle').click(function(){
+  $(this).toggleClass('fa-circle');
+  $(this).toggleClass('fa-check-circle');
+});
+$('.fa-check-circle').click(function(){
+  $(this).toggleClass('fa-circle');
+  $(this).toggleClass('fa-check-circle');
+});
+
+// Demonstration of functionality of collapsible sub-lists
+$('.fa-chevron-down').click(function(){
+  $('#item2').toggleClass('hide');
+  $(this).toggleClass('fa-chevron-down');
+  $(this).toggleClass('fa-chevron-right');
+});
+
 // Change mood buttons based on window size
 if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: row";
