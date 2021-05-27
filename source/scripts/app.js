@@ -59,6 +59,27 @@ function NavbarLoaded() {
     this.type = type
     this.signifier = signifier;
   }
+
+  /**
+   * Sync task/note to database
+   */
+  sync() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("notes")
+          .collection(month + "-" + day)
+          .doc("" + this.id)
+          .withConverter(bujoConverter)
+          .set(this)
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
 }
 
 // Firestore data converter

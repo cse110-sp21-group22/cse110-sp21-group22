@@ -135,8 +135,10 @@ $("#add-item").on('click', function() {
   $(this).children().empty();
 });
 
-$("#add-item").on('focusout', function() { 
-  $(this).children().text("Add new note");
+$("#add-item").on('focusout', function() {
+  if ($(this).children().text() == "") {
+    $(this).children().text("Add new note");
+  }
 });
 
 // Adding a new todo
@@ -151,6 +153,7 @@ addItem.addEventListener('keydown', function(event) {
 
     // create new bujo task/note element
     var note = new BujoElement(new Date().getTime(), noteText, 0, "note", "none");
+    note.sync();
 
     // parent div
     let parentDiv = document.createElement("div");
@@ -198,6 +201,10 @@ addItem.addEventListener('keydown', function(event) {
       if (event.code === 'Enter') {
         event.preventDefault();
       }
+    });
+    $('#' + note.id).on('focusout', function() {
+      var note = new BujoElement($(this).attr("id"), $(this).children().text(), 0, "note", "none");
+      note.sync();
     });
   }
 });
