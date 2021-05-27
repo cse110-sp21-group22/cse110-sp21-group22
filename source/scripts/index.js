@@ -135,6 +135,10 @@ $("#add-item").on('click', function() {
   $(this).children().empty();
 });
 
+$("#add-item").on('focusout', function() { 
+  $(this).children().text("Add new note");
+});
+
 // Adding a new todo
 var addItem = document.getElementById("add-item");
 addItem.addEventListener('keydown', function(event) {
@@ -145,10 +149,13 @@ addItem.addEventListener('keydown', function(event) {
     // grabbing new todo text from input
     var noteText = addItem.firstElementChild.textContent;
 
+    // create new bujo task/note element
+    var note = new BujoElement(new Date().getTime(), noteText, 0, "note", "none");
+
     // parent div
     let parentDiv = document.createElement("div");
     parentDiv.className = "item";
-    parentDiv.setAttribute("id", "item8");
+    parentDiv.setAttribute("id", note.id);
 
     // bullet-sub
     let bulletSubDiv = document.createElement("div");
@@ -169,7 +176,7 @@ addItem.addEventListener('keydown', function(event) {
     noteDiv.className = "text";
     let noteDivP = document.createElement("p");
     noteDivP.setAttribute("contenteditable", "true");
-    noteDivP.textContent = noteText;
+    noteDivP.textContent = note.text;
     noteDiv.appendChild(noteDivP);
 
     // options

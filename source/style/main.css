@@ -385,7 +385,7 @@ h1 {
 }
 
 .indent {
-  padding-left: 68px;
+  padding-left: 40px;
 }
 
 .hide {
@@ -447,12 +447,14 @@ h1 {
 }
 
 .item .text p {
+  outline: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .item .text-add p {
+  outline: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
