@@ -201,6 +201,80 @@ body {
   left: 10%;
 }
 
+.rtTitle{
+  float: left;
+}
+
+.button {
+ font-family: 'Permanent Marker', cursive;
+ font-size: 15px;
+ color: black;
+ border: 2px solid black;
+ border-radius: 50%;
+ text-decoration: none;
+ cursor: pointer;
+ float: right;
+ width: 25px;
+ height: 25px;
+ text-align: center;
+ line-height: normal;
+ 
+}
+.button:hover {
+ background: rgb(149, 151, 5);
+ color: black;
+}
+
+.overlay {
+ position: fixed;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background: rgba(0, 0, 0, 0.7);
+ transition: opacity 500ms;
+ visibility: hidden;
+ opacity: 0;
+}
+.overlay:target {
+ visibility: visible;
+ opacity: 1;
+}
+
+.popup {
+ margin: 70px auto;
+ padding: 20px;
+ background: #fff;
+ border-radius: 5px;
+ width: 60%;
+ position: relative;
+}
+
+.popup h2 {
+ margin-top: 0;
+ color: #333;
+ font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+ position: absolute;
+ top: 20px;
+ right: 30px;
+ transition: all 200ms;
+ font-size: 30px;
+ font-weight: bold;
+ text-decoration: none;
+ color: #333;
+}
+.popup .close:hover {
+ color: red;
+}
+.popup .content {
+ max-height: 30%;
+ overflow: auto;
+ color: #333;
+ font-family: Tahoma, Arial, sans-serif;
+}
+
 h1 {
   font-size: 25px;
   position: relative;
