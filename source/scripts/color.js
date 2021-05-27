@@ -1,9 +1,3 @@
-veryHappy = document.getElementById("very-happy");
-happy = document.getElementById("happy");
-neutral = document.getElementById("neutral");
-sad = document.getElementById("sad");
-verySad = document.getElementById("very-sad");
-
 /**
  * Function to update color based on mood
  * @param {string} mood - mood string
