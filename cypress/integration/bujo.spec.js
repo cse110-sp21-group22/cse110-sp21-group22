@@ -3,7 +3,7 @@
 context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
-    cy.visit('https://catch-22-e0c66.web.app/')
+    cy.visit('https://catch-22-e0c66--pr103-mood-button-patch-nl0vmhr3.web.app/login.html')
     cy.wait(1000)
   })
 
@@ -19,19 +19,23 @@ context('Actions', () => {
       .should('have.value', 'password')
 
     cy.get('#login-form').submit()
+    cy.wait(1000)
     
     cy.get('h6')
       .should('contain', 'How are you feeling?')
 
     cy.get('#nav-calendar').click()
+    cy.wait(1000)
     cy.get('h1')
       .should('contain', 'Calendar')
 
     cy.get('#nav-mood').click()
+    cy.wait(1000)
     cy.get('h1')
       .should('contain', 'Mood Tracker')
 
     cy.get('#nav-settings').click()
+    cy.wait(1000)
     cy.get('.btn-danger').click()
   });
 
@@ -46,6 +50,7 @@ context('Actions', () => {
     cy.get('#neutral').click()
 
     cy.get('#nav-mood').click()
+    cy.wait(1000)
     cy.get('h1')
       .should('contain', 'Mood Tracker')
     cy.get('[data-cy=current-date]', { timeout: 10000 })
@@ -54,11 +59,14 @@ context('Actions', () => {
     cy.get('[data-cy=current-date]')
       .should('have.attr', 'style', 'background-color:green');
     cy.get('#nav-settings').click();
+    cy.wait(1000)
     cy.get('#nav-mood').click();
+    cy.wait(1000)
     cy.get('[data-cy=current-date]')
     .should('have.attr', 'style', 'background-color:green');
 
     cy.get('#nav-settings').click()
+    cy.wait(1000)
     cy.get('.btn-danger').click()
   });
 
@@ -80,7 +88,9 @@ context('Actions', () => {
       .click()
       .type('test2');
     cy.get('#nav-settings').click()
+    cy.wait(1000)
     cy.get('.navbar-brand').click()
+    cy.wait(1000)
     cy.get('#rose')
       .should('contain', 'test')
     cy.get('#thorn')

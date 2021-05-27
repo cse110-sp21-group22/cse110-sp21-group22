@@ -37,7 +37,7 @@ self.addEventListener("install", function (event) {
   );
 });
 
-// fallback to cache on fetch
+// fallback to network on fetch
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {
