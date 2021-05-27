@@ -1,3 +1,9 @@
+veryHappy = document.getElementById("very-happy");
+happy = document.getElementById("happy");
+neutral = document.getElementById("neutral");
+sad = document.getElementById("sad");
+verySad = document.getElementById("very-sad");
+
 window.addEventListener("resize", resize, true);
 
 /* very happy mood selected */
