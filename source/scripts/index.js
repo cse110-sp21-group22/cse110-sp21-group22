@@ -1,3 +1,6 @@
+const dailyLog = document.getElementById("daily-log");
+const add = document.getElementById("add");
+
 window.addEventListener("resize", resize, true);
 
 /* very happy mood selected */
@@ -96,28 +99,100 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Demonstration of functionality of checking tasks/events
-$('.fa-square').click(function(){
+$('.fa-square').on("click", function() {
   $(this).toggleClass('fa-square');
   $(this).toggleClass('fa-check-square');
 });
-$('.fa-check-square').click(function(){
+$('.fa-check-square').on("click", function() {
   $(this).toggleClass('fa-square');
   $(this).toggleClass('fa-check-square');
 });
-$('.fa-circle').click(function(){
+$('.fa-circle').on("click", function() {
   $(this).toggleClass('fa-circle');
   $(this).toggleClass('fa-check-circle');
 });
-$('.fa-check-circle').click(function(){
+$('.fa-check-circle').on("click", function() {
   $(this).toggleClass('fa-circle');
   $(this).toggleClass('fa-check-circle');
 });
 
 // Demonstration of functionality of collapsible sub-lists
-$('.fa-chevron-down').click(function(){
+$('.fa-chevron-down').on("click", function() {
   $('#item2').toggleClass('hide');
   $(this).toggleClass('fa-chevron-down');
   $(this).toggleClass('fa-chevron-right');
+});
+
+$(".text").on("keydown", function(e) {
+  // Enter was pressed
+  if (e.keyCode == 13) {
+      // prevent default behavior
+      e.preventDefault();
+  }
+});
+
+$("#add-item").on('click', function() { 
+  $(this).children().empty();
+});
+
+// Adding a new todo
+var addItem = document.getElementById("add-item");
+addItem.addEventListener('keydown', function(event) {
+  if (event.code === 'Enter') {
+    event.preventDefault();
+    document.activeElement.blur();
+
+    // grabbing new todo text from input
+    var noteText = addItem.firstElementChild.textContent;
+
+    // parent div
+    let parentDiv = document.createElement("div");
+    parentDiv.className = "item";
+    parentDiv.setAttribute("id", "item8");
+
+    // bullet-sub
+    let bulletSubDiv = document.createElement("div");
+    bulletSubDiv.className = "bullet bullet-sub";
+    let bulletSubI = document.createElement("i");
+    bulletSubI.className = "fa";
+    bulletSubDiv.appendChild(bulletSubI);
+
+    // bullet-main
+    let bulletMainDiv = document.createElement("div");
+    bulletMainDiv.className = "bullet bullet-main";
+    let bulletMainI = document.createElement("i");
+    bulletMainI.className = "fa fa-minus";
+    bulletMainDiv.appendChild(bulletMainI);
+
+    // note div
+    let noteDiv = document.createElement("div");
+    noteDiv.className = "text";
+    let noteDivP = document.createElement("p");
+    noteDivP.setAttribute("contenteditable", "true");
+    noteDivP.textContent = noteText;
+    noteDiv.appendChild(noteDivP);
+
+    // options
+    let optionsDiv = document.createElement("div");
+    optionsDiv.className = "options";
+    let optionsDivI = document.createElement("i");
+    optionsDivI.className = "fa fa-ellipsis-h";
+    optionsDiv.appendChild(optionsDivI);
+
+    // appending
+    parentDiv.appendChild(bulletSubDiv);
+    parentDiv.appendChild(bulletMainDiv);
+    parentDiv.appendChild(noteDiv);
+    parentDiv.appendChild(optionsDiv);
+
+    dailyLog.insertBefore(parentDiv, add);
+    addItem.firstElementChild.textContent = "Add new note";
+    noteDiv.addEventListener('keydown', function(event) {
+      if (event.code === 'Enter') {
+        event.preventDefault();
+      }
+    });
+  }
 });
 
 // Change mood buttons based on window size

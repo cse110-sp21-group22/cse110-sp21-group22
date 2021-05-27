@@ -424,15 +424,35 @@ h1 {
 .item .text {
   position: relative;
   display: inline-block;
+  white-space: nowrap;
   height: 100%;
   width: 80%;
+}
+
+.item .text-add {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  height: 100%;
+  width: 80%;
+  color:rgb(121, 121, 121)
 }
 
 .item .text p:hover {
   background-color: #ddd;
 }
 
+.item .text-add p:hover {
+  background-color: #ddd;
+}
+
 .item .text p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .text-add p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
