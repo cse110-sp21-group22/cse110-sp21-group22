@@ -19,7 +19,7 @@ context('Actions', () => {
       .should('have.value', 'password')
 
     cy.get('#login-form').submit()
-    cy.wait(1000)
+    cy.wait(5000)
     
     cy.get('h6')
       .should('contain', 'How are you feeling?')
