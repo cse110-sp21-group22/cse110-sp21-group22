@@ -68,6 +68,9 @@ function fillMonths() {
             } catch {
               color = null;
             }
+            if (i == month && j == day) {
+              emptyDay.setAttribute("data-cy", "current-date");
+            }
             emptyDay.classList.add("empty-mood");
             emptyDay.classList.add(i + "-" + j);
             emptyDay.id = "color-" + i + "-" + j;
