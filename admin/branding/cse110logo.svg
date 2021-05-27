@@ -13,7 +13,7 @@
    viewBox="0 0 512 276"
    preserveAspectRatio="xMidYMid meet"
    id="svg148"
-   sodipodi:docname="catch22.svg"
+   sodipodi:docname="cse110logo.svg"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
   <metadata
      id="metadata154">
@@ -48,14 +48,8 @@
      inkscape:window-x="0"
      inkscape:window-y="34"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg148" />
-  <g
-     fill="#ffffff"
-     id="g130">
-    <path
-       d="M320 154.50 c-0.80 -0.80 -1 -1.65 -1 -4.05 0 -1.65 0.25 -3.45 0.55 -4.05 0.80 -1.50 3.40 -2.35 8.15 -2.70 l4.30 -0.35 0 3.85 c0 6.40 -1.75 8.30 -7.75 8.30 -2.60 0 -3.45 -0.20 -4.25 -1z"
-       id="path128" />
-  </g>
+     inkscape:current-layer="svg148"
+     inkscape:document-rotation="0" />
   <g
      fill="#0047ad"
      id="g146">
