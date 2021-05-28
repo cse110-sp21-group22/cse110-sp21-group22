@@ -279,6 +279,20 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+/**
+ * Function to turn on overlay
+ */
+function overlayOn() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+/**
+ * Function to turn off overlay
+ */
+function overlayOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+
 // Change mood buttons based on window size
 if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: row";
