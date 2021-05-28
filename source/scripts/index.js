@@ -242,13 +242,13 @@ function renderData(individualDoc) {
     });
 }
 
-// Adding a new todo
+// Adding a new note/task
 addItem.addEventListener("keydown", function (event) {
   if (event.code === "Enter") {
     event.preventDefault();
     document.activeElement.blur();
 
-    // grabbing new todo text from input
+    // grabbing new note/task text from input
     let noteText = addItem.firstElementChild.textContent;
 
     // create new bujo task/note element
