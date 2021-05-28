@@ -224,8 +224,8 @@ function renderData(individualDoc) {
     .on("focusout", function () {
       let signifier = $(this).parent().attr("signifier");
       let id = $(this).parent().attr("id");
-      let note = new BujoElement(id, $(this).text(), 0, 0, signifier);
-      note.sync();
+      let note2 = new BujoElement(id, $(this).text(), 0, 0, signifier);
+      note2.sync();
     });
 
   // Update signifier
@@ -237,8 +237,8 @@ function renderData(individualDoc) {
       setSignifier(signifier, $(this));
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
-      let note = new BujoElement(id, text, 0, 0, signifier);
-      note.sync();
+      let note2 = new BujoElement(id, text, 0, 0, signifier);
+      note2.sync();
     });
 }
 
@@ -252,8 +252,8 @@ addItem.addEventListener("keydown", function (event) {
     let noteText = addItem.firstElementChild.textContent;
 
     // create new bujo task/note element
-    let note = new BujoElement(new Date().getTime(), noteText, 0, 0, 0);
-    note.sync();
+    let note2 = new BujoElement(new Date().getTime(), noteText, 0, 0, 0);
+    note2.sync();
   }
 });
 
