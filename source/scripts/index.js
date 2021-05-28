@@ -287,6 +287,15 @@ function renderData(individualDoc) {
     let note2 = new BujoElement(id, text, 0, type, signifier);
     note2.sync();
   });
+
+  // Delete
+  $("#" + note.id)
+  .children(":nth-child(4)")
+  .on("click", function () {
+    let id = $(this).parent().attr("id");
+    let note2 = new BujoElement(id, "", 0, 0, 0);
+    note2.delete();
+  });
 }
 
 // Adding a new note/task

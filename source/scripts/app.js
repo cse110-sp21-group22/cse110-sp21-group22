@@ -80,6 +80,26 @@ class BujoElement {
       }
     });
   }
+
+  /**
+   * Delete task/note
+   */
+  delete() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("notes")
+          .collection(month + "-" + day)
+          .doc("" + this.id)
+          .delete()
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
 }
 
 // Firestore data converter
