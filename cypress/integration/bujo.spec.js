@@ -9,7 +9,7 @@ context('Actions', () => {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it('Can log in with confirmed account', () => {  
+  it('Can log in with confirmed account', () => {
     cy.get('#email')
       .type('test@test.com', { delay: 100 })
       .should('have.value', 'test@test.com')
@@ -44,7 +44,10 @@ context('Actions', () => {
     cy.wait(200)
     cy.viewport('iphone-3')
     cy.wait(200)
+    cy.viewport(500, 300)
+    cy.wait(200)
     cy.viewport(1000, 600)
+    cy.reload()
     cy.wait(2000)
 
     cy.get('#nav-calendar').click()
@@ -79,6 +82,10 @@ context('Actions', () => {
     cy.get('#login-form').submit()
     cy.wait(2000)
     
+    cy.get('#very-happy').click()
+    cy.get('#happy').click()
+    cy.get('#sad').click()
+    cy.get('#very-sad').click()
     cy.get('#neutral').click()
 
     cy.get('#nav-mood').click()
@@ -87,6 +94,10 @@ context('Actions', () => {
       .should('contain', 'Mood Tracker')
     cy.get('[data-cy=current-date]', { timeout: 10000 })
       .should('have.attr', 'style', 'background-color:yellow');
+    cy.get('#happy').click()
+    cy.get('#sad').click()
+    cy.get('#very-sad').click()
+    cy.get('#neutral').click()
     cy.get('#very-happy').click()
     cy.get('[data-cy=current-date]')
       .should('have.attr', 'style', 'background-color:green');

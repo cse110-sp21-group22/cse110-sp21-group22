@@ -31,5 +31,9 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true
+  },
+  "nyc": {
+    "all": true,
+    "include": "source/scripts/*.js"
   }
 }
