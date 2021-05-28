@@ -455,7 +455,7 @@ h1 {
 /***** end: black board background *****/
 
 /***** Start daily log style *****/
-.item{
+.item {
   height: 30px;
   width: 100%;
   display: inline-block;
@@ -513,15 +513,7 @@ h1 {
   white-space: nowrap;
   height: 100%;
   width: 80%;
-  color:rgb(121, 121, 121)
-}
-
-.item .text p:hover {
-  background-color: #ddd;
-}
-
-.item .text-add p:hover {
-  background-color: #ddd;
+  color: rgb(121, 121, 121);
 }
 
 .item .text p {
@@ -536,6 +528,14 @@ h1 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.item .text p:hover {
+  background-color: #ddd;
+}
+
+.item .text-add p:hover {
+  background-color: #ddd;
 }
 
 .item .expandable {

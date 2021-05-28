@@ -140,20 +140,20 @@ $("#add-item").on("focusout", function () {
 function setSignifier(signifier, node) {
   node.children(":first").removeClass();
   switch (signifier) {
-    case 1:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-star");
-      break;
-    case 2:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-eye");
-      break;
-    case 3:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-exclamation");
-      break;
-    default:
-      node.children(":first").addClass("fa");
+  case 1:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-star");
+    break;
+  case 2:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-eye");
+    break;
+  case 3:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-exclamation");
+    break;
+  default:
+    node.children(":first").addClass("fa");
   }
 }
 
