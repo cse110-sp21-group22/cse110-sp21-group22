@@ -56,7 +56,7 @@ function NavbarLoaded() {
   update(text, level, type, signifier) {
     this.text = text;
     this.level = level;
-    this.type = type
+    this.type = type;
     this.signifier = signifier;
   }
 
