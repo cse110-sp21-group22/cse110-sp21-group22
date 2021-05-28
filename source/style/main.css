@@ -244,11 +244,10 @@ h1 {
 
 .notebook p {
   line-height: 38px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
-/* Daily log Editor */
 .textmodmenu {
   font-size: 0;
   max-width: 900px;
@@ -259,16 +258,16 @@ h1 {
   border: 0;
   border: 1px solid #bbb;
 }
+
 .textmodsub {
   display: inline-block;
   padding-right: 10px;
 }
-.textmodmenu button:hover {
-  box-shadow: 0 0 15px #666 inset;
-}
+
 #editor .container {
   display: list-item;
 }
+
 #editor .checkbox {
   display: inline-block;
   width: 20px;
@@ -422,3 +421,7 @@ h1 {
 }
 
 /***** end: black board background *****/
+
+.textmodmenu button:hover {
+  box-shadow: 0 0 15px #666 inset;
+}

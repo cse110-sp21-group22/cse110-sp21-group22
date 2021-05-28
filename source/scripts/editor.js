@@ -18,7 +18,7 @@ document.querySelector('#previous').addEventListener('click', () => {
   //Disable buttons to set 3 day window restriction on user
   if(selectedDate  == 2){
 
-      document.querySelector('#next').disabled = false;
+    document.querySelector('#next').disabled = false;
   }
   if(selectedDate == -3 ){
 
@@ -76,8 +76,8 @@ document.querySelector('#toggle').addEventListener('click', () => {
       inputs[i].contentEditable = true;
     }
     toggle.textContent = "View";
-    }
-    else {
+  }
+  else {
 
     for( let i = 0; i < inputs.length; i++ ){
         
@@ -231,7 +231,7 @@ function newEntry( content ){
 
   trash.addEventListener('click', () => {
 
-      container.remove();
+    container.remove();
   });
   /* Implemenation for Trash Icon*/
 
@@ -296,7 +296,11 @@ function showDay(day){
     }
   }
 
-  editorDate.innerText = (month+1).toString() + "/" + date.toString() + "/" + year.toString();
+  month = (month+1).toString();
+  date = date.toString();
+  year = year.toString();
+
+  editorDate.innerText = month + "/" + date + "/" + year;
 
   today = document.querySelector('#today');
 
