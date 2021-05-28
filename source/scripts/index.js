@@ -222,9 +222,9 @@ function renderData(individualDoc) {
   $("#" + note.id)
     .children(":nth-child(3)")
     .on("focusout", function () {
-      var signifier = $(this).parent().attr("signifier");
-      var id = $(this).parent().attr("id");
-      var note = new BujoElement(id, $(this).text(), 0, 0, signifier);
+      let signifier = $(this).parent().attr("signifier");
+      let id = $(this).parent().attr("id");
+      let note = new BujoElement(id, $(this).text(), 0, 0, signifier);
       note.sync();
     });
 
@@ -232,12 +232,12 @@ function renderData(individualDoc) {
   $("#" + note.id)
     .children(":first")
     .on("click", function () {
-      var signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
+      let signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
       $(this).parent().attr("signifier", signifier);
       setSignifier(signifier, $(this));
-      var id = $(this).parent().attr("id");
-      var text = $(this).parent().children().text();
-      var note = new BujoElement(id, text, 0, 0, signifier);
+      let id = $(this).parent().attr("id");
+      let text = $(this).parent().children().text();
+      let note = new BujoElement(id, text, 0, 0, signifier);
       note.sync();
     });
 }
@@ -249,10 +249,10 @@ addItem.addEventListener("keydown", function (event) {
     document.activeElement.blur();
 
     // grabbing new todo text from input
-    var noteText = addItem.firstElementChild.textContent;
+    let noteText = addItem.firstElementChild.textContent;
 
     // create new bujo task/note element
-    var note = new BujoElement(new Date().getTime(), noteText, 0, 0, 0);
+    let note = new BujoElement(new Date().getTime(), noteText, 0, 0, 0);
     note.sync();
   }
 });
