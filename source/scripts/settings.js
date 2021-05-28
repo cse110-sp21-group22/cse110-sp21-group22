@@ -55,7 +55,7 @@ function save() {
   });
 }
 
-$(window).on('beforeunload', function() {
+$(window).on("beforeunload", function () {
   save();
 });
 

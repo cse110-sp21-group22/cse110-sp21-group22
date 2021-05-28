@@ -162,7 +162,7 @@ function setSignifier(signifier, node) {
  * @param {int} type specifies which type
  * @param {node} node node to set type for
  */
- function setType(type, node) {
+function setType(type, node) {
   node.children(":first").removeClass();
   switch (type) {
     case 1:
@@ -239,7 +239,7 @@ function renderData(individualDoc) {
 
   dailyLog.insertBefore(parentDiv, add);
   setSignifier(note.signifier, $("#" + note.id).children(":first"));
-  setType(note.type, $("#" + note.id).children(":nth-child(2)"))
+  setType(note.type, $("#" + note.id).children(":nth-child(2)"));
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
@@ -276,26 +276,26 @@ function renderData(individualDoc) {
 
   // Update type
   $("#" + note.id)
-  .children(":nth-child(2)")
-  .on("click", function () {
-    let type = (parseInt($(this).parent().attr("type")) + 1) % 5;
-    $(this).parent().attr("type", type);
-    setType(type, $(this));
-    let id = $(this).parent().attr("id");
-    let text = $(this).parent().children().text();
-    let signifier = $(this).parent().attr("signifier");
-    let note2 = new BujoElement(id, text, 0, type, signifier);
-    note2.sync();
-  });
+    .children(":nth-child(2)")
+    .on("click", function () {
+      let type = (parseInt($(this).parent().attr("type")) + 1) % 5;
+      $(this).parent().attr("type", type);
+      setType(type, $(this));
+      let id = $(this).parent().attr("id");
+      let text = $(this).parent().children().text();
+      let signifier = $(this).parent().attr("signifier");
+      let note2 = new BujoElement(id, text, 0, type, signifier);
+      note2.sync();
+    });
 
   // Delete
   $("#" + note.id)
-  .children(":nth-child(4)")
-  .on("click", function () {
-    let id = $(this).parent().attr("id");
-    let note2 = new BujoElement(id, "", 0, 0, 0);
-    note2.delete();
-  });
+    .children(":nth-child(4)")
+    .on("click", function () {
+      let id = $(this).parent().attr("id");
+      let note2 = new BujoElement(id, "", 0, 0, 0);
+      note2.delete();
+    });
 }
 
 // Adding a new note/task
@@ -336,7 +336,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Save everything
-$(window).on('beforeunload', function() {
+$(window).on("beforeunload", function () {
   document.activeElement.blur();
 });
 
