@@ -37,7 +37,7 @@ function NavbarLoaded() {
  * @param {int} type specifies type of task/note
  * @param {int} signifier sets signifier
  */
- class BujoElement {
+class BujoElement {
   constructor(id, text, level, type, signifier) {
     this.id = id;
     this.text = text;
@@ -90,11 +90,17 @@ var bujoConverter = {
       text: bujo.text,
       level: bujo.level,
       type: bujo.type,
-      signifier: bujo.signifier
+      signifier: bujo.signifier,
     };
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    return new BujoElement(data.id, data.text, data.level, data.type, data.signifier);
+    return new BujoElement(
+      data.id,
+      data.text,
+      data.level,
+      data.type,
+      data.signifier
+    );
   },
 };

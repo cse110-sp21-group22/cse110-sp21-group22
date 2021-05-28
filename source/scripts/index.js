@@ -105,28 +105,28 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Demonstration of functionality of collapsible sub-lists
-$('.fa-chevron-down').on("click", function() {
-  $('#item2').toggleClass('hide');
-  $(this).toggleClass('fa-chevron-down');
-  $(this).toggleClass('fa-chevron-right');
+$(".fa-chevron-down").on("click", function () {
+  $("#item2").toggleClass("hide");
+  $(this).toggleClass("fa-chevron-down");
+  $(this).toggleClass("fa-chevron-right");
 });
 
 // Disable enter key
-$(".text").on("keydown", function(e) {
+$(".text").on("keydown", function (e) {
   // Enter was pressed
   if (e.keyCode == 13) {
-      // prevent default behavior
-      e.preventDefault();
+    // prevent default behavior
+    e.preventDefault();
   }
 });
 
 // Clear "Add new note"
-$("#add-item").on('click', function() { 
+$("#add-item").on("click", function () {
   $(this).children().empty();
 });
 
 // Reset message if no new note
-$("#add-item").on('focusout', function() {
+$("#add-item").on("focusout", function () {
   if ($(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
@@ -139,27 +139,28 @@ $("#add-item").on('focusout', function() {
  */
 function setSignifier(signifier, node) {
   node.children(":first").removeClass();
-  switch(signifier) {
+  switch (signifier) {
     case 1:
-      node.children(":first").addClass('fa');
-      node.children(":first").addClass('fa-star');
+      node.children(":first").addClass("fa");
+      node.children(":first").addClass("fa-star");
       break;
     case 2:
-      node.children(":first").addClass('fa');
-      node.children(":first").addClass('fa-eye');
+      node.children(":first").addClass("fa");
+      node.children(":first").addClass("fa-eye");
       break;
     case 3:
-      node.children(":first").addClass('fa');
-      node.children(":first").addClass('fa-exclamation');
+      node.children(":first").addClass("fa");
+      node.children(":first").addClass("fa-exclamation");
       break;
     default:
-      node.children(":first").addClass('fa');
+      node.children(":first").addClass("fa");
   }
 }
 
 /**
  * Function to render data from a doc
- * @param {FirestoreDoc} individualDoc - Individual firestore doc or bujo element
+ * @param {FirestoreDoc} individualDoc - Individual firestore doc or bujo
+ *     element
  */
 function renderData(individualDoc) {
   let note = bujoConverter.fromFirestore(individualDoc);
@@ -207,39 +208,43 @@ function renderData(individualDoc) {
   parentDiv.appendChild(optionsDiv);
 
   dailyLog.insertBefore(parentDiv, add);
-  setSignifier(note.signifier, $('#' + note.id).children(":first"));
+  setSignifier(note.signifier, $("#" + note.id).children(":first"));
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
-  noteDiv.addEventListener('keydown', function(event) {
-    if (event.code === 'Enter') {
+  noteDiv.addEventListener("keydown", function (event) {
+    if (event.code === "Enter") {
       event.preventDefault();
     }
   });
 
   // Update note on edit
-  $('#' + note.id).children(":nth-child(3)").on('focusout', function() {
-    var signifier = $(this).parent().attr("signifier");
-    var id = $(this).parent().attr("id");
-    var note = new BujoElement(id, $(this).text(), 0, 0, signifier);
-    note.sync();
-  });
+  $("#" + note.id)
+    .children(":nth-child(3)")
+    .on("focusout", function () {
+      var signifier = $(this).parent().attr("signifier");
+      var id = $(this).parent().attr("id");
+      var note = new BujoElement(id, $(this).text(), 0, 0, signifier);
+      note.sync();
+    });
 
   // Update signifier
-  $('#' + note.id).children(":first").on("click", function() {
-    var signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
-    $(this).parent().attr("signifier", signifier);
-    setSignifier(signifier, $(this));
-    var id = $(this).parent().attr("id");
-    var text = $(this).parent().children().text();
-    var note = new BujoElement(id, text, 0, 0, signifier);
-    note.sync();
-  });
+  $("#" + note.id)
+    .children(":first")
+    .on("click", function () {
+      var signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
+      $(this).parent().attr("signifier", signifier);
+      setSignifier(signifier, $(this));
+      var id = $(this).parent().attr("id");
+      var text = $(this).parent().children().text();
+      var note = new BujoElement(id, text, 0, 0, signifier);
+      note.sync();
+    });
 }
 
 // Adding a new todo
-addItem.addEventListener('keydown', function(event) {
-  if (event.code === 'Enter') {
+addItem.addEventListener("keydown", function (event) {
+  if (event.code === "Enter") {
     event.preventDefault();
     document.activeElement.blur();
 
@@ -266,9 +271,7 @@ auth.onAuthStateChanged((user) => {
           if (change.type == "added") {
             renderData(change.doc);
           } else if (change.type == "removed") {
-            let note = dailyLog.querySelector(
-              '[id="' + change.doc.id + '"]'
-            );
+            let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
             dailyLog.removeChild(note);
           }
         });
