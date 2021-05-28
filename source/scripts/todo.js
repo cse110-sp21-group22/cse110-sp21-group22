@@ -20,20 +20,18 @@ class Todo {
     this.id = id;
     this.text = text;
   }
-  toString() {
-    return this.text;
-  }
+  toString() { return this.text; }
 }
 
 // Firestore data converter
 var todoConverter = {
-  toFirestore: function (todo) {
+  toFirestore : function(todo) {
     return {
-      id: todo.id,
-      text: todo.text,
+      id : todo.id,
+      text : todo.text,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
     return new Todo(data.id, data.text);
   },
@@ -75,12 +73,12 @@ function renderData(individualDoc) {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("tasks")
-          .collection(month + "-" + day)
-          .doc("" + id)
-          .delete();
+            .doc(user.uid)
+            .collection("data")
+            .doc("tasks")
+            .collection(month + "-" + day)
+            .doc("" + id)
+            .delete();
       }
     });
   });
@@ -97,19 +95,15 @@ form.addEventListener("submit", (e) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("tasks")
-        .collection(month + "-" + day)
-        .doc("" + id)
-        .withConverter(bujoConverter)
-        .set(bujo)
-        .then(() => {
-          console.log("todo added");
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+          .doc(user.uid)
+          .collection("data")
+          .doc("tasks")
+          .collection(month + "-" + day)
+          .doc("" + id)
+          .withConverter(bujoConverter)
+          .set(bujo)
+          .then(() => { console.log("todo added"); })
+          .catch((err) => { console.log(err.message); });
     }
   });
 });
@@ -117,30 +111,27 @@ form.addEventListener("submit", (e) => {
 /**
  * Function to log out user
  */
-function logout() {
-  auth.signOut();
-}
+function logout() { auth.signOut(); }
 
 // realtime listners
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("tasks")
-      .collection(month + "-" + day)
-      .onSnapshot((snapshot) => {
-        let changes = snapshot.docChanges();
-        changes.forEach((change) => {
-          if (change.type == "added") {
-            renderData(change.doc);
-          } else if (change.type == "removed") {
-            let li = todoContainer.querySelector(
-              '[data-id="' + change.doc.id + '"]'
-            );
-            todoContainer.removeChild(li);
-          }
+        .doc(user.uid)
+        .collection("data")
+        .doc("tasks")
+        .collection(month + "-" + day)
+        .onSnapshot((snapshot) => {
+          let changes = snapshot.docChanges();
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              renderData(change.doc);
+            } else if (change.type == "removed") {
+              let li = todoContainer.querySelector('[data-id="' +
+                                                   change.doc.id + '"]');
+              todoContainer.removeChild(li);
+            }
+          });
         });
-      });
   }
 });

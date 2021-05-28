@@ -37,7 +37,7 @@ function NavbarLoaded() {
  * @param {int} type specifies type of task/note
  * @param {int} signifier sets signifier
  */
- class BujoElement {
+class BujoElement {
   constructor(id, text, level, type, signifier) {
     this.id = id;
     this.text = text;
@@ -67,16 +67,14 @@ function NavbarLoaded() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection(month + "-" + day)
-          .doc("" + this.id)
-          .withConverter(bujoConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection(month + "-" + day)
+            .doc("" + this.id)
+            .withConverter(bujoConverter)
+            .set(this)
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -84,17 +82,18 @@ function NavbarLoaded() {
 
 // Firestore data converter
 var bujoConverter = {
-  toFirestore: function (bujo) {
+  toFirestore : function(bujo) {
     return {
-      id: bujo.id,
-      text: bujo.text,
-      level: bujo.level,
-      type: bujo.type,
-      signifier: bujo.signifier
+      id : bujo.id,
+      text : bujo.text,
+      level : bujo.level,
+      type : bujo.type,
+      signifier : bujo.signifier
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
-    return new BujoElement(data.id, data.text, data.level, data.type, data.signifier);
+    return new BujoElement(data.id, data.text, data.level, data.type,
+                           data.signifier);
   },
 };
