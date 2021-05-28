@@ -3,7 +3,7 @@
 context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
-    cy.visit('https://catch-22-e0c66.web.app/login.html')
+    cy.visit('')
     cy.wait(1000)
   })
 
