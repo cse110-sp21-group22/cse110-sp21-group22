@@ -55,4 +55,8 @@ function save() {
   });
 }
 
+$(window).on('beforeunload', function() {
+  save();
+});
+
 PageLoaded();

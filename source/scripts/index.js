@@ -158,6 +158,36 @@ function setSignifier(signifier, node) {
 }
 
 /**
+ * Set the type for a note
+ * @param {int} type specifies which type
+ * @param {node} node node to set type for
+ */
+ function setType(type, node) {
+  node.children(":first").removeClass();
+  switch (type) {
+    case 1:
+      node.children(":first").addClass("far");
+      node.children(":first").addClass("fa-square");
+      break;
+    case 2:
+      node.children(":first").addClass("far");
+      node.children(":first").addClass("fa-check-square");
+      break;
+    case 3:
+      node.children(":first").addClass("far");
+      node.children(":first").addClass("fa-circle");
+      break;
+    case 4:
+      node.children(":first").addClass("far");
+      node.children(":first").addClass("fa-check-circle");
+      break;
+    default:
+      node.children(":first").addClass("fa");
+      node.children(":first").addClass("fa-minus");
+  }
+}
+
+/**
  * Function to render data from a doc
  * @param {FirestoreDoc} individualDoc - Individual firestore doc or bujo
  *     element
@@ -182,7 +212,7 @@ function renderData(individualDoc) {
   let bulletMainDiv = document.createElement("div");
   bulletMainDiv.className = "bullet bullet-main";
   let bulletMainI = document.createElement("i");
-  bulletMainI.className = "fa fa-minus";
+  bulletMainI.className = "fa";
   parentDiv.setAttribute("type", note.type);
   bulletMainDiv.appendChild(bulletMainI);
 
@@ -209,6 +239,7 @@ function renderData(individualDoc) {
 
   dailyLog.insertBefore(parentDiv, add);
   setSignifier(note.signifier, $("#" + note.id).children(":first"));
+  setType(note.type, $("#" + note.id).children(":nth-child(2)"))
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
@@ -224,7 +255,8 @@ function renderData(individualDoc) {
     .on("focusout", function () {
       let signifier = $(this).parent().attr("signifier");
       let id = $(this).parent().attr("id");
-      let note2 = new BujoElement(id, $(this).text(), 0, 0, signifier);
+      let type = $(this).parent().attr("type");
+      let note2 = new BujoElement(id, $(this).text(), 0, type, signifier);
       note2.sync();
     });
 
@@ -237,9 +269,24 @@ function renderData(individualDoc) {
       setSignifier(signifier, $(this));
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
-      let note2 = new BujoElement(id, text, 0, 0, signifier);
+      let type = $(this).parent().attr("type");
+      let note2 = new BujoElement(id, text, 0, type, signifier);
       note2.sync();
     });
+
+  // Update type
+  $("#" + note.id)
+  .children(":nth-child(2)")
+  .on("click", function () {
+    let type = (parseInt($(this).parent().attr("type")) + 1) % 5;
+    $(this).parent().attr("type", type);
+    setType(type, $(this));
+    let id = $(this).parent().attr("id");
+    let text = $(this).parent().children().text();
+    let signifier = $(this).parent().attr("signifier");
+    let note2 = new BujoElement(id, text, 0, type, signifier);
+    note2.sync();
+  });
 }
 
 // Adding a new note/task
@@ -277,6 +324,11 @@ auth.onAuthStateChanged((user) => {
         });
       });
   }
+});
+
+// Save everything
+$(window).on('beforeunload', function() {
+  document.activeElement.blur();
 });
 
 /**
