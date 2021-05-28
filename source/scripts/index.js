@@ -10,29 +10,24 @@ verySad = document.getElementById("very-sad");
 window.addEventListener("resize", resize, true);
 
 /* very happy mood selected */
-veryHappy.addEventListener("click", function () {
-  colorChange("very-happy", veryHappy, "green");
-});
+veryHappy.addEventListener(
+    "click", function() { colorChange("very-happy", veryHappy, "green"); });
 
 /* happy mood selected */
-happy.addEventListener("click", function () {
-  colorChange("happy", happy, "lightgreen");
-});
+happy.addEventListener(
+    "click", function() { colorChange("happy", happy, "lightgreen"); });
 
 /* neutral mood selected */
-neutral.addEventListener("click", function () {
-  colorChange("neutral", neutral, "yellow");
-});
+neutral.addEventListener(
+    "click", function() { colorChange("neutral", neutral, "yellow"); });
 
 /* sad mood selected */
-sad.addEventListener("click", function () {
-  colorChange("sad", sad, "orange");
-});
+sad.addEventListener("click",
+                     function() { colorChange("sad", sad, "orange"); });
 
 /* very sad mood selected */
-verySad.addEventListener("click", function () {
-  colorChange("very-sad", verySad, "red");
-});
+verySad.addEventListener(
+    "click", function() { colorChange("very-sad", verySad, "red"); });
 
 var rosethorn = document.getElementById("rosethorn");
 var rose = document.getElementById("rose");
@@ -41,78 +36,78 @@ var date_string = month + "-" + day;
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .onSnapshot((doc) => {
-      try {
-        rose.innerHTML = doc.data().rose;
-        thorn.innerHTML = doc.data().thorn;
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .onSnapshot((doc) => {
+        try {
+          rose.innerHTML = doc.data().rose;
+          thorn.innerHTML = doc.data().thorn;
+        } catch (err) {
+          console.log(err);
+        }
+      });
 });
 
 rosethorn.addEventListener("focusout", (event) => {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("rosethorn")
-      .update({
-        date: [date_string],
-        rose: [rose.innerHTML],
-        thorn: [thorn.innerHTML],
-      })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("rosethorn")
-          .set({
-            date: [date_string],
-            rose: [rose.innerHTML],
-            thorn: [thorn.innerHTML],
-          });
-      });
+        .doc(user.uid)
+        .collection("data")
+        .doc("rosethorn")
+        .update({
+          date : [ date_string ],
+          rose : [ rose.innerHTML ],
+          thorn : [ thorn.innerHTML ],
+        })
+        .catch((err) => {
+          fs.collection("users")
+              .doc(user.uid)
+              .collection("data")
+              .doc("rosethorn")
+              .set({
+                date : [ date_string ],
+                rose : [ rose.innerHTML ],
+                thorn : [ thorn.innerHTML ],
+              });
+        });
   });
 });
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .get()
-    .then((doc) => {
-      try {
-        if (doc.data().date != date_string) {
-          fs.collection("users")
-            .doc(user.uid)
-            .collection("data")
-            .doc("rosethorn")
-            .set({
-              date: [date_string],
-              rose: "Rose: ",
-              thorn: "Thorn: ",
-            });
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .get()
+      .then((doc) => {
+        try {
+          if (doc.data().date != date_string) {
+            fs.collection("users")
+                .doc(user.uid)
+                .collection("data")
+                .doc("rosethorn")
+                .set({
+                  date : [ date_string ],
+                  rose : "Rose: ",
+                  thorn : "Thorn: ",
+                });
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      });
 });
 
 // Demonstration of functionality of collapsible sub-lists
-$(".fa-chevron-down").on("click", function () {
+$(".fa-chevron-down").on("click", function() {
   $("#item2").toggleClass("hide");
   $(this).toggleClass("fa-chevron-down");
   $(this).toggleClass("fa-chevron-right");
 });
 
 // Disable enter key
-$(".text").on("keydown", function (e) {
+$(".text").on("keydown", function(e) {
   // Enter was pressed
   if (e.keyCode == 13) {
     // prevent default behavior
@@ -121,12 +116,10 @@ $(".text").on("keydown", function (e) {
 });
 
 // Clear "Add new note"
-$("#add-item").on("click", function () {
-  $(this).children().empty();
-});
+$("#add-item").on("click", function() { $(this).children().empty(); });
 
 // Reset message if no new note
-$("#add-item").on("focusout", function () {
+$("#add-item").on("focusout", function() {
   if ($(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
@@ -212,38 +205,34 @@ function renderData(individualDoc) {
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
-  noteDiv.addEventListener("keydown", function (event) {
+  noteDiv.addEventListener("keydown", function(event) {
     if (event.code === "Enter") {
       event.preventDefault();
     }
   });
 
   // Update note on edit
-  $("#" + note.id)
-    .children(":nth-child(3)")
-    .on("focusout", function () {
-      let signifier = $(this).parent().attr("signifier");
-      let id = $(this).parent().attr("id");
-      let note2 = new BujoElement(id, $(this).text(), 0, 0, signifier);
-      note2.sync();
-    });
+  $("#" + note.id).children(":nth-child(3)").on("focusout", function() {
+    let signifier = $(this).parent().attr("signifier");
+    let id = $(this).parent().attr("id");
+    let note2 = new BujoElement(id, $(this).text(), 0, 0, signifier);
+    note2.sync();
+  });
 
   // Update signifier
-  $("#" + note.id)
-    .children(":first")
-    .on("click", function () {
-      let signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
-      $(this).parent().attr("signifier", signifier);
-      setSignifier(signifier, $(this));
-      let id = $(this).parent().attr("id");
-      let text = $(this).parent().children().text();
-      let note2 = new BujoElement(id, text, 0, 0, signifier);
-      note2.sync();
-    });
+  $("#" + note.id).children(":first").on("click", function() {
+    let signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
+    $(this).parent().attr("signifier", signifier);
+    setSignifier(signifier, $(this));
+    let id = $(this).parent().attr("id");
+    let text = $(this).parent().children().text();
+    let note2 = new BujoElement(id, text, 0, 0, signifier);
+    note2.sync();
+  });
 }
 
 // Adding a new note/task
-addItem.addEventListener("keydown", function (event) {
+addItem.addEventListener("keydown", function(event) {
   if (event.code === "Enter") {
     event.preventDefault();
     document.activeElement.blur();
@@ -261,21 +250,21 @@ addItem.addEventListener("keydown", function (event) {
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("notes")
-      .collection(month + "-" + day)
-      .onSnapshot((snapshot) => {
-        let changes = snapshot.docChanges();
-        changes.forEach((change) => {
-          if (change.type == "added") {
-            renderData(change.doc);
-          } else if (change.type == "removed") {
-            let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
-            dailyLog.removeChild(note);
-          }
+        .doc(user.uid)
+        .collection("data")
+        .doc("notes")
+        .collection(month + "-" + day)
+        .onSnapshot((snapshot) => {
+          let changes = snapshot.docChanges();
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              renderData(change.doc);
+            } else if (change.type == "removed") {
+              let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
+              dailyLog.removeChild(note);
+            }
+          });
         });
-      });
   }
 });
 
@@ -291,18 +280,16 @@ url = "https://api.quotable.io/random";
 // Fetches information from quote generator website
 if (navigator.onLine) {
   fetch(url)
-    .then((response) => response.json())
-    .then((result) => {
-      // Updates html objects with content from the website
-      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-      document.querySelector("#authors").innerHTML = "-" + result.author;
-    })
-    .then(() => {
-      PageLoaded();
-    });
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        document.querySelector("#quote").innerHTML = '"' + result.content + '"';
+        document.querySelector("#authors").innerHTML = "-" + result.author;
+      })
+      .then(() => { PageLoaded(); });
 } else {
   document.querySelector("#quote").innerHTML =
-    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
   document.querySelector("#authors").innerHTML = "-Marilyn vos Savant";
   PageLoaded();
 }
