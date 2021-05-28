@@ -1,10 +1,10 @@
-ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
+ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
   if (lightOrDark(hex) == "light") {
     document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-light fixed-top";
+        "navbar navbar-expand-md navbar-light fixed-top";
   } else {
     document.getElementById("navbar").className =
-      "navbar navbar-expand-md navbar-dark fixed-top";
+        "navbar navbar-expand-md navbar-dark fixed-top";
   }
   document.getElementById("navbar").style.backgroundColor = hex;
 });
@@ -39,24 +39,20 @@ function lightOrDark(color) {
 /**
  * Function to log out user
  */
-function logout() {
-  auth.signOut();
-}
+function logout() { auth.signOut(); }
 
 function save() {
   auth.onAuthStateChanged((user) => {
     hStyle = document.getElementById("navbar").className;
     hColor = document.getElementById("navbar").style.backgroundColor;
     fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("navbar")
-      .set({ hStyle: hStyle, hColor: hColor });
+        .doc(user.uid)
+        .collection("settings")
+        .doc("navbar")
+        .set({hStyle : hStyle, hColor : hColor});
   });
 }
 
-$(window).on('beforeunload', function() {
-  save();
-});
+$(window).on('beforeunload', function() { save(); });
 
 PageLoaded();

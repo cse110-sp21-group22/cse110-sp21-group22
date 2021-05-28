@@ -67,16 +67,14 @@ class BujoElement {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection(month + "-" + day)
-          .doc("" + this.id)
-          .withConverter(bujoConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection(month + "-" + day)
+            .doc("" + this.id)
+            .withConverter(bujoConverter)
+            .set(this)
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -88,15 +86,13 @@ class BujoElement {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection(month + "-" + day)
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection(month + "-" + day)
+            .doc("" + this.id)
+            .delete()
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -104,23 +100,18 @@ class BujoElement {
 
 // Firestore data converter
 var bujoConverter = {
-  toFirestore: function (bujo) {
+  toFirestore : function(bujo) {
     return {
-      id: bujo.id,
-      text: bujo.text,
-      level: bujo.level,
-      type: bujo.type,
-      signifier: bujo.signifier,
+      id : bujo.id,
+      text : bujo.text,
+      level : bujo.level,
+      type : bujo.type,
+      signifier : bujo.signifier,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
-    return new BujoElement(
-      data.id,
-      data.text,
-      data.level,
-      data.type,
-      data.signifier
-    );
+    return new BujoElement(data.id, data.text, data.level, data.type,
+                           data.signifier);
   },
 };
