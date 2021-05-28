@@ -244,66 +244,55 @@ h1 {
 
 .notebook p {
   line-height: 38px;
-  margin-bottom: 1rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* Daily log Editor */
-.textmodmenu{
+.textmodmenu {
   font-size: 0;
   max-width: 900px;
 }
 
-.textmodmenu button{
+.textmodmenu button {
   background-color: #eee;
   border: 0;
   border: 1px solid #bbb;
-
 }
-.textmodsub{
+.textmodsub {
   display: inline-block;
   padding-right: 10px;
 }
-.textmodmenu button:hover{
+.textmodmenu button:hover {
   box-shadow: 0 0 15px #666 inset;
 }
-#editor .container{
-
+#editor .container {
   display: list-item;
 }
-#editor .checkbox{
-
+#editor .checkbox {
   display: inline-block;
   width: 20px;
   height: 20px;
   padding: 5px;
 }
 
-#editor .text{
-
+#editor .text {
   display: inline-block;
   outline-width: 1px;
   width: 90%;
 }
 
-#editor img{
-
+#editor img {
   display: inline-block;
   width: 20px;
   height: 20px;
   padding: 5px;
 }
 
-#date{
-
+#date {
   display: inline-block;
   font-size: 50px;
 }
-
-#editor p{
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 
 .my-container {
   width: 100%;
