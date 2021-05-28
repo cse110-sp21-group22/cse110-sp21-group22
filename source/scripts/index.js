@@ -1,5 +1,6 @@
-const dailyLog = document.getElementById("daily-log");
-const add = document.getElementById("add");
+dailyLog = document.getElementById("daily-log");
+add = document.getElementById("add");
+addItem = document.getElementById("add-item");
 
 window.addEventListener("resize", resize, true);
 
@@ -98,24 +99,6 @@ auth.onAuthStateChanged((user) => {
     });
 });
 
-// Demonstration of functionality of checking tasks/events
-$('.fa-square').on("click", function() {
-  $(this).toggleClass('fa-square');
-  $(this).toggleClass('fa-check-square');
-});
-$('.fa-check-square').on("click", function() {
-  $(this).toggleClass('fa-square');
-  $(this).toggleClass('fa-check-square');
-});
-$('.fa-circle').on("click", function() {
-  $(this).toggleClass('fa-circle');
-  $(this).toggleClass('fa-check-circle');
-});
-$('.fa-check-circle').on("click", function() {
-  $(this).toggleClass('fa-circle');
-  $(this).toggleClass('fa-check-circle');
-});
-
 // Demonstration of functionality of collapsible sub-lists
 $('.fa-chevron-down').on("click", function() {
   $('#item2').toggleClass('hide');
@@ -123,6 +106,7 @@ $('.fa-chevron-down').on("click", function() {
   $(this).toggleClass('fa-chevron-right');
 });
 
+// Disable enter key
 $(".text").on("keydown", function(e) {
   // Enter was pressed
   if (e.keyCode == 13) {
@@ -131,18 +115,124 @@ $(".text").on("keydown", function(e) {
   }
 });
 
+// Clear "Add new note"
 $("#add-item").on('click', function() { 
   $(this).children().empty();
 });
 
+// Reset message if no new note
 $("#add-item").on('focusout', function() {
   if ($(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
 });
 
+/**
+ * Set the signifier for a note
+ * @param {int} signifier specifies which signifier
+ * @param {node} node node to set signifier for
+ */
+function setSignifier(signifier, node) {
+  node.children(":first").removeClass();
+  switch(signifier) {
+    case 1:
+      node.children(":first").addClass('fa');
+      node.children(":first").addClass('fa-star');
+      break;
+    case 2:
+      node.children(":first").addClass('fa');
+      node.children(":first").addClass('fa-eye');
+      break;
+    case 3:
+      node.children(":first").addClass('fa');
+      node.children(":first").addClass('fa-exclamation');
+      break;
+    default:
+      node.children(":first").addClass('fa');
+  }
+}
+
+/**
+ * Function to render data from a doc
+ * @param {FirestoreDoc} individualDoc - Individual firestore doc or bujo element
+ */
+function renderData(individualDoc) {
+  let note = bujoConverter.fromFirestore(individualDoc);
+
+  // parent div
+  let parentDiv = document.createElement("div");
+  parentDiv.className = "item";
+  parentDiv.setAttribute("id", note.id);
+
+  // bullet-sub
+  let bulletSubDiv = document.createElement("div");
+  bulletSubDiv.className = "bullet bullet-sub";
+  let bulletSubI = document.createElement("i");
+  bulletSubI.className = "fa";
+  parentDiv.setAttribute("signifier", note.signifier);
+  bulletSubDiv.appendChild(bulletSubI);
+
+  // bullet-main
+  let bulletMainDiv = document.createElement("div");
+  bulletMainDiv.className = "bullet bullet-main";
+  let bulletMainI = document.createElement("i");
+  bulletMainI.className = "fa fa-minus";
+  parentDiv.setAttribute("type", note.type);
+  bulletMainDiv.appendChild(bulletMainI);
+
+  // note div
+  let noteDiv = document.createElement("div");
+  noteDiv.className = "text";
+  let noteDivP = document.createElement("p");
+  noteDivP.setAttribute("contenteditable", "true");
+  noteDivP.textContent = note.text;
+  noteDiv.appendChild(noteDivP);
+
+  // options
+  let optionsDiv = document.createElement("div");
+  optionsDiv.className = "options";
+  let optionsDivI = document.createElement("i");
+  optionsDivI.className = "fa fa-ellipsis-h";
+  optionsDiv.appendChild(optionsDivI);
+
+  // appending
+  parentDiv.appendChild(bulletSubDiv);
+  parentDiv.appendChild(bulletMainDiv);
+  parentDiv.appendChild(noteDiv);
+  parentDiv.appendChild(optionsDiv);
+
+  dailyLog.insertBefore(parentDiv, add);
+  setSignifier(note.signifier, $('#' + note.id).children(":first"));
+  addItem.firstElementChild.textContent = "Add new note";
+
+  // Disable enter key
+  noteDiv.addEventListener('keydown', function(event) {
+    if (event.code === 'Enter') {
+      event.preventDefault();
+    }
+  });
+
+  // Update note on edit
+  $('#' + note.id).children(":nth-child(3)").on('focusout', function() {
+    var signifier = $(this).parent().attr("signifier");
+    var id = $(this).parent().attr("id");
+    var note = new BujoElement(id, $(this).text(), 0, 0, signifier);
+    note.sync();
+  });
+
+  // Update signifier
+  $('#' + note.id).children(":first").on("click", function() {
+    var signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
+    $(this).parent().attr("signifier", signifier);
+    setSignifier(signifier, $(this));
+    var id = $(this).parent().attr("id");
+    var text = $(this).parent().children().text();
+    var note = new BujoElement(id, text, 0, 0, signifier);
+    note.sync();
+  });
+}
+
 // Adding a new todo
-var addItem = document.getElementById("add-item");
 addItem.addEventListener('keydown', function(event) {
   if (event.code === 'Enter') {
     event.preventDefault();
@@ -152,60 +242,32 @@ addItem.addEventListener('keydown', function(event) {
     var noteText = addItem.firstElementChild.textContent;
 
     // create new bujo task/note element
-    var note = new BujoElement(new Date().getTime(), noteText, 0, "note", "none");
+    var note = new BujoElement(new Date().getTime(), noteText, 0, 0, 0);
     note.sync();
+  }
+});
 
-    // parent div
-    let parentDiv = document.createElement("div");
-    parentDiv.className = "item";
-    parentDiv.setAttribute("id", note.id);
-
-    // bullet-sub
-    let bulletSubDiv = document.createElement("div");
-    bulletSubDiv.className = "bullet bullet-sub";
-    let bulletSubI = document.createElement("i");
-    bulletSubI.className = "fa";
-    bulletSubDiv.appendChild(bulletSubI);
-
-    // bullet-main
-    let bulletMainDiv = document.createElement("div");
-    bulletMainDiv.className = "bullet bullet-main";
-    let bulletMainI = document.createElement("i");
-    bulletMainI.className = "fa fa-minus";
-    bulletMainDiv.appendChild(bulletMainI);
-
-    // note div
-    let noteDiv = document.createElement("div");
-    noteDiv.className = "text";
-    let noteDivP = document.createElement("p");
-    noteDivP.setAttribute("contenteditable", "true");
-    noteDivP.textContent = note.text;
-    noteDiv.appendChild(noteDivP);
-
-    // options
-    let optionsDiv = document.createElement("div");
-    optionsDiv.className = "options";
-    let optionsDivI = document.createElement("i");
-    optionsDivI.className = "fa fa-ellipsis-h";
-    optionsDiv.appendChild(optionsDivI);
-
-    // appending
-    parentDiv.appendChild(bulletSubDiv);
-    parentDiv.appendChild(bulletMainDiv);
-    parentDiv.appendChild(noteDiv);
-    parentDiv.appendChild(optionsDiv);
-
-    dailyLog.insertBefore(parentDiv, add);
-    addItem.firstElementChild.textContent = "Add new note";
-    noteDiv.addEventListener('keydown', function(event) {
-      if (event.code === 'Enter') {
-        event.preventDefault();
-      }
-    });
-    $('#' + note.id).on('focusout', function() {
-      var note = new BujoElement($(this).attr("id"), $(this).children().text(), 0, "note", "none");
-      note.sync();
-    });
+// realtime listners
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("notes")
+      .collection(month + "-" + day)
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        changes.forEach((change) => {
+          if (change.type == "added") {
+            renderData(change.doc);
+          } else if (change.type == "removed") {
+            let note = dailyLog.querySelector(
+              '[id="' + change.doc.id + '"]'
+            );
+            dailyLog.removeChild(note);
+          }
+        });
+      });
   }
 });
 

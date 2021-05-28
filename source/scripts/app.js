@@ -34,8 +34,8 @@ function NavbarLoaded() {
  * @param {string} id id of task/note
  * @param {string} text task/note contents
  * @param {int} level specifies sub-elements
- * @param {string} type specifies type of task/note
- * @param {string} signifier sets signifier
+ * @param {int} type specifies type of task/note
+ * @param {int} signifier sets signifier
  */
  class BujoElement {
   constructor(id, text, level, type, signifier) {
@@ -50,8 +50,8 @@ function NavbarLoaded() {
    * Update a task/note
    * @param {string} text task/note contents
    * @param {int} level specifies what sub-level
-   * @param {string} type specifies what type of task/note
-   * @param {string} signifier specifies signifier
+   * @param {int} type specifies what type of task/note
+   * @param {int} signifier specifies signifier
    */
   update(text, level, type, signifier) {
     this.text = text;

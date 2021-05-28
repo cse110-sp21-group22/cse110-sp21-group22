@@ -41,6 +41,9 @@ let WEEK = "";
 const today = new Date();
 const one_day_per_second = 1000 * 60 * 60 * 24;
 const one_week_per_second = one_day_per_second * 7;
+let dailyLog = "";
+let add = "";
+let addItem = "";
 
 /**
  * Function to load subpages
