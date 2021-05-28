@@ -3,7 +3,7 @@
 context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
-    cy.visit('')
+    cy.visit('http://127.0.0.1:5500/source/login.html')
     cy.wait(1000)
   })
 
@@ -24,6 +24,29 @@ context('Actions', () => {
     cy.get('h6')
       .should('contain', 'How are you feeling?')
 
+    cy.viewport('macbook-15')
+    cy.wait(200)
+    cy.viewport('macbook-13')
+    cy.wait(200)
+    cy.viewport('macbook-11')
+    cy.wait(200)
+    cy.viewport('ipad-2')
+    cy.wait(200)
+    cy.viewport('ipad-mini')
+    cy.wait(200)
+    cy.viewport('iphone-6+')
+    cy.wait(200)
+    cy.viewport('iphone-6')
+    cy.wait(200)
+    cy.viewport('iphone-5')
+    cy.wait(200)
+    cy.viewport('iphone-4')
+    cy.wait(200)
+    cy.viewport('iphone-3')
+    cy.wait(200)
+    cy.viewport(1000, 600)
+    cy.wait(2000)
+
     cy.get('#nav-calendar').click()
     cy.wait(1000)
     cy.get('h1')
@@ -34,6 +57,15 @@ context('Actions', () => {
     cy.get('h1')
       .should('contain', 'Mood Tracker')
 
+    cy.go('back')
+    cy.wait(1000)
+    cy.get('h1')
+      .should('contain', 'Calendar')
+
+    cy.get('#nav-settings').click()
+    cy.wait(1000)
+    cy.reload()
+    cy.wait(1000)
     cy.get('#nav-settings').click()
     cy.wait(1000)
     cy.get('.btn-danger').click()
