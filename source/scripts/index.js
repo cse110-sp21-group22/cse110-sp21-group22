@@ -104,13 +104,6 @@ auth.onAuthStateChanged((user) => {
     });
 });
 
-// Demonstration of functionality of collapsible sub-lists
-$(".fa-chevron-down").on("click", function () {
-  $("#item2").toggleClass("hide");
-  $(this).toggleClass("fa-chevron-down");
-  $(this).toggleClass("fa-chevron-right");
-});
-
 // Disable enter key
 $(".text").on("keydown", function (e) {
   // Enter was pressed
@@ -253,9 +246,9 @@ function renderData(individualDoc) {
   $("#" + note.id)
     .children(":nth-child(3)")
     .on("focusout", function () {
-      let signifier = $(this).parent().attr("signifier");
+      let signifier = parseInt($(this).parent().attr("signifier"));
       let id = $(this).parent().attr("id");
-      let type = $(this).parent().attr("type");
+      let type = parseInt($(this).parent().attr("type"));
       let note2 = new BujoElement(id, $(this).text(), 0, type, signifier);
       note2.sync();
     });
@@ -269,7 +262,7 @@ function renderData(individualDoc) {
       setSignifier(signifier, $(this));
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
-      let type = $(this).parent().attr("type");
+      let type = parseInt($(this).parent().attr("type"));
       let note2 = new BujoElement(id, text, 0, type, signifier);
       note2.sync();
     });
@@ -283,7 +276,7 @@ function renderData(individualDoc) {
       setType(type, $(this));
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
-      let signifier = $(this).parent().attr("signifier");
+      let signifier = parseInt($(this).parent().attr("signifier"));
       let note2 = new BujoElement(id, text, 0, type, signifier);
       note2.sync();
     });
@@ -325,7 +318,9 @@ auth.onAuthStateChanged((user) => {
         let changes = snapshot.docChanges();
         changes.forEach((change) => {
           if (change.type == "added") {
-            renderData(change.doc);
+            if (dailyLog.querySelector('[id="' + change.doc.id + '"]') == null) {
+              renderData(change.doc);
+            }
           } else if (change.type == "removed") {
             let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
             dailyLog.removeChild(note);
