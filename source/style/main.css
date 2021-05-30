@@ -506,6 +506,10 @@ h1 {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .indent {
   padding-left: 40px;
 }

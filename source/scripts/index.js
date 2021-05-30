@@ -211,7 +211,7 @@ document.querySelector("#underline").addEventListener("click", () => {
  */
 function updateStyle(style) {
   let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
-  let currStyle = parseInt(parentDiv.attr("style")) + style;
+  let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
   parentDiv.attr("style", currStyle);
   setStyle(style, parentDiv);
   let id = parentDiv.attr("id");
@@ -219,7 +219,7 @@ function updateStyle(style) {
   let signifier = parseInt(parentDiv.attr("signifier"));
   let type = parseInt(parentDiv.attr("type"));
   let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
-  note2.sync();
+  note2.sync(selectedDate);
 }
 
 // Disable enter key
@@ -351,8 +351,9 @@ function renderData(individualDoc) {
 
   // parent div
   let parentDiv = document.createElement("div");
-  parentDiv.className = "item";
+  parentDiv.className = "item note";
   parentDiv.setAttribute("id", note.id);
+  parentDiv.setAttribute("date", individualDoc.data().date);
 
   // bullet-sub
   let bulletSubDiv = document.createElement("div");
@@ -375,7 +376,7 @@ function renderData(individualDoc) {
   noteDiv.className = "text";
   let noteDivP = document.createElement("p");
   noteDivP.setAttribute("contenteditable", "true");
-  parentDiv.setAttribute("style", note.style);
+  parentDiv.setAttribute("styleNum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
 
@@ -412,9 +413,9 @@ function renderData(individualDoc) {
       let signifier = parseInt($(this).parent().attr("signifier"));
       let id = $(this).parent().attr("id");
       let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("signifier"));
+      let style = parseInt($(this).parent().attr("styleNum"));
       let note2 = new BujoElement(id, $(this).text(), 0, type, signifier, style);
-      note2.sync();
+      note2.sync(selectedDate);
     });
 
   // Update signifier
@@ -427,9 +428,9 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
       let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("style"));
+      let style = parseInt($(this).parent().attr("styleNum"));
       let note2 = new BujoElement(id, text, 0, type, signifier, style);
-      note2.sync();
+      note2.sync(selectedDate);
     });
 
   // Update type
@@ -442,9 +443,9 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
       let signifier = parseInt($(this).parent().attr("signifier"));
-      let style = parseInt($(this).parent().attr("style"));
+      let style = parseInt($(this).parent().attr("styleNum"));
       let note2 = new BujoElement(id, text, 0, type, signifier, style);
-      note2.sync();
+      note2.sync(selectedDate);
     });
 
   // Delete
@@ -453,7 +454,7 @@ function renderData(individualDoc) {
     .on("click", function () {
       let id = $(this).parent().attr("id");
       let note2 = new BujoElement(id, "", 0, 0, 0, 0);
-      note2.delete();
+      note2.delete(selectedDate);
     });
 }
 
@@ -468,33 +469,61 @@ addItem.addEventListener("keydown", function (event) {
 
     // create new bujo task/note element
     let note2 = new BujoElement(new Date().getTime(), noteText, 0, 0, 0, 0);
-    note2.sync();
+    note2.sync(selectedDate);
   }
 });
 
 // realtime listners
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("notes")
-      .collection(month + "-" + day)
-      .onSnapshot((snapshot) => {
-        let changes = snapshot.docChanges();
-        changes.forEach((change) => {
-          if (change.type == "added") {
-            if (dailyLog.querySelector('[id="' + change.doc.id + '"]') == null) {
-              renderData(change.doc);
-            }
-          } else if (change.type == "removed") {
-            let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
-            dailyLog.removeChild(note);
-          }
-        });
-      });
+for (var i = -3; i < 4; ++i) {
+  let date2 = day + i;
+  let month2 = month;
+
+  // Go to previous month
+  if (date2 < 1) {
+    // Go to previous year
+    if (month2 < 1) {
+      month2 = 11;
+    }
+    date2 = daysInMonth[month2 - 1] + date2;
+    month2--;
   }
-});
+  // Go to next month
+  if (date2 > daysInMonth[month2]) {
+    date2 = date2 - daysInMonth[month2];
+    month2++;
+
+    // Go to next year
+    if (month2 > 11) {
+      month2 = 0;
+    }
+  }
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("notes")
+        .collection(month2 + "-" + date2)
+        .onSnapshot((snapshot) => {
+          let changes = snapshot.docChanges();
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') == null) {
+                renderData(change.doc);
+              }
+            } else if (change.type == "removed") {
+              let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
+              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') != null) {
+                dailyLog.removeChild(note);
+              }
+            }
+          });
+          showDay(selectedDate);
+        });
+    }
+  });
+}
 
 // Save everything
 $(window).on("beforeunload", function () {
@@ -520,19 +549,15 @@ function overlayOff() {
  * @param day - the day to display
  */
 function showDay(selectedDate) {
-  let entries, today;
+  let today;
 
-  entries = document.querySelectorAll("#editor div");
-
-  /*
-  for (let i = 0; i < entries.length; i++) {
-    if (entries[i].getAttribute("data-date") == day) {
-      entries[i].style.display = "list-item";
+  $(".note").each(function() {
+    if ($(this).attr("date") == (daysIntoYear(date) + selectedDate)) {
+      $(this).removeClass("hidden");
     } else {
-      entries[i].style.display = "none";
+      $(this).addClass("hidden");
     }
-  }
-  */
+  });
 
   let editorDate = document.querySelector("#date");
 
@@ -562,7 +587,7 @@ function showDay(selectedDate) {
     }
   }
 
-  month2 = (month2 + 1).toString();
+  month2 = month2.toString();
   date2 = date2.toString();
   year2 = year2.toString();
 
@@ -608,7 +633,7 @@ if (navigator.onLine) {
 selectedDate = 0;
 showDay(selectedDate);
 
-// leap year, adjust daysinmonths array
+// leap year, adjust daysinmonth array
 if (year % 4 == 0) {
   daysInMonths[1] = 29;
 }

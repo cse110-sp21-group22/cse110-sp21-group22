@@ -29,6 +29,15 @@ function NavbarLoaded() {
 }
 
 /**
+ * Function to convert date to day in year
+ * @param {Date} date date to convert to day in year
+ * @returns day in year
+ */
+ function daysIntoYear(date){
+  return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+}
+
+/**
  * BuJo Task/notes class
  * @constructor
  * @param {string} id id of task/note
@@ -66,15 +75,16 @@ class BujoElement {
 
   /**
    * Sync task/note to database
+   * @param {int} selectedDate selected date in notebook
    */
-  sync() {
+  sync(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + day)
+          .collection(month + "-" + (day + selectedDate))
           .doc("" + this.id)
           .withConverter(bujoConverter)
           .set(this)
@@ -88,14 +98,14 @@ class BujoElement {
   /**
    * Delete task/note
    */
-  delete() {
+  delete(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + day)
+          .collection(month + "-" + (day + selectedDate))
           .doc("" + this.id)
           .delete()
           .catch((err) => {
@@ -109,13 +119,15 @@ class BujoElement {
 // Firestore data converter
 var bujoConverter = {
   toFirestore: function (bujo) {
+    let dateYear = daysIntoYear(date) + selectedDate;
     return {
       id: bujo.id,
       text: bujo.text,
       level: bujo.level,
       type: bujo.type,
       signifier: bujo.signifier,
-      style: bujo.style
+      style: bujo.style,
+      date: dateYear
     };
   },
   fromFirestore: function (snapshot, options) {
