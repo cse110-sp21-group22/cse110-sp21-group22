@@ -10,29 +10,24 @@ verySad = document.getElementById("very-sad");
 window.addEventListener("resize", resize, true);
 
 /* very happy mood selected */
-veryHappy.addEventListener("click", function () {
-  colorChange("very-happy", veryHappy, "green");
-});
+veryHappy.addEventListener(
+    "click", function() { colorChange("very-happy", veryHappy, "green"); });
 
 /* happy mood selected */
-happy.addEventListener("click", function () {
-  colorChange("happy", happy, "lightgreen");
-});
+happy.addEventListener(
+    "click", function() { colorChange("happy", happy, "lightgreen"); });
 
 /* neutral mood selected */
-neutral.addEventListener("click", function () {
-  colorChange("neutral", neutral, "yellow");
-});
+neutral.addEventListener(
+    "click", function() { colorChange("neutral", neutral, "yellow"); });
 
 /* sad mood selected */
-sad.addEventListener("click", function () {
-  colorChange("sad", sad, "orange");
-});
+sad.addEventListener("click",
+                     function() { colorChange("sad", sad, "orange"); });
 
 /* very sad mood selected */
-verySad.addEventListener("click", function () {
-  colorChange("very-sad", verySad, "red");
-});
+verySad.addEventListener(
+    "click", function() { colorChange("very-sad", verySad, "red"); });
 
 var rosethorn = document.getElementById("rosethorn");
 var rose = document.getElementById("rose");
@@ -41,67 +36,67 @@ var date_string = month + "-" + day;
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .onSnapshot((doc) => {
-      try {
-        rose.innerHTML = doc.data().rose;
-        thorn.innerHTML = doc.data().thorn;
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .onSnapshot((doc) => {
+        try {
+          rose.innerHTML = doc.data().rose;
+          thorn.innerHTML = doc.data().thorn;
+        } catch (err) {
+          console.log(err);
+        }
+      });
 });
 
 rosethorn.addEventListener("focusout", (event) => {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("rosethorn")
-      .update({
-        date: [date_string],
-        rose: [rose.innerHTML],
-        thorn: [thorn.innerHTML],
-      })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("rosethorn")
-          .set({
-            date: [date_string],
-            rose: [rose.innerHTML],
-            thorn: [thorn.innerHTML],
-          });
-      });
+        .doc(user.uid)
+        .collection("data")
+        .doc("rosethorn")
+        .update({
+          date : [ date_string ],
+          rose : [ rose.innerHTML ],
+          thorn : [ thorn.innerHTML ],
+        })
+        .catch((err) => {
+          fs.collection("users")
+              .doc(user.uid)
+              .collection("data")
+              .doc("rosethorn")
+              .set({
+                date : [ date_string ],
+                rose : [ rose.innerHTML ],
+                thorn : [ thorn.innerHTML ],
+              });
+        });
   });
 });
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .get()
-    .then((doc) => {
-      try {
-        if (doc.data().date != date_string) {
-          fs.collection("users")
-            .doc(user.uid)
-            .collection("data")
-            .doc("rosethorn")
-            .set({
-              date: [date_string],
-              rose: "Rose: ",
-              thorn: "Thorn: ",
-            });
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .get()
+      .then((doc) => {
+        try {
+          if (doc.data().date != date_string) {
+            fs.collection("users")
+                .doc(user.uid)
+                .collection("data")
+                .doc("rosethorn")
+                .set({
+                  date : [ date_string ],
+                  rose : "Rose: ",
+                  thorn : "Thorn: ",
+                });
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      });
 });
 
 // When user clicks on previous Day
@@ -133,8 +128,8 @@ document.querySelector("#next").addEventListener("click", () => {
 });
 
 window.currFocus = document;
-// Catch focusin 
-$(window).on( 'focusin', function () {
+// Catch focusin
+$(window).on('focusin', function() {
   window.prevFocus = window.currFocus;
   previousSelected = window.currFocus;
   window.currFocus = document.activeElement;
@@ -223,7 +218,7 @@ function updateStyle(style) {
 }
 
 // Disable enter key
-$(".text").on("keydown", function (e) {
+$(".text").on("keydown", function(e) {
   // Enter was pressed
   if (e.keyCode == 13) {
     // prevent default behavior
@@ -232,12 +227,10 @@ $(".text").on("keydown", function (e) {
 });
 
 // Clear "Add new note"
-$("#add-item").on("click", function () {
-  $(this).children().empty();
-});
+$("#add-item").on("click", function() { $(this).children().empty(); });
 
 // Reset message if no new note
-$("#add-item").on("focusout", function () {
+$("#add-item").on("focusout", function() {
   if ($(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
@@ -251,20 +244,20 @@ $("#add-item").on("focusout", function () {
 function setSignifier(signifier, node) {
   node.children(":first").removeClass();
   switch (signifier) {
-    case 1:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-star");
-      break;
-    case 2:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-eye");
-      break;
-    case 3:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-exclamation");
-      break;
-    default:
-      node.children(":first").addClass("fa");
+  case 1:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-star");
+    break;
+  case 2:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-eye");
+    break;
+  case 3:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-exclamation");
+    break;
+  default:
+    node.children(":first").addClass("fa");
   }
 }
 
@@ -276,25 +269,25 @@ function setSignifier(signifier, node) {
 function setType(type, node) {
   node.children(":first").removeClass();
   switch (type) {
-    case 1:
-      node.children(":first").addClass("far");
-      node.children(":first").addClass("fa-square");
-      break;
-    case 2:
-      node.children(":first").addClass("far");
-      node.children(":first").addClass("fa-check-square");
-      break;
-    case 3:
-      node.children(":first").addClass("far");
-      node.children(":first").addClass("fa-circle");
-      break;
-    case 4:
-      node.children(":first").addClass("far");
-      node.children(":first").addClass("fa-check-circle");
-      break;
-    default:
-      node.children(":first").addClass("fa");
-      node.children(":first").addClass("fa-minus");
+  case 1:
+    node.children(":first").addClass("far");
+    node.children(":first").addClass("fa-square");
+    break;
+  case 2:
+    node.children(":first").addClass("far");
+    node.children(":first").addClass("fa-check-square");
+    break;
+  case 3:
+    node.children(":first").addClass("far");
+    node.children(":first").addClass("fa-circle");
+    break;
+  case 4:
+    node.children(":first").addClass("far");
+    node.children(":first").addClass("fa-check-circle");
+    break;
+  default:
+    node.children(":first").addClass("fa");
+    node.children(":first").addClass("fa-minus");
   }
 }
 
@@ -303,41 +296,41 @@ function setType(type, node) {
  * @param {int} style specifies which type
  * @param {node} node node to set type for
  */
- function setStyle(style, node) {
+function setStyle(style, node) {
   node.children(":first").css("font-style", "normal");
   node.children(":first").css("font-weight", "normal");
   node.children(":first").css("text-decoration", "none");
   switch (style) {
-    case 1:
-      node.children(":first").css("font-weight", "bold");
-      break;
-    case 2:
-      node.children(":first").css("font-style", "italic");
-      break;
-    case 3:
-      node.children(":first").css("font-weight", "bold");
-      node.children(":first").css("font-style", "italic");
-      break;
-    case 4:
-      node.children(":first").css("text-decoration", "underline");
-      break;
-    case 5:
-      node.children(":first").css("font-weight", "bold");
-      node.children(":first").css("text-decoration", "underline");
-      break;
-    case 6:
-      node.children(":first").css("font-style", "italic");
-      node.children(":first").css("text-decoration", "underline");
-      break;
-    case 7:
-      node.children(":first").css("font-weight", "bold");
-      node.children(":first").css("font-style", "italic");
-      node.children(":first").css("text-decoration", "underline");
-      break;
-    default:
-      node.children(":first").css("font-style", "normal");
-      node.children(":first").css("font-weight", "normal");
-      node.children(":first").css("text-decoration", "none");
+  case 1:
+    node.children(":first").css("font-weight", "bold");
+    break;
+  case 2:
+    node.children(":first").css("font-style", "italic");
+    break;
+  case 3:
+    node.children(":first").css("font-weight", "bold");
+    node.children(":first").css("font-style", "italic");
+    break;
+  case 4:
+    node.children(":first").css("text-decoration", "underline");
+    break;
+  case 5:
+    node.children(":first").css("font-weight", "bold");
+    node.children(":first").css("text-decoration", "underline");
+    break;
+  case 6:
+    node.children(":first").css("font-style", "italic");
+    node.children(":first").css("text-decoration", "underline");
+    break;
+  case 7:
+    node.children(":first").css("font-weight", "bold");
+    node.children(":first").css("font-style", "italic");
+    node.children(":first").css("text-decoration", "underline");
+    break;
+  default:
+    node.children(":first").css("font-style", "normal");
+    node.children(":first").css("font-weight", "normal");
+    node.children(":first").css("text-decoration", "none");
   }
 }
 
@@ -400,66 +393,58 @@ function renderData(individualDoc) {
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
-  noteDiv.addEventListener("keydown", function (event) {
+  noteDiv.addEventListener("keydown", function(event) {
     if (event.code === "Enter") {
       event.preventDefault();
     }
   });
 
   // Update note on edit
-  $("#" + note.id)
-    .children(":nth-child(3)")
-    .on("focusout", function () {
-      let signifier = parseInt($(this).parent().attr("signifier"));
-      let id = $(this).parent().attr("id");
-      let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, $(this).text(), 0, type, signifier, style);
-      note2.sync(selectedDate);
-    });
+  $("#" + note.id).children(":nth-child(3)").on("focusout", function() {
+    let signifier = parseInt($(this).parent().attr("signifier"));
+    let id = $(this).parent().attr("id");
+    let type = parseInt($(this).parent().attr("type"));
+    let style = parseInt($(this).parent().attr("styleNum"));
+    let note2 = new BujoElement(id, $(this).text(), 0, type, signifier, style);
+    note2.sync(selectedDate);
+  });
 
   // Update signifier
-  $("#" + note.id)
-    .children(":first")
-    .on("click", function () {
-      let signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
-      $(this).parent().attr("signifier", signifier);
-      setSignifier(signifier, $(this));
-      let id = $(this).parent().attr("id");
-      let text = $(this).parent().children().text();
-      let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, text, 0, type, signifier, style);
-      note2.sync(selectedDate);
-    });
+  $("#" + note.id).children(":first").on("click", function() {
+    let signifier = (parseInt($(this).parent().attr("signifier")) + 1) % 4;
+    $(this).parent().attr("signifier", signifier);
+    setSignifier(signifier, $(this));
+    let id = $(this).parent().attr("id");
+    let text = $(this).parent().children().text();
+    let type = parseInt($(this).parent().attr("type"));
+    let style = parseInt($(this).parent().attr("styleNum"));
+    let note2 = new BujoElement(id, text, 0, type, signifier, style);
+    note2.sync(selectedDate);
+  });
 
   // Update type
-  $("#" + note.id)
-    .children(":nth-child(2)")
-    .on("click", function () {
-      let type = (parseInt($(this).parent().attr("type")) + 1) % 5;
-      $(this).parent().attr("type", type);
-      setType(type, $(this));
-      let id = $(this).parent().attr("id");
-      let text = $(this).parent().children().text();
-      let signifier = parseInt($(this).parent().attr("signifier"));
-      let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, text, 0, type, signifier, style);
-      note2.sync(selectedDate);
-    });
+  $("#" + note.id).children(":nth-child(2)").on("click", function() {
+    let type = (parseInt($(this).parent().attr("type")) + 1) % 5;
+    $(this).parent().attr("type", type);
+    setType(type, $(this));
+    let id = $(this).parent().attr("id");
+    let text = $(this).parent().children().text();
+    let signifier = parseInt($(this).parent().attr("signifier"));
+    let style = parseInt($(this).parent().attr("styleNum"));
+    let note2 = new BujoElement(id, text, 0, type, signifier, style);
+    note2.sync(selectedDate);
+  });
 
   // Delete
-  $("#" + note.id)
-    .children(":nth-child(4)")
-    .on("click", function () {
-      let id = $(this).parent().attr("id");
-      let note2 = new BujoElement(id, "", 0, 0, 0, 0);
-      note2.delete(selectedDate);
-    });
+  $("#" + note.id).children(":nth-child(4)").on("click", function() {
+    let id = $(this).parent().attr("id");
+    let note2 = new BujoElement(id, "", 0, 0, 0, 0);
+    note2.delete(selectedDate);
+  });
 }
 
 // Adding a new note/task
-addItem.addEventListener("keydown", function (event) {
+addItem.addEventListener("keydown", function(event) {
   if (event.code === "Enter") {
     event.preventDefault();
     document.activeElement.blur();
@@ -501,34 +486,35 @@ for (var i = -3; i < 4; ++i) {
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("notes")
-        .collection(month2 + "-" + date2)
-        .onSnapshot((snapshot) => {
-          let changes = snapshot.docChanges();
-          changes.forEach((change) => {
-            if (change.type == "added") {
-              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') == null) {
-                renderData(change.doc);
+          .doc(user.uid)
+          .collection("data")
+          .doc("notes")
+          .collection(month2 + "-" + date2)
+          .onSnapshot((snapshot) => {
+            let changes = snapshot.docChanges();
+            changes.forEach((change) => {
+              if (change.type == "added") {
+                if (dailyLog.querySelector('[id="' + change.doc.id + '"]') ==
+                    null) {
+                  renderData(change.doc);
+                }
+              } else if (change.type == "removed") {
+                let note =
+                    dailyLog.querySelector('[id="' + change.doc.id + '"]');
+                if (dailyLog.querySelector('[id="' + change.doc.id + '"]') !=
+                    null) {
+                  dailyLog.removeChild(note);
+                }
               }
-            } else if (change.type == "removed") {
-              let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
-              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') != null) {
-                dailyLog.removeChild(note);
-              }
-            }
+            });
+            showDay(selectedDate);
           });
-          showDay(selectedDate);
-        });
     }
   });
 }
 
 // Save everything
-$(window).on("beforeunload", function () {
-  document.activeElement.blur();
-});
+$(window).on("beforeunload", function() { document.activeElement.blur(); });
 
 /**
  * Function to turn on overlay
@@ -614,18 +600,16 @@ url = "https://api.quotable.io/random";
 // Fetches information from quote generator website
 if (navigator.onLine) {
   fetch(url)
-    .then((response) => response.json())
-    .then((result) => {
-      // Updates html objects with content from the website
-      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-      document.querySelector("#authors").innerHTML = "-" + result.author;
-    })
-    .then(() => {
-      PageLoaded();
-    });
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        document.querySelector("#quote").innerHTML = '"' + result.content + '"';
+        document.querySelector("#authors").innerHTML = "-" + result.author;
+      })
+      .then(() => { PageLoaded(); });
 } else {
   document.querySelector("#quote").innerHTML =
-    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
   document.querySelector("#authors").innerHTML = "-Marilyn vos Savant";
   PageLoaded();
 }
