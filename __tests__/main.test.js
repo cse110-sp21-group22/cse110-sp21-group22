@@ -43,4 +43,11 @@ describe('Basic user flow for BuJo App', () => {
     expect(page.url()).toContain('#');
   }, 10000);
 
+  // test 5
+  it('Test5: Verify Rose And Thorn popup works', async () => {
+    await page.waitForTimeout(1000);
+    await page.click('button');
+    expect(page.url()).toContain('#popup1')
+  });
+
 });
