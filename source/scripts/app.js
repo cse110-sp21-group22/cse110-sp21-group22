@@ -36,14 +36,16 @@ function NavbarLoaded() {
  * @param {int} level specifies sub-elements
  * @param {int} type specifies type of task/note
  * @param {int} signifier sets signifier
+ * @param {int} style sets text style
  */
 class BujoElement {
-  constructor(id, text, level, type, signifier) {
+  constructor(id, text, level, type, signifier, style) {
     this.id = id;
     this.text = text;
     this.level = level;
     this.type = type;
     this.signifier = signifier;
+    this.style = style;
   }
 
   /**
@@ -52,12 +54,14 @@ class BujoElement {
    * @param {int} level specifies what sub-level
    * @param {int} type specifies what type of task/note
    * @param {int} signifier specifies signifier
+   * @param {int} style sets text style
    */
-  update(text, level, type, signifier) {
+  update(text, level, type, signifier, style) {
     this.text = text;
     this.level = level;
     this.type = type;
     this.signifier = signifier;
+    this.style = style;
   }
 
   /**
@@ -111,6 +115,7 @@ var bujoConverter = {
       level: bujo.level,
       type: bujo.type,
       signifier: bujo.signifier,
+      style: bujo.style
     };
   },
   fromFirestore: function (snapshot, options) {
@@ -120,7 +125,8 @@ var bujoConverter = {
       data.text,
       data.level,
       data.type,
-      data.signifier
+      data.signifier,
+      data.style
     );
   },
 };

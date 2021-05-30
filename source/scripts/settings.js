@@ -55,6 +55,21 @@ function save() {
   });
 }
 
+/**
+ * Function to save color preference
+ */
+function save() {
+  auth.onAuthStateChanged((user) => {
+    hStyle = document.getElementById("navbar").className;
+    hColor = document.getElementById("navbar").style.backgroundColor;
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .set({ hStyle: hStyle, hColor: hColor });
+  });
+}
+
 $(window).on("beforeunload", function () {
   save();
 });
