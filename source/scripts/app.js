@@ -34,14 +34,9 @@ function NavbarLoaded() {
  * @returns day in year
  */
 function daysIntoYear(date) {
-  return (
-    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-      Date.UTC(date.getFullYear(), 0, 0)) /
-    24 /
-    60 /
-    60 /
-    1000
-  );
+  return ((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+           Date.UTC(date.getFullYear(), 0, 0)) /
+          24 / 60 / 60 / 1000);
 }
 
 /**
@@ -72,16 +67,14 @@ class BujoElement {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
-          .doc("" + this.id)
-          .withConverter(bujoConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection(month + "-" + (day + selectedDate))
+            .doc("" + this.id)
+            .withConverter(bujoConverter)
+            .set(this)
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -93,15 +86,13 @@ class BujoElement {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection(month + "-" + (day + selectedDate))
+            .doc("" + this.id)
+            .delete()
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -109,27 +100,21 @@ class BujoElement {
 
 // Firestore data converter
 var bujoConverter = {
-  toFirestore: function (bujo) {
+  toFirestore : function(bujo) {
     let dateYear = daysIntoYear(date) + selectedDate;
     return {
-      id: bujo.id,
-      text: bujo.text,
-      level: bujo.level,
-      type: bujo.type,
-      signifier: bujo.signifier,
-      style: bujo.style,
-      date: dateYear,
+      id : bujo.id,
+      text : bujo.text,
+      level : bujo.level,
+      type : bujo.type,
+      signifier : bujo.signifier,
+      style : bujo.style,
+      date : dateYear,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
-    return new BujoElement(
-      data.id,
-      data.text,
-      data.level,
-      data.type,
-      data.signifier,
-      data.style
-    );
+    return new BujoElement(data.id, data.text, data.level, data.type,
+                           data.signifier, data.style);
   },
 };
