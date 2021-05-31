@@ -9,7 +9,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luon
 
 - [Anisha] Mood tracking: fix the local issue and working on the visual aspect
 - [Kyle] Sticky note: just update, fixing some bugs
-- [Ajay] Daily log: We have most of the features going on, need to add some more CSS. Still need to figure out local 
+- [Ajay] Daily log: We have most of the features going on, need to add some more CSS. Still need to figure out local
 - [Robert] Add more testing & more features on daily log
   
 ## To do this weekend
