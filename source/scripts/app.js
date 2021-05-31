@@ -33,8 +33,15 @@ function NavbarLoaded() {
  * @param {Date} date date to convert to day in year
  * @returns day in year
  */
- function daysIntoYear(date){
-  return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
+function daysIntoYear(date) {
+  return (
+    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+      Date.UTC(date.getFullYear(), 0, 0)) /
+    24 /
+    60 /
+    60 /
+    1000
+  );
 }
 
 /**
@@ -127,7 +134,7 @@ var bujoConverter = {
       type: bujo.type,
       signifier: bujo.signifier,
       style: bujo.style,
-      date: dateYear
+      date: dateYear,
     };
   },
   fromFirestore: function (snapshot, options) {

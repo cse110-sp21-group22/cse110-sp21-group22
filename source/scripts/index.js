@@ -133,8 +133,8 @@ document.querySelector("#next").addEventListener("click", () => {
 });
 
 window.currFocus = document;
-// Catch focusin 
-$(window).on( 'focusin', function () {
+// Catch focusin
+$(window).on("focusin", function () {
   window.prevFocus = window.currFocus;
   previousSelected = window.currFocus;
   window.currFocus = document.activeElement;
@@ -303,7 +303,7 @@ function setType(type, node) {
  * @param {int} style specifies which type
  * @param {node} node node to set type for
  */
- function setStyle(style, node) {
+function setStyle(style, node) {
   node.children(":first").css("font-style", "normal");
   node.children(":first").css("font-weight", "normal");
   node.children(":first").css("text-decoration", "none");
@@ -414,7 +414,14 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let type = parseInt($(this).parent().attr("type"));
       let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, $(this).text(), 0, type, signifier, style);
+      let note2 = new BujoElement(
+        id,
+        $(this).text(),
+        0,
+        type,
+        signifier,
+        style
+      );
       note2.sync(selectedDate);
     });
 
@@ -509,12 +516,16 @@ for (var i = -3; i < 4; ++i) {
           let changes = snapshot.docChanges();
           changes.forEach((change) => {
             if (change.type == "added") {
-              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') == null) {
+              if (
+                dailyLog.querySelector('[id="' + change.doc.id + '"]') == null
+              ) {
                 renderData(change.doc);
               }
             } else if (change.type == "removed") {
               let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
-              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') != null) {
+              if (
+                dailyLog.querySelector('[id="' + change.doc.id + '"]') != null
+              ) {
                 dailyLog.removeChild(note);
               }
             }
@@ -551,8 +562,8 @@ function overlayOff() {
 function showDay(selectedDate) {
   let today;
 
-  $(".note").each(function() {
-    if ($(this).attr("date") == (daysIntoYear(date) + selectedDate)) {
+  $(".note").each(function () {
+    if ($(this).attr("date") == daysIntoYear(date) + selectedDate) {
       $(this).removeClass("hidden");
     } else {
       $(this).addClass("hidden");
