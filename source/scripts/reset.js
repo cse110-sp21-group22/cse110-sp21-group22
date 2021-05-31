@@ -5,7 +5,11 @@ loginForm.addEventListener("submit", (e) => {
   auth
     .sendPasswordResetEmail(emailAddress)
     .then(function () {
-      location = "./login.html";
+      const loginError = document.getElementById("reset-error");
+      loginError.innerText = "A password reset link has been sent to your email";
+      setTimeout(function () {
+        location = "./login.html";
+      }, 3000);
     })
     .catch(function (err) {
       const loginError = document.getElementById("reset-error");
