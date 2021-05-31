@@ -1,4 +1,4 @@
-const router = new Navigo("/", { hash: true });
+const router = new Navigo("/", {hash : true});
 let home = "";
 let calendar = "";
 let moodtracker = "";
@@ -34,7 +34,7 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 let currDate = "";
 let PROGRESS_BAR = "";
 let WEEK = "";
@@ -79,36 +79,32 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = home;
     dynamicallyLoadScript(
-      "../instrumented/scripts/index.js",
-      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
-    );
+        "../instrumented/scripts/index.js",
+        dynamicallyLoadScript("../instrumented/scripts/color.js",
+                              updateNavbar("home")));
   });
   router.on("/calendar", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = calendar;
-    dynamicallyLoadScript(
-      "../instrumented/scripts/calendar.js",
-      updateNavbar("nav-calendar")
-    );
+    dynamicallyLoadScript("../instrumented/scripts/calendar.js",
+                          updateNavbar("nav-calendar"));
   });
   router.on("/mood", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-      "../instrumented/scripts/moodFunctionality.js",
-      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("nav-mood"))
-    );
+        "../instrumented/scripts/moodFunctionality.js",
+        dynamicallyLoadScript("../instrumented/scripts/color.js",
+                              updateNavbar("nav-mood")));
   });
   router.on("/settings", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = settings;
-    dynamicallyLoadScript(
-      "../instrumented/scripts/settings.js",
-      updateNavbar("nav-settings")
-    );
+    dynamicallyLoadScript("../instrumented/scripts/settings.js",
+                          updateNavbar("nav-settings"));
   });
 };
 
@@ -167,25 +163,25 @@ function resize() {
 // Update navbar color from firebase
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("navbar")
-    .onSnapshot((doc) => {
-      try {
-        hColor = doc.data().hColor;
-        hStyle = doc.data().hStyle;
-        document.getElementById("navbar").className = hStyle;
-        document.getElementById("navbar").style.backgroundColor = hColor;
-      } catch (err) {
-        console.log(err);
-      }
-      NavbarLoaded();
-    });
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .onSnapshot((doc) => {
+        try {
+          hColor = doc.data().hColor;
+          hStyle = doc.data().hStyle;
+          document.getElementById("navbar").className = hStyle;
+          document.getElementById("navbar").style.backgroundColor = hColor;
+        } catch (err) {
+          console.log(err);
+        }
+        NavbarLoaded();
+      });
 });
 
 // register service worker
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
+  window.addEventListener("load", function() {
     navigator.serviceWorker.register("../instrumented/scripts/sw.js");
   });
 }
@@ -193,14 +189,12 @@ if ("serviceWorker" in navigator) {
 /**
  * The Function is invoked when the window.history's state changes
  */
-window.onpopstate = () => {
-  router.resolve();
-};
+window.onpopstate = () => { router.resolve(); };
 
 main().then(() => {
   rootDiv.innerHTML = home;
   dynamicallyLoadScript(
-    "../instrumented/scripts/index.js",
-    dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
-  );
+      "../instrumented/scripts/index.js",
+      dynamicallyLoadScript("../instrumented/scripts/color.js",
+                            updateNavbar("home")));
 });
