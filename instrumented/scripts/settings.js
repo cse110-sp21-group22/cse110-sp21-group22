@@ -1,124 +1,122 @@
 function cov_1oft68t7fl() {
   var path =
-      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/settings.js";
+    "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/settings.js";
   var hash = "20ae3c0ba44b60b6564c964df0c4ddf8273769ae";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path :
-        "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/settings.js",
-    statementMap : {
-      "0" : {start : {line : 1, column : 0}, end : {line : 10, column : 3}},
-      "1" : {start : {line : 2, column : 2}, end : {line : 8, column : 3}},
-      "2" : {start : {line : 3, column : 4}, end : {line : 4, column : 55}},
-      "3" : {start : {line : 6, column : 4}, end : {line : 7, column : 54}},
-      "4" : {start : {line : 9, column : 2}, end : {line : 9, column : 64}},
-      "5" : {start : {line : 22, column : 2}, end : {line : 22, column : 77}},
-      "6" : {start : {line : 24, column : 2}, end : {line : 24, column : 18}},
-      "7" : {start : {line : 25, column : 2}, end : {line : 25, column : 25}},
-      "8" : {start : {line : 26, column : 2}, end : {line : 26, column : 18}},
-      "9" : {start : {line : 29, column : 2}, end : {line : 29, column : 71}},
-      "10" : {start : {line : 32, column : 2}, end : {line : 36, column : 3}},
-      "11" : {start : {line : 33, column : 4}, end : {line : 33, column : 19}},
-      "12" : {start : {line : 35, column : 4}, end : {line : 35, column : 18}},
-      "13" : {start : {line : 43, column : 2}, end : {line : 43, column : 17}},
-      "14" : {start : {line : 47, column : 2}, end : {line : 55, column : 5}},
-      "15" : {start : {line : 48, column : 4}, end : {line : 48, column : 57}},
-      "16" : {start : {line : 49, column : 4}, end : {line : 49, column : 69}},
-      "17" : {start : {line : 50, column : 4}, end : {line : 54, column : 47}},
-      "18" : {start : {line : 58, column : 0}, end : {line : 58, column : 13}}
+    path:
+      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/settings.js",
+    statementMap: {
+      0: { start: { line: 1, column: 0 }, end: { line: 10, column: 3 } },
+      1: { start: { line: 2, column: 2 }, end: { line: 8, column: 3 } },
+      2: { start: { line: 3, column: 4 }, end: { line: 4, column: 55 } },
+      3: { start: { line: 6, column: 4 }, end: { line: 7, column: 54 } },
+      4: { start: { line: 9, column: 2 }, end: { line: 9, column: 64 } },
+      5: { start: { line: 22, column: 2 }, end: { line: 22, column: 77 } },
+      6: { start: { line: 24, column: 2 }, end: { line: 24, column: 18 } },
+      7: { start: { line: 25, column: 2 }, end: { line: 25, column: 25 } },
+      8: { start: { line: 26, column: 2 }, end: { line: 26, column: 18 } },
+      9: { start: { line: 29, column: 2 }, end: { line: 29, column: 71 } },
+      10: { start: { line: 32, column: 2 }, end: { line: 36, column: 3 } },
+      11: { start: { line: 33, column: 4 }, end: { line: 33, column: 19 } },
+      12: { start: { line: 35, column: 4 }, end: { line: 35, column: 18 } },
+      13: { start: { line: 43, column: 2 }, end: { line: 43, column: 17 } },
+      14: { start: { line: 47, column: 2 }, end: { line: 55, column: 5 } },
+      15: { start: { line: 48, column: 4 }, end: { line: 48, column: 57 } },
+      16: { start: { line: 49, column: 4 }, end: { line: 49, column: 69 } },
+      17: { start: { line: 50, column: 4 }, end: { line: 54, column: 47 } },
+      18: { start: { line: 58, column: 0 }, end: { line: 58, column: 13 } },
     },
-    fnMap : {
-      "0" : {
-        name : "(anonymous_0)",
-        decl : {start : {line : 1, column : 53}, end : {line : 1, column : 54}},
-        loc : {start : {line : 1, column : 78}, end : {line : 10, column : 1}},
-        line : 1
+    fnMap: {
+      0: {
+        name: "(anonymous_0)",
+        decl: { start: { line: 1, column: 53 }, end: { line: 1, column: 54 } },
+        loc: { start: { line: 1, column: 78 }, end: { line: 10, column: 1 } },
+        line: 1,
       },
-      "1" : {
-        name : "lightOrDark",
-        decl :
-            {start : {line : 17, column : 9}, end : {line : 17, column : 20}},
-        loc : {start : {line : 17, column : 28}, end : {line : 37, column : 1}},
-        line : 17
+      1: {
+        name: "lightOrDark",
+        decl: { start: { line: 17, column: 9 }, end: { line: 17, column: 20 } },
+        loc: { start: { line: 17, column: 28 }, end: { line: 37, column: 1 } },
+        line: 17,
       },
-      "2" : {
-        name : "logout",
-        decl :
-            {start : {line : 42, column : 9}, end : {line : 42, column : 15}},
-        loc : {start : {line : 42, column : 18}, end : {line : 44, column : 1}},
-        line : 42
+      2: {
+        name: "logout",
+        decl: { start: { line: 42, column: 9 }, end: { line: 42, column: 15 } },
+        loc: { start: { line: 42, column: 18 }, end: { line: 44, column: 1 } },
+        line: 42,
       },
-      "3" : {
-        name : "save",
-        decl :
-            {start : {line : 46, column : 9}, end : {line : 46, column : 13}},
-        loc : {start : {line : 46, column : 16}, end : {line : 56, column : 1}},
-        line : 46
+      3: {
+        name: "save",
+        decl: { start: { line: 46, column: 9 }, end: { line: 46, column: 13 } },
+        loc: { start: { line: 46, column: 16 }, end: { line: 56, column: 1 } },
+        line: 46,
       },
-      "4" : {
-        name : "(anonymous_4)",
-        decl :
-            {start : {line : 47, column : 26}, end : {line : 47, column : 27}},
-        loc : {start : {line : 47, column : 36}, end : {line : 55, column : 3}},
-        line : 47
-      }
+      4: {
+        name: "(anonymous_4)",
+        decl: {
+          start: { line: 47, column: 26 },
+          end: { line: 47, column: 27 },
+        },
+        loc: { start: { line: 47, column: 36 }, end: { line: 55, column: 3 } },
+        line: 47,
+      },
     },
-    branchMap : {
-      "0" : {
-        loc : {start : {line : 2, column : 2}, end : {line : 8, column : 3}},
-        type : "if",
-        locations : [
-          {start : {line : 2, column : 2}, end : {line : 8, column : 3}},
-          {start : {line : 2, column : 2}, end : {line : 8, column : 3}}
+    branchMap: {
+      0: {
+        loc: { start: { line: 2, column: 2 }, end: { line: 8, column: 3 } },
+        type: "if",
+        locations: [
+          { start: { line: 2, column: 2 }, end: { line: 8, column: 3 } },
+          { start: { line: 2, column: 2 }, end: { line: 8, column: 3 } },
         ],
-        line : 2
+        line: 2,
       },
-      "1" : {
-        loc :
-            {start : {line : 22, column : 42}, end : {line : 22, column : 66}},
-        type : "binary-expr",
-        locations : [
-          {start : {line : 22, column : 42}, end : {line : 22, column : 58}},
-          {start : {line : 22, column : 62}, end : {line : 22, column : 66}}
+      1: {
+        loc: { start: { line: 22, column: 42 }, end: { line: 22, column: 66 } },
+        type: "binary-expr",
+        locations: [
+          { start: { line: 22, column: 42 }, end: { line: 22, column: 58 } },
+          { start: { line: 22, column: 62 }, end: { line: 22, column: 66 } },
         ],
-        line : 22
+        line: 22,
       },
-      "2" : {
-        loc : {start : {line : 32, column : 2}, end : {line : 36, column : 3}},
-        type : "if",
-        locations : [
-          {start : {line : 32, column : 2}, end : {line : 36, column : 3}},
-          {start : {line : 32, column : 2}, end : {line : 36, column : 3}}
+      2: {
+        loc: { start: { line: 32, column: 2 }, end: { line: 36, column: 3 } },
+        type: "if",
+        locations: [
+          { start: { line: 32, column: 2 }, end: { line: 36, column: 3 } },
+          { start: { line: 32, column: 2 }, end: { line: 36, column: 3 } },
         ],
-        line : 32
-      }
+        line: 32,
+      },
     },
-    s : {
-      "0" : 0,
-      "1" : 0,
-      "2" : 0,
-      "3" : 0,
-      "4" : 0,
-      "5" : 0,
-      "6" : 0,
-      "7" : 0,
-      "8" : 0,
-      "9" : 0,
-      "10" : 0,
-      "11" : 0,
-      "12" : 0,
-      "13" : 0,
-      "14" : 0,
-      "15" : 0,
-      "16" : 0,
-      "17" : 0,
-      "18" : 0
+    s: {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0,
     },
-    f : {"0" : 0, "1" : 0, "2" : 0, "3" : 0, "4" : 0},
-    b : {"0" : [ 0, 0 ], "1" : [ 0, 0 ], "2" : [ 0, 0 ]},
-    _coverageSchema : "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash : "20ae3c0ba44b60b6564c964df0c4ddf8273769ae"
+    f: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 },
+    b: { 0: [0, 0], 1: [0, 0], 2: [0, 0] },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "20ae3c0ba44b60b6564c964df0c4ddf8273769ae",
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -129,14 +127,16 @@ function cov_1oft68t7fl() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_1oft68t7fl = function() { return actualCoverage; };
+    cov_1oft68t7fl = function () {
+      return actualCoverage;
+    };
   }
   return actualCoverage;
 }
 
 cov_1oft68t7fl();
 cov_1oft68t7fl().s[0]++;
-ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
+ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
   cov_1oft68t7fl().f[0]++;
   cov_1oft68t7fl().s[1]++;
 
@@ -144,12 +144,12 @@ ColorPicker(document.getElementById("color-picker"), function(hex, hsv, rgb) {
     cov_1oft68t7fl().b[0][0]++;
     cov_1oft68t7fl().s[2]++;
     document.getElementById("navbar").className =
-        "navbar navbar-expand-md navbar-light fixed-top";
+      "navbar navbar-expand-md navbar-light fixed-top";
   } else {
     cov_1oft68t7fl().b[0][1]++;
     cov_1oft68t7fl().s[3]++;
     document.getElementById("navbar").className =
-        "navbar navbar-expand-md navbar-dark fixed-top";
+      "navbar navbar-expand-md navbar-dark fixed-top";
   }
 
   cov_1oft68t7fl().s[4]++;
@@ -167,22 +167,27 @@ function lightOrDark(color) {
   var r, g, b, hsp; // Convert hex to RGB: http://gist.github.com/983661
 
   cov_1oft68t7fl().s[5]++;
-  color = +("0x" + color.slice(1).replace(
-                       (cov_1oft68t7fl().b[1][0]++, color.length < 5) &&
-                           (cov_1oft68t7fl().b[1][1]++, /./g),
-                       "$&$&"));
+  color = +(
+    "0x" +
+    color
+      .slice(1)
+      .replace(
+        (cov_1oft68t7fl().b[1][0]++, color.length < 5) &&
+          (cov_1oft68t7fl().b[1][1]++, /./g),
+        "$&$&"
+      )
+  );
   cov_1oft68t7fl().s[6]++;
   r = color >> 16;
   cov_1oft68t7fl().s[7]++;
-  g = color >> 8 & 255;
+  g = (color >> 8) & 255;
   cov_1oft68t7fl().s[8]++;
   b = color & 255; // HSP (Highly Sensitive Poo) equation from
-                   // http://alienryderflex.com/hsp.html
+  // http://alienryderflex.com/hsp.html
 
   cov_1oft68t7fl().s[9]++;
-  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) +
-                  0.114 * (b * b)); // Using the HSP value, determine whether
-                                    // the color is light or dark
+  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b)); // Using the HSP value, determine whether
+  // the color is light or dark
 
   cov_1oft68t7fl().s[10]++;
 
@@ -209,7 +214,7 @@ function logout() {
 function save() {
   cov_1oft68t7fl().f[3]++;
   cov_1oft68t7fl().s[14]++;
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user) => {
     cov_1oft68t7fl().f[4]++;
     cov_1oft68t7fl().s[15]++;
     hStyle = document.getElementById("navbar").className;
@@ -217,10 +222,10 @@ function save() {
     hColor = document.getElementById("navbar").style.backgroundColor;
     cov_1oft68t7fl().s[17]++;
     fs.collection("users")
-        .doc(user.uid)
-        .collection("settings")
-        .doc("navbar")
-        .set({hStyle : hStyle, hColor : hColor});
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .set({ hStyle: hStyle, hColor: hColor });
   });
 }
 
