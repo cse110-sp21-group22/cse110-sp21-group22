@@ -375,7 +375,7 @@ function renderData(individualDoc) {
   let noteDiv = document.createElement("div");
   noteDiv.className = "text";
   let noteDivP = document.createElement("p");
-  noteDivP.setAttribute("contenteditable", "true");
+  noteDivP.setAttribute("contenteditable", "false");
   parentDiv.setAttribute("styleNum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
