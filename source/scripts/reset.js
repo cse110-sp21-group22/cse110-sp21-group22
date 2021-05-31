@@ -6,7 +6,8 @@ loginForm.addEventListener("submit", (e) => {
     .sendPasswordResetEmail(emailAddress)
     .then(function () {
       const loginError = document.getElementById("reset-error");
-      loginError.innerText = "A password reset link has been sent to your email";
+      loginError.innerText =
+        "A password reset link has been sent to your email";
       setTimeout(function () {
         location = "./login.html";
       }, 3000);

@@ -275,10 +275,25 @@ function setSignifier(signifier, node) {
  */
 function setType(type, node) {
   node.children(":first").removeClass();
-  if (node.parent().children(":nth-child(3)").children(":first").css("text-decoration").includes("underline")) {
-    node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "underline");
+  if (
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration")
+      .includes("underline")
+  ) {
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration", "underline");
   } else {
-    node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "none");
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration", "none");
   }
   switch (type) {
     case 1:
@@ -288,10 +303,25 @@ function setType(type, node) {
     case 2:
       node.children(":first").addClass("far");
       node.children(":first").addClass("fa-check-square");
-      if (node.parent().children(":nth-child(3)").children(":first").css("text-decoration").includes("none")) {
-        node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "line-through");
+      if (
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration")
+          .includes("none")
+      ) {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through");
       } else {
-        node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "line-through underline");
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     case 3:
@@ -301,10 +331,25 @@ function setType(type, node) {
     case 4:
       node.children(":first").addClass("far");
       node.children(":first").addClass("fa-check-circle");
-      if (node.parent().children(":nth-child(3)").children(":first").css("text-decoration").includes("none")) {
-        node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "line-through");
+      if (
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration")
+          .includes("none")
+      ) {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through");
       } else {
-        node.parent().children(":nth-child(3)").children(":first").css("text-decoration", "line-through underline");
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     default:
@@ -341,7 +386,9 @@ function setStyle(style, node) {
       if (node.children(":first").css("text-decoration").includes("none")) {
         node.children(":first").css("text-decoration", "underline");
       } else {
-        node.children(":first").css("text-decoration", "line-through underline");
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     case 5:
@@ -349,7 +396,9 @@ function setStyle(style, node) {
       if (node.children(":first").css("text-decoration").includes("none")) {
         node.children(":first").css("text-decoration", "underline");
       } else {
-        node.children(":first").css("text-decoration", "line-through underline");
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     case 6:
@@ -357,7 +406,9 @@ function setStyle(style, node) {
       if (node.children(":first").css("text-decoration").includes("none")) {
         node.children(":first").css("text-decoration", "underline");
       } else {
-        node.children(":first").css("text-decoration", "line-through underline");
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     case 7:
@@ -366,7 +417,9 @@ function setStyle(style, node) {
       if (node.children(":first").css("text-decoration").includes("none")) {
         node.children(":first").css("text-decoration", "underline");
       } else {
-        node.children(":first").css("text-decoration", "line-through underline");
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
       }
       break;
     default:
@@ -382,7 +435,7 @@ function setStyle(style, node) {
  * @param {node} node node to set level for
  */
 function setLevel(level, node) {
-  let levelString = (level > 0) ? (level * 40) + "px" : "0";
+  let levelString = level > 0 ? level * 40 + "px" : "0";
   node.css("padding-left", levelString);
   node.attr("level", level);
 }
@@ -401,7 +454,6 @@ function renderData(individualDoc) {
   parentDiv.setAttribute("id", note.id);
   parentDiv.setAttribute("date", individualDoc.data().date);
   parentDiv.setAttribute("level", note.level);
-
 
   // bullet-sub
   let bulletSubDiv = document.createElement("div");
@@ -461,22 +513,28 @@ function renderData(individualDoc) {
   });
 
   // Listen for tab
-  $("#" + note.id).children(":nth-child(3)").on('keydown', function(e) { 
-    var keyCode = e.keyCode || e.which;
-  
-    if (keyCode == 9) { 
-      e.preventDefault(); 
-      let id = $(this).parent().attr("id");
-      let text = $(this).parent().children(":nth-child(3)").children(":first").text();
-      let signifier = parseInt($(this).parent().attr("signifier"));
-      let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
-      let level = parseInt($(this).parent().attr("level")) + 1;
-      setLevel(level, $(this).parent());
-      let note2 = new BujoElement(id, text, level, type, signifier, style);
-      note2.sync(selectedDate);
-    } 
-  });
+  $("#" + note.id)
+    .children(":nth-child(3)")
+    .on("keydown", function (e) {
+      var keyCode = e.keyCode || e.which;
+
+      if (keyCode == 9) {
+        e.preventDefault();
+        let id = $(this).parent().attr("id");
+        let text = $(this)
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .text();
+        let signifier = parseInt($(this).parent().attr("signifier"));
+        let type = parseInt($(this).parent().attr("type"));
+        let style = parseInt($(this).parent().attr("styleNum"));
+        let level = parseInt($(this).parent().attr("level")) + 1;
+        setLevel(level, $(this).parent());
+        let note2 = new BujoElement(id, text, level, type, signifier, style);
+        note2.sync(selectedDate);
+      }
+    });
 
   // Update note on edit
   $("#" + note.id)
