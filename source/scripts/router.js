@@ -46,6 +46,7 @@ let add = "";
 let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
+let editStatus = false;
 
 /**
  * Function to load subpages

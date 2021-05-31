@@ -159,8 +159,8 @@ document.querySelector("#today").addEventListener("click", () => {
 // When user toggles between View/Edit
 document.querySelector("#toggle").addEventListener("click", () => {
   let toggle = document.querySelector("#toggle");
-
   let inputs = document.querySelectorAll(".text p");
+  editStatus = !editStatus;
 
   if (toggle.textContent == "Edit") {
     for (let note of inputs) {
@@ -233,7 +233,7 @@ $(".text").on("keydown", function (e) {
 
 // Clear "Add new note"
 $("#add-item").on("click", function () {
-  $(this).children().empty();
+  $(this).children().text("");
 });
 
 // Reset message if no new note
@@ -375,7 +375,11 @@ function renderData(individualDoc) {
   let noteDiv = document.createElement("div");
   noteDiv.className = "text";
   let noteDivP = document.createElement("p");
-  noteDivP.setAttribute("contenteditable", "false");
+  if (editStatus) {
+    noteDivP.setAttribute("contenteditable", "true");
+  } else {
+    noteDivP.setAttribute("contenteditable", "false");
+  }
   parentDiv.setAttribute("styleNum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
