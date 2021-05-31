@@ -4,6 +4,11 @@ neutral = document.getElementById("neutral");
 sad = document.getElementById("sad");
 verySad = document.getElementById("very-sad");
 yearGrid = document.getElementById("year-grid");
+veryHappy = document.getElementById("very-happy");
+happy = document.getElementById("happy");
+neutral = document.getElementById("neutral");
+sad = document.getElementById("sad");
+verySad = document.getElementById("very-sad");
 
 /* clear grid when new year */
 if (month == 1 && day == 1) {

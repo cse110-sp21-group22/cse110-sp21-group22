@@ -27,3 +27,125 @@ function PageUnloaded() {
 function NavbarLoaded() {
   document.getElementById("navbar").classList.remove("d-none");
 }
+
+/**
+ * Function to convert date to day in year
+ * @param {Date} date date to convert to day in year
+ * @returns day in year
+ */
+function daysIntoYear(date) {
+  return (
+    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+      Date.UTC(date.getFullYear(), 0, 0)) /
+    24 /
+    60 /
+    60 /
+    1000
+  );
+}
+
+/**
+ * BuJo Task/notes class
+ * @constructor
+ * @param {string} id id of task/note
+ * @param {string} text task/note contents
+ * @param {int} level specifies sub-elements
+ * @param {int} type specifies type of task/note
+ * @param {int} signifier sets signifier
+ * @param {int} style sets text style
+ */
+class BujoElement {
+  constructor(id, text, level, type, signifier, style) {
+    this.id = id;
+    this.text = text;
+    this.level = level;
+    this.type = type;
+    this.signifier = signifier;
+    this.style = style;
+  }
+
+  /**
+   * Update a task/note
+   * @param {string} text task/note contents
+   * @param {int} level specifies what sub-level
+   * @param {int} type specifies what type of task/note
+   * @param {int} signifier specifies signifier
+   * @param {int} style sets text style
+   */
+  update(text, level, type, signifier, style) {
+    this.text = text;
+    this.level = level;
+    this.type = type;
+    this.signifier = signifier;
+    this.style = style;
+  }
+
+  /**
+   * Sync task/note to database
+   * @param {int} selectedDate selected date in notebook
+   */
+  sync(selectedDate) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("notes")
+          .collection(month + "-" + (day + selectedDate))
+          .doc("" + this.id)
+          .withConverter(bujoConverter)
+          .set(this)
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
+
+  /**
+   * Delete task/note
+   */
+  delete(selectedDate) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("notes")
+          .collection(month + "-" + (day + selectedDate))
+          .doc("" + this.id)
+          .delete()
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
+}
+
+// Firestore data converter
+var bujoConverter = {
+  toFirestore: function (bujo) {
+    let dateYear = daysIntoYear(date) + selectedDate;
+    return {
+      id: bujo.id,
+      text: bujo.text,
+      level: bujo.level,
+      type: bujo.type,
+      signifier: bujo.signifier,
+      style: bujo.style,
+      date: dateYear,
+    };
+  },
+  fromFirestore: function (snapshot, options) {
+    const data = snapshot.data(options);
+    return new BujoElement(
+      data.id,
+      data.text,
+      data.level,
+      data.type,
+      data.signifier,
+      data.style
+    );
+  },
+};

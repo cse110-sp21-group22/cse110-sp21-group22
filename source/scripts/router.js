@@ -34,13 +34,18 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
 let WEEK = "";
 const today = new Date();
 const one_day_per_second = 1000 * 60 * 60 * 24;
 const one_week_per_second = one_day_per_second * 7;
+let dailyLog = "";
+let add = "";
+let addItem = "";
+let previousSelected = "";
+let selectedDate = 0;
 
 /**
  * Function to load subpages
