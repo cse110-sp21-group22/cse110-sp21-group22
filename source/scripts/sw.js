@@ -1,11 +1,11 @@
 var CACHE_NAME = "bujo-cache";
 var urlsToPrefetch = [
-  "../scripts/app.js",
-  "../scripts/calendar.js",
-  "../scripts/color.js",
-  "../scripts/index.js",
-  "../scripts/moodFunctionality.js",
-  "../scripts/settings.js",
+  "../../instrumented/scripts/app.js",
+  "../../instrumented/scripts/calendar.js",
+  "../../instrumented/scripts/color.js",
+  "../../instrumented/scripts/index.js",
+  "../../instrumented/scripts/moodFunctionality.js",
+  "../../instrumented/scripts/settings.js",
   "../404.html",
   "../pages/calendar.html",
   "../index.html",
@@ -37,7 +37,7 @@ self.addEventListener("install", function (event) {
   );
 });
 
-// fallback to cache on fetch
+// fallback to network on fetch
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {

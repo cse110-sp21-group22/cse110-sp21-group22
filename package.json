@@ -1,0 +1,39 @@
+{
+  "name": "cse110-sp21-group22",
+  "version": "1.0.0",
+  "description": "<img src=\"https://raw.githubusercontent.com/cse110-sp21-group22/cse110-sp21-group22/main/admin/branding/cse110logo.svg\">",
+  "main": "babel.config.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-sp21-group22/cse110-sp21-group22.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse110-sp21-group22/cse110-sp21-group22/issues"
+  },
+  "homepage": "https://github.com/cse110-sp21-group22/cse110-sp21-group22#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@cypress/code-coverage": "^3.9.5",
+    "babel-jest": "^26.6.3",
+    "cypress": "^7.4.0",
+    "jest": "^26.6.3",
+    "jest-puppeteer": "^5.0.3",
+    "nyc": "^15.1.0",
+    "puppeteer": "^9.1.1"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
+  },
+  "nyc": {
+    "all": true,
+    "include": "source/scripts/*.js"
+  }
+}

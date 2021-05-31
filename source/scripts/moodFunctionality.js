@@ -1,3 +1,8 @@
+veryHappy = document.getElementById("very-happy");
+happy = document.getElementById("happy");
+neutral = document.getElementById("neutral");
+sad = document.getElementById("sad");
+verySad = document.getElementById("very-sad");
 yearGrid = document.getElementById("year-grid");
 veryHappy = document.getElementById("very-happy");
 happy = document.getElementById("happy");
@@ -33,7 +38,7 @@ function populateCalendar() {
  */
 function fillDays() {
   var i;
-  for (i = 1; i < 32; i++) {
+  for (i = 1; i < 32; ++i) {
     var dayLabel = document.createElement("P");
     dayLabel.innerText = i;
     dayLabel.classList.add("day-label");
@@ -53,7 +58,7 @@ function fillMonths() {
       .get()
       .then((doc) => {
         var i;
-        for (i = 1; i < 13; i++) {
+        for (i = 1; i < 13; ++i) {
           /* month label */
           var monthLabel = document.createElement("P");
           monthLabel.innerText = monthName[i];

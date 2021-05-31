@@ -79,8 +79,8 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = home;
     dynamicallyLoadScript(
-      "./scripts/index.js",
-      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+      "../instrumented/scripts/index.js",
+      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
     );
   });
   router.on("/calendar", () => {
@@ -88,7 +88,7 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = calendar;
     dynamicallyLoadScript(
-      "./scripts/calendar.js",
+      "../instrumented/scripts/calendar.js",
       updateNavbar("nav-calendar")
     );
   });
@@ -97,8 +97,8 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-      "./scripts/moodFunctionality.js",
-      dynamicallyLoadScript("./scripts/color.js", updateNavbar("nav-mood"))
+      "../instrumented/scripts/moodFunctionality.js",
+      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("nav-mood"))
     );
   });
   router.on("/settings", () => {
@@ -106,7 +106,7 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = settings;
     dynamicallyLoadScript(
-      "./scripts/settings.js",
+      "../instrumented/scripts/settings.js",
       updateNavbar("nav-settings")
     );
   });
@@ -186,7 +186,7 @@ auth.onAuthStateChanged((user) => {
 // register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./scripts/sw.js");
+    navigator.serviceWorker.register("../instrumented/scripts/sw.js");
   });
 }
 
@@ -200,7 +200,7 @@ window.onpopstate = () => {
 main().then(() => {
   rootDiv.innerHTML = home;
   dynamicallyLoadScript(
-    "./scripts/index.js",
-    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+    "../instrumented/scripts/index.js",
+    dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
   );
 });
