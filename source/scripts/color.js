@@ -13,18 +13,20 @@ function colorChange(mood, moodClass, color) {
   var toggleString = mood + "-click";
   moodClass.classList.toggle(toggleString, true);
   auth.onAuthStateChanged((user) => {
-    var color_string = "color-" + month + "-" + day;
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("mood")
-      .update({ [color_string]: [color], selectedIcon: [mood] })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .set({ [color_string]: [color], selectedIcon: [mood] });
-      });
+    if (user) {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({ [color_string]: [color], selectedIcon: [mood] })
+        .catch((err) => {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .set({ [color_string]: [color], selectedIcon: [mood] });
+        });
+      }
   });
 }

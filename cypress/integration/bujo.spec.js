@@ -5,6 +5,11 @@ context('Actions', () => {
     // Change for actual testing
     cy.visit('http://127.0.0.1:5500/source/login.html')
     cy.wait(1000)
+    cy.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
   })
 
   // https://on.cypress.io/interacting-with-elements
@@ -19,7 +24,7 @@ context('Actions', () => {
       .should('have.value', 'password')
 
     cy.get('#login-form').submit()
-    cy.wait(5000)
+    cy.wait(3000)
     
     cy.get('h6')
       .should('contain', 'How are you feeling?')

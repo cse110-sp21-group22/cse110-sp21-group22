@@ -35,5 +35,8 @@
   "nyc": {
     "all": true,
     "include": "source/scripts/*.js"
+  },
+  "dependencies": {
+    "agentkeepalive": "^4.1.4"
   }
 }

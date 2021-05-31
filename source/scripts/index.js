@@ -40,68 +40,74 @@ var thorn = document.getElementById("thorn");
 var date_string = month + "-" + day;
 
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .onSnapshot((doc) => {
-      try {
-        rose.innerHTML = doc.data().rose;
-        thorn.innerHTML = doc.data().thorn;
-      } catch (err) {
-        console.log(err);
-      }
-    });
-});
-
-rosethorn.addEventListener("focusout", (event) => {
-  auth.onAuthStateChanged((user) => {
+  if (user) {
     fs.collection("users")
       .doc(user.uid)
       .collection("data")
       .doc("rosethorn")
-      .update({
-        date: [date_string],
-        rose: [rose.innerHTML],
-        thorn: [thorn.innerHTML],
-      })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("rosethorn")
-          .set({
-            date: [date_string],
-            rose: [rose.innerHTML],
-            thorn: [thorn.innerHTML],
-          });
+      .onSnapshot((doc) => {
+        try {
+          rose.innerHTML = doc.data().rose;
+          thorn.innerHTML = doc.data().thorn;
+        } catch (err) {
+          console.log(err);
+        }
       });
-  });
+    }
 });
 
-auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .get()
-    .then((doc) => {
-      try {
-        if (doc.data().date != date_string) {
+rosethorn.addEventListener("focusout", (event) => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("rosethorn")
+        .update({
+          date: [date_string],
+          rose: [rose.innerHTML],
+          thorn: [thorn.innerHTML],
+        })
+        .catch((err) => {
           fs.collection("users")
             .doc(user.uid)
             .collection("data")
             .doc("rosethorn")
             .set({
               date: [date_string],
-              rose: "Rose: ",
-              thorn: "Thorn: ",
+              rose: [rose.innerHTML],
+              thorn: [thorn.innerHTML],
             });
-        }
-      } catch (err) {
-        console.log(err);
+        });
       }
-    });
+  });
+});
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .get()
+      .then((doc) => {
+        try {
+          if (doc.data().date != date_string) {
+            fs.collection("users")
+              .doc(user.uid)
+              .collection("data")
+              .doc("rosethorn")
+              .set({
+                date: [date_string],
+                rose: "Rose: ",
+                thorn: "Thorn: ",
+              });
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    }
 });
 
 // When user clicks on previous Day

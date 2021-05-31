@@ -166,21 +166,23 @@ function resize() {
 
 // Update navbar color from firebase
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("navbar")
-    .onSnapshot((doc) => {
-      try {
-        hColor = doc.data().hColor;
-        hStyle = doc.data().hStyle;
-        document.getElementById("navbar").className = hStyle;
-        document.getElementById("navbar").style.backgroundColor = hColor;
-      } catch (err) {
-        console.log(err);
-      }
-      NavbarLoaded();
-    });
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .onSnapshot((doc) => {
+        try {
+          hColor = doc.data().hColor;
+          hStyle = doc.data().hStyle;
+          document.getElementById("navbar").className = hStyle;
+          document.getElementById("navbar").style.backgroundColor = hColor;
+        } catch (err) {
+          console.log(err);
+        }
+        NavbarLoaded();
+      });
+    }
 });
 
 // register service worker
