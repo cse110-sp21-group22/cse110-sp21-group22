@@ -147,11 +147,11 @@ document.querySelector("#today").addEventListener("click", () => {
 
   selectedDate = 0;
   showDay(selectedDate);
-  if (next.disabled == true) {
+  if (next.disabled) {
     next.disabled = false;
   }
 
-  if (previous.disabled == true) {
+  if (previous.disabled) {
     previous.disabled = false;
   }
 });
@@ -163,13 +163,13 @@ document.querySelector("#toggle").addEventListener("click", () => {
   let inputs = document.querySelectorAll(".text p");
 
   if (toggle.textContent == "Edit") {
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].contentEditable = true;
+    for (let note of inputs) {
+      note.contentEditable = true;
     }
     toggle.textContent = "View";
   } else {
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].contentEditable = false;
+    for (let note of inputs) {
+      note.contentEditable = false;
     }
     toggle.textContent = "Edit";
   }
