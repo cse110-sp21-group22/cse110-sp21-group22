@@ -5,17 +5,6 @@ neutral = document.getElementById("neutral");
 sad = document.getElementById("sad");
 verySad = document.getElementById("very-sad");
 
-/* clear grid when new year */
-if (month == 1 && day == 1) {
-  auth.onAuthStateChanged((user) => {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("mood")
-      .delete();
-  });
-}
-
 /* populate yearGrid calendar */
 populateCalendar();
 
