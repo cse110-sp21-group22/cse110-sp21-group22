@@ -34,13 +34,19 @@ const monthName = [
   "Nov",
   "Dec",
 ];
-const daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
 let WEEK = "";
 const today = new Date();
 const one_day_per_second = 1000 * 60 * 60 * 24;
 const one_week_per_second = one_day_per_second * 7;
+let dailyLog = "";
+let add = "";
+let addItem = "";
+let previousSelected = "";
+let selectedDate = 0;
+let editStatus = false;
 
 /**
  * Function to load subpages
@@ -198,4 +204,42 @@ main().then(() => {
     "./scripts/index.js",
     dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
   );
+});
+
+// Clear mood tracker data on new year
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        if (month == 1 && day == 1 && doc.newYear) {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .delete();
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .update({ newYear: false });
+        } else {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .update({ newYear: true });
+        }
+      })
+      .catch(() => {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({ newYear: true });
+      });
+  }
 });

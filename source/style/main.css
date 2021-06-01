@@ -226,20 +226,17 @@ body {
 }
 
 .overlay {
-  position: fixed;
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
 }
 
 .popup {
@@ -284,10 +281,6 @@ h1 {
   position: relative;
 }
 
-/* .grid div:nth-child(1) {
-  background-color: pink;
-} */
-
 @media (max-width: 736px) {
   .grid {
     display: grid;
@@ -308,7 +301,7 @@ h1 {
   max-width: 100% 800px;
   height: 90%;
   max-height: 450px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
   background-image: -webkit-linear-gradient(270deg, #d98b8b, 2px, transparent, 2px, transparent), -webkit-linear-gradient(0deg, #d9eaf3, 1px, transparent, 2px, transparent);
   background-image: linear-gradient(90deg, #d98b8b, 2px, transparent, 2px, transparent), linear-gradient(0deg, #d9eaf3, 1px, transparent, 2px, transparent);
@@ -322,28 +315,139 @@ h1 {
 
 .notebook p {
   line-height: 38px;
-  margin-bottom: 1rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
-.my-container {
+/***** Start daily log style *****/
+.item {
+  height: 30px;
   width: 100%;
-  height: auto;
-  background: #0170ad;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+  display: inline-block;
+  margin: 0;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  font-weight: 600;
+.hidden {
+  display: none;
 }
+
+.indent {
+  padding-left: 40px;
+}
+
+.hide {
+  display: none;
+}
+
+.item .bullet {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 100%;
+  margin: 0;
+}
+
+.item .bullet-main {
+  font-size: 20px;
+}
+
+.item .bullet-main:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .bullet i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .bullet-sub:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .text {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  height: 100%;
+  width: 80%;
+}
+
+.item .text-add {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  height: 100%;
+  width: 80%;
+  color: rgb(121, 121, 121);
+}
+
+.item .text p {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .text-add p {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .text p:hover {
+  background-color: #ddd;
+}
+
+.item .text-add p:hover {
+  background-color: #ddd;
+}
+
+.item .expandable {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  background-color: white;
+}
+
+.item .expandable:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .expandable i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  margin: 0;
+}
+
+.item .options i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+/***** End daily log style *****/
 
 .todo-container {
   display: flex;
@@ -369,6 +473,75 @@ h1 {
   border: hidden;
   outline: none !important;
   cursor: pointer;
+}
+
+.textmodmenu {
+  font-size: 0;
+  max-width: 900px;
+}
+
+.textmodmenu button {
+  background-color: #eee;
+  border: 0;
+  border: 1px solid #bbb;
+}
+
+.textmodmenu button:hover {
+  box-shadow: 0 0 15px #666 inset;
+}
+
+.textmodsub {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+#editor .container {
+  display: list-item;
+}
+
+#editor .checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+#editor .text {
+  display: inline-block;
+  outline-width: 1px;
+  width: 90%;
+}
+
+#editor img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+#date {
+  display: inline-block;
+  font-size: 20px;
+}
+
+.my-container {
+  width: 100%;
+  height: auto;
+  background: #0170ad;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* clicked color of each mood icon */

@@ -43,6 +43,9 @@ function logout() {
   auth.signOut();
 }
 
+/**
+ * Function to save color preference
+ */
 function save() {
   auth.onAuthStateChanged((user) => {
     hStyle = document.getElementById("navbar").className;
@@ -54,5 +57,9 @@ function save() {
       .set({ hStyle: hStyle, hColor: hColor });
   });
 }
+
+$(window).on("beforeunload", function () {
+  save();
+});
 
 PageLoaded();
