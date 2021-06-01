@@ -215,7 +215,7 @@ auth.onAuthStateChanged((user) => {
       .doc("mood")
       .get()
       .then((doc) => {
-        if (month == 1 && day == 1 && doc.newYear != false) {
+        if (month == 1 && day == 1 && doc.newYear) {
           fs.collection("users")
             .doc(user.uid)
             .collection("data")
