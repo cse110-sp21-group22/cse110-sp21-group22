@@ -65,33 +65,18 @@ class BujoElement {
   }
 
   /**
-   * Update a task/note
-   * @param {string} text task/note contents
-   * @param {int} level specifies what sub-level
-   * @param {int} type specifies what type of task/note
-   * @param {int} signifier specifies signifier
-   * @param {int} style sets text style
-   */
-  update(text, level, type, signifier, style) {
-    this.text = text;
-    this.level = level;
-    this.type = type;
-    this.signifier = signifier;
-    this.style = style;
-  }
-
-  /**
    * Sync task/note to database
    * @param {int} selectedDate selected date in notebook
    */
   sync(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
+          .collection("" + dateYear)
           .doc("" + this.id)
           .withConverter(bujoConverter)
           .set(this)
@@ -108,11 +93,12 @@ class BujoElement {
   delete(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
+          .collection("" + dateYear)
           .doc("" + this.id)
           .delete()
           .catch((err) => {

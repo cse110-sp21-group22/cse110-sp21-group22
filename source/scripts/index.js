@@ -165,8 +165,8 @@ document.querySelector("#today").addEventListener("click", () => {
 // When user toggles between View/Edit
 document.querySelector("#toggle").addEventListener("click", () => {
   let toggle = document.querySelector("#toggle");
-
   let inputs = document.querySelectorAll(".text p");
+  editStatus = !editStatus;
 
   if (toggle.textContent == "Edit") {
     for (let note of inputs) {
@@ -202,11 +202,22 @@ document.querySelector("#italic").addEventListener("click", () => {
 });
 
 document.querySelector("#underline").addEventListener("click", () => {
-  if (previousSelected.style.textDecoration == "underline") {
-    previousSelected.style.setProperty("text-decoration", "none");
+  if (previousSelected.style.textDecoration.includes("underline")) {
+    if (previousSelected.style.textDecoration.includes("line-through")) {
+      previousSelected.style.setProperty("text-decoration", "line-through");
+    } else {
+      previousSelected.style.setProperty("text-decoration", "none");
+    }
     updateStyle(-4);
   } else {
-    previousSelected.style.setProperty("text-decoration", "underline");
+    if (previousSelected.style.textDecoration.includes("line-through")) {
+      previousSelected.style.setProperty(
+        "text-decoration",
+        "line-through underline"
+      );
+    } else {
+      previousSelected.style.setProperty("text-decoration", "underline");
+    }
     updateStyle(4);
   }
 });
@@ -218,7 +229,7 @@ document.querySelector("#underline").addEventListener("click", () => {
 function updateStyle(style) {
   let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
   let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
-  parentDiv.attr("style", currStyle);
+  parentDiv.attr("styleNum", currStyle);
   setStyle(style, parentDiv);
   let id = parentDiv.attr("id");
   let text = parentDiv.children().text();
@@ -239,7 +250,7 @@ $(".text").on("keydown", function (e) {
 
 // Clear "Add new note"
 $("#add-item").on("click", function () {
-  $(this).children().empty();
+  $(this).children().text("");
 });
 
 // Reset message if no new note
@@ -281,6 +292,26 @@ function setSignifier(signifier, node) {
  */
 function setType(type, node) {
   node.children(":first").removeClass();
+  if (
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration")
+      .includes("underline")
+  ) {
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration", "underline");
+  } else {
+    node
+      .parent()
+      .children(":nth-child(3)")
+      .children(":first")
+      .css("text-decoration", "none");
+  }
   switch (type) {
     case 1:
       node.children(":first").addClass("far");
@@ -289,6 +320,26 @@ function setType(type, node) {
     case 2:
       node.children(":first").addClass("far");
       node.children(":first").addClass("fa-check-square");
+      if (
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration")
+          .includes("none")
+      ) {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through");
+      } else {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      }
       break;
     case 3:
       node.children(":first").addClass("far");
@@ -297,6 +348,26 @@ function setType(type, node) {
     case 4:
       node.children(":first").addClass("far");
       node.children(":first").addClass("fa-check-circle");
+      if (
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration")
+          .includes("none")
+      ) {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through");
+      } else {
+        node
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      }
       break;
     default:
       node.children(":first").addClass("fa");
@@ -312,7 +383,11 @@ function setType(type, node) {
 function setStyle(style, node) {
   node.children(":first").css("font-style", "normal");
   node.children(":first").css("font-weight", "normal");
-  node.children(":first").css("text-decoration", "none");
+  if (node.children(":first").css("text-decoration").includes("line-through")) {
+    node.children(":first").css("text-decoration", "line-through");
+  } else {
+    node.children(":first").css("text-decoration", "none");
+  }
   switch (style) {
     case 1:
       node.children(":first").css("font-weight", "bold");
@@ -325,26 +400,69 @@ function setStyle(style, node) {
       node.children(":first").css("font-style", "italic");
       break;
     case 4:
-      node.children(":first").css("text-decoration", "underline");
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
+      }
       break;
     case 5:
       node.children(":first").css("font-weight", "bold");
-      node.children(":first").css("text-decoration", "underline");
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
+      }
       break;
     case 6:
       node.children(":first").css("font-style", "italic");
-      node.children(":first").css("text-decoration", "underline");
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
+      }
       break;
     case 7:
       node.children(":first").css("font-weight", "bold");
       node.children(":first").css("font-style", "italic");
-      node.children(":first").css("text-decoration", "underline");
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
+        node
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
+      }
       break;
     default:
       node.children(":first").css("font-style", "normal");
       node.children(":first").css("font-weight", "normal");
       node.children(":first").css("text-decoration", "none");
   }
+}
+
+/**
+ * Set the level for a note
+ * @param {int} level specifies which level
+ * @param {node} node node to set level for
+ */
+function setLevel(level, node) {
+  let levelString = level > 0 ? level * 40 + "px" : "0";
+  node.css("padding-left", levelString);
+  node.attr("level", level);
 }
 
 /**
@@ -360,6 +478,7 @@ function renderData(individualDoc) {
   parentDiv.className = "item note";
   parentDiv.setAttribute("id", note.id);
   parentDiv.setAttribute("date", individualDoc.data().date);
+  parentDiv.setAttribute("level", note.level);
 
   // bullet-sub
   let bulletSubDiv = document.createElement("div");
@@ -381,7 +500,11 @@ function renderData(individualDoc) {
   let noteDiv = document.createElement("div");
   noteDiv.className = "text";
   let noteDivP = document.createElement("p");
-  noteDivP.setAttribute("contenteditable", "false");
+  if (editStatus) {
+    noteDivP.setAttribute("contenteditable", "true");
+  } else {
+    noteDivP.setAttribute("contenteditable", "false");
+  }
   parentDiv.setAttribute("styleNum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
@@ -401,8 +524,10 @@ function renderData(individualDoc) {
 
   dailyLog.insertBefore(parentDiv, add);
   setSignifier(note.signifier, $("#" + note.id).children(":first"));
-  setType(note.type, $("#" + note.id).children(":nth-child(2)"));
   setStyle(note.style, $("#" + note.id).children(":nth-child(3)"));
+  setType(note.type, $("#" + note.id).children(":nth-child(2)"));
+  setLevel(note.level, $("#" + note.id));
+  setLevel(0, $("#add"));
   addItem.firstElementChild.textContent = "Add new note";
 
   // Disable enter key
@@ -412,22 +537,41 @@ function renderData(individualDoc) {
     }
   });
 
+  // Listen for tab
+  $("#" + note.id)
+    .children(":nth-child(3)")
+    .on("keydown", function (e) {
+      var keyCode = e.keyCode || e.which;
+
+      if (keyCode == 9) {
+        e.preventDefault();
+        let id = $(this).parent().attr("id");
+        let text = $(this)
+          .parent()
+          .children(":nth-child(3)")
+          .children(":first")
+          .text();
+        let signifier = parseInt($(this).parent().attr("signifier"));
+        let type = parseInt($(this).parent().attr("type"));
+        let style = parseInt($(this).parent().attr("styleNum"));
+        let level = parseInt($(this).parent().attr("level")) + 1;
+        setLevel(level, $(this).parent());
+        let note2 = new BujoElement(id, text, level, type, signifier, style);
+        note2.sync(selectedDate);
+      }
+    });
+
   // Update note on edit
   $("#" + note.id)
     .children(":nth-child(3)")
     .on("focusout", function () {
       let signifier = parseInt($(this).parent().attr("signifier"));
       let id = $(this).parent().attr("id");
+      let text = $(this).text();
       let type = parseInt($(this).parent().attr("type"));
       let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(
-        id,
-        $(this).text(),
-        0,
-        type,
-        signifier,
-        style
-      );
+      let level = parseInt($(this).parent().attr("level"));
+      let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
     });
 
@@ -442,7 +586,8 @@ function renderData(individualDoc) {
       let text = $(this).parent().children().text();
       let type = parseInt($(this).parent().attr("type"));
       let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, text, 0, type, signifier, style);
+      let level = parseInt($(this).parent().attr("level"));
+      let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
     });
 
@@ -457,7 +602,8 @@ function renderData(individualDoc) {
       let text = $(this).parent().children().text();
       let signifier = parseInt($(this).parent().attr("signifier"));
       let style = parseInt($(this).parent().attr("styleNum"));
-      let note2 = new BujoElement(id, text, 0, type, signifier, style);
+      let level = parseInt($(this).parent().attr("level"));
+      let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
     });
 
@@ -480,44 +626,27 @@ addItem.addEventListener("keydown", function (event) {
     // grabbing new note/task text from input
     let noteText = addItem.firstElementChild.textContent;
 
+    let level = parseInt(add.getAttribute("level"));
+
     // create new bujo task/note element
-    let note2 = new BujoElement(new Date().getTime(), noteText, 0, 0, 0, 0);
+    let note2 = new BujoElement(new Date().getTime(), noteText, level, 0, 0, 0);
     note2.sync(selectedDate);
+  } else if (event.code === "Tab") {
+    event.preventDefault();
+    setLevel(parseInt(add.getAttribute("level")) + 1, $("#add"));
   }
 });
 
 // realtime listners
 for (var i = -3; i < 4; ++i) {
-  let date2 = day + i;
-  let month2 = month;
-
-  // Go to previous month
-  if (date2 < 1) {
-    // Go to previous year
-    if (month2 < 1) {
-      month2 = 11;
-    }
-    date2 = daysInMonth[month2 - 1] + date2;
-    month2--;
-  }
-  // Go to next month
-  if (date2 > daysInMonth[month2]) {
-    date2 = date2 - daysInMonth[month2];
-    month2++;
-
-    // Go to next year
-    if (month2 > 11) {
-      month2 = 0;
-    }
-  }
-
+  let dateYear = daysIntoYear(date) + i;
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("notes")
-        .collection(month2 + "-" + date2)
+        .collection("" + dateYear)
         .onSnapshot((snapshot) => {
           let changes = snapshot.docChanges();
           changes.forEach((change) => {

@@ -46,6 +46,7 @@ let add = "";
 let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
+let editStatus = false;
 
 /**
  * Function to load subpages
@@ -205,4 +206,42 @@ main().then(() => {
     "../instrumented/scripts/index.js",
     dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
   );
+});
+
+// Clear mood tracker data on new year
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        if (month == 1 && day == 1 && doc.newYear) {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .delete();
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .update({ newYear: false });
+        } else {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .update({ newYear: true });
+        }
+      })
+      .catch(() => {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("mood")
+          .update({ newYear: true });
+      });
+  }
 });
