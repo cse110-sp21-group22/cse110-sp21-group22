@@ -107,7 +107,7 @@ context('Actions', () => {
     cy.get('#neutral').click()
     cy.get('#very-happy').click()
     cy.get('[data-cy=current-date]')
-      .should('have.attr', 'style', 'background-color:#55D805"');
+      .should('have.attr', 'style', 'background-color:#55D805');
     cy.get('#nav-settings').click();
     cy.wait(1000)
     cy.get('#nav-mood').click();
