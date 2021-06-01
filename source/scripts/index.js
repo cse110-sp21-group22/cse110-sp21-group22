@@ -205,7 +205,10 @@ document.querySelector("#underline").addEventListener("click", () => {
     updateStyle(-4);
   } else {
     if (previousSelected.style.textDecoration.includes("line-through")) {
-      previousSelected.style.setProperty("text-decoration", "line-through underline");
+      previousSelected.style.setProperty(
+        "text-decoration",
+        "line-through underline"
+      );
     } else {
       previousSelected.style.setProperty("text-decoration", "underline");
     }
@@ -391,43 +394,51 @@ function setStyle(style, node) {
       node.children(":first").css("font-style", "italic");
       break;
     case 4:
-      if (node.children(":first").css("text-decoration").includes("line-through")) {
-        node.children(":first")
-        .css("text-decoration", "line-through underline");
-      } else {
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
         node
-          .children(":first").css("text-decoration", "underline");
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
       }
       break;
     case 5:
       node.children(":first").css("font-weight", "bold");
-      if (node.children(":first").css("text-decoration").includes("line-through")) {
-        node.children(":first")
-        .css("text-decoration", "line-through underline");
-      } else {
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
         node
-          .children(":first").css("text-decoration", "underline");
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
       }
       break;
     case 6:
       node.children(":first").css("font-style", "italic");
-      if (node.children(":first").css("text-decoration").includes("line-through")) {
-        node.children(":first")
-        .css("text-decoration", "line-through underline");
-      } else {
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
         node
-          .children(":first").css("text-decoration", "underline");
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
       }
       break;
     case 7:
       node.children(":first").css("font-weight", "bold");
       node.children(":first").css("font-style", "italic");
-      if (node.children(":first").css("text-decoration").includes("line-through")) {
-        node.children(":first")
-        .css("text-decoration", "line-through underline");
-      } else {
+      if (
+        node.children(":first").css("text-decoration").includes("line-through")
+      ) {
         node
-          .children(":first").css("text-decoration", "underline");
+          .children(":first")
+          .css("text-decoration", "line-through underline");
+      } else {
+        node.children(":first").css("text-decoration", "underline");
       }
       break;
     default:
