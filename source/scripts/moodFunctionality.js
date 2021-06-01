@@ -7,7 +7,7 @@ if (month == 1 && day == 1) {
       .doc(user.uid)
       .collection("data")
       .doc("mood")
-      .delete()
+      .delete();
   });
 }
 
