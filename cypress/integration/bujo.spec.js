@@ -3,6 +3,7 @@
 context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
+    cy.viewport(1000, 600)
     cy.visit('http://127.0.0.1:5500/source/login.html')
     cy.wait(1000)
     cy.on('uncaught:exception', (err, runnable) => {
@@ -79,7 +80,7 @@ context('Actions', () => {
     cy.get('.btn-danger').click()
   });
 
-  it('Test mood tracker', () => {  
+  it('Test mood tracker', () => {
     cy.get('#email')
       .type('test@test.com')
     cy.get('#password')
@@ -95,30 +96,31 @@ context('Actions', () => {
 
     cy.get('#nav-mood').click()
     cy.wait(1000)
+    cy.viewport(1920, 1080)
     cy.get('h1')
       .should('contain', 'Mood Tracker')
     cy.get('[data-cy=current-date]', { timeout: 10000 })
-      .should('have.attr', 'style', 'background-color:yellow');
+      .should('have.attr', 'style', 'background-color:#FECD32');
     cy.get('#happy').click()
     cy.get('#sad').click()
     cy.get('#very-sad').click()
     cy.get('#neutral').click()
     cy.get('#very-happy').click()
     cy.get('[data-cy=current-date]')
-      .should('have.attr', 'style', 'background-color:green');
+      .should('have.attr', 'style', 'background-color:#55D805"');
     cy.get('#nav-settings').click();
     cy.wait(1000)
     cy.get('#nav-mood').click();
     cy.wait(1000)
     cy.get('[data-cy=current-date]')
-    .should('have.attr', 'style', 'background-color:green');
+    .should('have.attr', 'style', 'background-color:#55D805');
 
     cy.get('#nav-settings').click()
     cy.wait(1000)
     cy.get('.btn-danger').click()
   });
 
-  it('Test rose and thorn', () => {  
+  it('Test rose and thorn', () => {
     cy.get('#email')
       .type('test@test.com')
     cy.get('#password')
