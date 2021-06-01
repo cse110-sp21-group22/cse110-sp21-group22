@@ -228,17 +228,18 @@ auth.onAuthStateChanged((user) => {
             .update({ newYear: false });
         } else {
           fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .update({ newYear: true });
+        }
+      })
+      .catch(() => {
+        fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("mood")
           .update({ newYear: true });
-        }
-      }).catch(() => {
-        fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .update({ newYear: true });
-      })
+      });
   }
 });
