@@ -6,76 +6,110 @@ body {
 /* page title */
 h1 {
   text-align: center;
+  font-size: 35px;
 }
 
-/* sizing mood icons */
-.material-icons.md-48 {
-  font-size: 48px;
+/* mood question */
+h2 {
+  font-size: 20px;
 }
 
-.material-icons-outlined.md-48 {
-  font-size: 48px;
+/* centering moods */
+#mood-selector {
+  text-align: center;
 }
 
-/* pointer cursor when hover over moods */
-.material-icons:hover {
+/* size of each mood icon */
+#very-happy {
+  width: 55px;
+  height: 55px;
+}
+
+#happy {
+  width: 55px;
+  height: 55px;
+}
+
+#neutral {
+  width: 55px;
+  height: 55px;
+}
+
+#sad {
+  width: 55px;
+  height: 55px;
+}
+
+#very-sad {
+  width: 55px;
+  height: 55px;
+}
+
+/* hovering over each mood icon */
+#very-happy:hover {
+  opacity: 75%;
   cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
-.material-icons-outlined:hover {
+#happy:hover {
+  opacity: 75%;
   cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
-/* default color of each mood icon */
-.very-happy {
-  color: green;
+#neutral:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
-.happy {
-  color: lightgreen;
+#sad:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
-.neutral {
-  color: yellow;
-}
-
-.sad {
-  color: orange;
-}
-
-.very-sad {
-  color: red;
+#very-sad:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
 }
 
 /* clicked color of each mood icon */
 .very-happy-click {
-  color: white;
-  background-color: green;
-  border-radius: 50%;
+  background-color: black;
+  width: 100px;
+  height: 75px;
 }
 
 .happy-click {
-  color: white;
-  background-color: lightgreen;
-  border-radius: 50%;
+  background-color: black;
+  width: 55px;
+  height: 55px;
 }
 
 .neutral-click {
-  color: white;
-  background-color: yellow;
-  border-radius: 50%;
+  background-color: black;
+  width: 55px;
+  height: 55px;
 }
 
 .sad-click {
-  color: white;
-  background-color: orange;
-  border-radius: 50%;
+  background-color: black;
+  width: 55px;
+  height: 55px;
 }
 
 .very-sad-click {
-  color: white;
-  background-color: red;
-  border-radius: 50%;
+  background-color: black;
+  width: 55px;
+  height: 55px;
 }
 
 /* display year's boxes as grid */

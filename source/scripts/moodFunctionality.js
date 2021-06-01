@@ -133,32 +133,32 @@ function setCurrDate() {
 
 /* very happy mood selected */
 veryHappy.addEventListener("click", function () {
-  colorChange("very-happy", veryHappy, "green");
-  dayColorChange("green");
+  colorChange("very-happy", veryHappy, "#55D805");
+  dayColorChange("#55D805");
 });
 
 /* happy mood selected */
 happy.addEventListener("click", function () {
-  colorChange("happy", happy, "lightgreen");
-  dayColorChange("lightgreen");
+  colorChange("happy", happy, "#BFD102");
+  dayColorChange("#BFD102");
 });
 
 /* neutral mood selected */
 neutral.addEventListener("click", function () {
-  colorChange("neutral", neutral, "yellow");
-  dayColorChange("yellow");
+  colorChange("neutral", neutral, "#FECD32");
+  dayColorChange("#FECD32");
 });
 
 /* sad mood selected */
 sad.addEventListener("click", function () {
-  colorChange("sad", sad, "orange");
-  dayColorChange("orange");
+  colorChange("sad", sad, "#FF9226");
+  dayColorChange("#FF9226");
 });
 
 /* very sad mood selected */
 verySad.addEventListener("click", function () {
-  colorChange("very-sad", verySad, "red");
-  dayColorChange("red");
+  colorChange("very-sad", verySad, "#EB3233");
+  dayColorChange("#EB3233");
 });
 
 /**
