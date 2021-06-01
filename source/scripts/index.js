@@ -196,11 +196,19 @@ document.querySelector("#italic").addEventListener("click", () => {
 });
 
 document.querySelector("#underline").addEventListener("click", () => {
-  if (previousSelected.style.textDecoration == "underline") {
-    previousSelected.style.setProperty("text-decoration", "none");
+  if (previousSelected.style.textDecoration.includes("underline")) {
+    if (previousSelected.style.textDecoration.includes("line-through")) {
+      previousSelected.style.setProperty("text-decoration", "line-through");
+    } else {
+      previousSelected.style.setProperty("text-decoration", "none");
+    }
     updateStyle(-4);
   } else {
-    previousSelected.style.setProperty("text-decoration", "underline");
+    if (previousSelected.style.textDecoration.includes("line-through")) {
+      previousSelected.style.setProperty("text-decoration", "line-through underline");
+    } else {
+      previousSelected.style.setProperty("text-decoration", "underline");
+    }
     updateStyle(4);
   }
 });
@@ -383,43 +391,43 @@ function setStyle(style, node) {
       node.children(":first").css("font-style", "italic");
       break;
     case 4:
-      if (node.children(":first").css("text-decoration").includes("none")) {
-        node.children(":first").css("text-decoration", "underline");
+      if (node.children(":first").css("text-decoration").includes("line-through")) {
+        node.children(":first")
+        .css("text-decoration", "line-through underline");
       } else {
         node
-          .children(":first")
-          .css("text-decoration", "line-through underline");
+          .children(":first").css("text-decoration", "underline");
       }
       break;
     case 5:
       node.children(":first").css("font-weight", "bold");
-      if (node.children(":first").css("text-decoration").includes("none")) {
-        node.children(":first").css("text-decoration", "underline");
+      if (node.children(":first").css("text-decoration").includes("line-through")) {
+        node.children(":first")
+        .css("text-decoration", "line-through underline");
       } else {
         node
-          .children(":first")
-          .css("text-decoration", "line-through underline");
+          .children(":first").css("text-decoration", "underline");
       }
       break;
     case 6:
       node.children(":first").css("font-style", "italic");
-      if (node.children(":first").css("text-decoration").includes("none")) {
-        node.children(":first").css("text-decoration", "underline");
+      if (node.children(":first").css("text-decoration").includes("line-through")) {
+        node.children(":first")
+        .css("text-decoration", "line-through underline");
       } else {
         node
-          .children(":first")
-          .css("text-decoration", "line-through underline");
+          .children(":first").css("text-decoration", "underline");
       }
       break;
     case 7:
       node.children(":first").css("font-weight", "bold");
       node.children(":first").css("font-style", "italic");
-      if (node.children(":first").css("text-decoration").includes("none")) {
-        node.children(":first").css("text-decoration", "underline");
+      if (node.children(":first").css("text-decoration").includes("line-through")) {
+        node.children(":first")
+        .css("text-decoration", "line-through underline");
       } else {
         node
-          .children(":first")
-          .css("text-decoration", "line-through underline");
+          .children(":first").css("text-decoration", "underline");
       }
       break;
     default:
@@ -499,8 +507,8 @@ function renderData(individualDoc) {
 
   dailyLog.insertBefore(parentDiv, add);
   setSignifier(note.signifier, $("#" + note.id).children(":first"));
-  setType(note.type, $("#" + note.id).children(":nth-child(2)"));
   setStyle(note.style, $("#" + note.id).children(":nth-child(3)"));
+  setType(note.type, $("#" + note.id).children(":nth-child(2)"));
   setLevel(note.level, $("#" + note.id));
   setLevel(0, $("#add"));
   addItem.firstElementChild.textContent = "Add new note";
@@ -614,36 +622,14 @@ addItem.addEventListener("keydown", function (event) {
 
 // realtime listners
 for (var i = -3; i < 4; ++i) {
-  let date2 = day + i;
-  let month2 = month;
-
-  // Go to previous month
-  if (date2 < 1) {
-    // Go to previous year
-    if (month2 < 1) {
-      month2 = 11;
-    }
-    date2 = daysInMonth[month2 - 1] + date2;
-    month2--;
-  }
-  // Go to next month
-  if (date2 > daysInMonth[month2]) {
-    date2 = date2 - daysInMonth[month2];
-    month2++;
-
-    // Go to next year
-    if (month2 > 11) {
-      month2 = 0;
-    }
-  }
-
+  let dateYear = daysIntoYear(date) + i;
   auth.onAuthStateChanged((user) => {
     if (user) {
       fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("notes")
-        .collection(month2 + "-" + date2)
+        .collection("" + dateYear)
         .onSnapshot((snapshot) => {
           let changes = snapshot.docChanges();
           changes.forEach((change) => {

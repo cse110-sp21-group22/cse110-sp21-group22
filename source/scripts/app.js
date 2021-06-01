@@ -71,11 +71,12 @@ class BujoElement {
   sync(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
+          .collection("" + dateYear)
           .doc("" + this.id)
           .withConverter(bujoConverter)
           .set(this)
@@ -92,11 +93,12 @@ class BujoElement {
   delete(selectedDate) {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
           .doc(user.uid)
           .collection("data")
           .doc("notes")
-          .collection(month + "-" + (day + selectedDate))
+          .collection("" + dateYear)
           .doc("" + this.id)
           .delete()
           .catch((err) => {
