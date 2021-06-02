@@ -1,11 +1,14 @@
 # Meeting Minute
+
 Date: Thursday, May 20, 2021
 
 Time: 8:00 PM
 
-Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luong, Robert Wakefield-Carl, Shanqing Wang
+Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen
+Luong, Robert Wakefield-Carl, Shanqing Wang
 
 ## To do
+
 - Re-organizing the files
 - Reach a decision on calendar:
   - Keep with the original hi-fi
@@ -15,15 +18,18 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luon
 - fix the semester countdonw bug
 
 ## Update for #2nd Sprint
+
 - Moodtracker: responsiveness
   - Switch letter of months to number instead
-  - Difficult to tell that you should click on the icons => adding guiding lines above the icons
+  - Difficult to tell that you should click on the icons => adding guiding lines
+    above the icons
   - Having tittle when hovering above the icons
-  
 - Quotes:
+
   - Filter out long quotes, keep to with 1-2 lines max
 
 - Rose n thorn:
+
   - Update the legend
   - Get rid of the shadow at the top
   - Fix the left indentation for more writing space
@@ -33,11 +39,13 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luon
 - Layout of pages: need to be relative to the screen sizes
 
 - Task editing for user !!!!!!
+
   - Allow text edit
   - Have the checkbox & legends
   - Back/fort button
   - Today's button
-  - Default colors should be implemented so that it is clear & easy to see on backgrounds
+  - Default colors should be implemented so that it is clear & easy to see on
+    backgrounds
 
 - Settings:
   - Figure out how to keep the color consitent from color picker.
