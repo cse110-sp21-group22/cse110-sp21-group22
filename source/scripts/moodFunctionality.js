@@ -38,42 +38,42 @@ function fillDays() {
 function fillMonths() {
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("mood")
-      .get()
-      .then((doc) => {
-        var i;
-        for (i = 1; i < 13; i++) {
-          /* month label */
-          var monthLabel = document.createElement("P");
-          monthLabel.innerText = monthName[i];
-          yearGrid.append(monthLabel);
-          /* days for month */
-          var j = 1;
-          while (j <= daysInMonth[i]) {
-            var emptyDay = document.createElement("P");
-            try {
-              var color_string = "color-" + i + "-" + j;
-              var color = doc.data()[color_string];
-            } catch {
-              color = null;
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .get()
+        .then((doc) => {
+          var i;
+          for (i = 1; i < 13; i++) {
+            /* month label */
+            var monthLabel = document.createElement("P");
+            monthLabel.innerText = monthName[i];
+            yearGrid.append(monthLabel);
+            /* days for month */
+            var j = 1;
+            while (j <= daysInMonth[i]) {
+              var emptyDay = document.createElement("P");
+              try {
+                var color_string = "color-" + i + "-" + j;
+                var color = doc.data()[color_string];
+              } catch {
+                color = null;
+              }
+              if (i == month && j == day) {
+                emptyDay.setAttribute("data-cy", "current-date");
+              }
+              emptyDay.classList.add("empty-mood");
+              emptyDay.classList.add(i + "-" + j);
+              emptyDay.id = "color-" + i + "-" + j;
+              emptyDay.setAttribute("style", "background-color:" + color);
+              yearGrid.append(emptyDay);
+              j++;
             }
-            if (i == month && j == day) {
-              emptyDay.setAttribute("data-cy", "current-date");
-            }
-            emptyDay.classList.add("empty-mood");
-            emptyDay.classList.add(i + "-" + j);
-            emptyDay.id = "color-" + i + "-" + j;
-            emptyDay.setAttribute("style", "background-color:" + color);
-            yearGrid.append(emptyDay);
-            j++;
+            fillMonthsHelper(i, j);
           }
-          fillMonthsHelper(i, j);
-        }
-        setCurrDate();
-        PageLoaded();
-      });
+          setCurrDate();
+          PageLoaded();
+        });
   });
 }
 
@@ -123,31 +123,31 @@ function setCurrDate() {
 }
 
 /* very happy mood selected */
-veryHappy.addEventListener("click", function () {
+veryHappy.addEventListener("click", function() {
   colorChange("very-happy", veryHappy, "#55D805");
   dayColorChange("#55D805");
 });
 
 /* happy mood selected */
-happy.addEventListener("click", function () {
+happy.addEventListener("click", function() {
   colorChange("happy", happy, "#BFD102");
   dayColorChange("#BFD102");
 });
 
 /* neutral mood selected */
-neutral.addEventListener("click", function () {
+neutral.addEventListener("click", function() {
   colorChange("neutral", neutral, "#FECD32");
   dayColorChange("#FECD32");
 });
 
 /* sad mood selected */
-sad.addEventListener("click", function () {
+sad.addEventListener("click", function() {
   colorChange("sad", sad, "#FF9226");
   dayColorChange("#FF9226");
 });
 
 /* very sad mood selected */
-verySad.addEventListener("click", function () {
+verySad.addEventListener("click", function() {
   colorChange("very-sad", verySad, "#EB3233");
   dayColorChange("#EB3233");
 });
@@ -163,19 +163,20 @@ function dayColorChange(color) {
 
 auth.onAuthStateChanged((user) => {
   fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("mood")
-    .onSnapshot((doc) => {
-      for (var key of Object.keys(doc.data())) {
-        if (key != "selectedIcon") {
-          let day = document.getElementById(key);
-          try {
-            day.setAttribute("style", "background-color:" + doc.data()[key][0]);
-          } catch {
-            console.log("not loaded");
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .onSnapshot((doc) => {
+        for (var key of Object.keys(doc.data())) {
+          if (key != "selectedIcon") {
+            let day = document.getElementById(key);
+            try {
+              day.setAttribute("style",
+                               "background-color:" + doc.data()[key][0]);
+            } catch {
+              console.log("not loaded");
+            }
           }
         }
-      }
-    });
+      });
 });
