@@ -217,31 +217,16 @@ auth.onAuthStateChanged((user) => {
       .doc("mood")
       .get()
       .then((doc) => {
-        if (month == 1 && day == 1 && doc.newYear) {
+        if (month == 1 && day == 1 && "color-1-2" in doc.data()) {
           fs.collection("users")
             .doc(user.uid)
             .collection("data")
             .doc("mood")
             .delete();
-          fs.collection("users")
-            .doc(user.uid)
-            .collection("data")
-            .doc("mood")
-            .update({ newYear: false });
-        } else {
-          fs.collection("users")
-            .doc(user.uid)
-            .collection("data")
-            .doc("mood")
-            .update({ newYear: true });
         }
       })
-      .catch(() => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .update({ newYear: true });
+      .catch((err) => {
+        console.log(err);
       });
   }
 });

@@ -5,6 +5,8 @@ neutral = document.getElementById("neutral");
 sad = document.getElementById("sad");
 verySad = document.getElementById("very-sad");
 
+setIcon();
+
 /* populate yearGrid calendar */
 populateCalendar();
 
