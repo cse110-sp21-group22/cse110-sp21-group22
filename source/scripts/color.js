@@ -40,7 +40,7 @@ function setIcon() {
       .doc("mood")
       .get()
       .then((doc) => {
-        if (("color-" + month + "-" + day) in doc.data()) {
+        if ("color-" + month + "-" + day in doc.data()) {
           let toggleString = doc.data().selectedIcon + "-click";
           let moodClass = document.getElementById(doc.data().selectedIcon);
           moodClass.classList.toggle(toggleString, true);
@@ -49,5 +49,5 @@ function setIcon() {
       .catch((err) => {
         console.log(err);
       });
-    });
+  });
 }
