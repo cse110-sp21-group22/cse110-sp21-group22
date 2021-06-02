@@ -12,6 +12,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen Luon
   - Switch to simpler design: let the user add in future events
 - CI/CD Pipeline checkpoint 2: add testing
 - ADR for the calendar
+- fix the semester countdonw bug
 
 ## Update for #2nd Sprint
 - Moodtracker: responsiveness
