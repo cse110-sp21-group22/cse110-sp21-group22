@@ -749,6 +749,8 @@ if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: column";
 }
 
+setIcon();
+
 url = "https://api.quotable.io/random";
 
 // Fetches information from quote generator website
