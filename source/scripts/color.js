@@ -28,3 +28,26 @@ function colorChange(mood, moodClass, color) {
       });
   });
 }
+
+/**
+ * Function to set selected icon
+ */
+function setIcon() {
+  auth.onAuthStateChanged((user) => {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        if (("color-" + month + "-" + day) in doc.data()) {
+          let toggleString = doc.data().selectedIcon + "-click";
+          let moodClass = document.getElementById(doc.data().selectedIcon);
+          moodClass.classList.toggle(toggleString, true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    });
+}
