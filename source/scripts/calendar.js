@@ -25,81 +25,96 @@ auth.onAuthStateChanged((user) => {
 });
 
 /**
- * function for progress bar
+ * Calculate the progress based on the start and end dates
+ * @param {Date} start starting date
+ * @param {Date} end ending date
+ * @returns Array containing progress in percentage and the number of weeks since start
  */
-
-// Calculate the date diff and what week
 function cal_date(start, end) {
-  const today = new Date();
-  const one_day_per_second = 1000 * 60 * 60 * 24;
-  const one_week_per_second = one_day_per_second * 7;
-  const date_diff = (end - start) / one_day_per_second;
-  let weeks = (today - start) / one_week_per_second;
-  weeks = Math.round(weeks);
-  let progress = (today - start) / one_day_per_second / date_diff;
+  start = daysIntoYear(start);
+  end = daysIntoYear(end);
+  let today = daysIntoYear(new Date());
+  let date_diff = end - start;
+  let weeks = Math.round((today - start) / 7);
+  let progress = (today - start) / date_diff;
   progress = Math.round(progress * 100);
   return [progress, weeks];
 }
 
-// Update the bar
+/**
+ * Function to update the given bar
+ * @param {HTMLElement} element bar to update
+ * @param {int} value percentage of bar
+ */
 function update_bar(element, value) {
   if (value > 100) {
     value = 100;
   }
   if (value <= 5) {
-    element.style.backgroundColor = "#86e01e";
+    element.style.backgroundColor = "red";
   } else if (value <= 25 && value > 5) {
-    element.style.backgroundColor = "organge";
+    element.style.backgroundColor = "orange";
   } else if (value <= 50 && value > 25) {
     element.style.backgroundColor = "gold";
   } else if (value <= 75 && value > 50) {
     element.style.backgroundColor = "yellow";
   } else {
-    element.style.backgroundColor = "red";
+    element.style.backgroundColor = "#86e01e";
   }
   element.style.width = `${value}%`;
 }
 
-/* When user create a new prograss, this function will be called and bind the
- * date picker*/
+/**
+ * When user creates a new progress, this function will be called and bind the
+ * date picker
+ * @param {HTMLElement} start start date input
+ * @param {HTMLElement} end end date input
+ * @param {HTMLElement} bar HTML element for the bar to update
+ */
 function update_progress(start, end, bar) {
   $(".startdate").datepicker();
   $(".enddate").datepicker();
   const select_start = "#" + start.id;
   const select_end = "#" + end.id;
   $(select_start).bind("change", function () {
-    let start_date = new Date(document.getElementById(start.id).value);
-    let end_date = new Date(document.getElementById(end.id).value);
-    if (
-      end_date != undefined &&
-      start_date != undefined &&
-      start_date <= end_date
-    ) {
-      const response = cal_date(start_date, end_date);
-      update_bar(bar, response[0]);
-    }
+    select(bar);
   });
   $(select_end).bind("change", function () {
-    let start_date = new Date(document.getElementById(start.id).value);
-    let end_date = new Date(document.getElementById(end.id).value);
-    if (
-      end_date != undefined &&
-      start_date != undefined &&
-      start_date <= end_date
-    ) {
-      const response = cal_date(start_date, end_date);
-      update_bar(bar, response[0]);
-    }
+    select(bar);
   });
 }
 
-// Function where you can delete a progress
+/**
+ * Function to get start and end dates and update progress bar
+ * @param {HTMLElement} bar HTML element for the bar to update
+ */
+function select(bar) {
+  let start_date = new Date(document.getElementById(start.id).value);
+  let end_date = new Date(document.getElementById(end.id).value);
+  if (
+    end_date != undefined &&
+    start_date != undefined &&
+    start_date <= end_date
+  ) {
+    const response = cal_date(start_date, end_date);
+    update_bar(bar, response[0]);
+  }
+}
+
+/**
+ * Function to delete a progress tracker
+ * @param {HTMLElement} button delete button
+ * @param {HTMLElement} element progress tracker to remove
+ */
 function btn(button, element) {
   button.addEventListener("click", () => {
     element.remove();
   });
 }
 
+/**
+ * Function to update the main tracker
+ */
 function progress_func() {
   var semester_start = $("#datepicker1").datepicker("getDate");
   var semester_end = $("#datepicker2").datepicker("getDate");
@@ -117,19 +132,24 @@ function progress_func() {
     WEEK.innerHTML = text;
   }
 }
+
 $("#datepicker1")
   .datepicker()
   .on("changeDate", function (ev) {
     progress_func();
   });
+
 $("#datepicker2")
   .datepicker()
   .on("changeDate", function (ev) {
     progress_func();
   });
 
+/**
+ * Function to create a new progress tracker
+ */
 function create_new_progress() {
-  const progress_section = document.getElementById("progess_section");
+  const progress_section = document.getElementById("progress-section");
   let id = "id" + performance.now();
   const text = document.getElementById("newproresstitle").value;
   const start = document.getElementById("newstartdate").value;
@@ -138,15 +158,19 @@ function create_new_progress() {
   const new_progress = document.createElement("div");
   new_progress.setAttribute("class", "new_progress");
 
-  const title = document.createElement("h1");
+  const title = document.createElement("h2");
   title.contentEditable = true;
   title.innerHTML = text;
 
   const bar = document.createElement("div");
-  bar.setAttribute("class", "bar");
+  bar.setAttribute("class", "progress");
   const bar_content = document.createElement("div");
-  bar_content.setAttribute("data-size", 0);
-  bar_content.setAttribute("class", "progress");
+  bar_content.setAttribute("class", "progress-bar");
+  bar_content.setAttribute("role", "progressbar");
+  bar_content.setAttribute("style", "width: 100%");
+  bar_content.setAttribute("aria-valuenow", "0");
+  bar_content.setAttribute("aria-valuemin", "0");
+  bar_content.setAttribute("aria-valuemax", "100");
   bar.appendChild(bar_content);
 
   const start_p = document.createElement("p");
@@ -169,8 +193,7 @@ function create_new_progress() {
   end_input.setAttribute("id", id);
 
   const btn_remove = document.createElement("a");
-  btn_remove.setAttribute("href", "#");
-  btn_remove.setAttribute("class", "button_remove");
+  btn_remove.setAttribute("class", "button-remove");
   btn_remove.innerHTML = "Delete";
 
   new_progress.appendChild(title);
@@ -194,7 +217,7 @@ function create_new_progress() {
 }
 
 // Open the modal
-document.getElementById("button_add").addEventListener("click", () => {
+document.getElementById("button-add").addEventListener("click", () => {
   document.querySelector(".modal").style.display = "flex";
   $("#newstartdate").datepicker();
   $("#newenddate").datepicker();
@@ -206,7 +229,7 @@ document.querySelector(".close").addEventListener("click", () => {
 });
 
 // Submit the progress
-document.getElementById("button_submit").addEventListener("click", () => {
+document.getElementById("button-submit").addEventListener("click", () => {
   create_new_progress();
   document.querySelector(".modal").style.display = "none";
 });
