@@ -8,20 +8,20 @@ $("#datepicker2").datepicker();
 auth.onAuthStateChanged((user) => {
   PageLoaded();
   fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("calendar")
-      .onSnapshot((doc) => {
-        try {
-          var semester_start = doc.data().semester_start.toDate();
-          var semester_end = doc.data().semester_end.toDate();
-          $("#datepicker1").datepicker("update", semester_start);
-          $("#datepicker2").datepicker("update", semester_end);
-          progress_func();
-        } catch (err) {
-          console.log(err);
-        }
-      });
+    .doc(user.uid)
+    .collection("settings")
+    .doc("calendar")
+    .onSnapshot((doc) => {
+      try {
+        var semester_start = doc.data().semester_start.toDate();
+        var semester_end = doc.data().semester_end.toDate();
+        $("#datepicker1").datepicker("update", semester_start);
+        $("#datepicker2").datepicker("update", semester_end);
+        progress_func();
+      } catch (err) {
+        console.log(err);
+      }
+    });
 });
 
 /**
@@ -39,7 +39,7 @@ function cal_date(start, end) {
   let weeks = Math.round((today - start) / 7);
   let progress = (today - start) / date_diff;
   progress = Math.round(progress * 100);
-  return [ progress, weeks ];
+  return [progress, weeks];
 }
 
 /**
@@ -77,8 +77,12 @@ function update_progress(start, end, bar) {
   $(".enddate").datepicker();
   const select_start = "#" + start.id;
   const select_end = "#" + end.id;
-  $(select_start).bind("change", function() { select(bar); });
-  $(select_end).bind("change", function() { select(bar); });
+  $(select_start).bind("change", function () {
+    select(bar);
+  });
+  $(select_end).bind("change", function () {
+    select(bar);
+  });
 }
 
 /**
@@ -88,8 +92,11 @@ function update_progress(start, end, bar) {
 function select(bar) {
   let start_date = new Date(document.getElementById(start.id).value);
   let end_date = new Date(document.getElementById(end.id).value);
-  if (end_date != undefined && start_date != undefined &&
-      start_date <= end_date) {
+  if (
+    end_date != undefined &&
+    start_date != undefined &&
+    start_date <= end_date
+  ) {
     const response = cal_date(start_date, end_date);
     update_bar(bar, response[0]);
   }
@@ -101,7 +108,9 @@ function select(bar) {
  * @param {HTMLElement} element progress tracker to remove
  */
 function btn(button, element) {
-  button.addEventListener("click", () => { element.remove(); });
+  button.addEventListener("click", () => {
+    element.remove();
+  });
 }
 
 /**
@@ -112,27 +121,30 @@ function progress_func() {
   var semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("settings")
-        .doc("calendar")
-        .set({semester_start : semester_start, semester_end : semester_end});
+      .doc(user.uid)
+      .collection("settings")
+      .doc("calendar")
+      .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
     var response = cal_date(semester_start, semester_end);
-    var text = "Welcome to Week " + response[1] + "!" +
-               "😊";
+    var text = "Welcome to Week " + response[1] + "!" + "😊";
     update_bar(PROGRESS_BAR, response[0]);
     WEEK.innerHTML = text;
   }
 }
 
 $("#datepicker1")
-    .datepicker()
-    .on("changeDate", function(ev) { progress_func(); });
+  .datepicker()
+  .on("changeDate", function (ev) {
+    progress_func();
+  });
 
 $("#datepicker2")
-    .datepicker()
-    .on("changeDate", function(ev) { progress_func(); });
+  .datepicker()
+  .on("changeDate", function (ev) {
+    progress_func();
+  });
 
 /**
  * Function to create a new progress tracker
@@ -196,7 +208,9 @@ function create_new_progress() {
 
   const start_date = new Date(start);
   const end_date = new Date(end);
-  start_input.addEventListener("input", () => { console.log("111111"); });
+  start_input.addEventListener("input", () => {
+    console.log("111111");
+  });
   const response = cal_date(start_date, end_date);
   update_bar(bar_content, response[0]);
   update_progress(start_input, end_input, bar_content);
@@ -211,9 +225,9 @@ document.getElementById("button-add").addEventListener("click", () => {
 });
 
 // Close the modal
-document.querySelector(".close").addEventListener(
-    "click",
-    () => { document.querySelector(".modal").style.display = "none"; });
+document.querySelector(".close").addEventListener("click", () => {
+  document.querySelector(".modal").style.display = "none";
+});
 
 // Submit the progress
 document.getElementById("button-submit").addEventListener("click", () => {
