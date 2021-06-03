@@ -28,7 +28,8 @@ auth.onAuthStateChanged((user) => {
  * Calculate the progress based on the start and end dates
  * @param {Date} start starting date
  * @param {Date} end ending date
- * @returns Array containing progress in percentage and the number of weeks since start
+ * @returns Array containing progress in percentage and the number of weeks
+ *     since start
  */
 function cal_date(start, end) {
   start = daysIntoYear(start);
