@@ -45,6 +45,16 @@ function daysIntoYear(date) {
 }
 
 /**
+ * Function to convert date of year to Date object
+ * @param {int} doy 
+ * @param {int} year 
+ * @returns Date object
+ */
+function doyToDate(doy, year) {
+  return new Date(year, 0, doy);
+}
+
+/**
  * BuJo Task/notes class
  * @constructor
  * @param {string} id id of task/note
@@ -120,7 +130,7 @@ class BujoElement {
  */
 class ProgressTracker {
   constructor(id, text, start, end) {
-    thid.id = id;
+    this.id = id;
     this.text = text;
     this.start = start;
     this.end = end;

@@ -1,6 +1,6 @@
-PROGRESS_BAR = document.querySelector("#week-bar");
+PROGRESS_BAR = "week-bar";
 WEEK = document.getElementById("weeks");
-PROGRESS_BAR.style.width = `${0}%`;
+document.getElementById(PROGRESS_BAR).style.width = `${0}%`;
 
 $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
@@ -32,8 +32,6 @@ auth.onAuthStateChanged((user) => {
  *     since start
  */
 function cal_date(start, end) {
-  start = daysIntoYear(start);
-  end = daysIntoYear(end);
   let today = daysIntoYear(new Date());
   let date_diff = end - start;
   let weeks = Math.round((today - start) / 7);
@@ -44,10 +42,11 @@ function cal_date(start, end) {
 
 /**
  * Function to update the given bar
- * @param {HTMLElement} element bar to update
+ * @param {string} id bar to update
  * @param {int} value percentage of bar
  */
-function update_bar(element, value) {
+function update_bar(id, value) {
+  let element = document.getElementById(id);
   if (value > 100) {
     value = 100;
   }
@@ -68,37 +67,45 @@ function update_bar(element, value) {
 /**
  * When user creates a new progress, this function will be called and bind the
  * date picker
- * @param {HTMLElement} start start date input
- * @param {HTMLElement} end end date input
- * @param {HTMLElement} bar HTML element for the bar to update
+ * @param {string} id id of progress tracker
  */
-function update_progress(start, end, bar) {
-  $(".startdate").datepicker();
-  $(".enddate").datepicker();
-  const select_start = "#" + start.id;
-  const select_end = "#" + end.id;
+function update_progress(id) {
+  const select_start = "#start_" + id;
+  const select_end = "#end_" + id;
   $(select_start).bind("change", function () {
-    select(bar);
+    select(id);
+    let text = $("#" + id).attr("text");
+    let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+    let end_date = parseInt($("#" + id).attr("end"));
+    let progress = new ProgressTracker(id, text, start_date, end_date);
+    progress.sync();
+    $("#" + id).attr("start", start_date);
   });
   $(select_end).bind("change", function () {
-    select(bar);
+    select(id);
+    let text = $("#" + id).attr("text");
+    let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
+    let start_date = parseInt($("#" + id).attr("start"));
+    let progress = new ProgressTracker(id, text, start_date, end_date);
+    progress.sync();
+    $("#" + id).attr("end", end_date);
   });
 }
 
 /**
  * Function to get start and end dates and update progress bar
- * @param {HTMLElement} bar HTML element for the bar to update
+ * @param {string} id id of progress tracker
  */
-function select(bar) {
-  let start_date = new Date(document.getElementById(start.id).value);
-  let end_date = new Date(document.getElementById(end.id).value);
+function select(id) {
+  let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+  let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
   if (
     end_date != undefined &&
     start_date != undefined &&
     start_date <= end_date
   ) {
     const response = cal_date(start_date, end_date);
-    update_bar(bar, response[0]);
+    update_bar("bar_" + id, response[0]);
   }
 }
 
@@ -109,7 +116,9 @@ function select(bar) {
  */
 function btn(button, element) {
   button.addEventListener("click", () => {
-    element.remove();
+    let id = element.getAttribute("id");
+    let progress = new ProgressTracker(id, "", 0, 0);
+    progress.delete();
   });
 }
 
@@ -127,7 +136,7 @@ function progress_func() {
       .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
-    var response = cal_date(semester_start, semester_end);
+    var response = cal_date(daysIntoYear(semester_start), daysIntoYear(semester_end));
     var text = "Welcome to Week " + response[1] + "!" + "😊";
     update_bar(PROGRESS_BAR, response[0]);
     WEEK.innerHTML = text;
@@ -147,17 +156,23 @@ $("#datepicker2")
   });
 
 /**
- * Function to create a new progress tracker
+ * Function to render progress data from a doc
+ * @param {FirestoreDoc} individualDoc - Individual firestore doc
  */
-function create_new_progress() {
-  const progress_section = document.getElementById("progress-section");
-  let id = "id" + performance.now();
-  const text = document.getElementById("newproresstitle").value;
-  const start = document.getElementById("newstartdate").value;
-  const end = document.getElementById("newenddate").value;
+ function renderData(individualDoc) {
+  let progress = progressConverter.fromFirestore(individualDoc);
+  let id = progress.id;
+  let text = progress.text;
+  let start = parseInt(progress.start);
+  let end = parseInt(progress.end);
 
+  const progress_section = document.getElementById("progress-section");
   const new_progress = document.createElement("div");
   new_progress.setAttribute("class", "new_progress");
+  new_progress.setAttribute("id", id);
+  new_progress.setAttribute("text", text);
+  new_progress.setAttribute("start", start);
+  new_progress.setAttribute("end", end);
 
   const title = document.createElement("h2");
   title.contentEditable = true;
@@ -166,6 +181,7 @@ function create_new_progress() {
   const bar = document.createElement("div");
   bar.setAttribute("class", "progress");
   const bar_content = document.createElement("div");
+  bar_content.setAttribute("id", "bar_" + id);
   bar_content.setAttribute("class", "progress-bar");
   bar_content.setAttribute("role", "progressbar");
   bar_content.setAttribute("style", "width: 100%");
@@ -175,47 +191,78 @@ function create_new_progress() {
   bar.appendChild(bar_content);
 
   const start_p = document.createElement("p");
-  start_p.innerHTML = "Start";
+  start_p.innerHTML = "Start:";
   const start_input = document.createElement("input");
-  start_input.setAttribute("type", "text");
-  start_input.setAttribute("class", "startdate");
-  start_input.setAttribute("value", start);
-  id = id.replace(".", "");
-  start_input.setAttribute("id", id);
+  start_input.setAttribute("class", "form-control");
+  start_input.setAttribute("id", "start_" + id);
+  start_input.setAttribute("data-provide", "datepicker");
+  start_input.setAttribute("style", "width: 110px")
+  start_p.appendChild(start_input);
 
   const end_p = document.createElement("p");
-  end_p.innerText = "End";
+  end_p.innerText = "End:";
   const end_input = document.createElement("input");
-  end_input.setAttribute("type", "text");
-  end_input.setAttribute("class", "enddate");
-  end_input.setAttribute("value", end);
-  id = "id" + performance.now();
-  id = id.replace(".", "");
-  end_input.setAttribute("id", id);
+  end_input.setAttribute("class", "form-control");
+  end_input.setAttribute("id", "end_" + id);
+  end_input.setAttribute("data-provide", "datepicker");
+  end_input.setAttribute("style", "width: 110px")
+  end_p.appendChild(end_input);
+
 
   const btn_remove = document.createElement("a");
   btn_remove.setAttribute("class", "button-remove");
   btn_remove.innerHTML = "Delete";
 
+  new_progress.appendChild(document.createElement("br"));
   new_progress.appendChild(title);
   new_progress.appendChild(bar);
+  new_progress.appendChild(document.createElement("br"));
   new_progress.appendChild(start_p);
-  new_progress.appendChild(start_input);
   new_progress.appendChild(end_p);
-  new_progress.appendChild(end_input);
   new_progress.appendChild(btn_remove);
   progress_section.appendChild(new_progress);
 
-  const start_date = new Date(start);
-  const end_date = new Date(end);
-  start_input.addEventListener("input", () => {
-    console.log("111111");
-  });
-  const response = cal_date(start_date, end_date);
-  update_bar(bar_content, response[0]);
-  update_progress(start_input, end_input, bar_content);
+  $("#start_" + id).datepicker();
+  $("#start_" + id).datepicker("update", doyToDate(start, year));
+  $("#end_" + id).datepicker();
+  $("#end_" + id).datepicker("update", doyToDate(end, year));
+
+  let response = cal_date(start, end);
+  update_bar("bar_" + id, response[0]);
+  update_progress(id);
   btn(btn_remove, new_progress);
 }
+
+// realtime listners
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("progress")
+      .collection("progress")
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        let progress_section = document.getElementById("progress-section");
+        changes.forEach((change) => {
+          if (change.type == "added") {
+            if (
+              dailyLog.querySelector('[id="' + change.doc.id + '"]') == null
+            ) {
+              renderData(change.doc);
+            }
+          } else if (change.type == "removed") {
+            let progress = progress_section.querySelector('[id="' + change.doc.id + '"]');
+            if (
+              progress_section.querySelector('[id="' + change.doc.id + '"]') != null
+            ) {
+              progress_section.removeChild(progress);
+            }
+          }
+        });
+      });
+  }
+});
 
 // Open the modal
 document.getElementById("button-add").addEventListener("click", () => {
@@ -231,6 +278,11 @@ document.querySelector(".close").addEventListener("click", () => {
 
 // Submit the progress
 document.getElementById("button-submit").addEventListener("click", () => {
-  create_new_progress();
+  let id = new Date().getTime();
+  let text = document.getElementById("newproresstitle").value;
+  let start = daysIntoYear($("#newstartdate").datepicker("getDate"));
+  let end = daysIntoYear($("#newenddate").datepicker("getDate"));
+  let progress = new ProgressTracker(id, text, start, end);
+  progress.sync();
   document.querySelector(".modal").style.display = "none";
 });
