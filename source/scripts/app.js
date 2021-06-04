@@ -34,14 +34,9 @@ function NavbarLoaded() {
  * @returns day in year
  */
 function daysIntoYear(date) {
-  return (
-    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-      Date.UTC(date.getFullYear(), 0, 0)) /
-    24 /
-    60 /
-    60 /
-    1000
-  );
+  return ((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
+           Date.UTC(date.getFullYear(), 0, 0)) /
+          24 / 60 / 60 / 1000);
 }
 
 /**
@@ -73,16 +68,14 @@ class BujoElement {
       if (user) {
         let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection("" + dateYear)
-          .doc("" + this.id)
-          .withConverter(bujoConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection("" + dateYear)
+            .doc("" + this.id)
+            .withConverter(bujoConverter)
+            .set(this)
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -96,15 +89,13 @@ class BujoElement {
       if (user) {
         let dateYear = daysIntoYear(date) + selectedDate;
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection("" + dateYear)
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("notes")
+            .collection("" + dateYear)
+            .doc("" + this.id)
+            .delete()
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -133,16 +124,14 @@ class ProgressTracker {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("progress")
-          .collection("progress")
-          .doc("" + this.id)
-          .withConverter(progressConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("progress")
+            .collection("progress")
+            .doc("" + this.id)
+            .withConverter(progressConverter)
+            .set(this)
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -154,15 +143,13 @@ class ProgressTracker {
     auth.onAuthStateChanged((user) => {
       if (user) {
         fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("progress")
-          .collection("progress")
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
+            .doc(user.uid)
+            .collection("data")
+            .doc("progress")
+            .collection("progress")
+            .doc("" + this.id)
+            .delete()
+            .catch((err) => { console.log(err.message); });
       }
     });
   }
@@ -170,48 +157,37 @@ class ProgressTracker {
 
 // Task/note firestore data converter
 var bujoConverter = {
-  toFirestore: function (bujo) {
+  toFirestore : function(bujo) {
     let dateYear = daysIntoYear(date) + selectedDate;
     return {
-      id: bujo.id,
-      text: bujo.text,
-      level: bujo.level,
-      type: bujo.type,
-      signifier: bujo.signifier,
-      style: bujo.style,
-      date: dateYear,
+      id : bujo.id,
+      text : bujo.text,
+      level : bujo.level,
+      type : bujo.type,
+      signifier : bujo.signifier,
+      style : bujo.style,
+      date : dateYear,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
-    return new BujoElement(
-      data.id,
-      data.text,
-      data.level,
-      data.type,
-      data.signifier,
-      data.style
-    );
+    return new BujoElement(data.id, data.text, data.level, data.type,
+                           data.signifier, data.style);
   },
 };
 
 // Progress tracker firestore data converter
 var progressConverter = {
-  toFirestore: function (progress) {
+  toFirestore : function(progress) {
     return {
-      id: progress.id,
-      text: progress.text,
-      start: progress.start,
-      end: progress.end,
+      id : progress.id,
+      text : progress.text,
+      start : progress.start,
+      end : progress.end,
     };
   },
-  fromFirestore: function (snapshot, options) {
+  fromFirestore : function(snapshot, options) {
     const data = snapshot.data(options);
-    return new ProgressTracker(
-      data.id,
-      data.text,
-      data.start,
-      data.end
-    );
+    return new ProgressTracker(data.id, data.text, data.start, data.end);
   },
 };
