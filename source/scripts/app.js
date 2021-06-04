@@ -46,8 +46,8 @@ function daysIntoYear(date) {
 
 /**
  * Function to convert date of year to Date object
- * @param {int} doy 
- * @param {int} year 
+ * @param {int} doy
+ * @param {int} year
  * @returns Date object
  */
 function doyToDate(doy, year) {

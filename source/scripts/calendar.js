@@ -75,7 +75,9 @@ function update_progress(id) {
   $(select_start).bind("change", function () {
     select(id);
     let text = $("#" + id).attr("text");
-    let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+    let start_date = parseInt(
+      daysIntoYear($("#start_" + id).datepicker("getDate"))
+    );
     let end_date = parseInt($("#" + id).attr("end"));
     let progress = new ProgressTracker(id, text, start_date, end_date);
     progress.sync();
@@ -84,7 +86,9 @@ function update_progress(id) {
   $(select_end).bind("change", function () {
     select(id);
     let text = $("#" + id).attr("text");
-    let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
+    let end_date = parseInt(
+      daysIntoYear($("#end_" + id).datepicker("getDate"))
+    );
     let start_date = parseInt($("#" + id).attr("start"));
     let progress = new ProgressTracker(id, text, start_date, end_date);
     progress.sync();
@@ -97,7 +101,9 @@ function update_progress(id) {
  * @param {string} id id of progress tracker
  */
 function select(id) {
-  let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+  let start_date = parseInt(
+    daysIntoYear($("#start_" + id).datepicker("getDate"))
+  );
   let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
   if (
     end_date != undefined &&
@@ -136,7 +142,10 @@ function progress_func() {
       .set({ semester_start: semester_start, semester_end: semester_end });
   });
   if (semester_end != undefined && semester_start != undefined) {
-    var response = cal_date(daysIntoYear(semester_start), daysIntoYear(semester_end));
+    var response = cal_date(
+      daysIntoYear(semester_start),
+      daysIntoYear(semester_end)
+    );
     var text = "Welcome to Week " + response[1] + "!" + "😊";
     update_bar(PROGRESS_BAR, response[0]);
     WEEK.innerHTML = text;
@@ -159,7 +168,7 @@ $("#datepicker2")
  * Function to render progress data from a doc
  * @param {FirestoreDoc} individualDoc - Individual firestore doc
  */
- function renderData(individualDoc) {
+function renderData(individualDoc) {
   let progress = progressConverter.fromFirestore(individualDoc);
   let id = progress.id;
   let text = progress.text;
@@ -196,7 +205,7 @@ $("#datepicker2")
   start_input.setAttribute("class", "form-control");
   start_input.setAttribute("id", "start_" + id);
   start_input.setAttribute("data-provide", "datepicker");
-  start_input.setAttribute("style", "width: 110px")
+  start_input.setAttribute("style", "width: 110px");
   start_p.appendChild(start_input);
 
   const end_p = document.createElement("p");
@@ -205,9 +214,8 @@ $("#datepicker2")
   end_input.setAttribute("class", "form-control");
   end_input.setAttribute("id", "end_" + id);
   end_input.setAttribute("data-provide", "datepicker");
-  end_input.setAttribute("style", "width: 110px")
+  end_input.setAttribute("style", "width: 110px");
   end_p.appendChild(end_input);
-
 
   const btn_remove = document.createElement("a");
   btn_remove.setAttribute("class", "button-remove");
@@ -252,9 +260,12 @@ auth.onAuthStateChanged((user) => {
               renderData(change.doc);
             }
           } else if (change.type == "removed") {
-            let progress = progress_section.querySelector('[id="' + change.doc.id + '"]');
+            let progress = progress_section.querySelector(
+              '[id="' + change.doc.id + '"]'
+            );
             if (
-              progress_section.querySelector('[id="' + change.doc.id + '"]') != null
+              progress_section.querySelector('[id="' + change.doc.id + '"]') !=
+              null
             ) {
               progress_section.removeChild(progress);
             }
