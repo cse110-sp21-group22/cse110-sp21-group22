@@ -221,16 +221,18 @@ document.querySelector("#underline").addEventListener("click", () => {
  * @param {int} style style to apply
  */
 function updateStyle(style) {
-  let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
-  let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
-  parentDiv.attr("styleNum", currStyle);
-  setStyle(style, parentDiv);
-  let id = parentDiv.attr("id");
-  let text = parentDiv.children().text();
-  let signifier = parseInt(parentDiv.attr("signifier"));
-  let type = parseInt(parentDiv.attr("type"));
-  let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
-  note2.sync(selectedDate);
+  if (document.querySelector("#toggle") == "Edit") {
+    let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
+    let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
+    parentDiv.attr("styleNum", currStyle);
+    setStyle(style, parentDiv);
+    let id = parentDiv.attr("id");
+    let text = parentDiv.children().text();
+    let signifier = parseInt(parentDiv.attr("signifier"));
+    let type = parseInt(parentDiv.attr("type"));
+    let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
+    note2.sync(selectedDate);
+  }
 }
 
 // Disable enter key

@@ -89,6 +89,7 @@ class BujoElement {
 
   /**
    * Delete task/note
+   * @param {int} selectedDate selected date in notebook
    */
   delete(selectedDate) {
     auth.onAuthStateChanged((user) => {
@@ -109,7 +110,65 @@ class BujoElement {
   }
 }
 
-// Firestore data converter
+/**
+ * Progress tracker class
+ * @constructor
+ * @param {string} id id of progress tracker
+ * @param {string} text title of progress tracker
+ * @param {int} start specifies start date of progress tracker
+ * @param {int} end specifies end date of progress tracker
+ */
+class ProgressTracker {
+  constructor(id, text, start, end) {
+    thid.id = id;
+    this.text = text;
+    this.start = start;
+    this.end = end;
+  }
+
+  /**
+   * Sync progress tracker to database
+   */
+  sync() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("progress")
+          .collection("progress")
+          .doc("" + this.id)
+          .withConverter(progressConverter)
+          .set(this)
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
+
+  /**
+   * Delete progress tracker
+   */
+  delete() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        fs.collection("users")
+          .doc(user.uid)
+          .collection("data")
+          .doc("progress")
+          .collection("progress")
+          .doc("" + this.id)
+          .delete()
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    });
+  }
+}
+
+// Task/note firestore data converter
 var bujoConverter = {
   toFirestore: function (bujo) {
     let dateYear = daysIntoYear(date) + selectedDate;
@@ -132,6 +191,27 @@ var bujoConverter = {
       data.type,
       data.signifier,
       data.style
+    );
+  },
+};
+
+// Progress tracker firestore data converter
+var progressConverter = {
+  toFirestore: function (progress) {
+    return {
+      id: progress.id,
+      text: progress.text,
+      start: progress.start,
+      end: progress.end,
+    };
+  },
+  fromFirestore: function (snapshot, options) {
+    const data = snapshot.data(options);
+    return new ProgressTracker(
+      data.id,
+      data.text,
+      data.start,
+      data.end
     );
   },
 };

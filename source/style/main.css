@@ -239,6 +239,11 @@ body {
   cursor: pointer; /* Add a pointer on hover */
 }
 
+label,
+input {
+  display: block;
+}
+
 .modal {
   width: 100%;
   height: 100%;
@@ -250,7 +255,7 @@ body {
   display: none;
 }
 
-.modal-content{
+.modal-content {
   width: 500px;
   height: 500px;
   background-color: white;
@@ -267,7 +272,7 @@ body {
   margin: 15px auto;
 }
 
-.modal .close{
+.modal .close {
   position: absolute;
   top: 0;
   right: 14px;
@@ -329,10 +334,6 @@ h1 {
       "upcoming rosethorn"
       "quote quote";
   }
-}
-
-label, input {
-  display: block;
 }
 
 /* https://codepen.io/ekeric13/pen/VmdgBX */
