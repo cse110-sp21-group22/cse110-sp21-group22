@@ -8,20 +8,20 @@ $("#datepicker2").datepicker();
 auth.onAuthStateChanged((user) => {
   PageLoaded();
   fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("calendar")
-    .onSnapshot((doc) => {
-      try {
-        var semester_start = doc.data().semester_start.toDate();
-        var semester_end = doc.data().semester_end.toDate();
-        $("#datepicker1").datepicker("update", semester_start);
-        $("#datepicker2").datepicker("update", semester_end);
-        progress_func();
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      .doc(user.uid)
+      .collection("settings")
+      .doc("calendar")
+      .onSnapshot((doc) => {
+        try {
+          var semester_start = doc.data().semester_start.toDate();
+          var semester_end = doc.data().semester_end.toDate();
+          $("#datepicker1").datepicker("update", semester_start);
+          $("#datepicker2").datepicker("update", semester_end);
+          progress_func();
+        } catch (err) {
+          console.log(err);
+        }
+      });
 });
 
 /**
@@ -37,7 +37,7 @@ function cal_date(start, end) {
   let weeks = Math.round((today - start) / 7);
   let progress = (today - start) / date_diff;
   progress = Math.round(progress * 100);
-  return [progress, weeks];
+  return [ progress, weeks ];
 }
 
 /**
@@ -72,19 +72,21 @@ function update_bar(id, value) {
 function update_progress(id) {
   const select_start = "#start_" + id;
   const select_end = "#end_" + id;
-  $(select_start).bind("change", function () {
+  $(select_start).bind("change", function() {
     select(id);
     let text = $("#" + id).attr("text");
-    let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+    let start_date =
+        parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
     let end_date = parseInt($("#" + id).attr("end"));
     let progress = new ProgressTracker(id, text, start_date, end_date);
     progress.sync();
     $("#" + id).attr("start", start_date);
   });
-  $(select_end).bind("change", function () {
+  $(select_end).bind("change", function() {
     select(id);
     let text = $("#" + id).attr("text");
-    let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
+    let end_date =
+        parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
     let start_date = parseInt($("#" + id).attr("start"));
     let progress = new ProgressTracker(id, text, start_date, end_date);
     progress.sync();
@@ -97,13 +99,11 @@ function update_progress(id) {
  * @param {string} id id of progress tracker
  */
 function select(id) {
-  let start_date = parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
+  let start_date =
+      parseInt(daysIntoYear($("#start_" + id).datepicker("getDate")));
   let end_date = parseInt(daysIntoYear($("#end_" + id).datepicker("getDate")));
-  if (
-    end_date != undefined &&
-    start_date != undefined &&
-    start_date <= end_date
-  ) {
+  if (end_date != undefined && start_date != undefined &&
+      start_date <= end_date) {
     const response = cal_date(start_date, end_date);
     update_bar("bar_" + id, response[0]);
   }
@@ -130,36 +130,34 @@ function progress_func() {
   var semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("calendar")
-      .set({ semester_start: semester_start, semester_end: semester_end });
+        .doc(user.uid)
+        .collection("settings")
+        .doc("calendar")
+        .set({semester_start : semester_start, semester_end : semester_end});
   });
   if (semester_end != undefined && semester_start != undefined) {
-    var response = cal_date(daysIntoYear(semester_start), daysIntoYear(semester_end));
-    var text = "Welcome to Week " + response[1] + "!" + "😊";
+    var response =
+        cal_date(daysIntoYear(semester_start), daysIntoYear(semester_end));
+    var text = "Welcome to Week " + response[1] + "!" +
+               "😊";
     update_bar(PROGRESS_BAR, response[0]);
     WEEK.innerHTML = text;
   }
 }
 
 $("#datepicker1")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
 
 $("#datepicker2")
-  .datepicker()
-  .on("changeDate", function (ev) {
-    progress_func();
-  });
+    .datepicker()
+    .on("changeDate", function(ev) { progress_func(); });
 
 /**
  * Function to render progress data from a doc
  * @param {FirestoreDoc} individualDoc - Individual firestore doc
  */
- function renderData(individualDoc) {
+function renderData(individualDoc) {
   let progress = progressConverter.fromFirestore(individualDoc);
   let id = progress.id;
   let text = progress.text;
@@ -208,7 +206,6 @@ $("#datepicker2")
   end_input.setAttribute("style", "width: 110px")
   end_p.appendChild(end_input);
 
-
   const btn_remove = document.createElement("a");
   btn_remove.setAttribute("class", "button-remove");
   btn_remove.innerHTML = "Delete";
@@ -237,30 +234,29 @@ $("#datepicker2")
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("progress")
-      .collection("progress")
-      .onSnapshot((snapshot) => {
-        let changes = snapshot.docChanges();
-        let progress_section = document.getElementById("progress-section");
-        changes.forEach((change) => {
-          if (change.type == "added") {
-            if (
-              dailyLog.querySelector('[id="' + change.doc.id + '"]') == null
-            ) {
-              renderData(change.doc);
+        .doc(user.uid)
+        .collection("data")
+        .doc("progress")
+        .collection("progress")
+        .onSnapshot((snapshot) => {
+          let changes = snapshot.docChanges();
+          let progress_section = document.getElementById("progress-section");
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              if (dailyLog.querySelector('[id="' + change.doc.id + '"]') ==
+                  null) {
+                renderData(change.doc);
+              }
+            } else if (change.type == "removed") {
+              let progress = progress_section.querySelector(
+                  '[id="' + change.doc.id + '"]');
+              if (progress_section.querySelector('[id="' + change.doc.id +
+                                                 '"]') != null) {
+                progress_section.removeChild(progress);
+              }
             }
-          } else if (change.type == "removed") {
-            let progress = progress_section.querySelector('[id="' + change.doc.id + '"]');
-            if (
-              progress_section.querySelector('[id="' + change.doc.id + '"]') != null
-            ) {
-              progress_section.removeChild(progress);
-            }
-          }
+          });
         });
-      });
   }
 });
 
@@ -272,9 +268,9 @@ document.getElementById("button-add").addEventListener("click", () => {
 });
 
 // Close the modal
-document.querySelector(".close").addEventListener("click", () => {
-  document.querySelector(".modal").style.display = "none";
-});
+document.querySelector(".close").addEventListener(
+    "click",
+    () => { document.querySelector(".modal").style.display = "none"; });
 
 // Submit the progress
 document.getElementById("button-submit").addEventListener("click", () => {
