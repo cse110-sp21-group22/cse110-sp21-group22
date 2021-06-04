@@ -1,17 +1,44 @@
 <!doctype html>
 <div class="bg-light p-5 rounded">
   <h1>Calendar</h1>
-  <section id="week-tracker">
-    <h2 id = "weeks">😊</h2>
-    <img src="./assets/running.svg" id="running-man" width="50px" height="50px" alt="emoji">
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressbar"></div>
-    </div><br>
-    <p>Start :
+  <!-- Progress bar -->
+  <div id="progress-section">
+    <section id="week-tracker">
+      <h2 id = "weeks">😊</h2>
+      <img src="./assets/running.svg" id="running-man" width="50px" height="50px" alt="emoji">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="week-bar"></div>
+      </div><br>
+      <p>Start :
         <input class="form-control" style="width: 110px" data-provide="datepicker" id="datepicker1" required>
-    </p>
-    <p>End :
+      </p>
+      <p>End :
         <input class="form-control" style="width: 110px" data-provide="datepicker" id="datepicker2" required>
-    </p>
-  </section>
+      </p>
+    </section>
+  </div>
+  <!-- Modal -->
+  <a id="button-add" class="button-cal">+</a>
+  <div class="modal" id="progress-modal">
+      <div class="modal-content">
+          <div class="close">+</div>
+          <p class="required-fields">All fields are required!</p>
+          <form action="">
+              <fieldset>
+              <legend>Add Porgress</legend>
+              <p>
+                <label for="title">Please enter title</label>
+                <input type="text" name="title" id="newproresstitle" placeholder="type the title name..." required/>
+              </p>
+              <p>Start :
+                <input type="text" id="newstartdate" placeholder="click to select date..." required>
+              </p>
+              <p>End :
+                <input type="text" id="newenddate" placeholder="click to select date..." required>
+              </p>
+              </fieldset>
+              <a id="button-submit" class="button-cal">Sumbit</a>
+          </form>
+      </div>
+  </div>
 </div>

@@ -239,6 +239,48 @@ body {
   cursor: pointer; /* Add a pointer on hover */
 }
 
+label,
+input {
+  display: block;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-content input {
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
 .popup {
   margin: 70px auto;
   padding: 20px;
@@ -626,3 +668,46 @@ h1 {
 }
 
 /***** end: black board background *****/
+
+/* Calendar page */
+input.text {
+  margin-bottom: 20px;
+  width: 90%;
+  padding: 0.2em;
+}
+
+.button-cal {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-cal:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.button-remove {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-remove:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+/* END */
