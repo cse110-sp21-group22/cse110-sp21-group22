@@ -207,11 +207,6 @@ var progressConverter = {
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    return new ProgressTracker(
-      data.id,
-      data.text,
-      data.start,
-      data.end
-    );
+    return new ProgressTracker(data.id, data.text, data.start, data.end);
   },
 };
