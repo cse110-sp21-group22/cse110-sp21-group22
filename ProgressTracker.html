@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>app.js - Documentation</title>
+    <title>ProgressTracker - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,241 +29,433 @@
 
 <div id="main">
     
-    <h1 class="page-title">app.js</h1>
+    <h1 class="page-title">ProgressTracker</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// checking if user is signed in or not
-auth.onAuthStateChanged((user) => {
-  if (!user) {
-    location = "login.html";
-  }
-});
+        <h2>
+        ProgressTracker
+        </h2>
+        
+            <div class="class-description">Progress tracker class</div>
+        
+    
+</header>
 
-/**
- * Function to hide spinner and show page on load
- */
-function PageLoaded() {
-  document.getElementById("spinner").classList.add("d-none");
-  document.getElementById("main").classList.remove("d-none");
-}
+<article>
+    <div class="container-overview">
+    
+        
+<div class="section-method">
 
-/**
- * Function to show spinner and hide page
- */
-function PageUnloaded() {
-  document.getElementById("spinner").classList.remove("d-none");
-  document.getElementById("main").classList.add("d-none");
-}
+    
+    <h2>Constructor</h2>
+    
 
-/**
- * Function to show navbar when loaded
- */
-function NavbarLoaded() {
-  document.getElementById("navbar").classList.remove("d-none");
-}
+    <h4 class="name" id="ProgressTracker"><span class="type-signature"></span>new ProgressTracker<span class="signature">(id, text, start, end)</span><span class="type-signature"></span></h4>
 
-/**
- * Function to convert date to day in year
- * @param {Date} date date to convert to day in year
- * @returns day in year
- */
-function daysIntoYear(date) {
-  return (
-    (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-      Date.UTC(date.getFullYear(), 0, 0)) /
-    24 /
-    60 /
-    60 /
-    1000
-  );
-}
+    
 
-/**
- * Function to convert date of year to Date object
- * @param {int} doy
- * @param {int} year
- * @returns Date object
- */
-function doyToDate(doy, year) {
-  return new Date(year, 0, doy);
-}
 
-/**
- * BuJo Task/notes class
- * @constructor
- * @param {string} id id of task/note
- * @param {string} text task/note contents
- * @param {int} level specifies sub-elements
- * @param {int} type specifies type of task/note
- * @param {int} signifier sets signifier
- * @param {int} style sets text style
- */
-class BujoElement {
-  constructor(id, text, level, type, signifier, style) {
-    this.id = id;
-    this.text = text;
-    this.level = level;
-    this.type = type;
-    this.signifier = signifier;
-    this.style = style;
-  }
 
-  /**
-   * Sync task/note to database
-   * @param {int} selectedDate selected date in notebook
-   */
-  sync(selectedDate) {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        let dateYear = daysIntoYear(date) + selectedDate;
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection("" + dateYear)
-          .doc("" + this.id)
-          .withConverter(bujoConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
-      }
-    });
-  }
 
-  /**
-   * Delete task/note
-   * @param {int} selectedDate selected date in notebook
-   */
-  delete(selectedDate) {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        let dateYear = daysIntoYear(date) + selectedDate;
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("notes")
-          .collection("" + dateYear)
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
-      }
-    });
-  }
-}
 
-/**
- * Progress tracker class
- * @constructor
- * @param {string} id id of progress tracker
- * @param {string} text title of progress tracker
- * @param {int} start specifies start date of progress tracker
- * @param {int} end specifies end date of progress tracker
- */
-class ProgressTracker {
-  constructor(id, text, start, end) {
-    this.id = id;
-    this.text = text;
-    this.start = start;
-    this.end = end;
-  }
 
-  /**
-   * Sync progress tracker to database
-   */
-  sync() {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("progress")
-          .collection("progress")
-          .doc("" + this.id)
-          .withConverter(progressConverter)
-          .set(this)
-          .catch((err) => {
-            console.log(err.message);
-          });
-      }
-    });
-  }
 
-  /**
-   * Delete progress tracker
-   */
-  delete() {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("progress")
-          .collection("progress")
-          .doc("" + this.id)
-          .delete()
-          .catch((err) => {
-            console.log(err.message);
-          });
-      }
-    });
-  }
-}
+<dl class="details">
 
-// Task/note firestore data converter
-var bujoConverter = {
-  toFirestore: function (bujo) {
-    let dateYear = daysIntoYear(date) + selectedDate;
-    return {
-      id: bujo.id,
-      text: bujo.text,
-      level: bujo.level,
-      type: bujo.type,
-      signifier: bujo.signifier,
-      style: bujo.style,
-      date: dateYear,
-    };
-  },
-  fromFirestore: function (snapshot, options) {
-    const data = snapshot.data(options);
-    return new BujoElement(
-      data.id,
-      data.text,
-      data.level,
-      data.type,
-      data.signifier,
-      data.style
-    );
-  },
-};
+    
 
-// Progress tracker firestore data converter
-var progressConverter = {
-  toFirestore: function (progress) {
-    return {
-      id: progress.id,
-      text: progress.text,
-      start: progress.start,
-      end: progress.end,
-    };
-  },
-  fromFirestore: function (snapshot, options) {
-    const data = snapshot.data(options);
-    return new ProgressTracker(data.id, data.text, data.start, data.end);
-  },
-};
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                id of progress tracker
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                title of progress tracker
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>int</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                specifies start date of progress tracker
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>end</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>int</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                specifies end date of progress tracker
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Delete progress tracker
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line163">line 163</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="sync"><span class="type-signature"></span>sync<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Sync progress tracker to database
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line142">line 142</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
