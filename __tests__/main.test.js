@@ -1,6 +1,6 @@
 describe('Basic user flow for BuJo App', () => {
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5500/source');
+    await page.goto('http://127.0.0.1:5501/source');
     await page.waitForTimeout(500);
   });
 

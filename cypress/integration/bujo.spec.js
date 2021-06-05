@@ -4,7 +4,7 @@ context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
     cy.viewport(1000, 600)
-    cy.visit('http://127.0.0.1:5500/source/login.html')
+    cy.visit('http://127.0.0.1:5501/source/login.html')
     cy.wait(1000)
     cy.on('uncaught:exception', (err, runnable) => {
       // returning false here prevents Cypress from
@@ -14,6 +14,48 @@ context('Actions', () => {
   })
 
   // https://on.cypress.io/interacting-with-elements
+
+  it('Test daily log', () => {
+    cy.get('#email')
+      .type('test@test.com')
+    cy.get('#password')
+      .type('password');
+    cy.get('#login-form').submit()
+
+    cy.wait(2000);
+
+    cy.get('#toggle')
+      .click({force: true})
+      .click({force: true});
+    cy.get('#bold')
+      .click()
+      .click();
+    cy.get('#italic')
+      .click()
+      .click();
+    cy.get('#underline')
+      .click()
+      .click();
+    
+    cy.get('#previous')
+      .click({force: true})
+      .click({force: true})
+      .click({force: true});
+    cy.get('#next')
+      .click({force: true})
+      .click({force: true});
+    cy.get('#today')
+      .click({force: true});
+    // should we go into the future?
+    cy.get('#next')
+      .click({force: true})
+      .click({force: true});
+    cy.get('#today').click({force: true});
+    
+    cy.get('#nav-settings').click()
+    cy.wait(1000)
+    cy.get('.btn-danger').click()
+  });
 
   it('Can log in with confirmed account', () => {
     cy.get('#email')
@@ -150,4 +192,8 @@ context('Actions', () => {
     cy.wait(1000)
     cy.get('.btn-danger').click()
   });
+
+  
+
+  
 })
