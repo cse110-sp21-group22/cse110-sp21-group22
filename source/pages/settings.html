@@ -1,9 +1,19 @@
 <!doctype html>
 <div class="bg-light p-5 rounded">
   <h1>Settings</h1><br>
-  <div class="d-flex p-2 justify-content-center">
-    <div id="color-picker" class="cp-default"></div>
+
+  <div class="d-flex flex-row justify-content-center">
+    <div id="color-picker" class="p-2 cp-default"></div>
+    <div class="p-2 user-background">
+      <p>Choose your background</p>
+      <div class="d-flex flex-column">
+        <div class="p-2"><img src="/source/assets/topo.png" alt="Topography"> Topography</div>
+        <div class="p-2"><img src="/source/assets/wave.png" alt="Wave"> Wave</div>
+        <div class="p-2"><img src="/source/assets/graph.png" alt="Graph paper"> Graph paper</div>
+      </div>
+    </div>
   </div><br><br>
+
   <div style="text-align: center;">
     <button type="button" class="btn btn-primary" onclick="save()">Save</button><br><br>
     <button class="btn btn-danger" onclick="logout()">LOGOUT</button>

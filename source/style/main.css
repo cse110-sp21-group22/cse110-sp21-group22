@@ -125,6 +125,13 @@ h1 {
   background-color: white;
 }
 
+/* User background */
+.user-background img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
 /* Sticky note for rose n thorn */
 .rosethorn {
   justify-self: center;
