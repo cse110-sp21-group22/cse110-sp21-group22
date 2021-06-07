@@ -96,8 +96,8 @@ auth.onAuthStateChanged((user) => {
             .doc("rosethorn")
             .set({
               date: [date_string],
-              rose: "Rose: ",
-              thorn: "Thorn: ",
+              rose: "",
+              thorn: "",
             });
         }
       } catch (err) {
