@@ -751,7 +751,8 @@ function renderUpcoming(individualDoc) {
   new_progress.setAttribute("id", id);
 
   let upcoming_text = document.createElement("label");
-  upcoming_text.textContent = (end.getMonth() + 1) + "-" + end.getDate() + "   " + text;
+  upcoming_text.textContent =
+    end.getMonth() + 1 + "-" + end.getDate() + "   " + text;
 
   new_progress.appendChild(upcoming_text);
   upcoming_section.appendChild(new_progress);
@@ -780,7 +781,7 @@ auth.onAuthStateChanged((user) => {
           empty = false;
         });
         if (empty) {
-          let new_progress = document.createElement("section");       
+          let new_progress = document.createElement("section");
           let upcoming_text = document.createElement("label");
           upcoming_text.textContent = "No upcoming events!";
           new_progress.appendChild(upcoming_text);
