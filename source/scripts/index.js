@@ -744,14 +744,14 @@ function renderUpcoming(individualDoc) {
   let progress = progressConverter.fromFirestore(individualDoc);
   let id = progress.id;
   let text = progress.text;
-  let end = doyToDate(parseInt(progress.end));
+  let end = doyToDate(parseInt(progress.end), year);
 
-  const upcoming_section = document.getElementById("upcoming");
-  const new_progress = document.createElement("section");
+  let upcoming_section = document.getElementById("upcoming");
+  let new_progress = document.createElement("section");
   new_progress.setAttribute("id", id);
 
   let upcoming_text = document.createElement("label");
-  upcoming_text.textContent = (end.getMonth() + 1) + "-" + end.getDate() + "  " + text;
+  upcoming_text.textContent = (end.getMonth() + 1) + "-" + end.getDate() + "   " + text;
 
   new_progress.appendChild(upcoming_text);
   upcoming_section.appendChild(new_progress);
@@ -768,28 +768,24 @@ auth.onAuthStateChanged((user) => {
       .orderBy("end")
       .limit(3)
       .onSnapshot((snapshot) => {
-        let changes = snapshot.docChanges();
         let upcoming_section = document.getElementById("upcoming");
-        
-        changes.forEach((change) => {
-          if (change.type == "added") {
-            if (
-              upcoming.querySelector('[id="' + change.doc.id + '"]') == null
-            ) {
-              //renderData(change.doc);
-            }
-          } else if (change.type == "removed") {
-            let progress = progress_section.querySelector(
-              '[id="' + change.doc.id + '"]'
-            );
-            if (
-              progress_section.querySelector('[id="' + change.doc.id + '"]') !=
-              null
-            ) {
-              progress_section.removeChild(progress);
-            }
-          }
+        let empty = true;
+        if (upcoming_section) {
+          upcoming_section.innerHTML = "";
+        } else {
+          return;
+        }
+        snapshot.forEach((doc) => {
+          renderUpcoming(doc);
+          empty = false;
         });
+        if (empty) {
+          let new_progress = document.createElement("section");       
+          let upcoming_text = document.createElement("label");
+          upcoming_text.textContent = "No upcoming events!";
+          new_progress.appendChild(upcoming_text);
+          upcoming_section.appendChild(new_progress);
+        }
       });
   }
 });
