@@ -34,6 +34,8 @@ verySad.addEventListener("click", function () {
   colorChange("very-sad", verySad, "#EB3233");
 });
 
+/************ Start Rose and Thorn ************/
+
 var rosethorn = document.getElementById("rosethorn");
 var rose = document.getElementById("rose");
 var thorn = document.getElementById("thorn");
@@ -103,6 +105,10 @@ auth.onAuthStateChanged((user) => {
       }
     });
 });
+
+/************ End Rose and Thorn ************/
+
+/************ Start Daily Log ************/
 
 // When user clicks on previous Day
 document.querySelector("#previous").addEventListener("click", () => {
@@ -633,59 +639,6 @@ addItem.addEventListener("keydown", function (event) {
   }
 });
 
-// realtime listners
-for (var i = -3; i < 4; ++i) {
-  let dateYear = daysIntoYear(date) + i;
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("notes")
-        .collection("" + dateYear)
-        .onSnapshot((snapshot) => {
-          let changes = snapshot.docChanges();
-          changes.forEach((change) => {
-            if (change.type == "added") {
-              if (
-                dailyLog.querySelector('[id="' + change.doc.id + '"]') == null
-              ) {
-                renderData(change.doc);
-              }
-            } else if (change.type == "removed") {
-              let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
-              if (
-                dailyLog.querySelector('[id="' + change.doc.id + '"]') != null
-              ) {
-                dailyLog.removeChild(note);
-              }
-            }
-          });
-          showDay(selectedDate);
-        });
-    }
-  });
-}
-
-// Save everything
-$(window).on("beforeunload", function () {
-  document.activeElement.blur();
-});
-
-/**
- * Function to turn on overlay
- */
-function overlayOn() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-/**
- * Function to turn off overlay
- */
-function overlayOff() {
-  document.getElementById("overlay").style.display = "none";
-}
-
 /*
  * Helper function to display the relevant day
  * @param day - the day to display
@@ -742,6 +695,124 @@ function showDay(selectedDate) {
   } else {
     today.style.display = "inline-block";
   }
+}
+
+// realtime listners
+for (var i = -3; i < 4; ++i) {
+  let dateYear = daysIntoYear(date) + i;
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("notes")
+        .collection("" + dateYear)
+        .onSnapshot((snapshot) => {
+          let changes = snapshot.docChanges();
+          changes.forEach((change) => {
+            if (change.type == "added") {
+              if (
+                dailyLog.querySelector('[id="' + change.doc.id + '"]') == null
+              ) {
+                renderData(change.doc);
+              }
+            } else if (change.type == "removed") {
+              let note = dailyLog.querySelector('[id="' + change.doc.id + '"]');
+              if (
+                dailyLog.querySelector('[id="' + change.doc.id + '"]') != null
+              ) {
+                dailyLog.removeChild(note);
+              }
+            }
+          });
+          showDay(selectedDate);
+        });
+    }
+  });
+}
+
+/************ End Daily Log ************/
+
+/************ Start Upcoming ************/
+
+/**
+ * Function to render upcoming data from a doc
+ * @param {FirestoreDoc} individualDoc - Individual firestore doc or bujo
+ *     element
+ */
+function renderUpcoming(individualDoc) {
+  let progress = progressConverter.fromFirestore(individualDoc);
+  let id = progress.id;
+  let text = progress.text;
+  let end = doyToDate(parseInt(progress.end));
+
+  const upcoming_section = document.getElementById("upcoming");
+  const new_progress = document.createElement("section");
+  new_progress.setAttribute("id", id);
+
+  let upcoming_text = document.createElement("label");
+  upcoming_text.textContent = (end.getMonth() + 1) + "-" + end.getDate() + "  " + text;
+
+  new_progress.appendChild(upcoming_text);
+  upcoming_section.appendChild(new_progress);
+}
+
+// realtime listner
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("progress")
+      .collection("progress")
+      .orderBy("end")
+      .limit(3)
+      .onSnapshot((snapshot) => {
+        let changes = snapshot.docChanges();
+        let upcoming_section = document.getElementById("upcoming");
+        
+        changes.forEach((change) => {
+          if (change.type == "added") {
+            if (
+              upcoming.querySelector('[id="' + change.doc.id + '"]') == null
+            ) {
+              //renderData(change.doc);
+            }
+          } else if (change.type == "removed") {
+            let progress = progress_section.querySelector(
+              '[id="' + change.doc.id + '"]'
+            );
+            if (
+              progress_section.querySelector('[id="' + change.doc.id + '"]') !=
+              null
+            ) {
+              progress_section.removeChild(progress);
+            }
+          }
+        });
+      });
+  }
+});
+
+/************ End Upcoming ************/
+
+// Save everything
+$(window).on("beforeunload", function () {
+  document.activeElement.blur();
+});
+
+/**
+ * Function to turn on overlay
+ */
+function overlayOn() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+/**
+ * Function to turn off overlay
+ */
+function overlayOff() {
+  document.getElementById("overlay").style.display = "none";
 }
 
 // Change mood buttons based on window size
