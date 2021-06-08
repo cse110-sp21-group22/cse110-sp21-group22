@@ -160,7 +160,7 @@ h1 {
   font-size: 19px;
   color: #130d6b;
   outline: none;
-  transform:rotate(3deg);
+  transform: rotate(3deg);
 }
 
 .rosethorn li {
@@ -320,13 +320,15 @@ input {
 }
 
 /* Styling quote */
-#quote, #authors {
+#quote,
+#authors {
   font-style: italic;
   font-size: 1.2em;
   font-weight: 600;
 }
 
 /***** start: daily log background *****/
+
 /* https://codepen.io/ekeric13/pen/VmdgBX */
 
 .notebook {
@@ -351,9 +353,11 @@ input {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
 /***** end: daily log background *****/
 
 /***** Start daily log style *****/
+
 .item {
   height: 30px;
   width: 100%;
@@ -676,6 +680,7 @@ input.text {
 /* END For Calendar Page */
 
 /***** start: black board background *****/
+
 /* CodePen: https://codepen.io/nglu/pen/vYxGxGv */
 
 .blackboard {

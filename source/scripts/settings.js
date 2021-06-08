@@ -43,15 +43,15 @@ ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
 /**
  * Function to shade a color
  * @param {float} p percetage to lighten or darken
- * @param {rgb} c color in rgb
+ * @param {rgb} color color in rgb
  */
-function RGB_Linear_Shade(p, c) {
+function RGB_Linear_Shade(p, color) {
   var i = parseInt,
     r = Math.round,
-    [a, b, c, d] = c.split(","),
-    P = p < 0,
-    t = P ? 0 : 255 * p,
-    P = P ? 1 + p : 1 - p;
+    [a, b, c, d] = color.split(","),
+    P1 = p < 0,
+    t = P1 ? 0 : 255 * p,
+    P = P1 ? 1 + p : 1 - p;
   return (
     "rgb" +
     (d ? "a(" : "(") +
