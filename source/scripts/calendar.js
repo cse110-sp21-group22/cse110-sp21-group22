@@ -6,7 +6,6 @@ $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
 
 auth.onAuthStateChanged((user) => {
-  PageLoaded();
   fs.collection("users")
     .doc(user.uid)
     .collection("settings")
@@ -271,6 +270,7 @@ auth.onAuthStateChanged((user) => {
             }
           }
         });
+        PageLoaded();
       });
   }
 });
