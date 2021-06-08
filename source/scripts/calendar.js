@@ -200,7 +200,7 @@ function renderData(individualDoc) {
   bar.appendChild(bar_content);
 
   /*
-  <div class="dateinput"> 
+  <div class="dateinput">
     <label>Start:</label>
     <input type="text" id=?></input>
     <label>End:</label>
@@ -209,7 +209,7 @@ function renderData(individualDoc) {
   </div>
   */
   const date_input_div = document.createElement("div");
-  date_input_div.setAttribute("class","dateinput");
+  date_input_div.setAttribute("class", "dateinput");
   const start_label = document.createElement("label");
   start_label.innerHTML = "Start:";
   const start_input = document.createElement("input");
