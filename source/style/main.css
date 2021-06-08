@@ -625,6 +625,72 @@ h1 {
   border-radius: 50%;
 }
 
+/* Calendar page */
+input.text {
+  margin-bottom: 20px;
+  width: 90%;
+  padding: 0.2em;
+}
+
+.button-cal {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-cal:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.button-remove {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-remove:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.dateinput {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.dateinput label {
+  margin: 5px 10px 5px 0;
+}
+
+.dateinput input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.dateinput a {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+}
+
+/* END For Calendar Page */
+
 /***** start: black board background *****/
 
 /* CodePen: https://codepen.io/nglu/pen/vYxGxGv */
@@ -676,66 +742,3 @@ h1 {
 }
 
 /***** end: black board background *****/
-
-/* Calendar page */
-input.text {
-  margin-bottom: 20px;
-  width: 90%;
-  padding: 0.2em;
-}
-
-.button-cal {
-  background-color: blue;
-  border: 2px solid white;
-  border-radius: 30px;
-  text-decoration: none;
-  padding: 10px 28px;
-  color: white;
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.button-cal:hover {
-  background-color: yellow;
-  color: blue;
-  border: 2px solid blue;
-}
-
-.button-remove {
-  background-color: red;
-  border: 2px solid white;
-  border-radius: 30px;
-  text-decoration: none;
-  padding: 10px 28px;
-  color: white;
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.button-remove:hover {
-  background-color: yellow;
-  color: blue;
-  border: 2px solid blue;
-}
-
-.dateinput{
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-.dateinput label{
-  margin: 5px 10px 5px 0;
-}
-.dateinput input{
-  vertical-align: middle;
-  margin: 5px 10px 5px 0;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-.dateinput a{
-  vertical-align: middle;
-  margin: 5px 10px 5px 0;
-}
-
-/* END For Calendar Page*/
