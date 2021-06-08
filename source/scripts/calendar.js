@@ -198,35 +198,47 @@ function renderData(individualDoc) {
   bar_content.setAttribute("aria-valuemax", "100");
   bar.appendChild(bar_content);
 
-  const start_p = document.createElement("p");
-  start_p.innerHTML = "Start:";
+  /*
+  <div class="dateinput">
+    <label>Start:</label>
+    <input type="text" id=?></input>
+    <label>End:</label>
+    <input type="text" id=?></input>
+    <a class"button-remove">Delete</a>
+  </div>
+  */
+  const date_input_div = document.createElement("div");
+  date_input_div.setAttribute("class", "dateinput");
+  const start_label = document.createElement("label");
+  start_label.innerHTML = "Start:";
   const start_input = document.createElement("input");
   start_input.setAttribute("class", "form-control");
   start_input.setAttribute("id", "start_" + id);
   start_input.setAttribute("data-provide", "datepicker");
   start_input.setAttribute("style", "width: 110px");
-  start_p.appendChild(start_input);
+  date_input_div.appendChild(start_label);
+  date_input_div.appendChild(start_input);
 
-  const end_p = document.createElement("p");
-  end_p.innerText = "End:";
+  const end_label = document.createElement("label");
+  end_label.innerText = "End:";
   const end_input = document.createElement("input");
   end_input.setAttribute("class", "form-control");
   end_input.setAttribute("id", "end_" + id);
   end_input.setAttribute("data-provide", "datepicker");
   end_input.setAttribute("style", "width: 110px");
-  end_p.appendChild(end_input);
+  date_input_div.appendChild(end_label);
+  date_input_div.appendChild(end_input);
 
   const btn_remove = document.createElement("a");
   btn_remove.setAttribute("class", "button-remove");
   btn_remove.innerHTML = "Delete";
+  date_input_div.appendChild(btn_remove);
 
   new_progress.appendChild(document.createElement("br"));
   new_progress.appendChild(title);
   new_progress.appendChild(bar);
   new_progress.appendChild(document.createElement("br"));
-  new_progress.appendChild(start_p);
-  new_progress.appendChild(end_p);
-  new_progress.appendChild(btn_remove);
+  new_progress.appendChild(date_input_div);
   progress_section.appendChild(new_progress);
 
   $("#start_" + id).datepicker();
