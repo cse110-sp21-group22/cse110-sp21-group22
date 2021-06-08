@@ -27,8 +27,19 @@ Homepage:
 .body {
   padding-top: 4.5rem;
   background-color: #a57b65;
-  background-image: url(/source/assets/topography.svg);
   font-family: 'Playfair Display', serif;
+}
+
+.topo {
+  background-image: url(../assets/topography.svg);
+}
+
+.wave {
+  background-image: url(../assets/wave.svg);
+}
+
+.graph {
+  background-image: url(../assets/graph-paper.svg);
 }
 
 h1 {

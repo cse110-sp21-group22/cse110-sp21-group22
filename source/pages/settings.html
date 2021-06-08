@@ -1,21 +1,21 @@
 <!doctype html>
-<div class="bg-light p-5 rounded">
+<div class="p-5 rounded" id="settings">
   <h1>Settings</h1><br>
 
   <div class="d-flex flex-row justify-content-center">
-    <div id="color-picker" class="p-2 cp-default"></div>
-    <div class="p-2 user-background">
+    <div id="color-picker" class="p-2 align-items-center cp-default"></div>
+    <div class="p-2 user-background" id="user-background">
       <p>Choose your background</p>
       <div class="d-flex flex-column">
-        <div class="p-2" id="bg-topo"><img src="/source/assets/topo.png" alt="Topography"> Topography</div>
-        <div class="p-2" id="bg-wave"><img src="/source/assets/wave.png" alt="Wave"> Wave</div>
-        <div class="p-2" id="bg-graph"><img src="/source/assets/graph.png" alt="Graph paper"> Graph paper</div>
+        <div class="p-2" id="topo"><img src="./assets/topo.png" alt="Topography"> Topography</div>
+        <div class="p-2" id="wave"><img src="./assets/wave.png" alt="Wave"> Wave</div>
+        <div class="p-2" id="graph"><img src="./assets/graph.png" alt="Graph paper"> Graph paper</div>
       </div>
     </div>
   </div><br><br>
 
   <div style="text-align: center;">
-    <button type="button" class="btn btn-primary" onclick="save()">Save</button><br><br>
+    <button type="button" class="btn btn-primary" onclick="save()" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Settings saved successfully!" data-bs-trigger="focus" id="save">Save</button><br><br>
     <button class="btn btn-danger" onclick="logout()">LOGOUT</button>
   </div>
 </div>

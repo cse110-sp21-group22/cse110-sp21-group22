@@ -29,6 +29,18 @@ function NavbarLoaded() {
 }
 
 /**
+ * Function to change text color based on backgound color
+ * @param {*} id 
+ */
+function setTextColor(id) {
+  if (lightDark == "dark") {
+    document.getElementById(id).style.color = "white";
+  } else {
+    document.getElementById(id).style.color = "black";
+  }
+}
+
+/**
  * Function to convert date to day in year
  * @param {Date} date date to convert to day in year
  * @returns day in year

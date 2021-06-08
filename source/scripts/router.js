@@ -13,6 +13,12 @@ let sad = "";
 let verySad = "";
 let hColor = "";
 let hStyle = "";
+let bColor = "";
+let bStyle = "";
+let topo = "";
+let wave = "";
+let graph = "";
+let lightDark = "";
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
@@ -79,6 +85,9 @@ const main = async () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = home;
+    setTextColor("feelings");
+    setTextColor("quote");
+    setTextColor("authors");
     dynamicallyLoadScript(
       "./scripts/index.js",
       dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
@@ -106,6 +115,8 @@ const main = async () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = settings;
+    setTextColor("user-background");
+    setTextColor("settings");
     dynamicallyLoadScript(
       "./scripts/settings.js",
       updateNavbar("nav-settings")
@@ -185,25 +196,24 @@ auth.onAuthStateChanged((user) => {
     });
 });
 
-// // Update background color from firebase
-// auth.onAuthStateChanged((user) => {
-//   fs.collection("users")
-//     .doc(user.uid)
-//     .collection("settings")
-//     .doc("body")
-//     .onSnapshot((doc) => {
-//       try {
-//         bColor = doc.data().bColor;
-//         bStyle = doc.data().bStyle;
-//         document.getElementById("body").className = bStyle;
-//         document.getElementById("body").style.backgroundColor = bColor;
-        
-//       } catch (err) {
-//         console.log(err);
-//       }
-//       // BodyColorLoaded()(); // still need to be implemented in app.js
-//     });
-// });
+// Update background from firebase
+auth.onAuthStateChanged((user) => {
+  fs.collection("users")
+    .doc(user.uid)
+    .collection("settings")
+    .doc("body")
+    .onSnapshot((doc) => {
+      try {
+        bColor = doc.data().bColor;
+        bStyle = doc.data().bStyle;
+        document.getElementById("body").className = bStyle;
+        document.getElementById("body").style.backgroundColor = bColor;
+        lightDark = doc.data().lightDark;
+      } catch (err) {
+        console.log(err);
+      }
+    });
+});
 
 // register service worker
 if ("serviceWorker" in navigator) {
@@ -221,6 +231,9 @@ window.onpopstate = () => {
 
 main().then(() => {
   rootDiv.innerHTML = home;
+  setTextColor("feelings");
+  setTextColor("quote");
+  setTextColor("authors");
   dynamicallyLoadScript(
     "./scripts/index.js",
     dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
