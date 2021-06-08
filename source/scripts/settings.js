@@ -43,6 +43,7 @@ function logout() {
   auth.signOut();
 }
 
+
 /**
  * Function to save color preference
  */
@@ -50,11 +51,15 @@ function save() {
   auth.onAuthStateChanged((user) => {
     hStyle = document.getElementById("navbar").className;
     hColor = document.getElementById("navbar").style.backgroundColor;
+    bStyle = document.getElementById("body").className;
+    bColor = document.getElementById("body").style.backgroundColor;
+
     fs.collection("users")
       .doc(user.uid)
       .collection("settings")
       .doc("navbar")
-      .set({ hStyle: hStyle, hColor: hColor });
+      .doc("body")
+      .set({ hStyle: hStyle, hColor: hColor, bStyle: bStyle, bColor: bColor });
   });
 }
 

@@ -24,7 +24,7 @@ Homepage:
   text-decoration: none;
 }
 
-body {
+.body {
   padding-top: 4.5rem;
   background-color: #a57b65;
   background-image: url(/source/assets/topography.svg);
@@ -125,7 +125,7 @@ h1 {
   background-color: white;
 }
 
-/* User background */
+/* User background icons */
 .user-background img {
   height: 60px;
   width: 60px;

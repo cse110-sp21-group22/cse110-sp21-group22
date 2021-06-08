@@ -177,12 +177,33 @@ auth.onAuthStateChanged((user) => {
         hStyle = doc.data().hStyle;
         document.getElementById("navbar").className = hStyle;
         document.getElementById("navbar").style.backgroundColor = hColor;
+        
       } catch (err) {
         console.log(err);
       }
       NavbarLoaded();
     });
 });
+
+// // Update background color from firebase
+// auth.onAuthStateChanged((user) => {
+//   fs.collection("users")
+//     .doc(user.uid)
+//     .collection("settings")
+//     .doc("body")
+//     .onSnapshot((doc) => {
+//       try {
+//         bColor = doc.data().bColor;
+//         bStyle = doc.data().bStyle;
+//         document.getElementById("body").className = bStyle;
+//         document.getElementById("body").style.backgroundColor = bColor;
+        
+//       } catch (err) {
+//         console.log(err);
+//       }
+//       // BodyColorLoaded()(); // still need to be implemented in app.js
+//     });
+// });
 
 // register service worker
 if ("serviceWorker" in navigator) {
