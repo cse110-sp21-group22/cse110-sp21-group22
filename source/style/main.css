@@ -718,4 +718,24 @@ input.text {
   border: 2px solid blue;
 }
 
-/* END */
+.dateinput{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.dateinput label{
+  margin: 5px 10px 5px 0;
+}
+.dateinput input{
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.dateinput a{
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+}
+
+/* END For Calendar Page*/
