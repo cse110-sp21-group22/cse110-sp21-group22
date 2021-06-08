@@ -188,7 +188,6 @@ auth.onAuthStateChanged((user) => {
         hStyle = doc.data().hStyle;
         document.getElementById("navbar").className = hStyle;
         document.getElementById("navbar").style.backgroundColor = hColor;
-        
       } catch (err) {
         console.log(err);
       }

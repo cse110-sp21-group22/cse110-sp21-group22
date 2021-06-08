@@ -30,7 +30,7 @@ function NavbarLoaded() {
 
 /**
  * Function to change text color based on backgound color
- * @param {*} id 
+ * @param {*} id
  */
 function setTextColor(id) {
   if (lightDark == "dark") {
