@@ -90,12 +90,28 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+  ###################
+  # Firebase deploy #
+  ###################
+  preview:
+    needs: [linter, semgrep, sonarcloud]
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATCH_22_E0C66 }}'
+          projectId: catch-22-e0c66
+          entryPoint: ./instrumented/
 
   ###################
   # Cypress testing #
   ###################
   cypress-run:
-    needs: [linter, semgrep, sonarcloud]
+    needs: [preview]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -113,18 +129,3 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # pass GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-  ###################
-  # Firebase deploy #
-  ###################
-  preview:
-    needs: [cypress-run]
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATCH_22_E0C66 }}'
-          projectId: catch-22-e0c66
