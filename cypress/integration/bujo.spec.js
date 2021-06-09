@@ -29,7 +29,7 @@ context("Actions", () => {
       .should("have.value", "password");
     cy.get(".btn-block").click();
     cy.get("#signup-error").should(($err) => {
-      expect($err).to.contain('already in use')
+      expect($err).to.contain('already in use');
     });
     cy.get("#name")
       .clear()
@@ -52,7 +52,7 @@ context("Actions", () => {
     cy.wait(1000);
     cy.get(".btn").click();
     cy.get("#reset-error").should(($err) => {
-      expect($err).to.contain('badly')
+      expect($err).to.contain('badly');
     });
     cy.get("#email")
       .clear()
@@ -60,7 +60,7 @@ context("Actions", () => {
       .should("have.value", "test@sdkj.com");
     cy.get(".btn").click();
     cy.get("#reset-error").should(($err) => {
-      expect($err).to.contain('no user record')
+      expect($err).to.contain('no user record');
     });
     cy.get("#email")
       .clear()
@@ -68,7 +68,7 @@ context("Actions", () => {
       .should("have.value", "test@test.com");
     cy.get(".btn").click();
     cy.get("#reset-error").should(($err) => {
-      expect($err).to.contain('password reset link')
+      expect($err).to.contain('password reset link');
     });
   });
 
@@ -83,7 +83,7 @@ context("Actions", () => {
       .should("have.value", "password");
     cy.get("#login-form").submit();
     cy.get("#login-error").should(($err) => {
-      expect($err).to.contain('no user record')
+      expect($err).to.contain('no user record');
     });
 
     cy.get("#email")
@@ -306,5 +306,5 @@ context("Actions", () => {
     cy.get("#nav-settings").click();
     cy.wait(1000);
     cy.get(".btn-danger").click();
-  })
+  });
 });
