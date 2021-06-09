@@ -38,15 +38,19 @@ var urlsToPrefetch = [
 ];
 
 // Cache elements
-self.addEventListener("install", function(event) {
+self.addEventListener("install", function (event) {
   event.waitUntil(
-      caches.open(CACHE_NAME)
-          .then(function(cache) { return cache.addAll(urlsToPrefetch); }));
+    caches.open(CACHE_NAME).then(function (cache) {
+      return cache.addAll(urlsToPrefetch);
+    })
+  );
 });
 
 // fallback to cache on fetch
-self.addEventListener("fetch", function(event) {
-  event.respondWith(caches.match(event.request).then(function(response) {
-    return response || fetch(event.request);
-  }));
+self.addEventListener("fetch", function (event) {
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      return response || fetch(event.request);
+    })
+  );
 });

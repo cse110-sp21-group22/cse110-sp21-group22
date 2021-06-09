@@ -1,4 +1,4 @@
-const router = new Navigo("/", {hash : true});
+const router = new Navigo("/", { hash: true });
 let home = "";
 let calendar = "";
 let moodtracker = "";
@@ -55,8 +55,8 @@ const monthNameLong = [
   "November",
   "December",
 ];
-const weekDay = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
-let daysInMonth = [ 29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
 let WEEK = "";
@@ -70,7 +70,7 @@ let previousSelected = "";
 let selectedDate = 0;
 let editStatus = false;
 let quote =
-    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+  '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
 let author = "-Marilyn vos Savant";
 
 /**
@@ -108,23 +108,27 @@ const main = async () => {
     setTextColor("quote");
     setTextColor("authors");
     dynamicallyLoadScript(
-        "./scripts/index.js",
-        dynamicallyLoadScript("./scripts/color.js", updateNavbar("home")));
+      "./scripts/index.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+    );
   });
   router.on("/calendar", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = calendar;
-    dynamicallyLoadScript("./scripts/calendar.js",
-                          updateNavbar("nav-calendar"));
+    dynamicallyLoadScript(
+      "./scripts/calendar.js",
+      updateNavbar("nav-calendar")
+    );
   });
   router.on("/mood", () => {
     PageUnloaded();
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-        "./scripts/moodFunctionality.js",
-        dynamicallyLoadScript("./scripts/color.js", updateNavbar("nav-mood")));
+      "./scripts/moodFunctionality.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("nav-mood"))
+    );
   });
   router.on("/settings", () => {
     PageUnloaded();
@@ -132,8 +136,10 @@ const main = async () => {
     rootDiv.innerHTML = settings;
     setTextColor("user-background");
     setTextColor("settings");
-    dynamicallyLoadScript("./scripts/settings.js",
-                          updateNavbar("nav-settings"));
+    dynamicallyLoadScript(
+      "./scripts/settings.js",
+      updateNavbar("nav-settings")
+    );
   });
 };
 
@@ -193,20 +199,20 @@ function resize() {
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("settings")
-        .doc("navbar")
-        .onSnapshot((doc) => {
-          try {
-            hColor = doc.data().hColor;
-            hStyle = doc.data().hStyle;
-            document.getElementById("navbar").className = hStyle;
-            document.getElementById("navbar").style.backgroundColor = hColor;
-          } catch (err) {
-            console.log(err);
-          }
-          NavbarLoaded();
-        });
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .onSnapshot((doc) => {
+        try {
+          hColor = doc.data().hColor;
+          hStyle = doc.data().hStyle;
+          document.getElementById("navbar").className = hStyle;
+          document.getElementById("navbar").style.backgroundColor = hColor;
+        } catch (err) {
+          console.log(err);
+        }
+        NavbarLoaded();
+      });
   }
 });
 
@@ -214,20 +220,20 @@ auth.onAuthStateChanged((user) => {
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("settings")
-        .doc("body")
-        .onSnapshot((doc) => {
-          try {
-            bColor = doc.data().bColor;
-            bStyle = doc.data().bStyle;
-            document.getElementById("body").className = bStyle;
-            document.getElementById("body").style.backgroundColor = bColor;
-            lightDark = doc.data().lightDark;
-          } catch (err) {
-            console.log(err);
-          }
-        });
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .onSnapshot((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      });
   }
 });
 
@@ -235,34 +241,34 @@ auth.onAuthStateChanged((user) => {
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("settings")
-        .doc("body")
-        .get()
-        .then((doc) => {
-          try {
-            bColor = doc.data().bColor;
-            bStyle = doc.data().bStyle;
-            document.getElementById("body").className = bStyle;
-            document.getElementById("body").style.backgroundColor = bColor;
-            lightDark = doc.data().lightDark;
-          } catch (err) {
-            console.log(err);
-          }
-        })
-        .then(() => {
-          setTextColor("feelings");
-          setTextColor("quote");
-          setTextColor("authors");
-        });
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .get()
+      .then((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .then(() => {
+        setTextColor("feelings");
+        setTextColor("quote");
+        setTextColor("authors");
+      });
   }
 });
 
 // register service worker
 if ("serviceWorker" in navigator) {
-  window.addEventListener(
-      "load",
-      function() { navigator.serviceWorker.register("./scripts/sw.js"); });
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./scripts/sw.js");
+  });
 }
 
 // Get quote
@@ -271,14 +277,16 @@ const loadQuote = async () => {
 
   // Fetches information from quote generator website
   if (navigator.onLine) {
-    await fetch(url).then((response) => response.json()).then((result) => {
-      // Updates html objects with content from the website
-      quote = '"' + result.content + '"';
-      author = "-" + result.author;
-    });
+    await fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        quote = '"' + result.content + '"';
+        author = "-" + result.author;
+      });
   } else {
     quote =
-        '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
     author = "-Marilyn vos Savant";
   }
 };
@@ -286,7 +294,9 @@ const loadQuote = async () => {
 /**
  * The Function is invoked when the window.history's state changes
  */
-window.onpopstate = () => { router.resolve(); };
+window.onpopstate = () => {
+  router.resolve();
+};
 
 loadQuote().then(() => {
   main().then(() => {
@@ -296,8 +306,9 @@ loadQuote().then(() => {
     setTextColor("authors");
     setTimeout(() => {
       dynamicallyLoadScript(
-          "./scripts/index.js",
-          dynamicallyLoadScript("./scripts/color.js", updateNavbar("home")));
+        "./scripts/index.js",
+        dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+      );
     }, 2000);
   });
 });
@@ -306,19 +317,21 @@ loadQuote().then(() => {
 auth.onAuthStateChanged((user) => {
   if (user) {
     fs.collection("users")
-        .doc(user.uid)
-        .collection("data")
-        .doc("mood")
-        .get()
-        .then((doc) => {
-          if (month == 1 && day == 1 && "color-1-2" in doc.data()) {
-            fs.collection("users")
-                .doc(user.uid)
-                .collection("data")
-                .doc("mood")
-                .delete();
-          }
-        })
-        .catch((err) => { console.log(err); });
+      .doc(user.uid)
+      .collection("data")
+      .doc("mood")
+      .get()
+      .then((doc) => {
+        if (month == 1 && day == 1 && "color-1-2" in doc.data()) {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .delete();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
