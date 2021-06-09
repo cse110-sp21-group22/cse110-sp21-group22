@@ -3,7 +3,7 @@
 context("Actions", () => {
   beforeEach(() => {
     // Change for actual testing
-    cy.visit("http://127.0.0.1:5500/source/login.html");
+    cy.visit("https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/login.html");
     cy.viewport(1000, 600);
     cy.wait(1000);
     cy.on("uncaught:exception", (err, runnable) => {
