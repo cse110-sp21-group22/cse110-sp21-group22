@@ -22,7 +22,7 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 /**

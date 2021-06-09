@@ -27,7 +27,7 @@ function colorChange(mood, moodClass, color) {
             .doc("mood")
             .set({ [color_string]: [color], selectedIcon: [mood] });
         });
-      }
+    }
   });
 }
 
@@ -52,6 +52,6 @@ function setIcon() {
         .catch((err) => {
           console.log(err);
         });
-      }
+    }
   });
 }

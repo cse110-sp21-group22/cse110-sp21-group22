@@ -55,15 +55,7 @@ const monthNameLong = [
   "November",
   "December",
 ];
-const weekDay = [
-  "Sun",
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
-];
+const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
@@ -77,7 +69,8 @@ let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
 let editStatus = false;
-let quote = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+let quote =
+  '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
 let author = "-Marilyn vos Savant";
 
 /**
@@ -220,7 +213,7 @@ auth.onAuthStateChanged((user) => {
         }
         NavbarLoaded();
       });
-    }
+  }
 });
 
 // Update background from firebase
@@ -241,7 +234,7 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 // Get background settings
@@ -262,12 +255,13 @@ auth.onAuthStateChanged((user) => {
         } catch (err) {
           console.log(err);
         }
-      }).then(() => {
+      })
+      .then(() => {
         setTextColor("feelings");
         setTextColor("quote");
         setTextColor("authors");
       });
-    }
+  }
 });
 
 // register service worker
@@ -291,7 +285,8 @@ const loadQuote = async () => {
         author = "-" + result.author;
       });
   } else {
-    quote = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+    quote =
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
     author = "-Marilyn vos Savant";
   }
 };

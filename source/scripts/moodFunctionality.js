@@ -75,7 +75,7 @@ function fillMonths() {
           setCurrDate();
           PageLoaded();
         });
-      }
+    }
   });
 }
 
@@ -174,12 +174,15 @@ auth.onAuthStateChanged((user) => {
           if (key != "selectedIcon") {
             let day = document.getElementById(key);
             try {
-              day.setAttribute("style", "background-color:" + doc.data()[key][0]);
+              day.setAttribute(
+                "style",
+                "background-color:" + doc.data()[key][0]
+              );
             } catch {
               console.log("not loaded");
             }
           }
         }
       });
-    }
+  }
 });

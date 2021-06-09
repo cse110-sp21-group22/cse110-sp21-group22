@@ -55,13 +55,13 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 rosethorn.addEventListener("focusout", (event) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
-     fs.collection("users")
+      fs.collection("users")
         .doc(user.uid)
         .collection("data")
         .doc("rosethorn")
@@ -81,7 +81,7 @@ rosethorn.addEventListener("focusout", (event) => {
               thorn: [thorn.innerHTML],
             });
         });
-      }
+    }
   });
 });
 
@@ -109,7 +109,7 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 /************ End Rose and Thorn ************/
@@ -692,7 +692,8 @@ function showDay(selectedDate) {
   date2 = date2.toString();
   year2 = year2.toString();
 
-  editorDate.innerText = weekDay[date.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
+  editorDate.innerText =
+    weekDay[date.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
 }
 
 // realtime listners
