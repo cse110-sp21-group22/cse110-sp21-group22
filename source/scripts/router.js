@@ -209,9 +209,14 @@ auth.onAuthStateChanged((user) => {
           document.getElementById("navbar").className = hStyle;
           document.getElementById("navbar").style.backgroundColor = hColor;
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
         NavbarLoaded();
+        if (document.getElementById("quote")) {
+          setTextColor("feelings");
+          setTextColor("quote");
+          setTextColor("authors");
+        }
       });
   }
 });
@@ -229,37 +234,9 @@ auth.onAuthStateChanged((user) => {
           bStyle = doc.data().bStyle;
           document.getElementById("body").className = bStyle;
           document.getElementById("body").style.backgroundColor = bColor;
-          lightDark = doc.data().lightDark;
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
-      });
-  }
-});
-
-// Get background settings
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("body")
-      .get()
-      .then((doc) => {
-        try {
-          bColor = doc.data().bColor;
-          bStyle = doc.data().bStyle;
-          document.getElementById("body").className = bStyle;
-          document.getElementById("body").style.backgroundColor = bColor;
-          lightDark = doc.data().lightDark;
-        } catch (err) {
-          console.log(err);
-        }
-      })
-      .then(() => {
-        setTextColor("feelings");
-        setTextColor("quote");
-        setTextColor("authors");
       });
   }
 });
@@ -331,7 +308,7 @@ auth.onAuthStateChanged((user) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 });

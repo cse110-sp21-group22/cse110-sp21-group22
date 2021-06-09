@@ -33,10 +33,41 @@ function NavbarLoaded() {
  * @param {*} id
  */
 function setTextColor(id) {
-  if (lightDark == "dark") {
-    document.getElementById(id).style.color = "white";
-  } else {
+  lightDark = lightOrDark(
+    document.getElementById("navbar").style.backgroundColor
+  );
+  if (lightDark == "light") {
     document.getElementById(id).style.color = "black";
+  } else {
+    document.getElementById(id).style.color = "white";
+  }
+}
+
+/**
+ * Function to determine if a color is light or dark
+ * @param {string} color - color in rgb
+ * @returns - "light" for light color or "dark" for dark color
+ */
+function lightOrDark(color) {
+  if (!color) {
+    return;
+  }
+  // Variables for red, green, blue values
+  var r, g, b, hsp;
+  var rgb = color.match(/\d+/g);
+
+  r = rgb[0];
+  g = rgb[1];
+  b = rgb[2];
+
+  // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+
+  // Using the HSP value, determine whether the color is light or dark
+  if (hsp > 127.5) {
+    return "light";
+  } else {
+    return "dark";
   }
 }
 
@@ -103,7 +134,7 @@ class BujoElement {
           .withConverter(bujoConverter)
           .set(this)
           .catch((err) => {
-            console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -125,7 +156,7 @@ class BujoElement {
           .doc("" + this.id)
           .delete()
           .catch((err) => {
-            console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -163,7 +194,7 @@ class ProgressTracker {
           .withConverter(progressConverter)
           .set(this)
           .catch((err) => {
-            console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -183,7 +214,7 @@ class ProgressTracker {
           .doc("" + this.id)
           .delete()
           .catch((err) => {
-            console.log(err.message);
+            // console.log(err.message);
           });
       }
     });

@@ -170,16 +170,18 @@ auth.onAuthStateChanged((user) => {
       .collection("data")
       .doc("mood")
       .onSnapshot((doc) => {
-        for (var key of Object.keys(doc.data())) {
-          if (key != "selectedIcon") {
-            let day = document.getElementById(key);
-            try {
-              day.setAttribute(
-                "style",
-                "background-color:" + doc.data()[key][0]
-              );
-            } catch {
-              console.log("not loaded");
+        if (doc.data()) {
+          for (var key of Object.keys(doc.data())) {
+            if (key != "selectedIcon") {
+              let day = document.getElementById(key);
+              try {
+                day.setAttribute(
+                  "style",
+                  "background-color:" + doc.data()[key][0]
+                );
+              } catch {
+                // console.log("not loaded");
+              }
             }
           }
         }

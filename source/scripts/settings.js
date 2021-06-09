@@ -19,7 +19,7 @@ graph.addEventListener("click", function () {
 
 // Change elements based on color picker
 ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
-  lightDark = lightOrDark(hex);
+  lightDark = lightOrDark("rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
   if (lightDark == "light") {
     document.getElementById("navbar").className =
       "navbar navbar-expand-md navbar-light fixed-top";
@@ -35,7 +35,8 @@ ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
       "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")"
     );
   }
-  document.getElementById("navbar").style.backgroundColor = hex;
+  document.getElementById("navbar").style.backgroundColor =
+    "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
   setTextColor("user-background");
   setTextColor("settings");
 });
@@ -62,33 +63,6 @@ function RGB_Linear_Shade(p, color) {
     r(i(c) * P + t) +
     (d ? "," + d : ")")
   );
-}
-
-/**
- * Function to determine if a color is light or dark
- * @param {string} color - color in hex
- * @returns - "light" for light color or "dark" for dark color
- */
-function lightOrDark(color) {
-  // Variables for red, green, blue values
-  var r, g, b, hsp;
-
-  // Convert hex to RGB: http://gist.github.com/983661
-  color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
-
-  r = color >> 16;
-  g = (color >> 8) & 255;
-  b = color & 255;
-
-  // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
-  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
-
-  // Using the HSP value, determine whether the color is light or dark
-  if (hsp > 127.5) {
-    return "light";
-  } else {
-    return "dark";
-  }
 }
 
 /**
@@ -119,7 +93,7 @@ function save() {
         .doc(user.uid)
         .collection("settings")
         .doc("body")
-        .set({ bStyle: bStyle, bColor: bColor, lightDark: lightDark });
+        .set({ bStyle: bStyle, bColor: bColor });
     }
   });
 }
