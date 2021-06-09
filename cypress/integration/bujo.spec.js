@@ -16,7 +16,7 @@ context("Actions", () => {
   // https://on.cypress.io/interacting-with-elements
 
   it("Test signup", () => {
-    cy.get(":nth-child(1) > a").click();
+    cy.get(":nth-child(1) > a").click({force: true});
     cy.wait(1000);
     cy.get("#name")
       .type("test")
@@ -27,7 +27,7 @@ context("Actions", () => {
     cy.get("#password")
       .type("password")
       .should("have.value", "password");
-    cy.get(".btn-block").click();
+    cy.get(".btn-block").click({force: true});
     cy.get("#signup-error").should(($err) => {
       expect($err).to.contain('already in use');
     });
@@ -44,13 +44,13 @@ context("Actions", () => {
       .clear()
       .type("password")
       .should("have.value", "password");
-    cy.get(".btn-block").click();
+    cy.get(".btn-block").click({force: true});
   });
 
   it("Test password reset", () => {
-    cy.get(":nth-child(2) > a").click();
+    cy.get(":nth-child(2) > a").click({force: true});
     cy.wait(1000);
-    cy.get(".btn").click();
+    cy.get(".btn").click({force: true});
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain('badly');
     });
@@ -58,7 +58,7 @@ context("Actions", () => {
       .clear()
       .type("test@sdkj.com")
       .should("have.value", "test@sdkj.com");
-    cy.get(".btn").click();
+    cy.get(".btn").click({force: true});
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain('no user record');
     });
@@ -66,7 +66,7 @@ context("Actions", () => {
       .clear()
       .type("test@test.com")
       .should("have.value", "test@test.com");
-    cy.get(".btn").click();
+    cy.get(".btn").click({force: true});
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain('password reset link');
     });
@@ -127,11 +127,11 @@ context("Actions", () => {
     cy.reload();
     cy.wait(2000);
 
-    cy.get("#nav-calendar").click();
+    cy.get("#nav-calendar").click({force: true});
     cy.wait(1000);
     cy.get("h1").should("contain", "Calendar");
 
-    cy.get("#nav-mood").click();
+    cy.get("#nav-mood").click({force: true});
     cy.wait(1000);
     cy.get("h1").should("contain", "Mood Tracker");
 
@@ -139,13 +139,13 @@ context("Actions", () => {
     cy.wait(1000);
     cy.get("h1").should("contain", "Calendar");
 
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
     cy.reload();
     cy.wait(1000);
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get(".btn-danger").click();
+    cy.get(".btn-danger").click({force: true});
   });
 
   it("Test daily log", () => {
@@ -156,9 +156,9 @@ context("Actions", () => {
     cy.wait(2000);
 
     cy.get("#toggle").click({ force: true }).click({ force: true });
-    cy.get("#bold").click().click();
-    cy.get("#italic").click().click();
-    cy.get("#underline").click().click();
+    cy.get("#bold").click({force: true}).click({force: true});
+    cy.get("#italic").click({force: true}).click({force: true});
+    cy.get("#underline").click({force: true}).click({force: true});
 
     cy.get("#previous").click({ force: true }).click({ force: true }).click({
       force: true,
@@ -169,9 +169,9 @@ context("Actions", () => {
     cy.get("#next").click({ force: true }).click({ force: true });
     cy.get("#today").click({ force: true });
 
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get(".btn-danger").click();
+    cy.get(".btn-danger").click({force: true});
   });
 
   it("Test mood tracker", () => {
@@ -180,32 +180,32 @@ context("Actions", () => {
     cy.get("#login-form").submit();
     cy.wait(2000);
 
-    cy.get("#very-happy").click();
-    cy.get("#happy").click();
-    cy.get("#sad").click();
-    cy.get("#very-sad").click();
-    cy.get("#neutral").click();
+    cy.get("#very-happy").click({force: true});
+    cy.get("#happy").click({force: true});
+    cy.get("#sad").click({force: true});
+    cy.get("#very-sad").click({force: true});
+    cy.get("#neutral").click({force: true});
 
-    cy.get("#nav-mood").click();
+    cy.get("#nav-mood").click({force: true});
     cy.wait(1000);
     cy.viewport(1920, 1080);
     cy.get("h1").should("contain", "Mood Tracker");
     cy.get("[data-cy=current-date]", {
       timeout: 10000,
     }).should("have.attr", "style", "background-color:#FECD32");
-    cy.get("#happy").click();
-    cy.get("#sad").click();
-    cy.get("#very-sad").click();
-    cy.get("#neutral").click();
-    cy.get("#very-happy").click();
+    cy.get("#happy").click({force: true});
+    cy.get("#sad").click({force: true});
+    cy.get("#very-sad").click({force: true});
+    cy.get("#neutral").click({force: true});
+    cy.get("#very-happy").click({force: true});
     cy.get("[data-cy=current-date]").should(
       "have.attr",
       "style",
       "background-color:#55D805"
     );
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get("#nav-mood").click();
+    cy.get("#nav-mood").click({force: true});
     cy.wait(1000);
     cy.get("[data-cy=current-date]").should(
       "have.attr",
@@ -213,9 +213,9 @@ context("Actions", () => {
       "background-color:#55D805"
     );
 
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get(".btn-danger").click();
+    cy.get(".btn-danger").click({force: true});
   });
 
   it("Test rose and thorn", () => {
@@ -227,9 +227,9 @@ context("Actions", () => {
 
     cy.get("#rose").dblclick({force: true}).type("test");
     cy.get("#thorn").dblclick({force: true}).type("test2");
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get(".navbar-brand").click();
+    cy.get(".navbar-brand").click({force: true});
     cy.wait(1000);
     cy.get("#rose").should("contain", "test");
     cy.get("#thorn").should("contain", "test2");
@@ -238,61 +238,61 @@ context("Actions", () => {
   it("Test calendar", () => {
     cy.wait(2000);
 
-    cy.get("#nav-calendar").click();
+    cy.get("#nav-calendar").click({force: true});
     cy.wait(2000);
-    cy.get("#datepicker2").click();
-    cy.get('[data-date="1625011200000"]').click();
-    cy.get('[data-date="1624924800000"]').click();
-    cy.get("#datepicker1").click();
-    cy.get('[data-date="1616457600000"]').click();
-    cy.get('[data-date="1616544000000"]').click();
+    cy.get("#datepicker2").click({force: true});
+    cy.get('[data-date="1625011200000"]').click({force: true});
+    cy.get('[data-date="1624924800000"]').click({force: true});
+    cy.get("#datepicker1").click({force: true});
+    cy.get('[data-date="1616457600000"]').click({force: true});
+    cy.get('[data-date="1616544000000"]').click({force: true});
 
-    cy.get("#button-add").click();
+    cy.get("#button-add").click({force: true});
     cy.get("#newproresstitle").type("Test2");
     cy.get("#newstartdate").click({force: true});
-    cy.get('[data-date="1622505600000"]').click();
+    cy.get('[data-date="1622505600000"]').click({force: true});
     cy.get("#newenddate").click({force: true});
-    cy.get('[data-date="1625011200000"]').click();
+    cy.get('[data-date="1625011200000"]').click({force: true});
     cy.get("#button-submit").click({force: true});
 
-    cy.get(".navbar-brand").click();
+    cy.get(".navbar-brand").click({force: true});
     cy.wait(5000);
     cy.get("label")
       .should("contain.text", "6-30")
       .should("contain.text", "Test2");
 
-    cy.get("#nav-calendar").click();
+    cy.get("#nav-calendar").click({force: true});
     cy.wait(2000);
-    cy.get('#end_1623269478085').click();
-    cy.get('[data-date="1623196800000"]').click();
-    cy.get('#end_1623269478085').click();
-    cy.get('[data-date="1624406400000"]').click();
-    cy.get('#end_1623269478085').click();
-    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .next').click();
-    cy.get('[data-date="1625616000000"]').click();
-    cy.get('#start_1623269478085').click();
-    cy.get('[data-date="1623369600000"]').click();
-    cy.get('#start_1623269478085').click();
-    cy.get('[data-date="1622505600000"]').click();
-    cy.get('#end_1623269478085').click();
-    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .prev').click();
-    cy.get('[data-date="1625011200000"]').click();
+    cy.get('#end_1623269478085').click({force: true});
+    cy.get('[data-date="1623196800000"]').click({force: true});
+    cy.get('#end_1623269478085').click({force: true});
+    cy.get('[data-date="1624406400000"]').click({force: true});
+    cy.get('#end_1623269478085').click({force: true});
+    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .next').click({force: true});
+    cy.get('[data-date="1625616000000"]').click({force: true});
+    cy.get('#start_1623269478085').click({force: true});
+    cy.get('[data-date="1623369600000"]').click({force: true});
+    cy.get('#start_1623269478085').click({force: true});
+    cy.get('[data-date="1622505600000"]').click({force: true});
+    cy.get('#end_1623269478085').click({force: true});
+    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .prev').click({force: true});
+    cy.get('[data-date="1625011200000"]').click({force: true});
 
 
-    //cy.get(".button-remove").click();
+    //cy.get(".button-remove").click({force: true});
   });
 
   it("Test settings", () => {
     cy.visit("https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/signup.html");
     cy.wait(1000);
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get("#wave > img").click();
-    cy.get("#save").click();
-    cy.get("#graph > img").click();
-    cy.get("#save").click();
-    cy.get("#topo > img").click();
-    cy.get("#save").click();
+    cy.get("#wave > img").click({force: true});
+    cy.get("#save").click({force: true});
+    cy.get("#graph > img").click({force: true});
+    cy.get("#save").click({force: true});
+    cy.get("#topo > img").click({force: true});
+    cy.get("#save").click({force: true});
     cy.get('[fill="url(#gradient-black-0)"]')
       .click(80, 75) // click 80px on x coord and 75px on y coord
       .click(170, 75)
@@ -303,8 +303,8 @@ context("Actions", () => {
       .click(170, 165);
     cy.reload();
     cy.wait(2000);
-    cy.get("#nav-settings").click();
+    cy.get("#nav-settings").click({force: true});
     cy.wait(1000);
-    cy.get(".btn-danger").click();
+    cy.get(".btn-danger").click({force: true});
   });
 });
