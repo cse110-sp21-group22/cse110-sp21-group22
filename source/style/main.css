@@ -6,6 +6,7 @@ Homepage:
  */
 
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 .topnav {
   background-color: lightblue;
@@ -23,9 +24,29 @@ Homepage:
   text-decoration: none;
 }
 
-body {
+.body {
   padding-top: 4.5rem;
-  background-color: lightblue;
+  background-color: #a57b65;
+  font-family: 'Playfair Display', serif;
+}
+
+.topo {
+  background-image: url(../assets/topography.svg);
+}
+
+.wave {
+  background-image: url(../assets/wave.svg);
+}
+
+.graph {
+  background-image: url(../assets/graph-paper.svg);
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+  position: relative;
+  text-align: center;
 }
 
 .navbar {
@@ -115,43 +136,14 @@ body {
   background-color: white;
 }
 
-.grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: auto auto auto;
-  grid-template-areas:
-    "moodies dailog upcoming"
-    "moodies dailog upcoming"
-    "moodies dailog rosethorn"
-    "moodies quote rosethorn";
+/* User background icons */
+.user-background img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
 }
 
-.moodies {
-  grid-area: moodies;
-  background-color: pink;
-  justify-self: center;
-  padding: 10px;
-}
-
-.dailog {
-  grid-area: dailog;
-  background-color: lightblue;
-  justify-self: center;
-  padding: 10px;
-}
-
-.upcoming {
-  grid-area: upcoming;
-  background-color: grey;
-  justify-self: center;
-  padding: 10px;
-}
-
-.quote {
-  grid-area: quote;
-  justify-self: center;
-}
-
+/* Sticky note for rose n thorn */
 .rosethorn {
   justify-self: center;
   grid-area: rosethorn;
@@ -168,6 +160,7 @@ body {
   font-size: 19px;
   color: #130d6b;
   outline: none;
+  transform: rotate(3deg);
 }
 
 .rosethorn li {
@@ -326,23 +319,15 @@ input {
   font-family: Tahoma, Arial, sans-serif;
 }
 
-h1 {
-  font-size: 25px;
-  position: relative;
+/* Styling quote */
+#quote,
+#authors {
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
-@media (max-width: 736px) {
-  .grid {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: auto auto;
-    grid-template-areas:
-      "dailog dailog"
-      "moodies moodies"
-      "upcoming rosethorn"
-      "quote quote";
-  }
-}
+/***** start: daily log background *****/
 
 /* https://codepen.io/ekeric13/pen/VmdgBX */
 
@@ -369,7 +354,10 @@ h1 {
   margin-bottom: 3px;
 }
 
+/***** end: daily log background *****/
+
 /***** Start daily log style *****/
+
 .item {
   height: 30px;
   width: 100%;
@@ -722,7 +710,7 @@ input.text {
   font-size: 2.2em;
   color: rgba(238, 238, 238, 0.7);
   text-align: center;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 .blackboard .content {
@@ -736,7 +724,8 @@ input.text {
 
 .blackboard .content label {
   vertical-align: middle;
-  font-size: 1.6em;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2em;
   color: rgba(238, 238, 238, 0.7);
 }
 
