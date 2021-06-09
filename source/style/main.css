@@ -28,6 +28,13 @@ Homepage:
   padding-top: 4.5rem;
   background-color: #a57b65;
   font-family: 'Playfair Display', serif;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.body::-webkit-scrollbar {
+  display: none;
 }
 
 .topo {
@@ -334,7 +341,6 @@ input {
 .notebook-container {
   max-width: 100% 800px;
   height: 90%;
-  max-height: 450px;
 }
 
 .notebook-head {
