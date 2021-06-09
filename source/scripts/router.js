@@ -18,7 +18,7 @@ let bStyle = "";
 let topo = "";
 let wave = "";
 let graph = "";
-let lightDark = "";
+let lightDark = "light";
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
@@ -309,7 +309,7 @@ loadQuote().then(() => {
         "./scripts/index.js",
         dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
       );
-    }, 2000);
+    }, 1500);
   });
 });
 
