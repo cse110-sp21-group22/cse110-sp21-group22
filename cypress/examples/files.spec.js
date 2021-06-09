@@ -23,7 +23,8 @@ context("Files", () => {
     // use a fixture file's content.
 
     // when application makes an Ajax request matching "GET **/comments/*"
-    // Cypress will intercept it and reply with the object in `example.json` fixture
+    // Cypress will intercept it and reply with the object in `example.json`
+    // fixture
     cy.intercept("GET", "**/comments/*", { fixture: "example.json" }).as(
       "getComment"
     );

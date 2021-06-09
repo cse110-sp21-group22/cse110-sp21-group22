@@ -37,8 +37,8 @@ context("Utilities", () => {
         // create an <img> element and set its src to the dataUrl
         let img = Cypress.$("<img />", { src: dataUrl });
 
-        // need to explicitly return cy here since we are initially returning
-        // the Cypress.Blob.imgSrcToDataURL promise to our test
+        // need to explicitly return cy here since we are initially
+        // returning the Cypress.Blob.imgSrcToDataURL promise to our test
         // append the image
         $div.append(img);
 
