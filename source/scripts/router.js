@@ -213,11 +213,7 @@ auth.onAuthStateChanged((user) => {
         }
         NavbarLoaded();
       });
-<<<<<<< HEAD
-    }
-=======
   }
->>>>>>> main
 });
 
 // Update background from firebase
@@ -238,9 +234,6 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-<<<<<<< HEAD
-    }
-=======
   }
 });
 
@@ -269,7 +262,6 @@ auth.onAuthStateChanged((user) => {
         setTextColor("authors");
       });
   }
->>>>>>> main
 });
 
 // register service worker
@@ -306,43 +298,6 @@ window.onpopstate = () => {
   router.resolve();
 };
 
-<<<<<<< HEAD
-// Get background settings
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("body")
-      .get()
-      .then((doc) => {
-        try {
-          bColor = doc.data().bColor;
-          bStyle = doc.data().bStyle;
-          document.getElementById("body").className = bStyle;
-          document.getElementById("body").style.backgroundColor = bColor;
-          lightDark = doc.data().lightDark;
-        } catch (err) {
-          console.log(err);
-        }
-      }).then(() => {
-        setTextColor("feelings");
-        setTextColor("quote");
-        setTextColor("authors");
-      });
-    }
-});
-
-main().then(() => {
-  rootDiv.innerHTML = home;
-  setTextColor("feelings");
-  setTextColor("quote");
-  setTextColor("authors");
-  dynamicallyLoadScript(
-    "./scripts/index.js",
-    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
-  );
-=======
 loadQuote().then(() => {
   main().then(() => {
     rootDiv.innerHTML = home;
@@ -356,7 +311,6 @@ loadQuote().then(() => {
       );
     }, 1500);
   });
->>>>>>> main
 });
 
 // Clear mood tracker data on new year
