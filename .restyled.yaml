@@ -8,6 +8,7 @@ exclude:
   - "**/vendor/**/*"
   - ".github/workflows/**/*" # https://github.com/restyled-io/restyler/issues/73
   - "**/instrumented/**"
+  - "./instrumented/*"
 
 changed_paths:
   maximum: 1000
