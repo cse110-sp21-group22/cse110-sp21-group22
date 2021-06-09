@@ -19,7 +19,7 @@ auth.onAuthStateChanged((user) => {
           $("#datepicker2").datepicker("update", semester_end);
           progress_func();
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       });
   }

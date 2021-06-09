@@ -52,7 +52,7 @@ auth.onAuthStateChanged((user) => {
           rose.innerHTML = doc.data().rose;
           thorn.innerHTML = doc.data().thorn;
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       });
   }
@@ -106,7 +106,7 @@ auth.onAuthStateChanged((user) => {
               });
           }
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       });
   }
@@ -835,76 +835,74 @@ if (year % 4 == 0) {
 PageLoaded();
 
 // Walkthrough demo
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     console.log(new Date() - user.metadata.creationTime);
-//     if (new Date() - user.metadata.creationTime < 5) {
-//       console.log("test");
-//     }
-//   }
-// });
-introJs().setOptions({
-  steps: [{
-    title: 'Welcome',
-    intro: 'Meet CatchUp, a daily journal for you!'
-  },
-  {
-    element: document.querySelector('.navbar-brand'),
-    intro: 'You can always return to the main page by clicking here'
-  },
-  {
-    element: document.querySelector('#nav-calendar'),
-    intro: 'Click here to create progress trackers for your events'
-  },
-  {
-    element: document.querySelector('#nav-mood'),
-    intro: 'Click here to access the mood tracker'
-  },
-  {
-    element: document.querySelector('#nav-settings'),
-    intro: 'Click here to personalize your journal and to log out'
-  },
-  {
-    element: document.querySelector('#mood-selector'),
-    intro: 'Click how you\'re feeling to keep track of your mood'
-  },
-  {
-    element: document.querySelector('.notebook-container'),
-    intro: 'This is your journal. To change days, click on the arrows next to the date. To return to today simply press the today button'
-  },
-  {
-    element: document.querySelector('.text-add'),
-    intro: 'To add a new note, simply click here and begin typing! Press tab to indent and enter to save your note'
-  },
-  {
-    element: document.querySelector('.bullet-sub'),
-    intro: 'To add signifiers, simply click on the space here next to a note'
-  },
-  {
-    element: document.querySelector('.bullet-main'),
-    intro: 'To change a note type, simply click on the space here next to a note'
-  },
-  {
-    element: document.querySelector('.options'),
-    intro: 'To delete a note, simply click on the trash can that will appear here'
-  },
-  {
-    element: document.querySelector('#toggle'),
-    intro: 'To edit notes, simply press the Edit button. To return to view mode, press this button again'
-  },
-  {
-    element: document.querySelector('.textmodsub'),
-    intro: 'In edit mode, you can style your notes by using the buttons here'
-  },
-  {
-    element: document.querySelector('.blackboard'),
-    intro: 'Your three earlierst deadlines from the calendar will appear here'
-  },
-  {
-    element: document.querySelector('.rosethorn'),
-    intro: 'Keep a daily reflection here. Click the question mark to learn more'
-  },
-  {
-    intro: 'That\'s about it. We hope you enjoy using this journal!'
-  }]
-}).start();
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    if (Math.floor((new Date() - Date.parse(user.metadata.creationTime))/1000/60) < 1) {
+      introJs().setOptions({
+        steps: [{
+          title: 'Welcome',
+          intro: 'Meet CatchUp, a daily journal for you!'
+        },
+        {
+          element: document.querySelector('.navbar-brand'),
+          intro: 'You can always return to the main page by clicking here'
+        },
+        {
+          element: document.querySelector('#nav-calendar'),
+          intro: 'Click here to create progress trackers for your events'
+        },
+        {
+          element: document.querySelector('#nav-mood'),
+          intro: 'Click here to access the mood tracker'
+        },
+        {
+          element: document.querySelector('#nav-settings'),
+          intro: 'Click here to personalize your journal and to log out'
+        },
+        {
+          element: document.querySelector('#mood-selector'),
+          intro: 'Click how you\'re feeling to keep track of your mood'
+        },
+        {
+          element: document.querySelector('.notebook-container'),
+          intro: 'This is your journal. To change days, click on the arrows next to the date. To return to today simply press the today button'
+        },
+        {
+          element: document.querySelector('.text-add'),
+          intro: 'To add a new note, simply click here and begin typing! Press tab to indent and enter to save your note'
+        },
+        {
+          element: document.querySelector('.bullet-sub'),
+          intro: 'To add signifiers, simply click on the space here next to a note'
+        },
+        {
+          element: document.querySelector('.bullet-main'),
+          intro: 'To change a note type, simply click on the space here next to a note'
+        },
+        {
+          element: document.querySelector('.options'),
+          intro: 'To delete a note, simply click on the trash can that will appear here'
+        },
+        {
+          element: document.querySelector('#toggle'),
+          intro: 'To edit notes, simply press the Edit button. To return to view mode, press this button again'
+        },
+        {
+          element: document.querySelector('.textmodsub'),
+          intro: 'In edit mode, you can style your notes by using the buttons here'
+        },
+        {
+          element: document.querySelector('.blackboard'),
+          intro: 'Your three earlierst deadlines from the calendar will appear here'
+        },
+        {
+          element: document.querySelector('.rosethorn'),
+          intro: 'Keep a daily reflection here. Click the question mark to learn more'
+        },
+        {
+          intro: 'That\'s about it. We hope you enjoy using this journal!'
+        }]
+      }).start();
+    }
+  }
+});
