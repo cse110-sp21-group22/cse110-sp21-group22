@@ -75,6 +75,9 @@ rules:
   no-undef: 1              # disallow use of undeclared variables unless mentioned in a /*global */ block
   no-unused-vars: 1
 
+  # Functions
+  no-func-assign: 2
+
   # Node.js
 
   # Stylistic Issues
