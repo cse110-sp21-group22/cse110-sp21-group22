@@ -233,16 +233,17 @@ document.querySelector("#underline").addEventListener("click", () => {
  * @param {int} style style to apply
  */
 function updateStyle(style) {
-  if (document.querySelector("#toggle") == "Edit") {
+  if (document.querySelector("#toggle").innerText == "View" && previousSelected.parentNode.className == "text flex-fill") {
     let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
-    let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
-    parentDiv.attr("styleNum", currStyle);
+    let currStyle = parseInt(parentDiv.attr("stylenum")) + style;
+    parentDiv.attr("stylenum", currStyle);
     setStyle(style, parentDiv);
     let id = parentDiv.attr("id");
     let text = parentDiv.children().text();
     let signifier = parseInt(parentDiv.attr("signifier"));
     let type = parseInt(parentDiv.attr("type"));
-    let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
+    let level = parseInt(parentDiv.attr("level"));
+    let note2 = new BujoElement(id, text, level, type, signifier, currStyle);
     note2.sync(selectedDate);
   }
 }
@@ -513,7 +514,7 @@ function renderData(individualDoc) {
   } else {
     noteDivP.setAttribute("contenteditable", "false");
   }
-  parentDiv.setAttribute("styleNum", note.style);
+  parentDiv.setAttribute("stylenum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
 
@@ -561,7 +562,7 @@ function renderData(individualDoc) {
           .text();
         let signifier = parseInt($(this).parent().attr("signifier"));
         let type = parseInt($(this).parent().attr("type"));
-        let style = parseInt($(this).parent().attr("styleNum"));
+        let style = parseInt($(this).parent().attr("stylenum"));
         let level = parseInt($(this).parent().attr("level")) + 1;
         setLevel(level, $(this).parent());
         let note2 = new BujoElement(id, text, level, type, signifier, style);
@@ -577,7 +578,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).text();
       let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
@@ -609,7 +610,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
       let signifier = parseInt($(this).parent().attr("signifier"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
