@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
 context("Viewport", () => {
-  beforeEach(
-      () => { cy.visit("https://example.cypress.io/commands/viewport"); });
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/viewport");
+  });
 
   it("cy.viewport() - set the viewport size and dimension", () => {
     // https://on.cypress.io/viewport
