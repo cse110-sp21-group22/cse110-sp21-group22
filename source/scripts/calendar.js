@@ -284,7 +284,6 @@ auth.onAuthStateChanged((user) => {
             }
           }
         });
-        PageLoaded();
       });
   }
 });
@@ -311,3 +310,5 @@ document.getElementById("button-submit").addEventListener("click", () => {
   progress.sync();
   document.querySelector(".modal").style.display = "none";
 });
+
+PageLoaded();
