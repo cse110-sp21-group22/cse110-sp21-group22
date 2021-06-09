@@ -27,6 +27,7 @@ jobs:
   linter:
     # Name the Job
     name: Lint Code Base
+    needs: [cypress-run]
     # Set the agent to run on
     runs-on: ubuntu-latest
 
@@ -60,6 +61,7 @@ jobs:
   ################
   semgrep:
     name: Semgrep scan
+    needs: [cypress-run]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -74,6 +76,7 @@ jobs:
   ###################
   sonarcloud:
     name: Sonarcloud scan
+    needs: [cypress-run]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -95,7 +98,6 @@ jobs:
   # Firebase deploy #
   ###################
   preview:
-    needs: [linter, semgrep, sonarcloud]
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:

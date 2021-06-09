@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "source",
+    "public": "./source",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },
   "emulators": {
