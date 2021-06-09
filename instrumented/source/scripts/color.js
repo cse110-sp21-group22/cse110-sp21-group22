@@ -1,140 +1,148 @@
 function cov_1i7sov98la() {
   var path =
-      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/color.js";
+    "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/color.js";
   var hash = "678691d22d4482e5f0aaca43725fe3b2d23b66c0";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path :
-        "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/color.js",
-    statementMap : {
-      "0" : {start : {line : 8, column : 2}, end : {line : 8, column : 56}},
-      "1" : {start : {line : 9, column : 2}, end : {line : 9, column : 47}},
-      "2" : {start : {line : 10, column : 2}, end : {line : 10, column : 51}},
-      "3" : {start : {line : 11, column : 2}, end : {line : 11, column : 43}},
-      "4" : {start : {line : 12, column : 2}, end : {line : 12, column : 52}},
-      "5" : {start : {line : 13, column : 21}, end : {line : 13, column : 36}},
-      "6" : {start : {line : 14, column : 2}, end : {line : 14, column : 49}},
-      "7" : {start : {line : 15, column : 2}, end : {line : 31, column : 5}},
-      "8" : {start : {line : 16, column : 4}, end : {line : 30, column : 5}},
-      "9" : {start : {line : 17, column : 25}, end : {line : 17, column : 53}},
-      "10" : {start : {line : 18, column : 6}, end : {line : 29, column : 11}},
-      "11" : {start : {line : 24, column : 10}, end : {line : 28, column : 68}},
-      "12" : {start : {line : 38, column : 2}, end : {line : 56, column : 5}},
-      "13" : {start : {line : 39, column : 4}, end : {line : 55, column : 5}},
-      "14" : {start : {line : 40, column : 6}, end : {line : 54, column : 11}},
-      "15" : {start : {line : 46, column : 10}, end : {line : 50, column : 11}},
-      "16" : {start : {line : 47, column : 31}, end : {line : 47, column : 65}},
-      "17" : {start : {line : 48, column : 28}, end : {line : 48, column : 76}},
-      "18" : {start : {line : 49, column : 12}, end : {line : 49, column : 59}},
-      "19" : {start : {line : 53, column : 10}, end : {line : 53, column : 27}}
+    path:
+      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/color.js",
+    statementMap: {
+      0: { start: { line: 8, column: 2 }, end: { line: 8, column: 56 } },
+      1: { start: { line: 9, column: 2 }, end: { line: 9, column: 47 } },
+      2: { start: { line: 10, column: 2 }, end: { line: 10, column: 51 } },
+      3: { start: { line: 11, column: 2 }, end: { line: 11, column: 43 } },
+      4: { start: { line: 12, column: 2 }, end: { line: 12, column: 52 } },
+      5: { start: { line: 13, column: 21 }, end: { line: 13, column: 36 } },
+      6: { start: { line: 14, column: 2 }, end: { line: 14, column: 49 } },
+      7: { start: { line: 15, column: 2 }, end: { line: 31, column: 5 } },
+      8: { start: { line: 16, column: 4 }, end: { line: 30, column: 5 } },
+      9: { start: { line: 17, column: 25 }, end: { line: 17, column: 53 } },
+      10: { start: { line: 18, column: 6 }, end: { line: 29, column: 11 } },
+      11: { start: { line: 24, column: 10 }, end: { line: 28, column: 68 } },
+      12: { start: { line: 38, column: 2 }, end: { line: 56, column: 5 } },
+      13: { start: { line: 39, column: 4 }, end: { line: 55, column: 5 } },
+      14: { start: { line: 40, column: 6 }, end: { line: 54, column: 11 } },
+      15: { start: { line: 46, column: 10 }, end: { line: 50, column: 11 } },
+      16: { start: { line: 47, column: 31 }, end: { line: 47, column: 65 } },
+      17: { start: { line: 48, column: 28 }, end: { line: 48, column: 76 } },
+      18: { start: { line: 49, column: 12 }, end: { line: 49, column: 59 } },
+      19: { start: { line: 53, column: 10 }, end: { line: 53, column: 27 } },
     },
-    fnMap : {
-      "0" : {
-        name : "colorChange",
-        decl : {start : {line : 7, column : 9}, end : {line : 7, column : 20}},
-        loc : {start : {line : 7, column : 45}, end : {line : 32, column : 1}},
-        line : 7
+    fnMap: {
+      0: {
+        name: "colorChange",
+        decl: { start: { line: 7, column: 9 }, end: { line: 7, column: 20 } },
+        loc: { start: { line: 7, column: 45 }, end: { line: 32, column: 1 } },
+        line: 7,
       },
-      "1" : {
-        name : "(anonymous_1)",
-        decl :
-            {start : {line : 15, column : 26}, end : {line : 15, column : 27}},
-        loc : {start : {line : 15, column : 36}, end : {line : 31, column : 3}},
-        line : 15
+      1: {
+        name: "(anonymous_1)",
+        decl: {
+          start: { line: 15, column: 26 },
+          end: { line: 15, column: 27 },
+        },
+        loc: { start: { line: 15, column: 36 }, end: { line: 31, column: 3 } },
+        line: 15,
       },
-      "2" : {
-        name : "(anonymous_2)",
-        decl :
-            {start : {line : 23, column : 15}, end : {line : 23, column : 16}},
-        loc : {start : {line : 23, column : 24}, end : {line : 29, column : 9}},
-        line : 23
+      2: {
+        name: "(anonymous_2)",
+        decl: {
+          start: { line: 23, column: 15 },
+          end: { line: 23, column: 16 },
+        },
+        loc: { start: { line: 23, column: 24 }, end: { line: 29, column: 9 } },
+        line: 23,
       },
-      "3" : {
-        name : "setIcon",
-        decl :
-            {start : {line : 37, column : 9}, end : {line : 37, column : 16}},
-        loc : {start : {line : 37, column : 19}, end : {line : 57, column : 1}},
-        line : 37
+      3: {
+        name: "setIcon",
+        decl: { start: { line: 37, column: 9 }, end: { line: 37, column: 16 } },
+        loc: { start: { line: 37, column: 19 }, end: { line: 57, column: 1 } },
+        line: 37,
       },
-      "4" : {
-        name : "(anonymous_4)",
-        decl :
-            {start : {line : 38, column : 26}, end : {line : 38, column : 27}},
-        loc : {start : {line : 38, column : 36}, end : {line : 56, column : 3}},
-        line : 38
+      4: {
+        name: "(anonymous_4)",
+        decl: {
+          start: { line: 38, column: 26 },
+          end: { line: 38, column: 27 },
+        },
+        loc: { start: { line: 38, column: 36 }, end: { line: 56, column: 3 } },
+        line: 38,
       },
-      "5" : {
-        name : "(anonymous_5)",
-        decl :
-            {start : {line : 45, column : 14}, end : {line : 45, column : 15}},
-        loc : {start : {line : 45, column : 23}, end : {line : 51, column : 9}},
-        line : 45
+      5: {
+        name: "(anonymous_5)",
+        decl: {
+          start: { line: 45, column: 14 },
+          end: { line: 45, column: 15 },
+        },
+        loc: { start: { line: 45, column: 23 }, end: { line: 51, column: 9 } },
+        line: 45,
       },
-      "6" : {
-        name : "(anonymous_6)",
-        decl :
-            {start : {line : 52, column : 15}, end : {line : 52, column : 16}},
-        loc : {start : {line : 52, column : 24}, end : {line : 54, column : 9}},
-        line : 52
-      }
+      6: {
+        name: "(anonymous_6)",
+        decl: {
+          start: { line: 52, column: 15 },
+          end: { line: 52, column: 16 },
+        },
+        loc: { start: { line: 52, column: 24 }, end: { line: 54, column: 9 } },
+        line: 52,
+      },
     },
-    branchMap : {
-      "0" : {
-        loc : {start : {line : 16, column : 4}, end : {line : 30, column : 5}},
-        type : "if",
-        locations : [
-          {start : {line : 16, column : 4}, end : {line : 30, column : 5}},
-          {start : {line : 16, column : 4}, end : {line : 30, column : 5}}
+    branchMap: {
+      0: {
+        loc: { start: { line: 16, column: 4 }, end: { line: 30, column: 5 } },
+        type: "if",
+        locations: [
+          { start: { line: 16, column: 4 }, end: { line: 30, column: 5 } },
+          { start: { line: 16, column: 4 }, end: { line: 30, column: 5 } },
         ],
-        line : 16
+        line: 16,
       },
-      "1" : {
-        loc : {start : {line : 39, column : 4}, end : {line : 55, column : 5}},
-        type : "if",
-        locations : [
-          {start : {line : 39, column : 4}, end : {line : 55, column : 5}},
-          {start : {line : 39, column : 4}, end : {line : 55, column : 5}}
+      1: {
+        loc: { start: { line: 39, column: 4 }, end: { line: 55, column: 5 } },
+        type: "if",
+        locations: [
+          { start: { line: 39, column: 4 }, end: { line: 55, column: 5 } },
+          { start: { line: 39, column: 4 }, end: { line: 55, column: 5 } },
         ],
-        line : 39
+        line: 39,
       },
-      "2" : {
-        loc :
-            {start : {line : 46, column : 10}, end : {line : 50, column : 11}},
-        type : "if",
-        locations : [
-          {start : {line : 46, column : 10}, end : {line : 50, column : 11}},
-          {start : {line : 46, column : 10}, end : {line : 50, column : 11}}
+      2: {
+        loc: { start: { line: 46, column: 10 }, end: { line: 50, column: 11 } },
+        type: "if",
+        locations: [
+          { start: { line: 46, column: 10 }, end: { line: 50, column: 11 } },
+          { start: { line: 46, column: 10 }, end: { line: 50, column: 11 } },
         ],
-        line : 46
-      }
+        line: 46,
+      },
     },
-    s : {
-      "0" : 0,
-      "1" : 0,
-      "2" : 0,
-      "3" : 0,
-      "4" : 0,
-      "5" : 0,
-      "6" : 0,
-      "7" : 0,
-      "8" : 0,
-      "9" : 0,
-      "10" : 0,
-      "11" : 0,
-      "12" : 0,
-      "13" : 0,
-      "14" : 0,
-      "15" : 0,
-      "16" : 0,
-      "17" : 0,
-      "18" : 0,
-      "19" : 0
+    s: {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0,
+      19: 0,
     },
-    f : {"0" : 0, "1" : 0, "2" : 0, "3" : 0, "4" : 0, "5" : 0, "6" : 0},
-    b : {"0" : [ 0, 0 ], "1" : [ 0, 0 ], "2" : [ 0, 0 ]},
-    _coverageSchema : "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash : "678691d22d4482e5f0aaca43725fe3b2d23b66c0"
+    f: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
+    b: { 0: [0, 0], 1: [0, 0], 2: [0, 0] },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "678691d22d4482e5f0aaca43725fe3b2d23b66c0",
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -145,7 +153,9 @@ function cov_1i7sov98la() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_1i7sov98la = function() { return actualCoverage; };
+    cov_1i7sov98la = function () {
+      return actualCoverage;
+    };
   }
   return actualCoverage;
 }
@@ -174,29 +184,29 @@ function colorChange(mood, moodClass, color) {
   cov_1i7sov98la().s[6]++;
   moodClass.classList.toggle(toggleString, true);
   cov_1i7sov98la().s[7]++;
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user) => {
     cov_1i7sov98la().f[1]++;
     cov_1i7sov98la().s[8]++;
 
     if (user) {
       cov_1i7sov98la().b[0][0]++;
       var color_string =
-          (cov_1i7sov98la().s[9]++, "color-" + month + "-" + day);
+        (cov_1i7sov98la().s[9]++, "color-" + month + "-" + day);
       cov_1i7sov98la().s[10]++;
       fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .update({[color_string] : [ color ], selectedIcon : [ mood ]})
-          .catch(err => {
-            cov_1i7sov98la().f[2]++;
-            cov_1i7sov98la().s[11]++;
-            fs.collection("users")
-                .doc(user.uid)
-                .collection("data")
-                .doc("mood")
-                .set({[color_string] : [ color ], selectedIcon : [ mood ]});
-          });
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({ [color_string]: [color], selectedIcon: [mood] })
+        .catch((err) => {
+          cov_1i7sov98la().f[2]++;
+          cov_1i7sov98la().s[11]++;
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .set({ [color_string]: [color], selectedIcon: [mood] });
+        });
     } else {
       cov_1i7sov98la().b[0][1]++;
     }
@@ -209,7 +219,7 @@ function colorChange(mood, moodClass, color) {
 function setIcon() {
   cov_1i7sov98la().f[3]++;
   cov_1i7sov98la().s[12]++;
-  auth.onAuthStateChanged(user => {
+  auth.onAuthStateChanged((user) => {
     cov_1i7sov98la().f[4]++;
     cov_1i7sov98la().s[13]++;
 
@@ -217,32 +227,32 @@ function setIcon() {
       cov_1i7sov98la().b[1][0]++;
       cov_1i7sov98la().s[14]++;
       fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .get()
-          .then(doc => {
-            cov_1i7sov98la().f[5]++;
-            cov_1i7sov98la().s[15]++;
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .get()
+        .then((doc) => {
+          cov_1i7sov98la().f[5]++;
+          cov_1i7sov98la().s[15]++;
 
-            if ("color-" + month + "-" + day in doc.data()) {
-              cov_1i7sov98la().b[2][0]++;
-              let toggleString = (cov_1i7sov98la().s[16]++,
-                                  doc.data().selectedIcon + "-click");
-              let moodClass =
-                  (cov_1i7sov98la().s[17]++,
-                   document.getElementById(doc.data().selectedIcon));
-              cov_1i7sov98la().s[18]++;
-              moodClass.classList.toggle(toggleString, true);
-            } else {
-              cov_1i7sov98la().b[2][1]++;
-            }
-          })
-          .catch(err => {
-            cov_1i7sov98la().f[6]++;
-            cov_1i7sov98la().s[19]++;
-            console.log(err);
-          });
+          if ("color-" + month + "-" + day in doc.data()) {
+            cov_1i7sov98la().b[2][0]++;
+            let toggleString =
+              (cov_1i7sov98la().s[16]++, doc.data().selectedIcon + "-click");
+            let moodClass =
+              (cov_1i7sov98la().s[17]++,
+              document.getElementById(doc.data().selectedIcon));
+            cov_1i7sov98la().s[18]++;
+            moodClass.classList.toggle(toggleString, true);
+          } else {
+            cov_1i7sov98la().b[2][1]++;
+          }
+        })
+        .catch((err) => {
+          cov_1i7sov98la().f[6]++;
+          cov_1i7sov98la().s[19]++;
+          console.log(err);
+        });
     } else {
       cov_1i7sov98la().b[1][1]++;
     }
