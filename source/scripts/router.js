@@ -89,8 +89,8 @@ const main = async () => {
     setTextColor("quote");
     setTextColor("authors");
     dynamicallyLoadScript(
-      "../instrumented/scripts/index.js",
-      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
+      "./scripts/index.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
     );
   });
   router.on("/calendar", () => {
@@ -98,7 +98,7 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = calendar;
     dynamicallyLoadScript(
-      "../instrumented/scripts/calendar.js",
+      "./scripts/calendar.js",
       updateNavbar("nav-calendar")
     );
   });
@@ -107,8 +107,8 @@ const main = async () => {
     unloadScripts();
     rootDiv.innerHTML = moodtracker;
     dynamicallyLoadScript(
-      "../instrumented/scripts/moodFunctionality.js",
-      dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("nav-mood"))
+      "./scripts/moodFunctionality.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("nav-mood"))
     );
   });
   router.on("/settings", () => {
@@ -118,7 +118,7 @@ const main = async () => {
     setTextColor("user-background");
     setTextColor("settings");
     dynamicallyLoadScript(
-      "../instrumented/scripts/settings.js",
+      "./scripts/settings.js",
       updateNavbar("nav-settings")
     );
   });
@@ -221,7 +221,7 @@ auth.onAuthStateChanged((user) => {
 // register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register("../instrumented/scripts/sw.js");
+    navigator.serviceWorker.register("./scripts/sw.js");
   });
 }
 
@@ -264,8 +264,8 @@ main().then(() => {
   setTextColor("quote");
   setTextColor("authors");
   dynamicallyLoadScript(
-    "../instrumented/scripts/index.js",
-    dynamicallyLoadScript("../instrumented/scripts/color.js", updateNavbar("home"))
+    "./scripts/index.js",
+    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
   );
 });
 
