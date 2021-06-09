@@ -199,21 +199,23 @@ auth.onAuthStateChanged((user) => {
 
 // Update background from firebase
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("body")
-    .onSnapshot((doc) => {
-      try {
-        bColor = doc.data().bColor;
-        bStyle = doc.data().bStyle;
-        document.getElementById("body").className = bStyle;
-        document.getElementById("body").style.backgroundColor = bColor;
-        lightDark = doc.data().lightDark;
-      } catch (err) {
-        console.log(err);
-      }
-    });
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .onSnapshot((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    }
 });
 
 // register service worker
@@ -229,6 +231,32 @@ if ("serviceWorker" in navigator) {
 window.onpopstate = () => {
   router.resolve();
 };
+
+// Get background settings
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .get()
+      .then((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      }).then(() => {
+        setTextColor("feelings");
+        setTextColor("quote");
+        setTextColor("authors");
+      });
+    }
+});
 
 main().then(() => {
   rootDiv.innerHTML = home;
