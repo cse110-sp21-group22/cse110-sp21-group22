@@ -3,8 +3,8 @@
 context('Actions', () => {
   beforeEach(() => {
     // Change for actual testing
+    cy.visit('http://127.0.0.1:5500/source/login.html')
     cy.viewport(1000, 600)
-    cy.visit('http://127.0.0.1:5501/source/login.html')
     cy.wait(1000)
     cy.on('uncaught:exception', (err, runnable) => {
       // returning false here prevents Cypress from
