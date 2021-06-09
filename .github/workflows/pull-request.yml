@@ -105,7 +105,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATCH_22_E0C66 }}'
           projectId: catch-22-e0c66
-          entryPoint: ./instrumented/
+          entryPoint: ./firebase2.json
 
   ###################
   # Cypress testing #
