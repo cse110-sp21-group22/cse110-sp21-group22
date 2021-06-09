@@ -12,7 +12,7 @@ Luong, Robert Wakefield-Carl, Shanqing Wang
 - Mood tracker: looking good
 - Daily log editor: not the final version yet
 - Calendar: add title of user-created countdown to Upcoming
-- Settings: background color 
+- Settings: background color
 - Testing: how the web look on different screen sizes
 - Story points: create labels on git
 

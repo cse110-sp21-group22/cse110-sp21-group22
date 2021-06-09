@@ -14,7 +14,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jac
 - Labs
 
 ### Sad
-- Very tired 
+- Very tired
 - So many other things to do
 
 ### Glad

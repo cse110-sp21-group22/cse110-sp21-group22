@@ -14,7 +14,7 @@ Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Menghe (Jac
 - User can edit & view their task
 - Add signifiers at the front
 - Add checkbox at the front
-- Today button 
+- Today button
 
 ### Upcoming
 - Need to fetch the info created from the user-create countdown
