@@ -35,7 +35,8 @@ ColorPicker(document.getElementById("color-picker"), function (hex, hsv, rgb) {
       "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")"
     );
   }
-  document.getElementById("navbar").style.backgroundColor = "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+  document.getElementById("navbar").style.backgroundColor =
+    "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
   setTextColor("user-background");
   setTextColor("settings");
 });

@@ -33,7 +33,9 @@ function NavbarLoaded() {
  * @param {*} id
  */
 function setTextColor(id) {
-  lightDark = lightOrDark(document.getElementById("navbar").style.backgroundColor);
+  lightDark = lightOrDark(
+    document.getElementById("navbar").style.backgroundColor
+  );
   if (lightDark == "light") {
     document.getElementById(id).style.color = "black";
   } else {
@@ -132,7 +134,7 @@ class BujoElement {
           .withConverter(bujoConverter)
           .set(this)
           .catch((err) => {
-            //console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -154,7 +156,7 @@ class BujoElement {
           .doc("" + this.id)
           .delete()
           .catch((err) => {
-            //console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -192,7 +194,7 @@ class ProgressTracker {
           .withConverter(progressConverter)
           .set(this)
           .catch((err) => {
-            //console.log(err.message);
+            // console.log(err.message);
           });
       }
     });
@@ -212,7 +214,7 @@ class ProgressTracker {
           .doc("" + this.id)
           .delete()
           .catch((err) => {
-            //console.log(err.message);
+            // console.log(err.message);
           });
       }
     });

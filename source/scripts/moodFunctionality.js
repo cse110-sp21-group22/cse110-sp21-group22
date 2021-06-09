@@ -180,7 +180,7 @@ auth.onAuthStateChanged((user) => {
                   "background-color:" + doc.data()[key][0]
                 );
               } catch {
-                //console.log("not loaded");
+                // console.log("not loaded");
               }
             }
           }

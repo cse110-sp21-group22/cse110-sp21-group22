@@ -209,7 +209,7 @@ auth.onAuthStateChanged((user) => {
           document.getElementById("navbar").className = hStyle;
           document.getElementById("navbar").style.backgroundColor = hColor;
         } catch (err) {
-          //console.log(err);
+          // console.log(err);
         }
         NavbarLoaded();
         if (document.getElementById("quote")) {
@@ -235,7 +235,7 @@ auth.onAuthStateChanged((user) => {
           document.getElementById("body").className = bStyle;
           document.getElementById("body").style.backgroundColor = bColor;
         } catch (err) {
-          //console.log(err);
+          // console.log(err);
         }
       });
   }
@@ -308,7 +308,7 @@ auth.onAuthStateChanged((user) => {
         }
       })
       .catch((err) => {
-        //console.log(err);
+        // console.log(err);
       });
   }
 });
