@@ -1,11 +1,11 @@
 // babel.config.js
 module.exports = {
-  presets : [
+  presets: [
     [
       "@babel/preset-env",
       {
-        targets : {
-          browsers : ">2%",
+        targets: {
+          browsers: ">2%",
         },
       },
     ],
