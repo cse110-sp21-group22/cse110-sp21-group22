@@ -53,6 +53,8 @@ let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
 let editStatus = false;
+let quote = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+let author = "-Marilyn vos Savant";
 
 /**
  * Function to load subpages
@@ -251,6 +253,25 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// Get quote
+const loadQuote = async () => {
+  url = "https://api.quotable.io/random";
+
+  // Fetches information from quote generator website
+  if (navigator.onLine) {
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        quote = '"' + result.content + '"';
+        author = "-" + result.author;
+      });
+  } else {
+    quote = '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+    author = "-Marilyn vos Savant";
+  }
+};
+
 /**
  * The Function is invoked when the window.history's state changes
  */
@@ -258,15 +279,17 @@ window.onpopstate = () => {
   router.resolve();
 };
 
-main().then(() => {
-  rootDiv.innerHTML = home;
-  setTextColor("feelings");
-  setTextColor("quote");
-  setTextColor("authors");
-  dynamicallyLoadScript(
-    "./scripts/index.js",
-    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
-  );
+loadQuote().then(() => {
+  main().then(() => {
+    rootDiv.innerHTML = home;
+    setTextColor("feelings");
+    setTextColor("quote");
+    setTextColor("authors");
+    dynamicallyLoadScript(
+      "./scripts/index.js",
+      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+    );
+  });
 });
 
 // Clear mood tracker data on new year
