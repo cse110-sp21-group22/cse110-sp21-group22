@@ -15,38 +15,84 @@ context("Actions", () => {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it("Test daily log", () => {
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("password");
-    cy.get("#login-form").submit();
-
-    cy.wait(2000);
-
-    cy.get("#toggle").click({ force: true }).click({ force: true });
-    cy.get("#bold").click().click();
-    cy.get("#italic").click().click();
-    cy.get("#underline").click().click();
-
-    cy.get("#previous").click({ force: true }).click({ force: true }).click({
-      force: true,
-    });
-    cy.get("#next").click({ force: true }).click({ force: true });
-    cy.get("#today").click({ force: true });
-    // should we go into the future?
-    cy.get("#next").click({ force: true }).click({ force: true });
-    cy.get("#today").click({ force: true });
-
-    cy.get("#nav-settings").click();
+  it("Test signup", () => {
+    cy.get(":nth-child(1) > a").click();
     cy.wait(1000);
-    cy.get(".btn-danger").click();
+    cy.get("#name")
+      .type("test")
+      .should("have.value", "test");
+    cy.get("#email")
+      .type("test@test.com")
+      .should("have.value", "test@test.com");
+    cy.get("#password")
+      .type("password")
+      .should("have.value", "password");
+    cy.get(".btn-block").click();
+    cy.get("#signup-error").should(($err) => {
+      expect($err).to.contain('already in use')
+    });
+    cy.get("#name")
+      .clear()
+      .type("test")
+      .should("have.value", "test");
+    let uid = new Date().getTime();
+    cy.get("#email")
+      .clear()
+      .type(uid + "@test.com")
+      .should("have.value", uid + "@test.com");
+    cy.get("#password")
+      .clear()
+      .type("password")
+      .should("have.value", "password");
+    cy.get(".btn-block").click();
+  });
+
+  it("Test password reset", () => {
+    cy.get(":nth-child(2) > a").click();
+    cy.wait(1000);
+    cy.get(".btn").click();
+    cy.get("#reset-error").should(($err) => {
+      expect($err).to.contain('badly')
+    });
+    cy.get("#email")
+      .clear()
+      .type("test@sdkj.com")
+      .should("have.value", "test@sdkj.com");
+    cy.get(".btn").click();
+    cy.get("#reset-error").should(($err) => {
+      expect($err).to.contain('no user record')
+    });
+    cy.get("#email")
+      .clear()
+      .type("test@test.com")
+      .should("have.value", "test@test.com");
+    cy.get(".btn").click();
+    cy.get("#reset-error").should(($err) => {
+      expect($err).to.contain('password reset link')
+    });
   });
 
   it("Can log in with confirmed account", () => {
     cy.get("#email")
+    .clear()
+    .type("test@sdkj.com")
+    .should("have.value", "test@sdkj.com");
+    cy.get("#password")
+      .clear()
+      .type("password")
+      .should("have.value", "password");
+    cy.get("#login-form").submit();
+    cy.get("#login-error").should(($err) => {
+      expect($err).to.contain('no user record')
+    });
+
+    cy.get("#email")
+      .clear()
       .type("test@test.com", { delay: 100 })
       .should("have.value", "test@test.com");
 
     cy.get("#password")
+      .clear()
       .type("password", { delay: 100 })
       .should("have.value", "password");
 
@@ -97,6 +143,32 @@ context("Actions", () => {
     cy.wait(1000);
     cy.reload();
     cy.wait(1000);
+    cy.get("#nav-settings").click();
+    cy.wait(1000);
+    cy.get(".btn-danger").click();
+  });
+
+  it("Test daily log", () => {
+    cy.get("#email").type("test@test.com");
+    cy.get("#password").type("password");
+    cy.get("#login-form").submit();
+
+    cy.wait(2000);
+
+    cy.get("#toggle").click({ force: true }).click({ force: true });
+    cy.get("#bold").click().click();
+    cy.get("#italic").click().click();
+    cy.get("#underline").click().click();
+
+    cy.get("#previous").click({ force: true }).click({ force: true }).click({
+      force: true,
+    });
+    cy.get("#next").click({ force: true }).click({ force: true });
+    cy.get("#today").click({ force: true });
+    // should we go into the future?
+    cy.get("#next").click({ force: true }).click({ force: true });
+    cy.get("#today").click({ force: true });
+
     cy.get("#nav-settings").click();
     cy.wait(1000);
     cy.get(".btn-danger").click();
@@ -153,17 +225,86 @@ context("Actions", () => {
 
     cy.wait(2000);
 
-    cy.get("#rose").dblclick().click().type("test");
-    cy.get("#thorn").dblclick().click().type("test2");
+    cy.get("#rose").dblclick({force: true}).type("test");
+    cy.get("#thorn").dblclick({force: true}).type("test2");
     cy.get("#nav-settings").click();
     cy.wait(1000);
     cy.get(".navbar-brand").click();
     cy.wait(1000);
     cy.get("#rose").should("contain", "test");
     cy.get("#thorn").should("contain", "test2");
+  });
 
+  it("Test calendar", () => {
+    cy.wait(2000);
+
+    cy.get("#nav-calendar").click();
+    cy.wait(2000);
+    cy.get("#datepicker2").click();
+    cy.get('[data-date="1625011200000"]').click();
+    cy.get('[data-date="1624924800000"]').click();
+    cy.get("#datepicker1").click();
+    cy.get('[data-date="1616457600000"]').click();
+    cy.get('[data-date="1616544000000"]').click();
+
+    cy.get("#button-add").click();
+    cy.get("#newproresstitle").type("Test2");
+    cy.get("#newstartdate").click({force: true});
+    cy.get('[data-date="1622505600000"]').click();
+    cy.get("#newenddate").click({force: true});
+    cy.get('[data-date="1625011200000"]').click();
+    cy.get("#button-submit").click({force: true});
+
+    cy.get(".navbar-brand").click();
+    cy.wait(5000);
+    cy.get("label")
+      .should("contain.text", "6-30")
+      .should("contain.text", "Test2");
+
+    cy.get("#nav-calendar").click();
+    cy.wait(2000);
+    cy.get('#end_1623269478085').click();
+    cy.get('[data-date="1623196800000"]').click();
+    cy.get('#end_1623269478085').click();
+    cy.get('[data-date="1624406400000"]').click();
+    cy.get('#end_1623269478085').click();
+    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .next').click();
+    cy.get('[data-date="1625616000000"]').click();
+    cy.get('#start_1623269478085').click();
+    cy.get('[data-date="1623369600000"]').click();
+    cy.get('#start_1623269478085').click();
+    cy.get('[data-date="1622505600000"]').click();
+    cy.get('#end_1623269478085').click();
+    cy.get('.datepicker-days > .table-condensed > thead > :nth-child(2) > .prev').click();
+    cy.get('[data-date="1625011200000"]').click();
+
+
+    //cy.get(".button-remove").click();
+  });
+
+  it("Test settings", () => {
+    cy.visit("https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/signup.html");
+    cy.wait(1000);
+    cy.get("#nav-settings").click();
+    cy.wait(1000);
+    cy.get("#wave > img").click();
+    cy.get("#save").click();
+    cy.get("#graph > img").click();
+    cy.get("#save").click();
+    cy.get("#topo > img").click();
+    cy.get("#save").click();
+    cy.get('[fill="url(#gradient-black-0)"]')
+      .click(80, 75) // click 80px on x coord and 75px on y coord
+      .click(170, 75)
+      .click(80, 165)
+      .click(100, 185)
+      .click(125, 190)
+      .click(150, 185)
+      .click(170, 165);
+    cy.reload();
+    cy.wait(2000);
     cy.get("#nav-settings").click();
     cy.wait(1000);
     cy.get(".btn-danger").click();
-  });
+  })
 });
