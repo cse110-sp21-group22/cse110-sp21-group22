@@ -233,7 +233,10 @@ document.querySelector("#underline").addEventListener("click", () => {
  * @param {int} style style to apply
  */
 function updateStyle(style) {
-  if (document.querySelector("#toggle").innerText == "View" && previousSelected.parentNode.className == "text flex-fill") {
+  if (
+    document.querySelector("#toggle").innerText == "View" &&
+    previousSelected.parentNode.className == "text flex-fill"
+  ) {
     let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
     let currStyle = parseInt(parentDiv.attr("stylenum")) + style;
     parentDiv.attr("stylenum", currStyle);
