@@ -1,9 +1,7 @@
 /// <reference types="cypress" />
 
 context("Misc", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/commands/misc");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/commands/misc"); });
 
   it(".end() - end the command chain", () => {
     // https://on.cypress.io/end
@@ -34,7 +32,7 @@ context("Misc", () => {
     // shell https://github.com/cypress-io/cypress/issues/5169 so skip some
     // of the tests by passing flag "--env circle=true"
     const isCircleOnWindows =
-      Cypress.platform === "win32" && Cypress.env("circle");
+        Cypress.platform === "win32" && Cypress.env("circle");
 
     if (isCircleOnWindows) {
       cy.log("Skipping test on CircleCI");
@@ -45,7 +43,7 @@ context("Misc", () => {
     // cy.exec problem on Shippable CI
     // https://github.com/cypress-io/cypress/issues/6718
     const isShippable =
-      Cypress.platform === "linux" && Cypress.env("shippable");
+        Cypress.platform === "linux" && Cypress.env("shippable");
 
     if (isShippable) {
       cy.log("Skipping test on ShippableCI");
@@ -73,30 +71,29 @@ context("Misc", () => {
     cy.focused().should("have.id", "description");
   });
 
-  context("Cypress.Screenshot", function () {
+  context("Cypress.Screenshot", function() {
     it("cy.screenshot() - take a screenshot", () => {
       // https://on.cypress.io/screenshot
       cy.screenshot("my-image");
     });
 
-    it("Cypress.Screenshot.defaults() - change default config of screenshots", function () {
-      Cypress.Screenshot.defaults({
-        blackout: [".foo"],
-        capture: "viewport",
-        clip: { x: 0, y: 0, width: 200, height: 200 },
-        scale: false,
-        disableTimersAndAnimations: true,
-        screenshotOnRunFailure: true,
-        onBeforeScreenshot() {},
-        onAfterScreenshot() {},
-      });
-    });
+    it("Cypress.Screenshot.defaults() - change default config of screenshots",
+       function() {
+         Cypress.Screenshot.defaults({
+           blackout : [ ".foo" ],
+           capture : "viewport",
+           clip : {x : 0, y : 0, width : 200, height : 200},
+           scale : false,
+           disableTimersAndAnimations : true,
+           screenshotOnRunFailure : true,
+           onBeforeScreenshot() {},
+           onAfterScreenshot() {},
+         });
+       });
   });
 
   it("cy.wrap() - wrap an object", () => {
     // https://on.cypress.io/wrap
-    cy.wrap({ foo: "bar" })
-      .should("have.property", "foo")
-      .and("include", "bar");
+    cy.wrap({foo : "bar"}).should("have.property", "foo").and("include", "bar");
   });
 });
