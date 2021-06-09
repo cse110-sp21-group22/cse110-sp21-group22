@@ -6,21 +6,23 @@ $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
 
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("calendar")
-    .onSnapshot((doc) => {
-      try {
-        var semester_start = doc.data().semester_start.toDate();
-        var semester_end = doc.data().semester_end.toDate();
-        $("#datepicker1").datepicker("update", semester_start);
-        $("#datepicker2").datepicker("update", semester_end);
-        progress_func();
-      } catch (err) {
-        console.log(err);
-      }
-    });
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("calendar")
+      .onSnapshot((doc) => {
+        try {
+          var semester_start = doc.data().semester_start.toDate();
+          var semester_end = doc.data().semester_end.toDate();
+          $("#datepicker1").datepicker("update", semester_start);
+          $("#datepicker2").datepicker("update", semester_end);
+          progress_func();
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    }
 });
 
 /**
