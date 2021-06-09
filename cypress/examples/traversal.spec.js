@@ -1,14 +1,15 @@
 /// <reference types="cypress" />
 
 context("Traversal", () => {
-  beforeEach(
-      () => { cy.visit("https://example.cypress.io/commands/traversal"); });
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/traversal");
+  });
 
   it(".children() - get child DOM elements", () => {
     // https://on.cypress.io/children
     cy.get(".traversal-breadcrumb")
-        .children(".active")
-        .should("contain", "Data");
+      .children(".active")
+      .should("contain", "Data");
   });
 
   it(".closest() - get closest ancestor DOM element", () => {
@@ -29,9 +30,9 @@ context("Traversal", () => {
   it(".find() - get descendant DOM elements of the selector", () => {
     // https://on.cypress.io/find
     cy.get(".traversal-pagination")
-        .find("li")
-        .find("a")
-        .should("have.length", 7);
+      .find("li")
+      .find("a")
+      .should("have.length", 7);
   });
 
   it(".first() - get first DOM element", () => {
@@ -47,17 +48,17 @@ context("Traversal", () => {
   it(".next() - get next sibling DOM element", () => {
     // https://on.cypress.io/next
     cy.get(".traversal-ul")
-        .contains("apples")
-        .next()
-        .should("contain", "oranges");
+      .contains("apples")
+      .next()
+      .should("contain", "oranges");
   });
 
   it(".nextAll() - get all next sibling DOM elements", () => {
     // https://on.cypress.io/nextall
     cy.get(".traversal-next-all")
-        .contains("oranges")
-        .nextAll()
-        .should("have.length", 3);
+      .contains("oranges")
+      .nextAll()
+      .should("have.length", 3);
   });
 
   it(".nextUntil() - get next sibling DOM elements until next el", () => {
@@ -68,8 +69,8 @@ context("Traversal", () => {
   it(".not() - remove DOM elements from set of DOM elements", () => {
     // https://on.cypress.io/not
     cy.get(".traversal-disabled .btn")
-        .not("[disabled]")
-        .should("not.contain", "Disabled");
+      .not("[disabled]")
+      .should("not.contain", "Disabled");
   });
 
   it(".parent() - get parent DOM element from DOM elements", () => {
@@ -82,14 +83,13 @@ context("Traversal", () => {
     cy.get(".traversal-cite").parents().should("match", "blockquote");
   });
 
-  it(".parentsUntil() - get parent DOM elements from DOM elements until el",
-     () => {
-       // https://on.cypress.io/parentsuntil
-       cy.get(".clothes-nav")
-           .find(".active")
-           .parentsUntil(".clothes-nav")
-           .should("have.length", 2);
-     });
+  it(".parentsUntil() - get parent DOM elements from DOM elements until el", () => {
+    // https://on.cypress.io/parentsuntil
+    cy.get(".clothes-nav")
+      .find(".active")
+      .parentsUntil(".clothes-nav")
+      .should("have.length", 2);
+  });
 
   it(".prev() - get previous sibling DOM element", () => {
     // https://on.cypress.io/prev
@@ -104,9 +104,9 @@ context("Traversal", () => {
   it(".prevUntil() - get all previous sibling DOM elements until el", () => {
     // https://on.cypress.io/prevuntil
     cy.get(".foods-list")
-        .find("#nuts")
-        .prevUntil("#veggies")
-        .should("have.length", 3);
+      .find("#nuts")
+      .prevUntil("#veggies")
+      .should("have.length", 3);
   });
 
   it(".siblings() - get all sibling DOM elements", () => {
