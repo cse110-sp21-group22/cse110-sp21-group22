@@ -76,7 +76,7 @@ rules:
   no-unused-vars: 1
 
   # Functions
-  no-func-assign: ["warn", 2]  
+  no-func-assign: "warn" 
 
   # Node.js
 
