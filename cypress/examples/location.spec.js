@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
 context("Location", () => {
-  beforeEach(
-      () => { cy.visit("https://example.cypress.io/commands/location"); });
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/location");
+  });
 
   it("cy.hash() - get the current URL hash", () => {
     // https://on.cypress.io/hash
@@ -13,8 +14,9 @@ context("Location", () => {
     // https://on.cypress.io/location
     cy.location().should((location) => {
       expect(location.hash).to.be.empty;
-      expect(location.href)
-          .to.eq("https://example.cypress.io/commands/location");
+      expect(location.href).to.eq(
+        "https://example.cypress.io/commands/location"
+      );
       expect(location.host).to.eq("example.cypress.io");
       expect(location.hostname).to.eq("example.cypress.io");
       expect(location.origin).to.eq("https://example.cypress.io");

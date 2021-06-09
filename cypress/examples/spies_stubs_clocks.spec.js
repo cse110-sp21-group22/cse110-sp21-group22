@@ -26,14 +26,20 @@ context("Spies, Stubs, and Clock", () => {
        * Prints the argument passed
        * @param x {any}
        */
-      foo(x) { console.log("obj.foo called with", x); },
+      foo(x) {
+        console.log("obj.foo called with", x);
+      },
     };
 
     cy.spy(obj, "foo").as("foo");
 
-    setTimeout(() => { obj.foo("first"); }, 500);
+    setTimeout(() => {
+      obj.foo("first");
+    }, 500);
 
-    setTimeout(() => { obj.foo("second"); }, 2500);
+    setTimeout(() => {
+      obj.foo("second");
+    }, 2500);
 
     cy.get("@foo").should("have.been.calledTwice");
   });
@@ -48,7 +54,9 @@ context("Spies, Stubs, and Clock", () => {
        * @param a {string}
        * @param b {string}
        */
-      foo(a, b) { console.log("a", a, "b", b); },
+      foo(a, b) {
+        console.log("a", a, "b", b);
+      },
     };
 
     const stub = cy.stub(obj, "foo").as("foo");
@@ -93,15 +101,17 @@ context("Spies, Stubs, and Clock", () => {
        * Greets a person
        * @param {string} name
        */
-      greet(name) { return `Hello, ${name}!`; },
+      greet(name) {
+        return `Hello, ${name}!`;
+      },
     };
 
     cy.stub(greeter, "greet")
-        .callThrough() // if you want non-matched calls to call the real method
-        .withArgs(Cypress.sinon.match.string)
-        .returns("Hi")
-        .withArgs(Cypress.sinon.match.number)
-        .throws(new Error("Invalid name"));
+      .callThrough() // if you want non-matched calls to call the real method
+      .withArgs(Cypress.sinon.match.string)
+      .returns("Hi")
+      .withArgs(Cypress.sinon.match.number)
+      .throws(new Error("Invalid name"));
 
     expect(greeter.greet("World")).to.equal("Hi");
     // @ts-ignore
@@ -122,7 +132,9 @@ context("Spies, Stubs, and Clock", () => {
        * @param a {number}
        * @param b {number}
        */
-      add(a, b) { return a + b; },
+      add(a, b) {
+        return a + b;
+      },
     };
 
     const spy = cy.spy(calculator, "add").as("add");
@@ -133,18 +145,22 @@ context("Spies, Stubs, and Clock", () => {
     expect(spy).to.be.calledWith(2, 3);
 
     // let's confirm "add" method was called with two numbers
-    expect(spy).to.be.calledWith(Cypress.sinon.match.number,
-                                 Cypress.sinon.match.number);
+    expect(spy).to.be.calledWith(
+      Cypress.sinon.match.number,
+      Cypress.sinon.match.number
+    );
 
     // alternatively, provide the value to match
-    expect(spy).to.be.calledWith(Cypress.sinon.match(2),
-                                 Cypress.sinon.match(3));
+    expect(spy).to.be.calledWith(
+      Cypress.sinon.match(2),
+      Cypress.sinon.match(3)
+    );
 
     // match any value
     expect(spy).to.be.calledWith(Cypress.sinon.match.any, 3);
 
     // match any value from a list
-    expect(spy).to.be.calledWith(Cypress.sinon.match.in([ 1, 2, 3 ]), 3);
+    expect(spy).to.be.calledWith(Cypress.sinon.match.in([1, 2, 3]), 3);
 
     /**
      * Returns true if the given number is event
@@ -173,21 +189,28 @@ context("Spies, Stubs, and Clock", () => {
 
     // you can combine several matchers using "and", "or"
     expect(spy).to.be.calledWith(
-        Cypress.sinon.match.number,
-        Cypress.sinon.match(isGreaterThan(2), "> 2")
-            .and(Cypress.sinon.match(isLessThan(4), "< 4")));
+      Cypress.sinon.match.number,
+      Cypress.sinon
+        .match(isGreaterThan(2), "> 2")
+        .and(Cypress.sinon.match(isLessThan(4), "< 4"))
+    );
 
     expect(spy).to.be.calledWith(
-        Cypress.sinon.match.number,
-        Cypress.sinon.match(isGreaterThan(200), "> 200")
-            .or(Cypress.sinon.match(3)));
+      Cypress.sinon.match.number,
+      Cypress.sinon
+        .match(isGreaterThan(200), "> 200")
+        .or(Cypress.sinon.match(3))
+    );
 
     // matchers can be used from BDD assertions
-    cy.get("@add").should("have.been.calledWith", Cypress.sinon.match.number,
-                          Cypress.sinon.match(3));
+    cy.get("@add").should(
+      "have.been.calledWith",
+      Cypress.sinon.match.number,
+      Cypress.sinon.match(3)
+    );
 
     // you can alias matchers for shorter test code
-    const {match : M} = Cypress.sinon;
+    const { match: M } = Cypress.sinon;
 
     cy.get("@add").should("have.been.calledWith", M.number, M(3));
   });

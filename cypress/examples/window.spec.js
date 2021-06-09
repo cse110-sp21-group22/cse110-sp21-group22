@@ -1,7 +1,9 @@
 /// <reference types="cypress" />
 
 context("Window", () => {
-  beforeEach(() => { cy.visit("https://example.cypress.io/commands/window"); });
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/window");
+  });
 
   it("cy.window() - get the global window object", () => {
     // https://on.cypress.io/window
