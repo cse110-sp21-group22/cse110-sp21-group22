@@ -304,7 +304,7 @@ loadQuote().then(() => {
     setTextColor("feelings");
     setTextColor("quote");
     setTextColor("authors");
-    setTimeout(() => { 
+    setTimeout(() => {
       dynamicallyLoadScript(
         "./scripts/index.js",
         dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
