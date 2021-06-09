@@ -277,7 +277,7 @@ const loadQuote = async () => {
 
   // Fetches information from quote generator website
   if (navigator.onLine) {
-    fetch(url)
+    await fetch(url)
       .then((response) => response.json())
       .then((result) => {
         // Updates html objects with content from the website
@@ -304,10 +304,12 @@ loadQuote().then(() => {
     setTextColor("feelings");
     setTextColor("quote");
     setTextColor("authors");
-    dynamicallyLoadScript(
-      "./scripts/index.js",
-      dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
-    );
+    setTimeout(() => { 
+      dynamicallyLoadScript(
+        "./scripts/index.js",
+        dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+      );
+    }, 2000);
   });
 });
 
