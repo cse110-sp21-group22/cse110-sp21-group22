@@ -1,49 +1,40 @@
 /// <reference types="cypress" />
 
 context("Cypress.Commands", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   // https://on.cypress.io/custom-commands
 
   it(".add() - create a custom command", () => {
-    Cypress.Commands.add(
-      "console",
-      {
-        prevSubject: true,
-      },
-      (subject, method) => {
-        // the previous subject is automatically received
-        // and the commands arguments are shifted
+    Cypress.Commands.add("console", {
+      prevSubject : true,
+    },
+                         (subject, method) => {
+                           // the previous subject is automatically received
+                           // and the commands arguments are shifted
 
-        // allow us to change the console method used
-        method = method || "log";
+                           // allow us to change the console method used
+                           method = method || "log";
 
-        // log the subject to the console
-        // @ts-ignore TS7017
-        console[method]("The subject is", subject);
+                           // log the subject to the console
+                           // @ts-ignore TS7017
+                           console[method]("The subject is", subject);
 
-        // whatever we return becomes the new subject
-        // we don't want to change the subject so
-        // we return whatever was passed in
-        return subject;
-      }
-    );
+                           // whatever we return becomes the new subject
+                           // we don't want to change the subject so
+                           // we return whatever was passed in
+                           return subject;
+                         });
 
     // @ts-ignore TS2339
-    cy.get("button")
-      .console("info")
-      .then(($button) => {
-        // subject is still $button
-      });
+    cy.get("button").console("info").then(($button) => {
+                                              // subject is still $button
+                                          });
   });
 });
 
 context("Cypress.Cookies", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   // https://on.cypress.io/cookies
   it(".debug() - enable or disable debugging", () => {
@@ -72,15 +63,13 @@ context("Cypress.Cookies", () => {
     // now any cookie with the name 'session_id' will
     // not be cleared before each new test runs
     Cypress.Cookies.defaults({
-      preserve: "session_id",
+      preserve : "session_id",
     });
   });
 });
 
 context("Cypress.arch", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   it("Get CPU architecture name of underlying OS", () => {
     // https://on.cypress.io/arch
@@ -89,9 +78,7 @@ context("Cypress.arch", () => {
 });
 
 context("Cypress.config()", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   it("Get and set configuration options", () => {
     // https://on.cypress.io/config
@@ -119,9 +106,7 @@ context("Cypress.config()", () => {
 });
 
 context("Cypress.dom", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   // https://on.cypress.io/dom
   it(".isHidden() - determine if a DOM element is hidden", () => {
@@ -135,9 +120,7 @@ context("Cypress.dom", () => {
 });
 
 context("Cypress.env()", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   // We can set environment variables for highly dynamic values
 
@@ -146,8 +129,8 @@ context("Cypress.env()", () => {
     // https://on.cypress.io/env
     // set multiple environment variables
     Cypress.env({
-      host: "veronica.dev.local",
-      api_server: "http://localhost:8888/v1/",
+      host : "veronica.dev.local",
+      api_server : "http://localhost:8888/v1/",
     });
 
     // get environment variable
@@ -159,27 +142,22 @@ context("Cypress.env()", () => {
 
     // get all environment variable
     expect(Cypress.env()).to.have.property("host", "veronica.dev.local");
-    expect(Cypress.env()).to.have.property(
-      "api_server",
-      "http://localhost:8888/v2/"
-    );
+    expect(Cypress.env())
+        .to.have.property("api_server", "http://localhost:8888/v2/");
   });
 });
 
 context("Cypress.log", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
-  it("Control what is printed to the Command Log", () => {
-    // https://on.cypress.io/cypress-log
-  });
+  it("Control what is printed to the Command Log",
+     () => {
+         // https://on.cypress.io/cypress-log
+     });
 });
 
 context("Cypress.platform", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   it("Get underlying OS name", () => {
     // https://on.cypress.io/platform
@@ -188,9 +166,7 @@ context("Cypress.platform", () => {
 });
 
 context("Cypress.version", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   it("Get current version of Cypress being run", () => {
     // https://on.cypress.io/version
@@ -199,13 +175,12 @@ context("Cypress.version", () => {
 });
 
 context("Cypress.spec", () => {
-  beforeEach(() => {
-    cy.visit("https://example.cypress.io/cypress-api");
-  });
+  beforeEach(() => { cy.visit("https://example.cypress.io/cypress-api"); });
 
   it("Get current spec information", () => {
     // https://on.cypress.io/spec
-    // wrap the object so we can inspect it easily by clicking in the command log
+    // wrap the object so we can inspect it easily by clicking in the command
+    // log
     cy.wrap(Cypress.spec).should("include.keys", [
       "name",
       "relative",
