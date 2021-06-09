@@ -6,7 +6,6 @@ $("#datepicker1").datepicker();
 $("#datepicker2").datepicker();
 
 auth.onAuthStateChanged((user) => {
-  PageLoaded();
   if (user) {
     fs.collection("users")
       .doc(user.uid)
@@ -23,7 +22,7 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 /**
@@ -287,7 +286,6 @@ auth.onAuthStateChanged((user) => {
             }
           }
         });
-        PageLoaded();
       });
   }
 });
@@ -314,3 +312,5 @@ document.getElementById("button-submit").addEventListener("click", () => {
   progress.sync();
   document.querySelector(".modal").style.display = "none";
 });
+
+PageLoaded();

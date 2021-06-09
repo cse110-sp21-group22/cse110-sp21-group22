@@ -18,7 +18,7 @@ let bStyle = "";
 let topo = "";
 let wave = "";
 let graph = "";
-let lightDark = "";
+let lightDark = "light";
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
@@ -40,6 +40,22 @@ const monthName = [
   "Nov",
   "Dec",
 ];
+const monthNameLong = [
+  "",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
@@ -53,6 +69,9 @@ let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
 let editStatus = false;
+let quote =
+  '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+let author = "-Marilyn vos Savant";
 
 /**
  * Function to load subpages
@@ -194,7 +213,11 @@ auth.onAuthStateChanged((user) => {
         }
         NavbarLoaded();
       });
+<<<<<<< HEAD
     }
+=======
+  }
+>>>>>>> main
 });
 
 // Update background from firebase
@@ -215,7 +238,38 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
+<<<<<<< HEAD
     }
+=======
+  }
+});
+
+// Get background settings
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .get()
+      .then((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .then(() => {
+        setTextColor("feelings");
+        setTextColor("quote");
+        setTextColor("authors");
+      });
+  }
+>>>>>>> main
 });
 
 // register service worker
@@ -225,6 +279,26 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// Get quote
+const loadQuote = async () => {
+  url = "https://api.quotable.io/random";
+
+  // Fetches information from quote generator website
+  if (navigator.onLine) {
+    await fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        quote = '"' + result.content + '"';
+        author = "-" + result.author;
+      });
+  } else {
+    quote =
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+    author = "-Marilyn vos Savant";
+  }
+};
+
 /**
  * The Function is invoked when the window.history's state changes
  */
@@ -232,6 +306,7 @@ window.onpopstate = () => {
   router.resolve();
 };
 
+<<<<<<< HEAD
 // Get background settings
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -267,6 +342,21 @@ main().then(() => {
     "./scripts/index.js",
     dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
   );
+=======
+loadQuote().then(() => {
+  main().then(() => {
+    rootDiv.innerHTML = home;
+    setTextColor("feelings");
+    setTextColor("quote");
+    setTextColor("authors");
+    setTimeout(() => {
+      dynamicallyLoadScript(
+        "./scripts/index.js",
+        dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+      );
+    }, 1500);
+  });
+>>>>>>> main
 });
 
 // Clear mood tracker data on new year

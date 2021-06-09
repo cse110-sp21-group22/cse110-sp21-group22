@@ -55,7 +55,7 @@ auth.onAuthStateChanged((user) => {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 rosethorn.addEventListener("focusout", (event) => {
@@ -77,11 +77,11 @@ rosethorn.addEventListener("focusout", (event) => {
             .doc("rosethorn")
             .set({
               date: [date_string],
-              rose: "",
-              thorn: "",
+              rose: [rose.innerHTML],
+              thorn: [thorn.innerHTML],
             });
         });
-      }
+    }
   });
 });
 
@@ -101,15 +101,15 @@ auth.onAuthStateChanged((user) => {
               .doc("rosethorn")
               .set({
                 date: [date_string],
-                rose: "Rose: ",
-                thorn: "Thorn: ",
+                rose: "",
+                thorn: "",
               });
           }
         } catch (err) {
           console.log(err);
         }
       });
-    }
+  }
 });
 
 /************ End Rose and Thorn ************/
@@ -233,16 +233,20 @@ document.querySelector("#underline").addEventListener("click", () => {
  * @param {int} style style to apply
  */
 function updateStyle(style) {
-  if (document.querySelector("#toggle") == "Edit") {
+  if (
+    document.querySelector("#toggle").innerText == "View" &&
+    previousSelected.parentNode.className == "text flex-fill"
+  ) {
     let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
-    let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
-    parentDiv.attr("styleNum", currStyle);
+    let currStyle = parseInt(parentDiv.attr("stylenum")) + style;
+    parentDiv.attr("stylenum", currStyle);
     setStyle(style, parentDiv);
     let id = parentDiv.attr("id");
     let text = parentDiv.children().text();
     let signifier = parseInt(parentDiv.attr("signifier"));
     let type = parseInt(parentDiv.attr("type"));
-    let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
+    let level = parseInt(parentDiv.attr("level"));
+    let note2 = new BujoElement(id, text, level, type, signifier, currStyle);
     note2.sync(selectedDate);
   }
 }
@@ -483,7 +487,7 @@ function renderData(individualDoc) {
 
   // parent div
   let parentDiv = document.createElement("div");
-  parentDiv.className = "item note";
+  parentDiv.className = "item note d-flex";
   parentDiv.setAttribute("id", note.id);
   parentDiv.setAttribute("date", individualDoc.data().date);
   parentDiv.setAttribute("level", note.level);
@@ -506,22 +510,22 @@ function renderData(individualDoc) {
 
   // note div
   let noteDiv = document.createElement("div");
-  noteDiv.className = "text";
+  noteDiv.className = "text flex-fill";
   let noteDivP = document.createElement("p");
   if (editStatus) {
     noteDivP.setAttribute("contenteditable", "true");
   } else {
     noteDivP.setAttribute("contenteditable", "false");
   }
-  parentDiv.setAttribute("styleNum", note.style);
+  parentDiv.setAttribute("stylenum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
 
-  // options
+  // trash (was previously options)
   let optionsDiv = document.createElement("div");
   optionsDiv.className = "options";
   let optionsDivI = document.createElement("i");
-  optionsDivI.className = "fa fa-ellipsis-h";
+  optionsDivI.className = "fa fa-trash";
   optionsDiv.appendChild(optionsDivI);
 
   // appending
@@ -561,7 +565,7 @@ function renderData(individualDoc) {
           .text();
         let signifier = parseInt($(this).parent().attr("signifier"));
         let type = parseInt($(this).parent().attr("type"));
-        let style = parseInt($(this).parent().attr("styleNum"));
+        let style = parseInt($(this).parent().attr("stylenum"));
         let level = parseInt($(this).parent().attr("level")) + 1;
         setLevel(level, $(this).parent());
         let note2 = new BujoElement(id, text, level, type, signifier, style);
@@ -577,7 +581,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).text();
       let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
@@ -609,7 +613,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
       let signifier = parseInt($(this).parent().attr("signifier"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
@@ -650,13 +654,13 @@ addItem.addEventListener("keydown", function (event) {
  * @param day - the day to display
  */
 function showDay(selectedDate) {
-  let today;
-
   $(".note").each(function () {
     if ($(this).attr("date") == daysIntoYear(date) + selectedDate) {
       $(this).removeClass("hidden");
+      $(this).removeClass("d-none");
     } else {
       $(this).addClass("hidden");
+      $(this).addClass("d-none");
     }
   });
 
@@ -692,15 +696,8 @@ function showDay(selectedDate) {
   date2 = date2.toString();
   year2 = year2.toString();
 
-  editorDate.innerText = month2 + "/" + date2 + "/" + year2;
-
-  today = document.querySelector("#today");
-
-  if (selectedDate == 0) {
-    today.style.display = "none";
-  } else {
-    today.style.display = "inline-block";
-  }
+  editorDate.innerText =
+    weekDay[date.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
 }
 
 // realtime listners
@@ -827,26 +824,9 @@ if (document.documentElement.clientWidth < 768) {
 
 setIcon();
 
-url = "https://api.quotable.io/random";
-
-// Fetches information from quote generator website
-if (navigator.onLine) {
-  fetch(url)
-    .then((response) => response.json())
-    .then((result) => {
-      // Updates html objects with content from the website
-      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-      document.querySelector("#authors").innerHTML = "-" + result.author;
-    })
-    .then(() => {
-      PageLoaded();
-    });
-} else {
-  document.querySelector("#quote").innerHTML =
-    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
-  document.querySelector("#authors").innerHTML = "-Marilyn vos Savant";
-  PageLoaded();
-}
+// Updates html objects with content from the website
+document.querySelector("#quote").innerHTML = quote;
+document.querySelector("#authors").innerHTML = author;
 
 selectedDate = 0;
 showDay(selectedDate);
@@ -855,3 +835,5 @@ showDay(selectedDate);
 if (year % 4 == 0) {
   daysInMonths[1] = 29;
 }
+
+PageLoaded();
