@@ -40,6 +40,22 @@ const monthName = [
   "Nov",
   "Dec",
 ];
+const monthNameLong = [
+  "",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let daysInMonth = [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currDate = "";
 let PROGRESS_BAR = "";
@@ -53,6 +69,9 @@ let addItem = "";
 let previousSelected = "";
 let selectedDate = 0;
 let editStatus = false;
+let quote =
+  '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+let author = "-Marilyn vos Savant";
 
 /**
  * Function to load subpages
@@ -178,40 +197,71 @@ function resize() {
 
 // Update navbar color from firebase
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("navbar")
-    .onSnapshot((doc) => {
-      try {
-        hColor = doc.data().hColor;
-        hStyle = doc.data().hStyle;
-        document.getElementById("navbar").className = hStyle;
-        document.getElementById("navbar").style.backgroundColor = hColor;
-      } catch (err) {
-        console.log(err);
-      }
-      NavbarLoaded();
-    });
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("navbar")
+      .onSnapshot((doc) => {
+        try {
+          hColor = doc.data().hColor;
+          hStyle = doc.data().hStyle;
+          document.getElementById("navbar").className = hStyle;
+          document.getElementById("navbar").style.backgroundColor = hColor;
+        } catch (err) {
+          console.log(err);
+        }
+        NavbarLoaded();
+      });
+  }
 });
 
 // Update background from firebase
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("settings")
-    .doc("body")
-    .onSnapshot((doc) => {
-      try {
-        bColor = doc.data().bColor;
-        bStyle = doc.data().bStyle;
-        document.getElementById("body").className = bStyle;
-        document.getElementById("body").style.backgroundColor = bColor;
-        lightDark = doc.data().lightDark;
-      } catch (err) {
-        console.log(err);
-      }
-    });
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .onSnapshot((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      });
+  }
+});
+
+// Get background settings
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("settings")
+      .doc("body")
+      .get()
+      .then((doc) => {
+        try {
+          bColor = doc.data().bColor;
+          bStyle = doc.data().bStyle;
+          document.getElementById("body").className = bStyle;
+          document.getElementById("body").style.backgroundColor = bColor;
+          lightDark = doc.data().lightDark;
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .then(() => {
+        setTextColor("feelings");
+        setTextColor("quote");
+        setTextColor("authors");
+      });
+  }
 });
 
 // register service worker
@@ -221,6 +271,26 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// Get quote
+const loadQuote = async () => {
+  url = "https://api.quotable.io/random";
+
+  // Fetches information from quote generator website
+  if (navigator.onLine) {
+    await fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        // Updates html objects with content from the website
+        quote = '"' + result.content + '"';
+        author = "-" + result.author;
+      });
+  } else {
+    quote =
+      '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
+    author = "-Marilyn vos Savant";
+  }
+};
+
 /**
  * The Function is invoked when the window.history's state changes
  */
@@ -228,15 +298,19 @@ window.onpopstate = () => {
   router.resolve();
 };
 
-main().then(() => {
-  rootDiv.innerHTML = home;
-  setTextColor("feelings");
-  setTextColor("quote");
-  setTextColor("authors");
-  dynamicallyLoadScript(
-    "./scripts/index.js",
-    dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
-  );
+loadQuote().then(() => {
+  main().then(() => {
+    rootDiv.innerHTML = home;
+    setTextColor("feelings");
+    setTextColor("quote");
+    setTextColor("authors");
+    setTimeout(() => {
+      dynamicallyLoadScript(
+        "./scripts/index.js",
+        dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
+      );
+    }, 2000);
+  });
 });
 
 // Clear mood tracker data on new year

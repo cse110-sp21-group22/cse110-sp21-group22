@@ -13,19 +13,21 @@ function colorChange(mood, moodClass, color) {
   var toggleString = mood + "-click";
   moodClass.classList.toggle(toggleString, true);
   auth.onAuthStateChanged((user) => {
-    var color_string = "color-" + month + "-" + day;
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("mood")
-      .update({ [color_string]: [color], selectedIcon: [mood] })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("mood")
-          .set({ [color_string]: [color], selectedIcon: [mood] });
-      });
+    if (user) {
+      var color_string = "color-" + month + "-" + day;
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .update({ [color_string]: [color], selectedIcon: [mood] })
+        .catch((err) => {
+          fs.collection("users")
+            .doc(user.uid)
+            .collection("data")
+            .doc("mood")
+            .set({ [color_string]: [color], selectedIcon: [mood] });
+        });
+    }
   });
 }
 
@@ -34,20 +36,22 @@ function colorChange(mood, moodClass, color) {
  */
 function setIcon() {
   auth.onAuthStateChanged((user) => {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("data")
-      .doc("mood")
-      .get()
-      .then((doc) => {
-        if ("color-" + month + "-" + day in doc.data()) {
-          let toggleString = doc.data().selectedIcon + "-click";
-          let moodClass = document.getElementById(doc.data().selectedIcon);
-          moodClass.classList.toggle(toggleString, true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("mood")
+        .get()
+        .then((doc) => {
+          if ("color-" + month + "-" + day in doc.data()) {
+            let toggleString = doc.data().selectedIcon + "-click";
+            let moodClass = document.getElementById(doc.data().selectedIcon);
+            moodClass.classList.toggle(toggleString, true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   });
 }

@@ -103,22 +103,24 @@ function logout() {
  */
 function save() {
   auth.onAuthStateChanged((user) => {
-    hStyle = document.getElementById("navbar").className;
-    hColor = document.getElementById("navbar").style.backgroundColor;
-    bStyle = document.getElementById("body").className;
-    bColor = document.getElementById("body").style.backgroundColor;
+    if (user) {
+      hStyle = document.getElementById("navbar").className;
+      hColor = document.getElementById("navbar").style.backgroundColor;
+      bStyle = document.getElementById("body").className;
+      bColor = document.getElementById("body").style.backgroundColor;
 
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("navbar")
-      .set({ hStyle: hStyle, hColor: hColor });
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("settings")
+        .doc("navbar")
+        .set({ hStyle: hStyle, hColor: hColor });
 
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("body")
-      .set({ bStyle: bStyle, bColor: bColor, lightDark: lightDark });
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("settings")
+        .doc("body")
+        .set({ bStyle: bStyle, bColor: bColor, lightDark: lightDark });
+    }
   });
 }
 

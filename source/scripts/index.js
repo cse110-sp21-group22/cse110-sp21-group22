@@ -42,68 +42,74 @@ var thorn = document.getElementById("thorn");
 var date_string = month + "-" + day;
 
 auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .onSnapshot((doc) => {
-      try {
-        rose.innerHTML = doc.data().rose;
-        thorn.innerHTML = doc.data().thorn;
-      } catch (err) {
-        console.log(err);
-      }
-    });
-});
-
-rosethorn.addEventListener("focusout", (event) => {
-  auth.onAuthStateChanged((user) => {
+  if (user) {
     fs.collection("users")
       .doc(user.uid)
       .collection("data")
       .doc("rosethorn")
-      .update({
-        date: [date_string],
-        rose: [rose.innerHTML],
-        thorn: [thorn.innerHTML],
-      })
-      .catch((err) => {
-        fs.collection("users")
-          .doc(user.uid)
-          .collection("data")
-          .doc("rosethorn")
-          .set({
-            date: [date_string],
-            rose: [rose.innerHTML],
-            thorn: [thorn.innerHTML],
-          });
+      .onSnapshot((doc) => {
+        try {
+          rose.innerHTML = doc.data().rose;
+          thorn.innerHTML = doc.data().thorn;
+        } catch (err) {
+          console.log(err);
+        }
       });
-  });
+  }
 });
 
-auth.onAuthStateChanged((user) => {
-  fs.collection("users")
-    .doc(user.uid)
-    .collection("data")
-    .doc("rosethorn")
-    .get()
-    .then((doc) => {
-      try {
-        if (doc.data().date != date_string) {
+rosethorn.addEventListener("focusout", (event) => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("data")
+        .doc("rosethorn")
+        .update({
+          date: [date_string],
+          rose: [rose.innerHTML],
+          thorn: [thorn.innerHTML],
+        })
+        .catch((err) => {
           fs.collection("users")
             .doc(user.uid)
             .collection("data")
             .doc("rosethorn")
             .set({
               date: [date_string],
-              rose: "",
-              thorn: "",
+              rose: [rose.innerHTML],
+              thorn: [thorn.innerHTML],
             });
+        });
+    }
+  });
+});
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    fs.collection("users")
+      .doc(user.uid)
+      .collection("data")
+      .doc("rosethorn")
+      .get()
+      .then((doc) => {
+        try {
+          if (doc.data().date != date_string) {
+            fs.collection("users")
+              .doc(user.uid)
+              .collection("data")
+              .doc("rosethorn")
+              .set({
+                date: [date_string],
+                rose: "",
+                thorn: "",
+              });
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      });
+  }
 });
 
 /************ End Rose and Thorn ************/
@@ -477,7 +483,7 @@ function renderData(individualDoc) {
 
   // parent div
   let parentDiv = document.createElement("div");
-  parentDiv.className = "item note";
+  parentDiv.className = "item note d-flex";
   parentDiv.setAttribute("id", note.id);
   parentDiv.setAttribute("date", individualDoc.data().date);
   parentDiv.setAttribute("level", note.level);
@@ -500,7 +506,7 @@ function renderData(individualDoc) {
 
   // note div
   let noteDiv = document.createElement("div");
-  noteDiv.className = "text";
+  noteDiv.className = "text flex-fill";
   let noteDivP = document.createElement("p");
   if (editStatus) {
     noteDivP.setAttribute("contenteditable", "true");
@@ -511,11 +517,11 @@ function renderData(individualDoc) {
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
 
-  // options
+  // trash (was previously options)
   let optionsDiv = document.createElement("div");
   optionsDiv.className = "options";
   let optionsDivI = document.createElement("i");
-  optionsDivI.className = "fa fa-ellipsis-h";
+  optionsDivI.className = "fa fa-trash";
   optionsDiv.appendChild(optionsDivI);
 
   // appending
@@ -644,13 +650,13 @@ addItem.addEventListener("keydown", function (event) {
  * @param day - the day to display
  */
 function showDay(selectedDate) {
-  let today;
-
   $(".note").each(function () {
     if ($(this).attr("date") == daysIntoYear(date) + selectedDate) {
       $(this).removeClass("hidden");
+      $(this).removeClass("d-none");
     } else {
       $(this).addClass("hidden");
+      $(this).addClass("d-none");
     }
   });
 
@@ -686,15 +692,8 @@ function showDay(selectedDate) {
   date2 = date2.toString();
   year2 = year2.toString();
 
-  editorDate.innerText = month2 + "/" + date2 + "/" + year2;
-
-  today = document.querySelector("#today");
-
-  if (selectedDate == 0) {
-    today.style.display = "none";
-  } else {
-    today.style.display = "inline-block";
-  }
+  editorDate.innerText =
+    weekDay[date.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
 }
 
 // realtime listners
@@ -821,26 +820,9 @@ if (document.documentElement.clientWidth < 768) {
 
 setIcon();
 
-url = "https://api.quotable.io/random";
-
-// Fetches information from quote generator website
-if (navigator.onLine) {
-  fetch(url)
-    .then((response) => response.json())
-    .then((result) => {
-      // Updates html objects with content from the website
-      document.querySelector("#quote").innerHTML = '"' + result.content + '"';
-      document.querySelector("#authors").innerHTML = "-" + result.author;
-    })
-    .then(() => {
-      PageLoaded();
-    });
-} else {
-  document.querySelector("#quote").innerHTML =
-    '"To acquire knowledge, one must study; but to acquire wisdom, one must observe."';
-  document.querySelector("#authors").innerHTML = "-Marilyn vos Savant";
-  PageLoaded();
-}
+// Updates html objects with content from the website
+document.querySelector("#quote").innerHTML = quote;
+document.querySelector("#authors").innerHTML = author;
 
 selectedDate = 0;
 showDay(selectedDate);
@@ -849,3 +831,5 @@ showDay(selectedDate);
 if (year % 4 == 0) {
   daysInMonths[1] = 29;
 }
+
+PageLoaded();
