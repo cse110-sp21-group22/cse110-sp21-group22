@@ -22,19 +22,19 @@ context("Actions", () => {
 
     cy.wait(2000);
 
-    cy.get("#toggle").click({force : true}).click({force : true});
+    cy.get("#toggle").click({ force: true }).click({ force: true });
     cy.get("#bold").click().click();
     cy.get("#italic").click().click();
     cy.get("#underline").click().click();
 
-    cy.get("#previous").click({force : true}).click({force : true}).click({
-      force : true,
+    cy.get("#previous").click({ force: true }).click({ force: true }).click({
+      force: true,
     });
-    cy.get("#next").click({force : true}).click({force : true});
-    cy.get("#today").click({force : true});
+    cy.get("#next").click({ force: true }).click({ force: true });
+    cy.get("#today").click({ force: true });
     // should we go into the future?
-    cy.get("#next").click({force : true}).click({force : true});
-    cy.get("#today").click({force : true});
+    cy.get("#next").click({ force: true }).click({ force: true });
+    cy.get("#today").click({ force: true });
 
     cy.get("#nav-settings").click();
     cy.wait(1000);
@@ -43,12 +43,12 @@ context("Actions", () => {
 
   it("Can log in with confirmed account", () => {
     cy.get("#email")
-        .type("test@test.com", {delay : 100})
-        .should("have.value", "test@test.com");
+      .type("test@test.com", { delay: 100 })
+      .should("have.value", "test@test.com");
 
     cy.get("#password")
-        .type("password", {delay : 100})
-        .should("have.value", "password");
+      .type("password", { delay: 100 })
+      .should("have.value", "password");
 
     cy.get("#login-form").submit();
     cy.wait(3000);
@@ -119,21 +119,27 @@ context("Actions", () => {
     cy.viewport(1920, 1080);
     cy.get("h1").should("contain", "Mood Tracker");
     cy.get("[data-cy=current-date]", {
-        timeout : 10000,
-      }).should("have.attr", "style", "background-color:#FECD32");
+      timeout: 10000,
+    }).should("have.attr", "style", "background-color:#FECD32");
     cy.get("#happy").click();
     cy.get("#sad").click();
     cy.get("#very-sad").click();
     cy.get("#neutral").click();
     cy.get("#very-happy").click();
-    cy.get("[data-cy=current-date]")
-        .should("have.attr", "style", "background-color:#55D805");
+    cy.get("[data-cy=current-date]").should(
+      "have.attr",
+      "style",
+      "background-color:#55D805"
+    );
     cy.get("#nav-settings").click();
     cy.wait(1000);
     cy.get("#nav-mood").click();
     cy.wait(1000);
-    cy.get("[data-cy=current-date]")
-        .should("have.attr", "style", "background-color:#55D805");
+    cy.get("[data-cy=current-date]").should(
+      "have.attr",
+      "style",
+      "background-color:#55D805"
+    );
 
     cy.get("#nav-settings").click();
     cy.wait(1000);

@@ -1,143 +1,143 @@
 function cov_259qihortn() {
   var path =
-      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/signup.js";
+    "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/signup.js";
   var hash = "308a38cd2bede5ca74d5f335dfbaf4bd5830d22a";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path :
-        "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/signup.js",
-    statementMap : {
-      0 : {start : {line : 2, column : 0}, end : {line : 6, column : 3}},
-      1 : {start : {line : 3, column : 2}, end : {line : 5, column : 3}},
-      2 : {start : {line : 4, column : 4}, end : {line : 4, column : 20}},
-      3 : {start : {line : 8, column : 15}, end : {line : 8, column : 53}},
-      4 : {start : {line : 9, column : 21}, end : {line : 9, column : 55}},
-      5 : {start : {line : 10, column : 0}, end : {line : 15, column : 3}},
-      6 : {start : {line : 11, column : 2}, end : {line : 14, column : 5}},
-      7 : {start : {line : 12, column : 25}, end : {line : 12, column : 64}},
-      8 : {start : {line : 13, column : 4}, end : {line : 13, column : 43}},
-      9 : {start : {line : 17, column : 16}, end : {line : 17, column : 64}},
-      10 : {start : {line : 18, column : 24}, end : {line : 18, column : 58}},
-      11 : {start : {line : 19, column : 0}, end : {line : 24, column : 3}},
-      12 : {start : {line : 20, column : 2}, end : {line : 23, column : 5}},
-      13 : {start : {line : 21, column : 25}, end : {line : 21, column : 64}},
-      14 : {start : {line : 22, column : 4}, end : {line : 22, column : 43}},
-      15 : {start : {line : 26, column : 19}, end : {line : 26, column : 57}},
-      16 : {start : {line : 27, column : 0}, end : {line : 37, column : 3}},
-      17 : {start : {line : 28, column : 2}, end : {line : 28, column : 21}},
-      18 : {start : {line : 29, column : 16}, end : {line : 29, column : 41}},
-      19 : {start : {line : 30, column : 19}, end : {line : 30, column : 47}},
-      20 : {start : {line : 31, column : 15}, end : {line : 31, column : 39}},
-      21 : {start : {line : 32, column : 2}, end : {line : 32, column : 21}},
-      22 : {start : {line : 33, column : 2}, end : {line : 36, column : 5}},
-      23 : {start : {line : 34, column : 25}, end : {line : 34, column : 64}},
-      24 : {start : {line : 35, column : 4}, end : {line : 35, column : 41}},
+    path:
+      "/home/rwake/Documents/school/cs110/cse110-sp21-group22/source/scripts/signup.js",
+    statementMap: {
+      0: { start: { line: 2, column: 0 }, end: { line: 6, column: 3 } },
+      1: { start: { line: 3, column: 2 }, end: { line: 5, column: 3 } },
+      2: { start: { line: 4, column: 4 }, end: { line: 4, column: 20 } },
+      3: { start: { line: 8, column: 15 }, end: { line: 8, column: 53 } },
+      4: { start: { line: 9, column: 21 }, end: { line: 9, column: 55 } },
+      5: { start: { line: 10, column: 0 }, end: { line: 15, column: 3 } },
+      6: { start: { line: 11, column: 2 }, end: { line: 14, column: 5 } },
+      7: { start: { line: 12, column: 25 }, end: { line: 12, column: 64 } },
+      8: { start: { line: 13, column: 4 }, end: { line: 13, column: 43 } },
+      9: { start: { line: 17, column: 16 }, end: { line: 17, column: 64 } },
+      10: { start: { line: 18, column: 24 }, end: { line: 18, column: 58 } },
+      11: { start: { line: 19, column: 0 }, end: { line: 24, column: 3 } },
+      12: { start: { line: 20, column: 2 }, end: { line: 23, column: 5 } },
+      13: { start: { line: 21, column: 25 }, end: { line: 21, column: 64 } },
+      14: { start: { line: 22, column: 4 }, end: { line: 22, column: 43 } },
+      15: { start: { line: 26, column: 19 }, end: { line: 26, column: 57 } },
+      16: { start: { line: 27, column: 0 }, end: { line: 37, column: 3 } },
+      17: { start: { line: 28, column: 2 }, end: { line: 28, column: 21 } },
+      18: { start: { line: 29, column: 16 }, end: { line: 29, column: 41 } },
+      19: { start: { line: 30, column: 19 }, end: { line: 30, column: 47 } },
+      20: { start: { line: 31, column: 15 }, end: { line: 31, column: 39 } },
+      21: { start: { line: 32, column: 2 }, end: { line: 32, column: 21 } },
+      22: { start: { line: 33, column: 2 }, end: { line: 36, column: 5 } },
+      23: { start: { line: 34, column: 25 }, end: { line: 34, column: 64 } },
+      24: { start: { line: 35, column: 4 }, end: { line: 35, column: 41 } },
     },
-    fnMap : {
-      0 : {
-        name : "(anonymous_0)",
-        decl : {start : {line : 2, column : 24}, end : {line : 2, column : 25}},
-        loc : {start : {line : 2, column : 34}, end : {line : 6, column : 1}},
-        line : 2,
+    fnMap: {
+      0: {
+        name: "(anonymous_0)",
+        decl: { start: { line: 2, column: 24 }, end: { line: 2, column: 25 } },
+        loc: { start: { line: 2, column: 34 }, end: { line: 6, column: 1 } },
+        line: 2,
       },
-      1 : {
-        name : "(anonymous_1)",
-        decl : {
-          start : {line : 10, column : 39},
-          end : {line : 10, column : 40},
+      1: {
+        name: "(anonymous_1)",
+        decl: {
+          start: { line: 10, column: 39 },
+          end: { line: 10, column: 40 },
         },
-        loc : {start : {line : 10, column : 51}, end : {line : 15, column : 1}},
-        line : 10,
+        loc: { start: { line: 10, column: 51 }, end: { line: 15, column: 1 } },
+        line: 10,
       },
-      2 : {
-        name : "(anonymous_2)",
-        decl : {
-          start : {line : 11, column : 39},
-          end : {line : 11, column : 40},
+      2: {
+        name: "(anonymous_2)",
+        decl: {
+          start: { line: 11, column: 39 },
+          end: { line: 11, column: 40 },
         },
-        loc : {start : {line : 11, column : 50}, end : {line : 14, column : 3}},
-        line : 11,
+        loc: { start: { line: 11, column: 50 }, end: { line: 14, column: 3 } },
+        line: 11,
       },
-      3 : {
-        name : "(anonymous_3)",
-        decl : {
-          start : {line : 19, column : 42},
-          end : {line : 19, column : 43},
+      3: {
+        name: "(anonymous_3)",
+        decl: {
+          start: { line: 19, column: 42 },
+          end: { line: 19, column: 43 },
         },
-        loc : {start : {line : 19, column : 54}, end : {line : 24, column : 1}},
-        line : 19,
+        loc: { start: { line: 19, column: 54 }, end: { line: 24, column: 1 } },
+        line: 19,
       },
-      4 : {
-        name : "(anonymous_4)",
-        decl : {
-          start : {line : 20, column : 40},
-          end : {line : 20, column : 41},
+      4: {
+        name: "(anonymous_4)",
+        decl: {
+          start: { line: 20, column: 40 },
+          end: { line: 20, column: 41 },
         },
-        loc : {start : {line : 20, column : 51}, end : {line : 23, column : 3}},
-        line : 20,
+        loc: { start: { line: 20, column: 51 }, end: { line: 23, column: 3 } },
+        line: 20,
       },
-      5 : {
-        name : "(anonymous_5)",
-        decl : {
-          start : {line : 27, column : 38},
-          end : {line : 27, column : 39},
+      5: {
+        name: "(anonymous_5)",
+        decl: {
+          start: { line: 27, column: 38 },
+          end: { line: 27, column: 39 },
         },
-        loc : {start : {line : 27, column : 45}, end : {line : 37, column : 1}},
-        line : 27,
+        loc: { start: { line: 27, column: 45 }, end: { line: 37, column: 1 } },
+        line: 27,
       },
-      6 : {
-        name : "(anonymous_6)",
-        decl : {
-          start : {line : 33, column : 61},
-          end : {line : 33, column : 62},
+      6: {
+        name: "(anonymous_6)",
+        decl: {
+          start: { line: 33, column: 61 },
+          end: { line: 33, column: 62 },
         },
-        loc : {start : {line : 33, column : 70}, end : {line : 36, column : 3}},
-        line : 33,
+        loc: { start: { line: 33, column: 70 }, end: { line: 36, column: 3 } },
+        line: 33,
       },
     },
-    branchMap : {
-      0 : {
-        loc : {start : {line : 3, column : 2}, end : {line : 5, column : 3}},
-        type : "if",
-        locations : [
-          {start : {line : 3, column : 2}, end : {line : 5, column : 3}},
-          {start : {line : 3, column : 2}, end : {line : 5, column : 3}},
+    branchMap: {
+      0: {
+        loc: { start: { line: 3, column: 2 }, end: { line: 5, column: 3 } },
+        type: "if",
+        locations: [
+          { start: { line: 3, column: 2 }, end: { line: 5, column: 3 } },
+          { start: { line: 3, column: 2 }, end: { line: 5, column: 3 } },
         ],
-        line : 3,
+        line: 3,
       },
     },
-    s : {
-      0 : 0,
-      1 : 0,
-      2 : 0,
-      3 : 0,
-      4 : 0,
-      5 : 0,
-      6 : 0,
-      7 : 0,
-      8 : 0,
-      9 : 0,
-      10 : 0,
-      11 : 0,
-      12 : 0,
-      13 : 0,
-      14 : 0,
-      15 : 0,
-      16 : 0,
-      17 : 0,
-      18 : 0,
-      19 : 0,
-      20 : 0,
-      21 : 0,
-      22 : 0,
-      23 : 0,
-      24 : 0,
+    s: {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0,
+      12: 0,
+      13: 0,
+      14: 0,
+      15: 0,
+      16: 0,
+      17: 0,
+      18: 0,
+      19: 0,
+      20: 0,
+      21: 0,
+      22: 0,
+      23: 0,
+      24: 0,
     },
-    f : {0 : 0, 1 : 0, 2 : 0, 3 : 0, 4 : 0, 5 : 0, 6 : 0},
-    b : {0 : [ 0, 0 ]},
-    _coverageSchema : "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash : "308a38cd2bede5ca74d5f335dfbaf4bd5830d22a",
+    f: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 },
+    b: { 0: [0, 0] },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "308a38cd2bede5ca74d5f335dfbaf4bd5830d22a",
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -148,7 +148,9 @@ function cov_259qihortn() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_259qihortn = function() { return actualCoverage; };
+    cov_259qihortn = function () {
+      return actualCoverage;
+    };
   }
   return actualCoverage;
 }
@@ -169,39 +171,39 @@ auth.onAuthStateChanged((user) => {
   }
 });
 var provider =
-    (cov_259qihortn().s[3]++, new firebase.auth.GoogleAuthProvider());
+  (cov_259qihortn().s[3]++, new firebase.auth.GoogleAuthProvider());
 const googleButton =
-    (cov_259qihortn().s[4]++, document.getElementById("gbutton"));
+  (cov_259qihortn().s[4]++, document.getElementById("gbutton"));
 cov_259qihortn().s[5]++;
-googleButton.addEventListener("click", function() {
+googleButton.addEventListener("click", function () {
   cov_259qihortn().f[1]++;
   cov_259qihortn().s[6]++;
   auth.signInWithPopup(provider).catch((error) => {
     cov_259qihortn().f[2]++;
     const signupError2 =
-        (cov_259qihortn().s[7]++, document.getElementById("signup-error"));
+      (cov_259qihortn().s[7]++, document.getElementById("signup-error"));
     cov_259qihortn().s[8]++;
     signupError2.innerText = error.message;
   });
 });
 var provider2 =
-    (cov_259qihortn().s[9]++, new firebase.auth.OAuthProvider("microsoft.com"));
+  (cov_259qihortn().s[9]++, new firebase.auth.OAuthProvider("microsoft.com"));
 const microsoftButton =
-    (cov_259qihortn().s[10]++, document.getElementById("mbutton"));
+  (cov_259qihortn().s[10]++, document.getElementById("mbutton"));
 cov_259qihortn().s[11]++;
-microsoftButton.addEventListener("click", function() {
+microsoftButton.addEventListener("click", function () {
   cov_259qihortn().f[3]++;
   cov_259qihortn().s[12]++;
   auth.signInWithPopup(provider2).catch((error) => {
     cov_259qihortn().f[4]++;
     const signupError2 =
-        (cov_259qihortn().s[13]++, document.getElementById("signup-error"));
+      (cov_259qihortn().s[13]++, document.getElementById("signup-error"));
     cov_259qihortn().s[14]++;
     signupError2.innerText = error.message;
   });
 });
 const signupForm =
-    (cov_259qihortn().s[15]++, document.getElementById("signup-form"));
+  (cov_259qihortn().s[15]++, document.getElementById("signup-form"));
 cov_259qihortn().s[16]++;
 signupForm.addEventListener("submit", (e) => {
   cov_259qihortn().f[5]++;
@@ -216,7 +218,7 @@ signupForm.addEventListener("submit", (e) => {
   auth.createUserWithEmailAndPassword(email, password).catch((err) => {
     cov_259qihortn().f[6]++;
     const signupError2 =
-        (cov_259qihortn().s[23]++, document.getElementById("signup-error"));
+      (cov_259qihortn().s[23]++, document.getElementById("signup-error"));
     cov_259qihortn().s[24]++;
     signupError2.innerText = err.message;
   });
