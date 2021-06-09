@@ -26,7 +26,7 @@ Homepage:
 
 .body {
   padding-top: 4.5rem;
-  background-color: #a57b65;
+  background-color: rgb(165, 123, 101);
   font-family: 'Playfair Display', serif;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
