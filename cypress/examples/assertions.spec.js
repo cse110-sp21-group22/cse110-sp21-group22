@@ -25,9 +25,9 @@ context('Assertions', () => {
         .invoke('text')
         .should('match', /column content/i)
 
-      // a better way to check element's text content against a regular expression
-      // is to use "cy.contains"
-      // https://on.cypress.io/contains
+  // a better way to check element's text content against a regular expression
+  // is to use "cy.contains"
+  // https://on.cypress.io/contains
       cy.get('.assertion-table')
         .find('tbody tr:last')
         // finds first <td> element with text content matching regular expression
@@ -52,11 +52,14 @@ context('Assertions', () => {
     it('expect - make an assertion about a specified subject', () => {
       // We can use Chai's BDD style assertions
       expect(true).to.be.true
-      const o = { foo: 'bar' }
+  const o = {
+    foo : 'bar'
+  }
 
-      expect(o).to.equal(o)
-      expect(o).to.deep.equal({ foo: 'bar' })
-      // matching text using regular expression
+            expect(o)
+                .to.equal(o)
+  expect(o).to.deep.equal({foo : 'bar'})
+  // matching text using regular expression
       expect('FooBar').to.match(/bar$/i)
     })
 
@@ -73,15 +76,15 @@ context('Assertions', () => {
           // @ts-ignore TS6133 unused variable
           const texts = $p.map((i, el) => Cypress.$(el).text())
 
-          // jquery map returns jquery object
-          // and .get() convert this to simple array
-          const paragraphs = texts.get()
+    // jquery map returns jquery object
+    // and .get() convert this to simple array
+    const paragraphs = texts.get()
 
-          // array should have length of 3
-          expect(paragraphs, 'has 3 paragraphs').to.have.length(3)
+    // array should have length of 3
+    expect(paragraphs, 'has 3 paragraphs').to.have.length(3)
 
-          // use second argument to expect(...) to provide clear
-          // message with each assertion
+    // use second argument to expect(...) to provide clear
+    // message with each assertion
           expect(paragraphs, 'has expected text in each paragraph').to.deep.eq([
             'Some text from first p',
             'More text from second p',
@@ -97,7 +100,7 @@ context('Assertions', () => {
         .should(($div) => {
           expect($div).to.have.length(1)
 
-          const className = $div[0].className
+    const className = $div[0].className
 
           expect(className).to.match(/heading-/)
         })
@@ -108,22 +111,20 @@ context('Assertions', () => {
         })
     })
 
-    it('can throw any error', () => {
-      cy.get('.docs-header')
-        .find('div')
-        .should(($div) => {
-          if ($div.length !== 1) {
-            // you can throw your own errors
-            throw new Error('Did not find 1 element')
-          }
+          it('can throw any error',
+             () => {cy.get('.docs-header').find('div').should(($div) => {
+               if ($div.length !== 1) {
+                 // you can throw your own errors
+                 throw new Error('Did not find 1 element')
+               }
 
-          const className = $div[0].className
+               const className = $div[0].className
 
-          if (!className.match(/heading-/)) {
-            throw new Error(`Could not find class "heading-" in ${className}`)
-          }
-        })
-    })
+               if (!className.match(/heading-/)) {
+                 throw new Error(
+                     `Could not find class "heading-" in ${className}`)
+               }
+             })})
 
     it('matches unknown text between two elements', () => {
       /**
@@ -132,19 +133,17 @@ context('Assertions', () => {
       */
       let text
 
-      /**
-       * Normalizes passed text,
-       * useful before comparing text with spaces and different capitalization.
-       * @param {string} s Text to normalize
-      */
-      const normalizeText = (s) => s.replace(/\s/g, '').toLowerCase()
+    /**
+     * Normalizes passed text,
+     * useful before comparing text with spaces and different capitalization.
+     * @param {string} s Text to normalize
+     */
+    const normalizeText = (s) => s.replace(/\s/g, '').toLowerCase()
 
-      cy.get('.two-elements')
+    cy.get('.two-elements')
         .find('.first')
-        .then(($first) => {
-          // save text from the first element
-          text = normalizeText($first.text())
-        })
+        .then(($first) => {// save text from the first element
+                           text = normalizeText($first.text())})
 
       cy.get('.two-elements')
         .find('.second')
@@ -156,14 +155,14 @@ context('Assertions', () => {
         })
     })
 
-    it('assert - assert shape of an object', () => {
-      const person = {
-        name: 'Joe',
-        age: 20,
-      }
+          it('assert - assert shape of an object', () => {
+            const person = {
+              name : 'Joe',
+              age : 20,
+            }
 
-      assert.isObject(person, 'value is object')
-    })
+                           assert.isObject(person, 'value is object')
+          })
 
     it('retries the should callback until assertions pass', () => {
       cy.get('#random-number')

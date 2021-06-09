@@ -3,7 +3,7 @@
 context('Navigation', () => {
   beforeEach(() => {
     cy.visit('https://example.cypress.io')
-    cy.get('.navbar-nav').contains('Commands').click()
+cy.get('.navbar-nav').contains('Commands').click()
     cy.get('.dropdown-menu').contains('Navigation').click()
   })
 
@@ -12,18 +12,18 @@ context('Navigation', () => {
 
     cy.location('pathname').should('include', 'navigation')
 
-    cy.go('back')
-    cy.location('pathname').should('not.include', 'navigation')
+  cy.go('back')
+  cy.location('pathname').should('not.include', 'navigation')
 
-    cy.go('forward')
-    cy.location('pathname').should('include', 'navigation')
+  cy.go('forward')
+  cy.location('pathname').should('include', 'navigation')
 
-    // clicking back
-    cy.go(-1)
-    cy.location('pathname').should('not.include', 'navigation')
+  // clicking back
+  cy.go(-1)
+  cy.location('pathname').should('not.include', 'navigation')
 
-    // clicking forward
-    cy.go(1)
+  // clicking forward
+  cy.go(1)
     cy.location('pathname').should('include', 'navigation')
   })
 
@@ -31,7 +31,7 @@ context('Navigation', () => {
     // https://on.cypress.io/reload
     cy.reload()
 
-    // reload the page without using the cache
+  // reload the page without using the cache
     cy.reload(true)
   })
 
@@ -44,12 +44,12 @@ context('Navigation', () => {
     cy.visit('https://example.cypress.io/commands/navigation', {
       timeout: 50000, // increase total time for the visit to resolve
       onBeforeLoad (contentWindow) {
-        // contentWindow is the remote page's window object
-        expect(typeof contentWindow === 'object').to.be.true
+  // contentWindow is the remote page's window object
+  expect(typeof contentWindow === 'object').to.be.true
       },
       onLoad (contentWindow) {
-        // contentWindow is the remote page's window object
-        expect(typeof contentWindow === 'object').to.be.true
+  // contentWindow is the remote page's window object
+  expect(typeof contentWindow === 'object').to.be.true
       },
     })
     })

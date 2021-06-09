@@ -35,10 +35,10 @@ context('Utilities', () => {
         // create an <img> element and set its src to the dataUrl
         let img = Cypress.$('<img />', { src: dataUrl })
 
-        // need to explicitly return cy here since we are initially returning
-        // the Cypress.Blob.imgSrcToDataURL promise to our test
-        // append the image
-        $div.append(img)
+  // need to explicitly return cy here since we are initially returning
+  // the Cypress.Blob.imgSrcToDataURL promise to our test
+  // append the image
+  $div.append(img)
 
         cy.get('.utility-blob img').click()
           .should('have.attr', 'src', dataUrl)
@@ -52,26 +52,26 @@ context('Utilities', () => {
       matchBase: true,
     })
 
-    expect(matching, 'matching wildcard').to.be.true
+  expect(matching, 'matching wildcard').to.be.true
 
-    matching = Cypress.minimatch('/users/1/comments/2', '/users/*/comments', {
-      matchBase: true,
-    })
+  matching = Cypress.minimatch('/users/1/comments/2', '/users/*/comments', {
+    matchBase : true,
+  })
 
-    expect(matching, 'comments').to.be.false
+  expect(matching, 'comments').to.be.false
 
-    // ** matches against all downstream path segments
-    matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/**', {
-      matchBase: true,
-    })
+  // ** matches against all downstream path segments
+  matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/**', {
+    matchBase : true,
+  })
 
-    expect(matching, 'comments').to.be.true
+  expect(matching, 'comments').to.be.true
 
-    // whereas * matches only the next path segment
+  // whereas * matches only the next path segment
 
-    matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/*', {
-      matchBase: false,
-    })
+  matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/*', {
+    matchBase : false,
+  })
 
     expect(matching, 'comments').to.be.false
   })
@@ -80,18 +80,18 @@ context('Utilities', () => {
     // https://on.cypress.io/promise
     let waited = false
 
-    /**
-     * @return Bluebird<string>
-     */
+  /**
+   * @return Bluebird<string>
+   */
     function waitOneSecond () {
-      // return a promise that resolves after 1 second
-      // @ts-ignore TS2351 (new Cypress.Promise)
+  // return a promise that resolves after 1 second
+  // @ts-ignore TS2351 (new Cypress.Promise)
       return new Cypress.Promise((resolve, reject) => {
         setTimeout(() => {
           // set waited to true
           waited = true
 
-          // resolve with 'foo' string
+      // resolve with 'foo' string
           resolve('foo')
         }, 1000)
       })
