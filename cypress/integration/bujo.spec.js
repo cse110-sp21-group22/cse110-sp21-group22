@@ -45,6 +45,11 @@ context("Actions", () => {
       .type("password")
       .should("have.value", "password");
     cy.get(".btn-block").click({force: true});
+    cy.wait(3000);
+    cy.get(".introjs-skipbutton").click();
+    cy.get("#nav-settings").click({force: true});
+    cy.wait(1000);
+    cy.get(".btn-danger").click({force: true});
   });
 
   it("Test password reset", () => {
@@ -180,11 +185,11 @@ context("Actions", () => {
     cy.get("#login-form").submit();
     cy.wait(2000);
 
-    cy.get("#very-happy").click({force: true});
-    cy.get("#happy").click({force: true});
-    cy.get("#sad").click({force: true});
-    cy.get("#very-sad").click({force: true});
-    cy.get("#neutral").click({force: true});
+    cy.get("#very-happy").click();
+    cy.get("#happy").click();
+    cy.get("#sad").click();
+    cy.get("#very-sad").click();
+    cy.get("#neutral").click();
 
     cy.get("#nav-mood").click({force: true});
     cy.wait(1000);
@@ -193,11 +198,11 @@ context("Actions", () => {
     cy.get("[data-cy=current-date]", {
       timeout: 10000,
     }).should("have.attr", "style", "background-color:#FECD32");
-    cy.get("#happy").click({force: true});
-    cy.get("#sad").click({force: true});
-    cy.get("#very-sad").click({force: true});
-    cy.get("#neutral").click({force: true});
-    cy.get("#very-happy").click({force: true});
+    cy.get("#happy").click();
+    cy.get("#sad").click();
+    cy.get("#very-sad").click();
+    cy.get("#neutral").click();
+    cy.get("#very-happy").click();
     cy.get("[data-cy=current-date]").should(
       "have.attr",
       "style",
