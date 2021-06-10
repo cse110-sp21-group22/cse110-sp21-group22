@@ -1,0 +1,764 @@
+/* Customizations for top navigational bar */
+
+/* TODO:
+Homepage:
+    Nav bar: Style editing
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.topnav {
+  background-color: lightblue;
+}
+
+.topnav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topnav li {
+  display: inline;
+  color: gold;
+  text-decoration: none;
+}
+
+.body {
+  padding-top: 4.5rem;
+  background-color: rgb(165, 123, 101);
+  font-family: 'Playfair Display', serif;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+.topo {
+  background-image: url(../assets/topography.svg);
+}
+
+.wave {
+  background-image: url(../assets/wave.svg);
+}
+
+.graph {
+  background-image: url(../assets/graph-paper.svg);
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+  position: relative;
+  text-align: center;
+}
+
+.navbar {
+  background-color: rgb(109, 1, 1);
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* Common stuff */
+.picker-wrapper,
+.slide-wrapper {
+  position: relative;
+  float: left;
+}
+
+.picker-indicator,
+.slide-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.picker,
+.slide {
+  cursor: crosshair;
+  float: left;
+}
+
+/* Default skin */
+.cp-default {
+  background-color: gray;
+  padding: 12px;
+  border-radius: 15px;
+  float: left;
+}
+
+.cp-default .picker {
+  width: 200px;
+  height: 200px;
+}
+
+.cp-default .slide {
+  width: 30px;
+  height: 200px;
+}
+
+.cp-default .slide-wrapper {
+  margin-left: 10px;
+}
+
+.cp-default .picker-indicator {
+  width: 5px;
+  height: 5px;
+  border: 2px solid darkblue;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0.5;
+  -ms-filter: "progid:dximagetransform.microsoft.alpha(opacity=50)";
+  filter: progid:dximagetransform.microsoft.alpha(opacity=50);
+  filter: alpha(opacity=50);
+  background-color: white;
+}
+
+.cp-default .slide-indicator {
+  width: 100%;
+  height: 10px;
+  left: -4px;
+  opacity: 0.6;
+  -ms-filter: "progid:dximagetransform.microsoft.alpha(opacity=60)";
+  filter: progid:dximagetransform.microsoft.alpha(opacity=60);
+  filter: alpha(opacity=60);
+  border: 4px solid lightblue;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+/* User background icons */
+.user-background img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+/* Sticky note for rose n thorn */
+.rosethorn {
+  justify-self: center;
+  grid-area: rosethorn;
+  width: 300px;
+  height: 250px;
+  position: relative;
+  background: #ffa;
+  overflow: auto;
+  padding: 20px;
+  border-radius: 0 0 0 30px/45px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Permanent Marker', cursive;
+  line-height: 1.7em;
+  font-size: 19px;
+  color: #130d6b;
+  outline: none;
+  transform: rotate(3deg);
+}
+
+.rosethorn li {
+  cursor: pointer;
+}
+
+#rose {
+  list-style-type: none;
+}
+
+#thorn {
+  list-style-type: none;
+}
+
+.rosethorn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  background: #ffa;
+  box-shadow:
+    3px -2px 10px rgba(0, 0, 0, 0.2),
+    inset 15px -15px 15px rgba(0, 0, 0, 0.3);
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  transform: skewX(25deg);
+}
+
+.rosethorn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 75%;
+  height: 20px;
+  border-radius: 50%;
+  bottom: 0;
+  left: 10%;
+}
+
+.rosethorntitle {
+  float: left;
+}
+
+.button {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 15px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: normal;
+}
+
+.button:hover {
+  background: rgb(149, 151, 5);
+  color: black;
+}
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+label,
+input {
+  display: block;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-content input {
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 60%;
+  position: relative;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: red;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* Styling quote */
+#quote,
+#authors {
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/***** start: daily log background *****/
+
+/* https://codepen.io/ekeric13/pen/VmdgBX */
+
+.notebook-container {
+  max-width: 100% 800px;
+  height: 90%;
+}
+
+.notebook-head {
+  background: rgb(255, 255, 255);
+}
+
+.notebook {
+  background: #fff;
+  max-width: 100% 800px;
+  height: 90%;
+  max-height: 450px;
+  padding: 10px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  background-image: -webkit-linear-gradient(270deg, #d98b8b, 2px, transparent, 2px, transparent), -webkit-linear-gradient(0deg, #d9eaf3, 1px, transparent, 2px, transparent);
+  background-image: linear-gradient(90deg, #d98b8b, 2px, transparent, 2px, transparent), linear-gradient(0deg, #d9eaf3, 1px, transparent, 2px, transparent);
+  background-position: 3.5rem 0, 0 5px;
+  background-position-x: 3.5rem, 0;
+  background-position-y: 0, 5px;
+  background-size: 100% 36px;
+  padding-left: 4rem;
+  overflow-y: auto;
+}
+
+.notebook p {
+  line-height: 38px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+/***** end: daily log background *****/
+
+/***** Start daily log style *****/
+
+.item {
+  height: 35px;
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.indent {
+  padding-left: 40px;
+}
+
+.hide {
+  display: none;
+}
+
+.item .bullet {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 100%;
+  margin: 0;
+}
+
+.item .bullet-main {
+  font-size: 20px;
+}
+
+.item .bullet-main:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .bullet i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .bullet-sub:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .text {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.item .text::-webkit-scrollbar {
+  display: none;
+}
+
+.item .text-add {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  height: 100%;
+  width: 80%;
+  color: rgb(121, 121, 121);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.item .text-add::-webkit-scrollbar {
+  display: none;
+}
+
+.item .text p {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .text-add p {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.item .text p:hover {
+  background-color: #ddd;
+}
+
+.item .text-add p:hover {
+  background-color: #ddd;
+}
+
+.item .expandable {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  background-color: white;
+}
+
+.item .expandable:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+.item .expandable i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options {
+  position: relative;
+  display: inline-block;
+  height: 29px;
+  width: 30px;
+  margin: 0;
+}
+
+.item .options i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item .options:hover {
+  background-color: #ddd;
+  border: 3px solid white;
+}
+
+/***** End daily log style *****/
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e4e4e4;
+  margin: 3px;
+  padding: 3px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.todo-box button {
+  color: red;
+  border: hidden;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.textmodmenu {
+  font-size: 0;
+  max-width: 900px;
+}
+
+.textmodmenu button {
+  background-color: #eee;
+  border: 0;
+  border: 1px solid #bbb;
+}
+
+.textmodmenu button:hover {
+  box-shadow: 0 0 15px #666 inset;
+}
+
+.textmodsub {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+#editor .container {
+  display: list-item;
+}
+
+#editor .checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+#editor .text {
+  display: inline-block;
+  outline-width: 1px;
+  width: 90%;
+}
+
+#editor img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+#date {
+  display: inline-block;
+  font-size: 20px;
+}
+
+.my-container {
+  width: 100%;
+  height: auto;
+  background: #0170ad;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* clicked color of each mood icon */
+.very-happy-click {
+  color: white;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.happy-click {
+  color: white;
+  background-color: lightgreen;
+  border-radius: 50%;
+}
+
+.neutral-click {
+  color: white;
+  background-color: rgb(248, 248, 101);
+  border-radius: 50%;
+}
+
+.sad-click {
+  color: white;
+  background-color: rgb(250, 188, 73);
+  border-radius: 50%;
+}
+
+.very-sad-click {
+  color: white;
+  background-color: rgb(251, 66, 66);
+  border-radius: 50%;
+}
+
+/* Calendar page */
+input.text {
+  margin-bottom: 20px;
+  width: 90%;
+  padding: 0.2em;
+}
+
+.button-cal {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-cal:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.button-remove {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  padding: 10px 28px;
+  color: white;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-remove:hover {
+  background-color: yellow;
+  color: blue;
+  border: 2px solid blue;
+}
+
+.dateinput {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.dateinput label {
+  margin: 5px 10px 5px 0;
+}
+
+.dateinput input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.dateinput a {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+}
+
+/* END For Calendar Page */
+
+/***** start: black board background *****/
+
+/* CodePen: https://codepen.io/nglu/pen/vYxGxGv */
+
+.blackboard {
+  position: relative;
+  width: 100% 350px; /* width of blackboard */
+  max-width: 350px;
+  margin: 3% auto;
+  border: tan solid 12px;
+  border-top: #bda27e solid 12px;
+  border-left: #b19876 solid 12px;
+  border-bottom: #c9ad86 solid 12px;
+  box-shadow: 0 0 6px 5px rgba(58, 18, 13, 0), 0 0 0 2px #c2a782, 0 0 0 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+  background-image: radial-gradient(circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient(215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
+  background-color: #333;
+}
+
+.blackboard::before {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
+  border: #2c2c2c solid 2px;
+  content: "Upcoming";
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.2em;
+  color: rgba(238, 238, 238, 0.7);
+  text-align: center;
+  padding-top: 5px;
+}
+
+.blackboard .content {
+  padding: 70px 20px 20px;
+}
+
+.blackboard .content section {
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.blackboard .content label {
+  vertical-align: middle;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2em;
+  color: rgba(238, 238, 238, 0.7);
+}
+
+/***** end: black board background *****/

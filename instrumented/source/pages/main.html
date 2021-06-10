@@ -1,0 +1,97 @@
+<!doctype html>
+<div id="overlay" class="overlay">
+  <div class="popup">
+    <h2>What is Rose and Thorn?</h2>
+    <a class="close" onclick="overlayOff()">&times;</a>
+    <div class="content">
+      "Rose and thorn" is a fun way to reflect on our daily lives, and can help give us a better mental state of mind.
+      Start by writing "a rose", which can be a highlight, success, or small win of the day. Then write "a thorn",
+      which can be a challenge, or obstacle that you can maybe improve on. Reflect on these, as your entries will refresh daily.
+    </div>
+  </div>
+</div>
+<div class="row d-flex justify-content-around align-items-md-stretch">
+  <div class="col-md-1">
+    <div class="row d-flex h-100 rounded-3 align-items-md-center">
+      <section id="mood-selector" class="d-flex align-items-md-center mb-5 overflow-auto" style="flex-direction: column">
+        <h6 style="text-align: center" id="feelings">How are you feeling?</h6>
+        <img src="./assets/happy.svg" id="very-happy" width="60px" height="60px" alt="very-happy">
+        <img src="./assets/green.svg" id="happy" width="60px" height="60px" alt="happy">
+        <img src="./assets/yellow.svg" id="neutral" width="60px" height="60px" alt="neutral">
+        <img src="./assets/orange.svg" id="sad" width="60px" height="60px" alt="sad">
+        <img src="./assets/sad.svg" id="very-sad" width="60px" height="60px" alt="very-sad">
+      </section>
+      <div class="row d-flex rounded-3 align-items-md-center"></div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="row align-items-md-stretch h-100">
+      <div class="d-flex align-items-center" style="height: 75%">
+        <div class="textmodmenu d-none d-md-block" id="textmodmenu">
+          <div class="textmodsub d-flex" style="flex-direction: column">
+            <button class="textmod btn" id="bold" name ="off"><i class="fa fa-bold"></i></button>
+            <button class="textmod btn" id="italic" name="off"><i class="fa fa-italic"></i></button>
+            <button class="textmod btn" id="underline" name="off"><i class="fa fa-underline"></i></button>
+          </div>
+        </div>
+        <div class="notebook-container flex-fill">
+          <div class="notebook-head p-1 d-flex justify-content-between align-items-center">
+            <button class="btn btn-primary btn-sm me-auto" id="today">today</button>
+            <button class="btn fas fa-chevron-left shadow-none" style="padding-right: 25px" id="previous"></button>
+            <h1 id="date">date</h1>
+            <button class="btn fas fa-chevron-right shadow-none" style="padding-left: 25px" id="next"></button>
+            <button class="btn btn-primary btn-sm d-none" id="add-element">+</button>
+            <button class="btn btn-primary btn-sm ms-auto" id="toggle">Edit</button>
+          </div>
+          <div class="notebook mb-5 flex-fill overflow-auto" id="daily-log">
+            <div class="item d-flex" id="add" level="0"><div class="bullet bullet-sub"><i class="fa"></i></div><div class="bullet bullet-main"><i class="fa fa-minus"></i></div><div class="text-add flex-fill" id="add-item"><p contenteditable="true">Add new note</p></div><div class="options"><i class="fa"></i></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center justify-items-center">
+        <div class="d-flex align-items-md-center mb-5" style="flex-direction: column; text-align: center">
+          <!--Quote information -->
+          <div id="quote">
+            <!-- location of quote -->
+          </div>
+          <div id="authors">
+            <!-- location of author-->
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex rounded-3 align-items-md-center"></div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row h-100">
+      <div class="col-md-12 rounded-3 mb-4">
+        <div class="blackboard">
+          <div class="content" id="upcoming">
+              <section>
+                  <label>Date </label>
+              </section>
+              <section>
+                  <label>Date </label>
+              </section>
+              <section>
+                  <label>Date </label>
+              </section>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 rounded-3 mb-4 d-flex justify-content-center">
+        <div class="rosethorn" id="rosethorn">
+          <div class="rosethorntitle" id="rosethorntitle">
+            <h5>Rose and Thorn</h5>
+          </div>
+            <a class="button" onclick="overlayOn()">?</a>
+          <br>
+          <ul>
+            -Rose:<li contenteditable="true" style="outline: 0" id="rose"></li>
+            -Thorn:<li contenteditable="true" style="outline: 0" id="thorn"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

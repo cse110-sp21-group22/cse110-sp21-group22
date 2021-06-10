@@ -1,0 +1,23 @@
+<!doctype html>
+<div class="p-1" id="settings">
+  <h1>Settings</h1><br>
+
+  <div class="d-flex flex-row justify-content-center">
+    <div class="p-2 align-self-center">
+      <div id="color-picker" class="align-items-center cp-default"></div>
+    </div>
+    <div class="p-4 user-background" id="user-background">
+      <p>Choose your background</p>
+      <div class="d-flex flex-column">
+        <div class="p-2" id="topo"><img src="./assets/topo.png" alt="Topography"> Topography</div>
+        <div class="p-2" id="wave"><img src="./assets/wave.png" alt="Wave"> Wave</div>
+        <div class="p-2" id="graph"><img src="./assets/graph.png" alt="Graph paper"> Graph paper</div>
+      </div>
+    </div>
+  </div><br><br>
+
+  <div style="text-align: center;">
+    <button type="button" class="btn btn-primary" onclick="save()" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Settings saved successfully!" data-bs-trigger="focus" id="save">Save</button><br><br>
+    <button class="btn btn-danger" onclick="logout()">LOGOUT</button>
+  </div>
+</div>
