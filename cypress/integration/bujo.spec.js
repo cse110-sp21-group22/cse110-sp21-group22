@@ -62,10 +62,11 @@ context("Actions", () => {
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain("no user record");
     });
+    let uid = new Date().getTime();
     cy.get("#email")
       .clear()
-      .type("test@test.com")
-      .should("have.value", "test@test.com");
+      .type(uid + "@test.com")
+      .should("have.value", uid + "@test.com");
     cy.get(".btn").click({ force: true });
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain("password reset link");
