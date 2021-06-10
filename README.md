@@ -6,3 +6,9 @@
 [App](https://catch-22-e0c66.web.app/)
 
 [Docs](https://cse110-sp21-group22.github.io/cse110-sp21-group22/)
+
+[Sonarcloud](https://sonarcloud.io/summary/new_code?id=cse110-sp21-group22_cse110-sp21-group22)
+
+[Coverage](https://app.codecov.io/gh/cse110-sp21-group22/cse110-sp21-group22)
+
+[Testing](https://dashboard.cypress.io/projects/zaxzr4/runs)
