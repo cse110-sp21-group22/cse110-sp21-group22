@@ -15,6 +15,8 @@ context("Actions", () => {
     });
   });
 
+  let uid = new Date().getTime();
+
   // https://on.cypress.io/interacting-with-elements
 
   it("Test signup", () => {
@@ -30,7 +32,6 @@ context("Actions", () => {
       expect($err).to.contain("already in use");
     });
     cy.get("#name").clear().type("test").should("have.value", "test");
-    let uid = new Date().getTime();
     cy.get("#email")
       .clear()
       .type(uid + "@test.com")
@@ -62,7 +63,6 @@ context("Actions", () => {
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain("no user record");
     });
-    let uid = new Date().getTime();
     cy.get("#email")
       .clear()
       .type(uid + "@test.com")
@@ -281,7 +281,7 @@ context("Actions", () => {
     cy.get(
       ".datepicker-days > .table-condensed > thead > :nth-child(2) > .prev"
     ).click({ force: true });
-    cy.get('[data-date="1625011200000"]').click({ force: true });
+    cy.get('[data-date="1624838400000"]').click({ force: true });
 
     // cy.get(".button-remove").click({force: true});
   });
