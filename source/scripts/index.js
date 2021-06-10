@@ -262,12 +262,14 @@ $(".text").on("keydown", function (e) {
 
 // Clear "Add new note"
 $("#add-item").on("click", function () {
-  $(this).children().text("");
+  if ($(this).children().text() == "Add new note") {
+    $(this).children().text(" ");
+  }
 });
 
 // Reset message if no new note
 $("#add-item").on("focusout", function () {
-  if ($(this).children().text() == "") {
+  if ($(this).children().text() == " " || $(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
 });
@@ -544,7 +546,7 @@ function renderData(individualDoc) {
 
   // Disable enter key
   noteDiv.addEventListener("keydown", function (event) {
-    if (event.code === "Enter") {
+    if (event.code == "Enter") {
       event.preventDefault();
     }
   });
@@ -631,7 +633,7 @@ function renderData(individualDoc) {
 
 // Adding a new note/task
 addItem.addEventListener("keydown", function (event) {
-  if (event.code === "Enter") {
+  if (event.code == "Enter") {
     event.preventDefault();
     document.activeElement.blur();
 
@@ -643,7 +645,7 @@ addItem.addEventListener("keydown", function (event) {
     // create new bujo task/note element
     let note2 = new BujoElement(new Date().getTime(), noteText, level, 0, 0, 0);
     note2.sync(selectedDate);
-  } else if (event.code === "Tab") {
+  } else if (event.code == "Tab") {
     event.preventDefault();
     setLevel(parseInt(add.getAttribute("level")) + 1, $("#add"));
   }
