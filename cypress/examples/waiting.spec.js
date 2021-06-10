@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
 context("Waiting", () => {
-  beforeEach(
-      () => { cy.visit("https://example.cypress.io/commands/waiting"); });
+  beforeEach(() => {
+    cy.visit("https://example.cypress.io/commands/waiting");
+  });
   // BE CAREFUL of adding unnecessary wait times.
   // https://on.cypress.io/best-practices#Unnecessary-Waiting
 
@@ -25,8 +26,8 @@ context("Waiting", () => {
     cy.get(".network-btn").click();
 
     // wait for GET comments/1
-    cy.wait("@getComment").its("response.statusCode").should("be.oneOf", [
-      200, 304
-    ]);
+    cy.wait("@getComment")
+      .its("response.statusCode")
+      .should("be.oneOf", [200, 304]);
   });
 });
