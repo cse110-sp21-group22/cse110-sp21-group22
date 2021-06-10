@@ -12,6 +12,8 @@ exclude:
   - "./instrumented"
   - "./instrumented/**/*"
   - "instrumented"
+  - "coverage"
+  - "coverage/**/*"
 
 changed_paths:
   maximum: 1000
