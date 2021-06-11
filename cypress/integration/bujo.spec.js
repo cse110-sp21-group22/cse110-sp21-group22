@@ -4,7 +4,7 @@ context("Actions", () => {
   beforeEach(() => {
     // Change for actual testing
     cy.visit(
-      "https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/login.html"
+      "https://catch-22-e0c66--pr201-issue-93-add-testing-nn1ntdzt.web.app/login.html"
     );
     cy.viewport(1000, 600);
     cy.wait(1000);
@@ -157,31 +157,89 @@ context("Actions", () => {
 
     cy.wait(4000);
 
+    cy.get("#legend").click();
+    cy.get("#overlay2 > .popup > .close").click();
+
     cy.get("#toggle").click({ force: true });
     cy.get("#bold").click({ force: true }).click({ force: true });
     cy.get("#italic").click({ force: true }).click({ force: true });
     cy.get("#underline").click({ force: true }).click({ force: true });
 
+    cy.get("#add-item > p").click();
+    cy.get("#bold").click({ force: true });
     cy.get("#add-item > p").click().type("test{enter}");
+    // Just bold
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    // Just italics
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Just underline
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Bold and italics
     cy.get("p").eq(0).click();
     cy.get("#bold").click({ force: true });
     cy.get("p").eq(0).click();
     cy.get("#italic").click({ force: true });
     cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    // Bold, italics, and underline
+    cy.get("p").eq(0).click();
     cy.get("#underline").click({ force: true });
     cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Italics and underline
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Bold and underline
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
     cy.get(".bullet-main").eq(0).click().click().click().click().click();
-    cy.get("p").eq(0).click().type("{enter}");
+    cy.get("p").eq(0).click().type("{enter}").tab();
     cy.get("#toggle").click({ force: true }).click({ force: true });
+    cy.get(".bullet-main").eq(0).click().click();
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get(".bullet-main").eq(0).click().click();
     cy.get(".bullet-main").eq(0).click().click().click().click().click();
     cy.get(".bullet-sub").eq(0).click().click().click().click();
     cy.get("#next").click({ force: true });
-    cy.get("#add-item > p").click().type("test{enter}");
+    cy.get("#add-item > p").click().tab().type("test{enter}");
     cy.get("#next").click({ force: true });
     cy.get("#previous").click({ force: true });
-    cy.get(".options").eq(1).click();
+    cy.get(".options > .fa").eq(1).click({ force: true });
     cy.get("#today").click({ force: true });
-    cy.get(".options").eq(0).click();
+    cy.wait(1000);
+    cy.get(".options > .fa").click({ multiple: true, force: true });
 
     cy.get("#previous").click({ force: true }).click({ force: true }).click({
       force: true,
@@ -233,8 +291,8 @@ context("Actions", () => {
   it("Test rose and thorn", () => {
     cy.wait(2000);
 
-    cy.get(".button").click();
-    cy.get(".close").click();
+    cy.get("#rosethorn > .button").click();
+    cy.get("#overlay > .popup > .close").click();
 
     cy.get("#rose").click({ force: true }).type("testtest", { delay: 50 });
     cy.wait(1000);
@@ -298,12 +356,13 @@ context("Actions", () => {
     cy.get('[data-date="1623628800000"]').click({ force: true });
     cy.get('[data-date="1624838400000"]').click({ force: true });
 
+    cy.wait(1000);
     cy.get(".button-remove").eq(1).click({force: true});
   });
 
   it("Test settings", () => {
     cy.visit(
-      "https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/signup.html"
+      "https://catch-22-e0c66--pr201-issue-93-add-testing-nn1ntdzt.web.app/signup.html"
     );
     cy.wait(2000);
     cy.get("#nav-settings").click({ force: true });
