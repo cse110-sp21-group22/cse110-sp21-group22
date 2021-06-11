@@ -4,7 +4,7 @@ context("Actions", () => {
   beforeEach(() => {
     // Change for actual testing
     cy.visit(
-      "https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/login.html"
+      "https://catch-22-e0c66--pr201-issue-93-add-testing-nn1ntdzt.web.app/login.html"
     );
     cy.viewport(1000, 600);
     cy.wait(1000);
@@ -71,6 +71,7 @@ context("Actions", () => {
     cy.get("#reset-error").should(($err) => {
       expect($err).to.contain("password reset link");
     });
+    cy.wait(4000);
   });
 
   it("Can log in with confirmed account", () => {
@@ -89,12 +90,12 @@ context("Actions", () => {
 
     cy.get("#email")
       .clear()
-      .type("test@test.com", { delay: 100 })
+      .type("test@test.com", { delay: 50 })
       .should("have.value", "test@test.com");
 
     cy.get("#password")
       .clear()
-      .type("password", { delay: 100 })
+      .type("password", { delay: 50 })
       .should("have.value", "password");
 
     cy.get("#login-form").submit();
@@ -154,31 +155,105 @@ context("Actions", () => {
     cy.get("#password").type("password");
     cy.get("#login-form").submit();
 
-    cy.wait(2000);
+    cy.wait(4000);
 
-    cy.get("#toggle").click({ force: true }).click({ force: true });
+    cy.get("#legend").click();
+    cy.get("#overlay2 > .popup > .close").click();
+
+    cy.get("#toggle").click({ force: true });
     cy.get("#bold").click({ force: true }).click({ force: true });
     cy.get("#italic").click({ force: true }).click({ force: true });
     cy.get("#underline").click({ force: true }).click({ force: true });
 
+    cy.get("#add-item > p").click();
+    cy.get("#bold").click({ force: true });
+    cy.get("#add-item > p").click().type("test{enter}");
+    // Just bold
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    // Just italics
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Just underline
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Bold and italics
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    // Bold, italics, and underline
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Italics and underline
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#italic").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    // Bold and underline
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#bold").click({ force: true });
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get(".bullet-main").eq(0).click().click().click().click().click();
+    cy.get("p").eq(0).click().type("{enter}").tab();
+    cy.get("#toggle").click({ force: true }).click({ force: true });
+    cy.get(".bullet-main").eq(0).click().click();
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get(".bullet-main").eq(0).click().click();
+    cy.get(".bullet-main").eq(0).click().click().click().click().click();
+    cy.get(".bullet-sub").eq(0).click().click().click().click();
+    cy.get("#next").click({ force: true });
+    cy.get("#add-item > p").click().tab().type("test{enter}");
+    cy.get("#next").click({ force: true });
+    cy.get("#previous").click({ force: true });
+    cy.get(".options > .fa").eq(1).click({ force: true });
+    cy.get("#today").click({ force: true });
+    cy.wait(1000);
+    cy.get(".options > .fa").click({ multiple: true, force: true });
+
     cy.get("#previous").click({ force: true }).click({ force: true }).click({
       force: true,
     });
+    cy.get("#today").click({ force: true });
+    cy.get("#next").click({ force: true }).click({ force: true }).click({
+      force: true,
+    });
+    cy.get("#today").click({ force: true });
     cy.get("#next").click({ force: true }).click({ force: true });
     cy.get("#today").click({ force: true });
-    // should we go into the future?
-    cy.get("#next").click({ force: true }).click({ force: true });
-    cy.get("#today").click({ force: true });
-
-    cy.get("#nav-settings").click({ force: true });
-    cy.wait(1000);
-    cy.get(".btn-danger").click({ force: true });
   });
 
   it("Test mood tracker", () => {
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("password");
-    cy.get("#login-form").submit();
     cy.wait(2000);
 
     cy.get("#very-happy").click();
@@ -213,21 +288,17 @@ context("Actions", () => {
       "style",
       "background-color:#55D805"
     );
-
-    cy.get("#nav-settings").click({ force: true });
-    cy.wait(1000);
-    cy.get(".btn-danger").click({ force: true });
   });
 
   it("Test rose and thorn", () => {
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("password");
-    cy.get("#login-form").submit();
-
     cy.wait(2000);
 
-    cy.get("#rose").dblclick({ force: true }).type("test");
-    cy.get("#thorn").dblclick({ force: true }).type("test2");
+    cy.get("#rosethorn > .button").click();
+    cy.get("#overlay > .popup > .close").click();
+
+    cy.get("#rose").click({ force: true }).type("testtest", { delay: 50 });
+    cy.wait(1000);
+    cy.get("#thorn").click({ force: true }).type("test2test2", { delay: 50 });
     cy.get("#nav-settings").click({ force: true });
     cy.wait(1000);
     cy.get(".navbar-brand").click({ force: true });
@@ -255,6 +326,7 @@ context("Actions", () => {
     cy.get("#newenddate").click({ force: true });
     cy.get('[data-date="1625011200000"]').click({ force: true });
     cy.get("#button-submit").click({ force: true });
+    cy.wait(1000);
 
     cy.get(".navbar-brand").click({ force: true });
     cy.wait(5000);
@@ -265,6 +337,7 @@ context("Actions", () => {
     cy.get("#nav-calendar").click({ force: true });
     cy.wait(2000);
     cy.get("#end_1623269478085").click({ force: true });
+    cy.get('[data-date="1624838400000"]').click({ force: true });
     cy.get('[data-date="1623196800000"]').click({ force: true });
     cy.get("#end_1623269478085").click({ force: true });
     cy.get('[data-date="1624406400000"]').click({ force: true });
@@ -282,15 +355,18 @@ context("Actions", () => {
       ".datepicker-days > .table-condensed > thead > :nth-child(2) > .prev"
     ).click({ force: true });
     cy.get('[data-date="1624838400000"]').click({ force: true });
+    cy.get('[data-date="1623628800000"]').click({ force: true });
+    cy.get('[data-date="1624838400000"]').click({ force: true });
 
-    // cy.get(".button-remove").click({force: true});
+    cy.wait(1000);
+    cy.get(".button-remove").eq(1).click({ force: true });
   });
 
   it("Test settings", () => {
     cy.visit(
-      "https://catch-22-e0c66--pr167-issue-93-add-testing-1wncq2rh.web.app/signup.html"
+      "https://catch-22-e0c66--pr201-issue-93-add-testing-nn1ntdzt.web.app/signup.html"
     );
-    cy.wait(1000);
+    cy.wait(2000);
     cy.get("#nav-settings").click({ force: true });
     cy.wait(1000);
     cy.get("#wave > img").click({ force: true });
@@ -302,15 +378,20 @@ context("Actions", () => {
     cy.get('[fill="url(#gradient-black-0)"]')
       .click(80, 75) // click 80px on x coord and 75px on y coord
       .click(170, 75)
+      .click(0, 0)
+      .click(20, 10)
       .click(80, 165)
       .click(100, 185)
       .click(125, 190)
       .click(150, 185)
-      .click(170, 165);
+      .click(170, 165)
+      .click(0, 0);
     cy.reload();
     cy.wait(2000);
     cy.get("#nav-settings").click({ force: true });
     cy.wait(1000);
+    cy.get('[fill="url(#gradient-black-0)"]').click(170, 165);
+    cy.get("#save").click({ force: true });
     cy.get(".btn-danger").click({ force: true });
   });
 });
