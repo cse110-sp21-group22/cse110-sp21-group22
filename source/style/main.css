@@ -233,25 +233,6 @@ h1 {
   color: black;
 }
 
-.legend{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 15px;
-  color: black;
-  border: 2px solid black;
-  border-radius: 50%;
-  text-decoration: none;
-  cursor: pointer;
-  float: right;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  line-height: normal;
-} 
-
-.legend:hover{
-  background: grey;
-  color: black;
-}
 .overlay {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
@@ -342,18 +323,12 @@ input {
   max-height: 30%;
   overflow: auto;
   color: #333;
+  width: 95%;
   font-family: Tahoma, Arial, sans-serif;
 }
-
-.popup .legendContent {
-  max-height: 30%;
-  overflow: auto;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
-}
-
 
 /* Styling quote */
+
 #quote,
 #authors {
   font-style: italic;

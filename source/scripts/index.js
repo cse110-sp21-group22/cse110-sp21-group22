@@ -815,6 +815,20 @@ function overlayOff() {
   document.getElementById("overlay").style.display = "none";
 }
 
+/**
+ * Function to turn on overlay2
+ */
+ function overlayOn2() {
+  document.getElementById("overlay2").style.display = "block";
+}
+
+/**
+ * Function to turn off overlay2
+ */
+function overlayOff2() {
+  document.getElementById("overlay2").style.display = "none";
+}
+
 // Change mood buttons based on window size
 if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: row";

@@ -11,6 +11,26 @@
   </div>
 </div>
 
+<div id="overlay2" class="overlay">
+  <div class="popup">
+    <h2>Legend</h2>
+    <a class="close" onclick="overlayOff2()">&times;</a>
+    <div class="content">
+      You can customize each symbol to mean what you like, but here's an example to help get you started:
+      <div>
+        <i class="far fa-square">  Task</i><br>
+        <i class="far fa-check-square">  Task complete</i><br>
+        <i class="far fa-circle">  Event</i><br>
+        <i class="far fa-check-circle">  Event attended</i><br>
+        <i class="fa fa-minus">  Note</i><br>
+        <i class="fa fa-star">  Priority</i><br>
+        <i class="fa fa-eye">  Look up/explore</i><br>
+        <i class="fa fa-exclamation">  Idea/inspiration</i>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row d-flex justify-content-around align-items-md-stretch">
   <div class="col-md-1">
     <div class="row d-flex h-100 rounded-3 align-items-md-center">
@@ -42,7 +62,8 @@
             <h1 id="date">date</h1>
             <button class="btn fas fa-chevron-right shadow-none" style="padding-left: 25px" id="next"></button>
             <button class="btn btn-primary btn-sm d-none" id="add-element">+</button>
-            <button class="btn btn-primary btn-sm ms-auto" id="toggle">Edit</button>
+            <button class="button shadow-none ms-auto" style="margin: 0 12px 0 0" onclick="overlayOn2()" id="legend">?</button>
+            <button class="btn btn-primary btn-sm" id="toggle">Edit</button>
           </div>
           <div class="notebook mb-5 flex-fill overflow-auto" id="daily-log">
             <div class="item d-flex" id="add" level="0"><div class="bullet bullet-sub"><i class="fa"></i></div><div class="bullet bullet-main"><i class="fa fa-minus"></i></div><div class="text-add flex-fill" id="add-item"><p contenteditable="true">Add new note</p></div><div class="options"><i class="fa"></i></div></div>
