@@ -13,3 +13,7 @@
 [Coverage](https://app.codecov.io/gh/cse110-sp21-group22/cse110-sp21-group22)
 
 [Testing](https://dashboard.cypress.io/projects/zaxzr4/runs)
+
+[Public Video](https://youtu.be/9iVMyCEjhQs)
+
+[Private Video](https://youtu.be/XGZl38NPQPk)
