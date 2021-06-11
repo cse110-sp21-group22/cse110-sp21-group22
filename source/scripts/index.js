@@ -122,9 +122,6 @@ document.querySelector("#previous").addEventListener("click", () => {
   showDay(selectedDate);
 
   // Disable buttons to set 3 day window restriction on user
-  if (selectedDate == 2) {
-    document.querySelector("#next").disabled = false;
-  }
   if (selectedDate == -3) {
     document.querySelector("#previous").disabled = true;
   }
@@ -138,9 +135,6 @@ document.querySelector("#next").addEventListener("click", () => {
   // Disable buttons to set 3 day window restriction on user
   if (selectedDate == 3) {
     document.querySelector("#next").disabled = true;
-  }
-  if (selectedDate == -2) {
-    document.querySelector("#previous").disabled = false;
   }
 });
 
