@@ -187,7 +187,9 @@ context("Actions", () => {
       force: true,
     });
     cy.get("#today").click({ force: true });
-    cy.get("#next").click({ force: true }).click({ force: true }).click({ force: true });
+    cy.get("#next").click({ force: true }).click({ force: true }).click({
+      force: true,
+    });
     cy.get("#today").click({ force: true });
     cy.get("#next").click({ force: true }).click({ force: true });
     cy.get("#today").click({ force: true });
@@ -298,7 +300,7 @@ context("Actions", () => {
     cy.get('[data-date="1623628800000"]').click({ force: true });
     cy.get('[data-date="1624838400000"]').click({ force: true });
 
-    cy.get(".button-remove").eq(1).click({force: true});
+    cy.get(".button-remove").eq(1).click({ force: true });
   });
 
   it("Test settings", () => {
@@ -329,8 +331,7 @@ context("Actions", () => {
     cy.wait(2000);
     cy.get("#nav-settings").click({ force: true });
     cy.wait(1000);
-    cy.get('[fill="url(#gradient-black-0)"]')
-      .click(170, 165);
+    cy.get('[fill="url(#gradient-black-0)"]').click(170, 165);
     cy.get("#save").click({ force: true });
     cy.get(".btn-danger").click({ force: true });
   });
