@@ -5,7 +5,7 @@ Date: Thursday, June 4, 2021
 Time: 8:00 PM
 
 Team Members: Ajay Booter, Anisha Atwal, Jenny Nguyen, Kyle Batalla, Nguyen
-Luong, Robert Wakefield-Carl, Shanqing Wang
+Luong, Robert Wakefield-Carl, Menghe(Jacky) Li, Shanqing Wang
 
 ## Agenda
 - Web page name: Catch-up
