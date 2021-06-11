@@ -228,17 +228,9 @@ context("Actions", () => {
       "style",
       "background-color:#55D805"
     );
-
-    cy.get("#nav-settings").click({ force: true });
-    cy.wait(1000);
-    cy.get(".btn-danger").click({ force: true });
   });
 
   it("Test rose and thorn", () => {
-    cy.get("#email").type("test@test.com");
-    cy.get("#password").type("password");
-    cy.get("#login-form").submit();
-
     cy.wait(2000);
 
     cy.get(".button").click();
