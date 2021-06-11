@@ -18,6 +18,7 @@ context("Actions", () => {
   let uid = new Date().getTime();
 
   // https://on.cypress.io/interacting-with-elements
+  // force clicks sometimes used since cypress click auto scroll causes errors
 
   it("Test signup", () => {
     cy.get(":nth-child(1) > a").click({ force: true });
@@ -103,6 +104,7 @@ context("Actions", () => {
 
     cy.get("h6").should("contain", "How are you feeling?");
 
+    // Test size scalings
     cy.viewport("macbook-15");
     cy.wait(200);
     cy.viewport("macbook-13");
@@ -129,6 +131,7 @@ context("Actions", () => {
     cy.reload();
     cy.wait(2000);
 
+    // run through app once
     cy.get("#nav-calendar").click({ force: true });
     cy.wait(1000);
     cy.get("h1").should("contain", "Calendar");
@@ -157,8 +160,8 @@ context("Actions", () => {
 
     cy.wait(4000);
 
-    cy.get("#legend").click();
-    cy.get("#overlay2 > .popup > .close").click();
+    cy.get("#legend").click({ force: true });
+    cy.get("#overlay2 > .popup > .close").click({ force: true });
 
     cy.get("#toggle").click({ force: true });
     cy.get("#bold").click({ force: true }).click({ force: true });
@@ -170,7 +173,7 @@ context("Actions", () => {
     cy.get("#add-item > p").click().type("test{enter}");
     // Just bold
     cy.get("p").eq(0).click();
-    cy.get("#bold").click({ force: true });
+    cy.get("#bold").click();
     cy.get("p").eq(0).click();
     cy.get("#bold").click({ force: true });
     // Just italics
@@ -224,12 +227,15 @@ context("Actions", () => {
     cy.get("p").eq(0).click();
     cy.get("#underline").click({ force: true });
     cy.get(".bullet-main").eq(0).click().click().click().click().click();
-    cy.get("p").eq(0).click().type("{enter}").tab();
+    cy.get("p").eq(0).click({ force: true }).type("{enter}").tab();
     cy.get("#toggle").click({ force: true }).click({ force: true });
     cy.get(".bullet-main").eq(0).click().click();
     cy.get("p").eq(0).click();
     cy.get("#underline").click({ force: true });
     cy.get(".bullet-main").eq(0).click().click();
+    cy.get("p").eq(0).click();
+    cy.get("#underline").click({ force: true });
+    cy.get("#underline").click({ force: true });
     cy.get(".bullet-main").eq(0).click().click().click().click().click();
     cy.get(".bullet-sub").eq(0).click().click().click().click();
     cy.get("#next").click({ force: true });
@@ -245,22 +251,30 @@ context("Actions", () => {
       force: true,
     });
     cy.get("#today").click({ force: true });
+    cy.get("#previous").click({ force: true }).click({ force: true });
+    cy.get("#today").click({ force: true });
     cy.get("#next").click({ force: true }).click({ force: true }).click({
       force: true,
     });
     cy.get("#today").click({ force: true });
     cy.get("#next").click({ force: true }).click({ force: true });
     cy.get("#today").click({ force: true });
+    cy.get("#next").click({ force: true });
+    cy.get("#today").click({ force: true });
   });
 
   it("Test mood tracker", () => {
+    cy.viewport(767, 500);
     cy.wait(2000);
 
-    cy.get("#very-happy").click();
-    cy.get("#happy").click();
-    cy.get("#sad").click();
-    cy.get("#very-sad").click();
-    cy.get("#neutral").click();
+    cy.viewport(1000, 600);
+    cy.wait(100);
+
+    cy.get("#very-happy").click({ force: true });
+    cy.get("#happy").click({ force: true });
+    cy.get("#sad").click({ force: true });
+    cy.get("#very-sad").click({ force: true });
+    cy.get("#neutral").click({ force: true });
 
     cy.get("#nav-mood").click({ force: true });
     cy.wait(1000);
@@ -336,21 +350,21 @@ context("Actions", () => {
 
     cy.get("#nav-calendar").click({ force: true });
     cy.wait(2000);
-    cy.get("#end_1623269478085").click({ force: true });
+    cy.get("#end_1623419418758").click({ force: true });
     cy.get('[data-date="1624838400000"]').click({ force: true });
     cy.get('[data-date="1623196800000"]').click({ force: true });
-    cy.get("#end_1623269478085").click({ force: true });
+    cy.get("#end_1623419418758").click({ force: true });
     cy.get('[data-date="1624406400000"]').click({ force: true });
-    cy.get("#end_1623269478085").click({ force: true });
+    cy.get("#end_1623419418758").click({ force: true });
     cy.get(
       ".datepicker-days > .table-condensed > thead > :nth-child(2) > .next"
     ).click({ force: true });
     cy.get('[data-date="1625616000000"]').click({ force: true });
-    cy.get("#start_1623269478085").click({ force: true });
+    cy.get("#start_1623419418758").click({ force: true });
     cy.get('[data-date="1623369600000"]').click({ force: true });
-    cy.get("#start_1623269478085").click({ force: true });
+    cy.get("#start_1623419418758").click({ force: true });
     cy.get('[data-date="1622505600000"]').click({ force: true });
-    cy.get("#end_1623269478085").click({ force: true });
+    cy.get("#end_1623419418758").click({ force: true });
     cy.get(
       ".datepicker-days > .table-condensed > thead > :nth-child(2) > .prev"
     ).click({ force: true });
