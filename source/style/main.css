@@ -214,7 +214,6 @@ h1 {
 }
 
 .button {
-  font-family: 'Permanent Marker', cursive;
   font-size: 15px;
   color: black;
   border: 2px solid black;
@@ -326,10 +325,12 @@ input {
   max-height: 30%;
   overflow: auto;
   color: #333;
+  width: 95%;
   font-family: Tahoma, Arial, sans-serif;
 }
 
 /* Styling quote */
+
 #quote,
 #authors {
   font-style: italic;
