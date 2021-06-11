@@ -818,7 +818,7 @@ function overlayOff() {
 /**
  * Function to turn on overlay2
  */
- function overlayOn2() {
+function overlayOn2() {
   document.getElementById("overlay2").style.display = "block";
 }
 
