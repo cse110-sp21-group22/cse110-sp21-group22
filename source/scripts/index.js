@@ -693,7 +693,7 @@ function showDay(selectedDate) {
   year2 = year2.toString();
 
   editorDate.innerText =
-    weekDay[date2.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
+    weekDay[(date.getDay() + selectedDate) % 7] + ", " + monthNameLong[month2] + " " + date2;
 }
 
 // realtime listners
