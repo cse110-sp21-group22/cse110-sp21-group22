@@ -28,7 +28,7 @@ This is where users can create tasks or events they want to focus on during the 
 <img src="CatchUpDailyLog.png" width="1000" />
 
 #### Mood Tracker
-As we focus on the aspect of mental healh, our mood tracker helps users reflect on their emotion and feeling. We have created a birdeye view of an entire year for our users to see their up and down moment over the year. Users can choose a mood `icon` on the left side of our main page to set it as the mood of the day. 
+As we focus on the aspect of mental healh, our mood tracker helps users reflect on their emotion and feeling. We have created a birdeye view of an entire year for our users to see their up and down moment over the year. Users can choose a mood `icon` on the left side of our main page to set it as the mood of the day.
 
 <img src="HowAreYouFeeling.png"  height="500" />
 
@@ -37,7 +37,8 @@ Clicking on `Mood Tracker` on our navigation bar will bring the user to the enti
 
 
 #### Rose and Thorn
-Another feature we have that focuses on our users mental health. In Rose and Thorn, users will write one good thing and one bad thing that they have experienced during the day as a daily reflection. As we want users to stay focus on one day at the time, all information written in here will be flushed and reseted for the next day. We have provide an `icon` on the top right to better explain this feature to our users.
+Another feature we have that focuses on our users mental health. In Rose and Thorn, users will write one good thing and one bad thing that
+they have experienced during the day as a daily reflection. As we want users to stay focus on one day at the time, all information written in here will be flushed and reseted for the next day. We have provide an `icon` on the top right to better explain this feature to our users.
 <img src="RoseAndThorn.png" width="500" />
 
 ### Upcoming Board
@@ -46,7 +47,7 @@ The Upcoming board provides a quick view of the 3 next upcoming tasks that the u
 
 
 #### Calendar Tracker
-After click on the calendar on the top bar, you will be in the calendar page. In here you can track you assignment and you progress on semester. Click `Start` and `End` to select you date. 
+After click on the calendar on the top bar, you will be in the calendar page. In here you can track you assignment and you progress on semester. Click `Start` and `End` to select you date.
 <img src="CatchUpCalendar.png" width="1000"  />
 
 
