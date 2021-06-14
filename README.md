@@ -14,6 +14,8 @@
 
 [Onboarding](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/specs/onboarding.md)
 
+[Architecture](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/specs/architecture.md)
+
 [JSDocs](https://cse110-sp21-group22.github.io/cse110-sp21-group22/)
 
 [Sonarcloud](https://sonarcloud.io/summary/new_code?id=cse110-sp21-group22_cse110-sp21-group22)
