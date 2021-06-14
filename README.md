@@ -6,3 +6,5 @@
 [App](https://catch-22-e0c66.web.app/)
 
 [Docs](https://cse110-sp21-group22.github.io/cse110-sp21-group22/)
+
+[End User Doc](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/specs/users/EndUserDoc.md)
