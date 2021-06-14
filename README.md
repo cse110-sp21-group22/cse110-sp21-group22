@@ -4,7 +4,7 @@
 
 [Team Page](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/admin/team.md)
 
-[App](https://catch-22-e0c66.web.app/)
+[Product: CatchUp](https://catch-22-e0c66.web.app/)
 
 [Public Video](https://youtu.be/9iVMyCEjhQs)
 
@@ -14,7 +14,7 @@
 
 [Onboarding](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/specs/onboarding.md)
 
-[Docs](https://cse110-sp21-group22.github.io/cse110-sp21-group22/)
+[JSDocs](https://cse110-sp21-group22.github.io/cse110-sp21-group22/)
 
 [Sonarcloud](https://sonarcloud.io/summary/new_code?id=cse110-sp21-group22_cse110-sp21-group22)
 
