@@ -1,0 +1,43 @@
+{
+  "name": "cse110-sp21-group22",
+  "version": "1.0.0",
+  "description": "<img src=\"https://raw.githubusercontent.com/cse110-sp21-group22/cse110-sp21-group22/main/admin/branding/cse110logo.svg\">",
+  "main": "babel.config.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-sp21-group22/cse110-sp21-group22.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse110-sp21-group22/cse110-sp21-group22/issues"
+  },
+  "homepage": "https://github.com/cse110-sp21-group22/cse110-sp21-group22#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@cypress/code-coverage": "^3.9.6",
+    "babel-jest": "^27.0.2",
+    "cypress": "^7.4.0",
+    "cypress-plugin-tab": "^1.0.5",
+    "jest": "^27.0.4",
+    "jest-puppeteer": "^5.0.4",
+    "nyc": "^15.1.0",
+    "puppeteer": "^9.1.1"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
+  },
+  "nyc": {
+    "all": true,
+    "include": "source/scripts/*.js"
+  },
+  "dependencies": {
+    "agentkeepalive": "^4.1.4"
+  }
+}

@@ -18,7 +18,7 @@ let bStyle = "";
 let topo = "";
 let wave = "";
 let graph = "";
-let lightDark = "";
+let lightDark = "light";
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
@@ -209,9 +209,14 @@ auth.onAuthStateChanged((user) => {
           document.getElementById("navbar").className = hStyle;
           document.getElementById("navbar").style.backgroundColor = hColor;
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
         NavbarLoaded();
+        if (document.getElementById("quote")) {
+          setTextColor("feelings");
+          setTextColor("quote");
+          setTextColor("authors");
+        }
       });
   }
 });
@@ -229,37 +234,9 @@ auth.onAuthStateChanged((user) => {
           bStyle = doc.data().bStyle;
           document.getElementById("body").className = bStyle;
           document.getElementById("body").style.backgroundColor = bColor;
-          lightDark = doc.data().lightDark;
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
-      });
-  }
-});
-
-// Get background settings
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("body")
-      .get()
-      .then((doc) => {
-        try {
-          bColor = doc.data().bColor;
-          bStyle = doc.data().bStyle;
-          document.getElementById("body").className = bStyle;
-          document.getElementById("body").style.backgroundColor = bColor;
-          lightDark = doc.data().lightDark;
-        } catch (err) {
-          console.log(err);
-        }
-      })
-      .then(() => {
-        setTextColor("feelings");
-        setTextColor("quote");
-        setTextColor("authors");
       });
   }
 });
@@ -309,7 +286,7 @@ loadQuote().then(() => {
         "./scripts/index.js",
         dynamicallyLoadScript("./scripts/color.js", updateNavbar("home"))
       );
-    }, 2000);
+    }, 1500);
   });
 });
 
@@ -331,7 +308,7 @@ auth.onAuthStateChanged((user) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 });

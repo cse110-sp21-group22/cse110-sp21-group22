@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Catch-22">
+    <title>Bujo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- googleFonts -->
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Tangerine|Lato|Gamja+Flower|Open+Sans|Roboto+Slab|Indie+Flower|Lobster|Open+Sans|Kosugi+Maru">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="style/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <form id="signup-form">
+        <img class="mb-4" src="./assets/brand/catch22.svg" alt="" width="150">
+        <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+
+        <div class="form-floating">
+          <input type="name" class="form-control" id="name" placeholder="Alice Black">
+          <label for="name">Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="email">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" placeholder="Password">
+          <label for="password">Password</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Sign up</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Already a member? <a href="login.html">Login</a></p>
+          <p>or sign up with:</p>
+          <button type="button" class="btn btn-primary btn-floating mx-1" id="gbutton">
+            <em class="fab fa-google"></em>
+          </button>
+
+          <button type="button" class="btn btn-primary btn-floating mx-1" id="mbutton">
+            <em class="fab fa-microsoft"></em>
+          </button>
+        </div>
+        <br>
+        <div class="container error" id="signup-error"></div>
+
+      </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyD5iDhUcKpcocVQIUbgjSji5-EkcCSwlbE",
+        authDomain: "catch-22-e0c66.firebaseapp.com",
+        databaseURL: "https://catch-22-e0c66-default-rtdb.firebaseio.com",
+        projectId: "catch-22-e0c66",
+        storageBucket: "catch-22-e0c66.appspot.com",
+        messagingSenderId: "762946336315",
+        appId: "1:762946336315:web:1d73e51501d7d08c248e1e",
+        measurementId: "G-V6FLM16DPP"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+
+    <script src="./scripts/signup.js"></script>
+
+  </body>
+</html>

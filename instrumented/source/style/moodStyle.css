@@ -1,0 +1,134 @@
+/* mood question */
+h2 {
+  font-size: 20px;
+}
+
+/* centering moods */
+#mood-selector {
+  text-align: center;
+}
+
+/* size of each mood icon */
+#very-happy {
+  width: 55px;
+  height: 55px;
+}
+
+#happy {
+  width: 55px;
+  height: 55px;
+}
+
+#neutral {
+  width: 55px;
+  height: 55px;
+}
+
+#sad {
+  width: 55px;
+  height: 55px;
+}
+
+#very-sad {
+  width: 55px;
+  height: 55px;
+}
+
+/* hovering over each mood icon */
+#very-happy:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+
+#happy:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+
+#neutral:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+
+#sad:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+
+#very-sad:hover {
+  opacity: 75%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+}
+
+/* clicked color of each mood icon */
+.very-happy-click {
+  background-color: black;
+  width: 100px;
+  height: 75px;
+}
+
+.happy-click {
+  background-color: black;
+  width: 55px;
+  height: 55px;
+}
+
+.neutral-click {
+  background-color: black;
+  width: 55px;
+  height: 55px;
+}
+
+.sad-click {
+  background-color: black;
+  width: 55px;
+  height: 55px;
+}
+
+.very-sad-click {
+  background-color: black;
+  width: 55px;
+  height: 55px;
+}
+
+/* display year's boxes as grid */
+#year-grid {
+  display: grid;
+  grid-template-columns:
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+/* center first row of days in grid */
+.day-label {
+  text-align: center;
+}
+
+/* boarder for all mood boxes */
+.empty-mood {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+/* outlines the current day */
+.curr-day {
+  border: 3px solid rgba(0, 0, 0, 0.8);
+}
+
+.mood-tracker {
+  width: 1200px;
+  max-width: 1200px;
+  display: inline-block;
+  margin: auto;
+}

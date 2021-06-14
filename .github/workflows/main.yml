@@ -91,12 +91,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  ##################
+  # Codecov upload #
+  ##################
+  codecov:
+    name: Codecov upload
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        directory: coverage
         
   ###################
   # Firebase deploy #
   ###################
   deploy:
-    needs: [linter, semgrep, sonarcloud]
+    needs: [linter, semgrep, sonarcloud, codecov]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

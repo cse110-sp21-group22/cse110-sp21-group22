@@ -19,7 +19,7 @@ auth.onAuthStateChanged((user) => {
           $("#datepicker2").datepicker("update", semester_end);
           progress_func();
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       });
   }
@@ -136,11 +136,13 @@ function progress_func() {
   var semester_start = $("#datepicker1").datepicker("getDate");
   var semester_end = $("#datepicker2").datepicker("getDate");
   auth.onAuthStateChanged((user) => {
-    fs.collection("users")
-      .doc(user.uid)
-      .collection("settings")
-      .doc("calendar")
-      .set({ semester_start: semester_start, semester_end: semester_end });
+    if (user) {
+      fs.collection("users")
+        .doc(user.uid)
+        .collection("settings")
+        .doc("calendar")
+        .set({ semester_start: semester_start, semester_end: semester_end });
+    }
   });
   if (semester_end != undefined && semester_start != undefined) {
     var response = cal_date(

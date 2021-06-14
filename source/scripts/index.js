@@ -52,7 +52,7 @@ auth.onAuthStateChanged((user) => {
           rose.innerHTML = doc.data().rose;
           thorn.innerHTML = doc.data().thorn;
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       });
   }
@@ -106,7 +106,7 @@ auth.onAuthStateChanged((user) => {
               });
           }
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       });
   }
@@ -122,9 +122,6 @@ document.querySelector("#previous").addEventListener("click", () => {
   showDay(selectedDate);
 
   // Disable buttons to set 3 day window restriction on user
-  if (selectedDate == 2) {
-    document.querySelector("#next").disabled = false;
-  }
   if (selectedDate == -3) {
     document.querySelector("#previous").disabled = true;
   }
@@ -138,9 +135,6 @@ document.querySelector("#next").addEventListener("click", () => {
   // Disable buttons to set 3 day window restriction on user
   if (selectedDate == 3) {
     document.querySelector("#next").disabled = true;
-  }
-  if (selectedDate == -2) {
-    document.querySelector("#previous").disabled = false;
   }
 });
 
@@ -233,16 +227,20 @@ document.querySelector("#underline").addEventListener("click", () => {
  * @param {int} style style to apply
  */
 function updateStyle(style) {
-  if (document.querySelector("#toggle") == "Edit") {
+  if (
+    document.querySelector("#toggle").innerText == "View" &&
+    previousSelected.parentNode.className == "text flex-fill"
+  ) {
     let parentDiv = $("#" + previousSelected.parentNode.parentNode.id);
-    let currStyle = parseInt(parentDiv.attr("styleNum")) + style;
-    parentDiv.attr("styleNum", currStyle);
+    let currStyle = parseInt(parentDiv.attr("stylenum")) + style;
+    parentDiv.attr("stylenum", currStyle);
     setStyle(style, parentDiv);
     let id = parentDiv.attr("id");
     let text = parentDiv.children().text();
     let signifier = parseInt(parentDiv.attr("signifier"));
     let type = parseInt(parentDiv.attr("type"));
-    let note2 = new BujoElement(id, text, 0, type, signifier, currStyle);
+    let level = parseInt(parentDiv.attr("level"));
+    let note2 = new BujoElement(id, text, level, type, signifier, currStyle);
     note2.sync(selectedDate);
   }
 }
@@ -258,12 +256,14 @@ $(".text").on("keydown", function (e) {
 
 // Clear "Add new note"
 $("#add-item").on("click", function () {
-  $(this).children().text("");
+  if ($(this).children().text() == "Add new note") {
+    $(this).children().text(" ");
+  }
 });
 
 // Reset message if no new note
 $("#add-item").on("focusout", function () {
-  if ($(this).children().text() == "") {
+  if ($(this).children().text() == " " || $(this).children().text() == "") {
     $(this).children().text("Add new note");
   }
 });
@@ -513,7 +513,7 @@ function renderData(individualDoc) {
   } else {
     noteDivP.setAttribute("contenteditable", "false");
   }
-  parentDiv.setAttribute("styleNum", note.style);
+  parentDiv.setAttribute("stylenum", note.style);
   noteDivP.textContent = note.text;
   noteDiv.appendChild(noteDivP);
 
@@ -540,7 +540,7 @@ function renderData(individualDoc) {
 
   // Disable enter key
   noteDiv.addEventListener("keydown", function (event) {
-    if (event.code === "Enter") {
+    if (event.code == "Enter") {
       event.preventDefault();
     }
   });
@@ -561,7 +561,7 @@ function renderData(individualDoc) {
           .text();
         let signifier = parseInt($(this).parent().attr("signifier"));
         let type = parseInt($(this).parent().attr("type"));
-        let style = parseInt($(this).parent().attr("styleNum"));
+        let style = parseInt($(this).parent().attr("stylenum"));
         let level = parseInt($(this).parent().attr("level")) + 1;
         setLevel(level, $(this).parent());
         let note2 = new BujoElement(id, text, level, type, signifier, style);
@@ -577,7 +577,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).text();
       let type = parseInt($(this).parent().attr("type"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
@@ -609,7 +609,7 @@ function renderData(individualDoc) {
       let id = $(this).parent().attr("id");
       let text = $(this).parent().children().text();
       let signifier = parseInt($(this).parent().attr("signifier"));
-      let style = parseInt($(this).parent().attr("styleNum"));
+      let style = parseInt($(this).parent().attr("stylenum"));
       let level = parseInt($(this).parent().attr("level"));
       let note2 = new BujoElement(id, text, level, type, signifier, style);
       note2.sync(selectedDate);
@@ -627,7 +627,7 @@ function renderData(individualDoc) {
 
 // Adding a new note/task
 addItem.addEventListener("keydown", function (event) {
-  if (event.code === "Enter") {
+  if (event.code == "Enter") {
     event.preventDefault();
     document.activeElement.blur();
 
@@ -639,7 +639,7 @@ addItem.addEventListener("keydown", function (event) {
     // create new bujo task/note element
     let note2 = new BujoElement(new Date().getTime(), noteText, level, 0, 0, 0);
     note2.sync(selectedDate);
-  } else if (event.code === "Tab") {
+  } else if (event.code == "Tab") {
     event.preventDefault();
     setLevel(parseInt(add.getAttribute("level")) + 1, $("#add"));
   }
@@ -693,7 +693,11 @@ function showDay(selectedDate) {
   year2 = year2.toString();
 
   editorDate.innerText =
-    weekDay[date.getDay() % 7] + ", " + monthNameLong[month2] + " " + date2;
+    weekDay[(date.getDay() + selectedDate) % 7] +
+    ", " +
+    monthNameLong[month2] +
+    " " +
+    date2;
 }
 
 // realtime listners
@@ -811,6 +815,20 @@ function overlayOff() {
   document.getElementById("overlay").style.display = "none";
 }
 
+/**
+ * Function to turn on overlay2
+ */
+function overlayOn2() {
+  document.getElementById("overlay2").style.display = "block";
+}
+
+/**
+ * Function to turn off overlay2
+ */
+function overlayOff2() {
+  document.getElementById("overlay2").style.display = "none";
+}
+
 // Change mood buttons based on window size
 if (document.documentElement.clientWidth < 768) {
   document.getElementById("mood-selector").style = "flex-direction: row";
@@ -833,3 +851,93 @@ if (year % 4 == 0) {
 }
 
 PageLoaded();
+
+// Walkthrough demo
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    if (
+      Math.floor(
+        (new Date() - Date.parse(user.metadata.creationTime)) / 1000 / 60
+      ) < 1
+    ) {
+      introJs()
+        .setOptions({
+          steps: [
+            {
+              title: "Welcome",
+              intro: "Meet CatchUp, a daily journal for you!",
+            },
+            {
+              element: document.querySelector(".navbar-brand"),
+              intro: "You can always return to the main page by clicking here",
+            },
+            {
+              element: document.querySelector("#nav-calendar"),
+              intro: "Click here to create progress trackers for your events",
+            },
+            {
+              element: document.querySelector("#nav-mood"),
+              intro: "Click here to access the mood tracker",
+            },
+            {
+              element: document.querySelector("#nav-settings"),
+              intro: "Click here to personalize your journal and to log out",
+            },
+            {
+              element: document.querySelector("#mood-selector"),
+              intro: "Click how you're feeling to keep track of your mood",
+            },
+            {
+              element: document.querySelector(".notebook-container"),
+              intro:
+                "This is your journal. To change days, click on the arrows next to the date. To return to today simply press the today button",
+            },
+            {
+              element: document.querySelector(".text-add"),
+              intro:
+                "To add a new note, simply click here and begin typing! Press tab to indent and enter to save your note",
+            },
+            {
+              element: document.querySelector(".bullet-sub"),
+              intro:
+                "To add signifiers, simply click on the space here next to a note",
+            },
+            {
+              element: document.querySelector(".bullet-main"),
+              intro:
+                "To change a note type, simply click on the space here next to a note",
+            },
+            {
+              element: document.querySelector(".options"),
+              intro:
+                "To delete a note, simply click on the trash can that will appear here",
+            },
+            {
+              element: document.querySelector("#toggle"),
+              intro:
+                "To edit notes, simply press the Edit button. To return to view mode, press this button again",
+            },
+            {
+              element: document.querySelector(".textmodsub"),
+              intro:
+                "In edit mode, you can style your notes by using the buttons here",
+            },
+            {
+              element: document.querySelector(".blackboard"),
+              intro:
+                "Your three earlierst deadlines from the calendar will appear here",
+            },
+            {
+              element: document.querySelector(".rosethorn"),
+              intro:
+                "Keep a daily reflection here. Click the question mark to learn more",
+            },
+            {
+              intro: "That's about it. We hope you enjoy using this journal!",
+            },
+          ],
+        })
+        .start();
+    }
+  }
+});
