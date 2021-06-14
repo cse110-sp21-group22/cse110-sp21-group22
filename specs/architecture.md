@@ -11,37 +11,37 @@ Check out our [onboarding](https://github.com/cse110-sp21-group22/cse110-sp21-gr
 
 # Code Layout
 
-### app.js
+## app.js
 Handles core functionality of the app
 
-### calendar.js
+## calendar.js
 Functionality for the calendar tracker. Add or delete tracker and link to the upcoming board on the daily log page.
 
-### color.js
+## color.js
 Inputting the mood color from the main page into the mood tracker.
 
-### index.js
+## index.js
 Has the functionality for the components on the main page, including the daily log, upcoming tasks, rose and thorns, walkthrough demo.
 
-### login.js
+## login.js
 Used to allow the user to log-in to our application through firebase.
 
-### moodFuncionality.js
+## moodFuncionality.js
 Functionality for the mood tracker, such as setting up the layout and changing the color of the day.
 
-### reset.js
+## reset.js
 Used to allow user to reset their password
 
-### router.js
+## router.js
 Since our application is a SPA, router.js handles the functionality to simulate the user navigating to different parts of a website. This file will dynamically load new pages and scripts depending on how the user navigates throughout the website.
 
-### setting.js
+## setting.js
 Handles functionality of settings page
 
-### signup.js
+## signup.js
 Functionlity to create new user and store user email, password into firebase.
 
-### sw.js
+## sw.js
 Functionality for service worker
 
 # Testing
@@ -49,6 +49,6 @@ Our testing was done mainly as end-to-end testing through Cypress. Tests are fou
 
 # CI/CD Pipeline
 
-To get a general sense of what our pipeline looks like, take a look at our [pipeline](\..\admin\cipipeline\phase1.png). 
+To get a general sense of what our pipeline looks like, take a look at our [pipeline](..\admin\cipipeline\phase1.png). 
 The only major adjustment we have made since then is adding the testing phase, which on pull request launches automated cypress tests.
 
