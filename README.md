@@ -20,3 +20,4 @@
 
 [Private Video](https://youtu.be/XGZl38NPQPk)
 
+[Onboarding](https://github.com/cse110-sp21-group22/cse110-sp21-group22/blob/main/specs/onboarding.md)
