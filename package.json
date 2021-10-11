@@ -24,7 +24,7 @@
     "babel-jest": "^27.0.2",
     "cypress": "^7.4.0",
     "cypress-plugin-tab": "^1.0.5",
-    "jest": "^27.0.4",
+    "jest": "^27.2.5",
     "jest-puppeteer": "^5.0.4",
     "nyc": "^15.1.0",
     "puppeteer": "^9.1.1"
